@@ -1,4 +1,5 @@
 using Newtonsoft.Json;
+using System.Runtime.InteropServices.Marshalling;
 using System.Text;
 using System.Windows.Forms;
 namespace Auto_UI_Test
@@ -7,15 +8,23 @@ namespace Auto_UI_Test
     {
         private TextBox console;
         private UIConfig config;
+        private bool debug;
+        private const int MAX_FORMS_PER_PAGE = 5;
+        private const int MIN_FORMS_PER_PAGE = 3;
+        private const int MIN_FORM_WIDTH = 400;
+        private const int SPACE_PER_INPUT = 65;
         public Main()
         {
             InitializeComponent();
             ReadConfig();
+            this.debug = this.config.GeneralSettings.Debug;
             GenerateUI();
             RedirectConsoleOutput();
             Console.WriteLine("Initialization of components has been completed.");
-            this.Width = 1200;
+            CalculateWindowSize();
             this.RightToLeft = RightToLeft.Yes;
+            this.MaximumSize = new System.Drawing.Size(1920, 1080);
+            this.WindowState = FormWindowState.Maximized;
         }
         private void GenerateUI()
         {
@@ -45,81 +54,147 @@ namespace Auto_UI_Test
                     Text = tab.TabName,
                     AutoScroll = true,
                 };
+                int formsCount = tab.Forms.Count;
+                int neededRows = (int)Math.Ceiling((float)formsCount / (float)MAX_FORMS_PER_PAGE);
+                float tabSpacing = 0;
+                if (formsCount == 0) {; }
+                else if (formsCount <= MIN_FORMS_PER_PAGE)
+                {
+                    formsCount = MIN_FORMS_PER_PAGE;
+                    tabSpacing = 100 / formsCount;
+                }
+                else if (formsCount >= MAX_FORMS_PER_PAGE)
+                {
+                    formsCount = MAX_FORMS_PER_PAGE;
+                    tabSpacing = 100 / formsCount;
+                }
+                else
+                {
+                    tabSpacing = 100 / formsCount;
+                }
+                
+                
 
                 TableLayoutPanel tabLayoutPanel = new TableLayoutPanel
                 {
                     Dock = DockStyle.Fill,
                     AutoSize = true,
                     AutoSizeMode = AutoSizeMode.GrowAndShrink,
-                    //FlowDirection = FlowDirection.LeftToRight, // Horizontal arrangement
-                    ColumnCount = 4,
-                    RowCount = 1,
+                    ColumnCount = formsCount,
+                    RowCount = neededRows,
                     Padding = new Padding(2),
                     Margin = new Padding(1),
-
-                    //WrapContents = true // Ensures wrapping if it overflows horizontally
                 };
-                tabLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25));
-                tabLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25));
-                tabLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25));
-                tabLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25));
+                
+                
+                for (int i = 0; i < formsCount; i++)
+                {
+                    tabLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, ((float)Math.Floor(tabSpacing))));
+                }
+                for (int i = 0;i < neededRows; i++)
+                {
+                    tabLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, (float)Math.Floor((decimal)100 / (decimal)neededRows)));
+                }
+
+
+                int formNum = 1;
                 foreach (var group in tab.Forms)
                 {
-                    GroupBox groupBox = new GroupBox
-                    {
-                        Text = group.FormName,
-                        Dock = DockStyle.Fill,
-                        AutoSize = true,
-                        AutoSizeMode = AutoSizeMode.GrowOnly,
-                        Size = new Size(300, 700),
-                        Padding = new Padding(4),
-                        Margin = new Padding(2),
-                        Tag = group.Path, // Tag holds the path to the file
-                    };
-
-                    TableLayoutPanel layout = new TableLayoutPanel
-                    {
-                        AutoSize = true,
-                        AutoSizeMode = AutoSizeMode.GrowAndShrink,
-                        ColumnCount = 2,
-                        Dock = DockStyle.Fill,
-
-                    };
-
-                    layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 40));
-                    layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 60));
+                    TableLayoutPanel layout;
+                    GroupBox groupBox;
                     int row = 0;
-                    foreach (var field in group.Fields)
+                    if (group.FormName == null) { // <<<<<<< FOR TESTING PURPOUSE
+                        groupBox = new GroupBox
+                        {
+                            Text = (formNum++).ToString(),
+                            Dock = DockStyle.Fill,
+                            AutoSize = true,
+                            AutoSizeMode = AutoSizeMode.GrowOnly,
+                            Size = new Size(300, 700),
+                            Padding = new Padding(4),
+                            Margin = new Padding(2),
+                            //Tag = Path.Combine(group.Path, group.FileName), // Tag holds the path to the file
+                        };
+
+                        layout = new TableLayoutPanel
+                        {
+                            AutoSize = true,
+                            AutoSizeMode = AutoSizeMode.GrowAndShrink,
+                            ColumnCount = 2,
+                            Dock = DockStyle.Fill,
+
+                        };
+
+                        layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50));
+                        layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50));
+
+                    }
+                    else
                     {
-                        try
+                        groupBox = new GroupBox
                         {
-                            Label label = new Label
+                            Text = group.FormName,
+                            Dock = DockStyle.Fill,
+                            AutoSize = true,
+                            AutoSizeMode = AutoSizeMode.GrowOnly,
+                            Size = new Size(300, 700),
+                            Padding = new Padding(4),
+                            Margin = new Padding(2),
+                            Tag = Path.Combine(group.Path, group.FileName), // Tag holds the path to the file
+                        };
+
+                        layout = new TableLayoutPanel
+                        {
+                            AutoSize = true,
+                            AutoSizeMode = AutoSizeMode.GrowAndShrink,
+                            ColumnCount = 2,
+                            Dock = DockStyle.Fill,
+
+                        };
+
+                        layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50));
+                        layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50));
+
+                        
+                        foreach (var field in group.Fields)
+                        {
+                            try
                             {
-                                Text = field.Label,
-                                AutoSize = true,
-                                TextAlign = ContentAlignment.MiddleLeft,
-                                Anchor = AnchorStyles.Left,
-                                Dock = DockStyle.Top,
-                                Margin = new Padding(2)
-                            };
+                                Label label = new Label
+                                {
+                                    Text = field.Label,
+                                    AutoSize = true,
+                                    TextAlign = ContentAlignment.MiddleLeft,
+                                    Anchor = AnchorStyles.Left,
+                                    Dock = DockStyle.Top,
+                                    Margin = new Padding(0, 0, 2, 15)
+                                };
 
-                            Control control = ControlFactory.CreateControlFromJson(field);
-                            control.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-                            control.Margin = new Padding(2);
-                            control.Dock = DockStyle.Top;
+                                Control control = ControlFactory.CreateControlFromJson(field);
+                                control.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+                                control.Margin = new Padding(2, 0, 0, 15);
+                                control.Dock = DockStyle.Top;
+                                control.Text = field.DefaultText;
 
-                            layout.Controls.Add(label, 0, row); // Add label in the first column
-                            layout.Controls.Add(control, 1, row); // Add control in the second column
-                            row++;
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show($"Error creating control: {ex.Message}");
+                                if (this.debug && string.IsNullOrEmpty(control.Text))
+                                {
+                                    control.Text = field.Placeholder;
+                                }
+
+
+                                layout.Controls.Add(label, 0, row); // Add label in the first column
+                                layout.Controls.Add(control, 1, row); // Add control in the second column
+                                row++;
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show($"Error creating control: {ex.Message}");
+                            }
                         }
                     }
                     Label fileNameLabel = new Label
                     {
-                        Text = "Filename:",
+                        Text = "שם קובץ:",
                         AutoSize = true,
                         TextAlign = ContentAlignment.MiddleLeft,
                         Anchor = AnchorStyles.Left,
@@ -134,17 +209,21 @@ namespace Auto_UI_Test
                         Dock = DockStyle.Bottom,
                         Tag = "FileName"
                     };
+                    if (this.debug)
+                    {
+                        fileNameTextBox.Text = "aOut_" + group.FileName;
+                    }
 
                     layout.Controls.Add(fileNameLabel, 0, row);
                     layout.Controls.Add(fileNameTextBox, 1, row);
                     row++;
                     var generateButton = new Button
                     {
-                        Text = "Generate",
+                        Text = "הפק טופס",
                         AutoSize = true,
                         AutoSizeMode = AutoSizeMode.GrowAndShrink,
                         Dock = DockStyle.Bottom,
-                        
+
                     };
 
                     generateButton.Click += GenerateButton_Click;
@@ -220,11 +299,14 @@ namespace Auto_UI_Test
                 MessageBox.Show("Filename not provided.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            //Check
-            Console.WriteLine($"New filename to save as: {newFilename}");
 
 
-            FillDataStructure(layoutPanel.Controls, parentGroupBox.Text, clickedButton.Parent.Parent.Parent.Text);
+
+
+            FormObject fo = FillDataStructure(layoutPanel.Controls, parentGroupBox.Text, clickedButton.Parent.Parent.Parent.Text);
+            fo.FillForm(newFilename, config.GeneralSettings.SavePath, config.GeneralSettings.InputPath);
+            Console.WriteLine($"Form has been filled and saved at {Path.Combine(config.GeneralSettings.SavePath, newFilename)}");
+
         }
         private void RedirectConsoleOutput()
         {
@@ -287,7 +369,7 @@ namespace Auto_UI_Test
             return menuStrip;
 
         }
-        private void FillDataStructure(TableLayoutControlCollection controls, string formName, string tabName)
+        private FormObject FillDataStructure(TableLayoutControlCollection controls, string formName, string tabName)
         {
             TabObject tabObject = null;
             foreach (TabObject tab in config.Tabs)
@@ -316,13 +398,14 @@ namespace Auto_UI_Test
             // Iterate through the controls and update the corresponding InputField in the data structure
             foreach (Control control in controls)
             {
+                bool found = false;
                 if (control is TextBox textBox)
                 {
                     var matchingField = formObject.Fields?.Find(field => field.Name == control.Name);
                     if (matchingField != null)
                     {
                         matchingField.Text = textBox.Text;
-                        Console.WriteLine($"Found and filled the {matchingField} object with {control.Text}");
+                        //Console.WriteLine($"Found and filled the {matchingField} object with {control.Text}");
                     }
                 }
                 else if (control is CheckBox checkBox)
@@ -331,7 +414,7 @@ namespace Auto_UI_Test
                     if (matchingField != null)
                     {
                         matchingField.Text = checkBox.Checked.ToString();
-                        Console.WriteLine($"Found and filled the {matchingField} object with {checkBox.Checked.ToString()}");
+                        //Console.WriteLine($"Found and filled the {matchingField} object with {checkBox.Checked.ToString()}");
                     }
                 }
                 else if (control is ComboBox comboBox)
@@ -340,11 +423,12 @@ namespace Auto_UI_Test
                     if (matchingField != null)
                     {
                         matchingField.Text = comboBox.SelectedItem?.ToString();
-                        Console.WriteLine($"Found and filled the {matchingField} object with {comboBox.SelectedItem.ToString()}");
+                        //Console.WriteLine($"Found and filled the {matchingField} object with {comboBox.SelectedItem.ToString()}");
                     }
                 }
             }
-            // formObject.GeneratePDF();
+            return formObject;
+
         }
         private void SaveFolderDialoge()
         {
@@ -402,12 +486,37 @@ namespace Auto_UI_Test
         }
         public void UpdateConfig()
         {
-            string json = JsonConvert.SerializeObject(config,Formatting.Indented);
+            string json = JsonConvert.SerializeObject(config, Formatting.Indented);
             File.WriteAllText(Path.Combine(AppContext.BaseDirectory, "config.json"), json);
         }
         public void ReadConfig()
         {
             this.config = LoadConfiguration();
+        }
+
+        public void CalculateWindowSize()
+        {
+            if (this.config == null) { return; }
+            float windowHeight = console.Height;
+            windowHeight += this.MainMenuStrip.Height;
+            // find max count of fields and forms
+            int maxFields = 0;
+            int maxForms = 0;
+            foreach (var tab in config.Tabs)
+            {
+                if (tab.Forms.Count > maxForms) { maxForms = tab.Forms.Count;}
+                foreach (var form in tab.Forms)
+                {
+                    if (form.Fields == null) { continue; }
+                    if (form.Fields.Count > maxFields) { maxFields = form.Fields.Count; }
+                }
+            }
+            float neededRows = (float)Math.Sqrt(Math.Ceiling((float)maxForms / (float)MAX_FORMS_PER_PAGE));
+            if (maxForms > MAX_FORMS_PER_PAGE) { maxForms = MAX_FORMS_PER_PAGE; }
+            this.Width = maxForms * MIN_FORM_WIDTH;
+            
+            windowHeight += (int)Math.Ceiling((double)maxFields * (double)SPACE_PER_INPUT * (double)neededRows);
+            this.Height = (int)windowHeight;
         }
     }
 }
