@@ -1,4 +1,5 @@
 using Newtonsoft.Json;
+using System.Reflection.Metadata;
 using System.Runtime.InteropServices.Marshalling;
 using System.Text;
 using System.Windows.Forms;
@@ -25,7 +26,7 @@ namespace Auto_UI_Test
             GenerateUI();
             
             
-            this.WindowState = FormWindowState.Maximized;
+            //this.WindowState = FormWindowState.Maximized;
             Console.WriteLine("Initialization of components has been completed.");
         }
         private void GenerateUI()
@@ -149,15 +150,17 @@ namespace Auto_UI_Test
                         {
                             AutoSize = true,
                             AutoSizeMode = AutoSizeMode.GrowAndShrink,
-                            ColumnCount = 2,
+                            ColumnCount = 3,
                             Dock = DockStyle.Fill,
 
                         };
 
-                        layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50));
-                        layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50));
-
+                        layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 45));
+                        layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 10));
+                        layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 45));
                         
+
+
                         foreach (var field in group.Fields)
                         {
                             try
@@ -169,26 +172,38 @@ namespace Auto_UI_Test
                                     TextAlign = ContentAlignment.MiddleLeft,
                                     Anchor = AnchorStyles.Left,
                                     Dock = DockStyle.Top,
-                                    Margin = new Padding(0, 0, 2, 15),
+                                    Margin = new Padding(0, 0, 0, 15),
                                 };
-                                //ToolTip tt = new ToolTip();
-                                //tt.SetToolTip(label, "Testing");
                                 
                                 Control control = ControlFactory.CreateControlFromJson(field);
                                 control.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-                                control.Margin = new Padding(2, 0, 0, 15);
+                                control.Margin = new Padding(0, 0, 0, 15);
                                 control.Dock = DockStyle.Top;
                                 control.Text = field.DefaultText;
-                                //tt.SetToolTip(control, "some other thesting");
 
                                 if (this.debug && string.IsNullOrEmpty(control.Text))
                                 {
                                     control.Text = field.Placeholder;
                                 }
-
+                                if (!string.IsNullOrEmpty(field.Description)) {
+                                    Label infoLabel = new Label
+                                    {
+                                        Text = "\u2139", // Unicode for "Information" symbol
+                                        Font = new Font("Arial", 12), // Adjust font and size
+                                        ForeColor = Color.Blue, // Color for visibility
+                                        AutoSize = true,
+                                        Dock = DockStyle.Left,
+                                        Cursor = Cursors.Hand, // Optional: Hand cursor
+                                        Tag = field.Description
+                                    };
+                                    infoLabel.Click += HelpButton_Click;
+                                    layout.Controls.Add(infoLabel, 1, row);
+                                }
+                                
+                                
 
                                 layout.Controls.Add(label, 0, row); // Add label in the first column
-                                layout.Controls.Add(control, 1, row); // Add control in the second column
+                                layout.Controls.Add(control, 2, row); // Add control in the third column
                                 row++;
                             }
                             catch (Exception ex)
@@ -220,7 +235,7 @@ namespace Auto_UI_Test
                     }
 
                     layout.Controls.Add(fileNameLabel, 0, row);
-                    layout.Controls.Add(fileNameTextBox, 1, row);
+                    layout.Controls.Add(fileNameTextBox, 2, row);
                     row++;
                     var generateButton = new Button
                     {
@@ -261,7 +276,13 @@ namespace Auto_UI_Test
             RedirectConsoleOutput();
             CalculateWindowSize();
         }
-
+        public void HelpButton_Click(object sender, EventArgs e)
+        {
+            if (sender is Control c) { 
+                MessageBox.Show(c.Tag.ToString(), "מידע על שדה", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            
+        }
         public void GenerateButton_Click(object sender, EventArgs e)
         {
             if (sender is not Button clickedButton)
@@ -433,9 +454,10 @@ namespace Auto_UI_Test
             float neededRows = (float)Math.Sqrt(Math.Ceiling((float)maxForms / (float)MAX_FORMS_PER_PAGE));
             if (maxForms > MAX_FORMS_PER_PAGE) { maxForms = MAX_FORMS_PER_PAGE; }
             this.Width = maxForms * MIN_FORM_WIDTH;
-            
+            this.MinimumSize = new System.Drawing.Size(this.Width, this.MinimumSize.Height);
             windowHeight += (int)Math.Ceiling((double)maxFields * (double)SPACE_PER_INPUT * (double)neededRows);
             this.Height = (int)windowHeight;
+
         }
     }
 }

@@ -102,6 +102,7 @@ public class InputField
     public string Label { get; set; }
     public string Placeholder {  get; set; }
     public string DefaultText {  get; set; }
+    public string Description {  get; set; }
     public PDFSettings PDFSettings { get; set; }
 }
 public class TabObject
