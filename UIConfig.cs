@@ -9,8 +9,45 @@ using iText.Layout.Element;
 using iText.Layout.Properties;
 using System.Drawing.Text;
 using System.Text.RegularExpressions;
+using LiteDB;
+using System.Text;
 
+public class TextBoxWriter : TextWriter
+{
+    private readonly TextBox _textBox;
 
+    public TextBoxWriter(TextBox textBox)
+    {
+        _textBox = textBox;
+    }
+
+    public override Encoding Encoding => Encoding.UTF8;
+
+    public override void Write(char value)
+    {
+        if (_textBox.InvokeRequired)
+        {
+            _textBox.BeginInvoke(new Action(() => _textBox.AppendText(value.ToString())));
+        }
+        else
+        {
+            _textBox.AppendText(value.ToString());
+        }
+    }
+
+    public override void Write(string value)
+    {
+        value = value.Replace("\n", "\r\n");
+        if (_textBox.InvokeRequired)
+        {
+            _textBox.BeginInvoke(new Action(() => _textBox.AppendText(value)));
+        }
+        else
+        {
+            _textBox.AppendText(value);
+        }
+    }
+}
 public static class Utility
 {
     public static string ReverseRtlString(string input)
@@ -78,16 +115,18 @@ public static class Utility
 public class InputField
 {
     public string Type { get; set; }
-    [JsonIgnore]
+    [BsonIgnore]
     public string Text { get; set; }
     public string Name { get; set; }
     public string Label { get; set; }
-    public string Placeholder {  get; set; }
-    public string DefaultText {  get; set; }
+    public string Placeholder { get; set; }
+    public string DefaultText { get; set; }
     public PDFSettings PDFSettings { get; set; }
 }
 public class TabObject
 {
+    [BsonId]
+    public ObjectId Id { get; set; }
     public string TabName { get; set; }
     public List<FormObject> Forms { get; set; }
 }
@@ -98,7 +137,7 @@ public class FormObject
     public string Path { get; set; }
     public string Checksum { get; set; }
     public List<InputField> Fields { get; set; }
-    
+
     public void FillForm(string outputName, string outputPath, string inputPath)
     {
 
@@ -163,10 +202,12 @@ public class FormObject
 }
 public class UIConfig
 {
+    [BsonId]
+    public ObjectId Id { get; set; }
     public GeneralSettings GeneralSettings { get; set; }
     public List<TabObject> Tabs { get; set; }
-
 }
+
 
 
 public class GeneralSettings

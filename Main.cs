@@ -1,11 +1,13 @@
 using Newtonsoft.Json;
 using System.Runtime.InteropServices.Marshalling;
 using System.Text;
+using LiteDB;
 using System.Windows.Forms;
 namespace Auto_UI_Test
 {
     public partial class Main : System.Windows.Forms.Form
     {
+        private LiteDatabase _database;
         private TextBox console;
         private UIConfig config;
         private bool debug;
@@ -16,7 +18,9 @@ namespace Auto_UI_Test
         public Main()
         {
             InitializeComponent();
-            ReadConfig();
+            MigrateJsonToLiteDB();
+            InitializeLiteDB();
+            LoadConfigFromDatabase();
             this.debug = this.config.GeneralSettings.Debug;
             GenerateUI();
             RedirectConsoleOutput();
@@ -26,6 +30,42 @@ namespace Auto_UI_Test
             this.MaximumSize = new System.Drawing.Size(1920, 1080);
             this.WindowState = FormWindowState.Maximized;
         }
+
+        private void InitializeLiteDB()
+        {
+            // Initialize LiteDB with a local database file
+            _database = new LiteDatabase("Filename=config.db; Mode=Exclusive");
+        }
+
+        private void LoadConfigFromDatabase()
+        {
+            var collection = _database.GetCollection<UIConfig>("ui_config");
+            config = collection.FindOne(Query.All());
+
+            if (config == null)
+            {
+                Console.WriteLine("No configuration found in LiteDB. Initializing default configuration...");
+                config = new UIConfig
+                {
+                    GeneralSettings = new GeneralSettings
+                    {
+                        SavePath = "C:\\DefaultPath",
+                        InputPath = "C:\\DefaultInputPath",
+                        Debug = true
+                    },
+                    Tabs = new List<TabObject>()
+                };
+                UpdateConfig();
+            }
+        }
+
+
+        public void UpdateConfig()
+        {
+            var collection = _database.GetCollection<UIConfig>("ui_config");
+            collection.Upsert(config);
+        }
+
         private void GenerateUI()
         {
             MenuStrip mainMenuStrip = GenerateMenuStrip();
@@ -254,7 +294,6 @@ namespace Auto_UI_Test
             mainLayout.Controls.Add(console, 0, 2);
             this.Controls.Add(mainLayout);
         }
-
         public void GenerateButton_Click(object sender, EventArgs e)
         {
             if (sender is not Button clickedButton)
@@ -430,6 +469,55 @@ namespace Auto_UI_Test
             return formObject;
 
         }
+        /*private void SaveFolderDialoge()
+        {
+            using (FolderBrowserDialog fbd = new FolderBrowserDialog())
+            {
+                DialogResult dr = fbd.ShowDialog();
+                if (dr == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
+                {
+                    this.config.GeneralSettings.SavePath = fbd.SelectedPath;
+                    UpdateConfig();
+                    Console.WriteLine($"Files will be saved at: {fbd.SelectedPath}");
+                }
+            }
+        }*/
+
+        private void MigrateJsonToLiteDB()
+        {
+            // Path to your existing JSON configuration file
+            string jsonPath = Path.Combine(AppContext.BaseDirectory, "config.json");
+
+            // Check if JSON file exists
+            if (!File.Exists(jsonPath))
+            {
+                Console.WriteLine("No JSON configuration file found. Skipping migration.");
+                return;
+            }
+
+            // Read JSON file and deserialize into the UIConfig object
+            UIConfig jsonConfig = JsonConvert.DeserializeObject<UIConfig>(File.ReadAllText(jsonPath));
+
+            if (jsonConfig == null)
+            {
+                Console.WriteLine("Failed to deserialize JSON configuration.");
+                return;
+            }
+
+            // Initialize LiteDB and insert the JSON configuration
+            using (var database = new LiteDatabase("Filename=config.db; Mode=Exclusive"))
+            {
+                var configCollection = database.GetCollection<UIConfig>("ui_config");
+
+                // Insert the configuration into LiteDB
+                configCollection.Upsert(jsonConfig);
+                Console.WriteLine("Configuration migrated to LiteDB successfully.");
+            }
+
+            // Optionally, delete or rename the old JSON file after migration
+            File.Move(jsonPath, jsonPath + ".bak");
+        }
+
         private void SaveFolderDialoge()
         {
             using (FolderBrowserDialog fbd = new FolderBrowserDialog())
@@ -448,47 +536,12 @@ namespace Auto_UI_Test
             string jsonPath = Path.Combine(AppContext.BaseDirectory, "config.json");
             return JsonConvert.DeserializeObject<UIConfig>(File.ReadAllText(jsonPath));
         }
-        public class TextBoxWriter : TextWriter
-        {
-            private readonly TextBox _textBox;
-
-            public TextBoxWriter(TextBox textBox)
-            {
-                _textBox = textBox;
-            }
-
-            public override Encoding Encoding => Encoding.UTF8;
-
-            public override void Write(char value)
-            {
-                if (_textBox.InvokeRequired)
-                {
-                    _textBox.BeginInvoke(new Action(() => _textBox.AppendText(value.ToString())));
-                }
-                else
-                {
-                    _textBox.AppendText(value.ToString());
-                }
-            }
-
-            public override void Write(string value)
-            {
-                value = value.Replace("\n", "\r\n");
-                if (_textBox.InvokeRequired)
-                {
-                    _textBox.BeginInvoke(new Action(() => _textBox.AppendText(value)));
-                }
-                else
-                {
-                    _textBox.AppendText(value);
-                }
-            }
-        }
-        public void UpdateConfig()
+        
+        /*public void UpdateConfig()
         {
             string json = JsonConvert.SerializeObject(config, Formatting.Indented);
             File.WriteAllText(Path.Combine(AppContext.BaseDirectory, "config.json"), json);
-        }
+        }*/
         public void ReadConfig()
         {
             this.config = LoadConfiguration();
@@ -499,24 +552,31 @@ namespace Auto_UI_Test
             if (this.config == null) { return; }
             float windowHeight = console.Height;
             windowHeight += this.MainMenuStrip.Height;
-            // find max count of fields and forms
             int maxFields = 0;
             int maxForms = 0;
+
             foreach (var tab in config.Tabs)
             {
-                if (tab.Forms.Count > maxForms) { maxForms = tab.Forms.Count;}
+                if (tab.Forms.Count > maxForms) { maxForms = tab.Forms.Count; }
                 foreach (var form in tab.Forms)
                 {
                     if (form.Fields == null) { continue; }
                     if (form.Fields.Count > maxFields) { maxFields = form.Fields.Count; }
                 }
             }
+
             float neededRows = (float)Math.Sqrt(Math.Ceiling((float)maxForms / (float)MAX_FORMS_PER_PAGE));
             if (maxForms > MAX_FORMS_PER_PAGE) { maxForms = MAX_FORMS_PER_PAGE; }
             this.Width = maxForms * MIN_FORM_WIDTH;
-            
+
             windowHeight += (int)Math.Ceiling((double)maxFields * (double)SPACE_PER_INPUT * (double)neededRows);
             this.Height = (int)windowHeight;
+        }
+
+        protected override void OnFormClosed(FormClosedEventArgs e)
+        {
+            base.OnFormClosed(e);
+            _database?.Dispose(); // Properly dispose of LiteDB when closing the form
         }
     }
 }
