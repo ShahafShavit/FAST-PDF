@@ -2,6 +2,7 @@ using Newtonsoft.Json;
 using System.Runtime.InteropServices.Marshalling;
 using System.Text;
 using System.Windows.Forms;
+
 namespace Auto_UI_Test
 {
     public partial class Main : System.Windows.Forms.Form
@@ -16,18 +17,20 @@ namespace Auto_UI_Test
         public Main()
         {
             InitializeComponent();
-            ReadConfig();
+            this.config = Config.Pull();
             this.debug = this.config.GeneralSettings.Debug;
-            GenerateUI();
-            RedirectConsoleOutput();
-            Console.WriteLine("Initialization of components has been completed.");
-            CalculateWindowSize();
+            this.Text = "מערכת מילוי טפסים- להט הנדסת חשמל";
             this.RightToLeft = RightToLeft.Yes;
-            this.MaximumSize = new System.Drawing.Size(1920, 1080);
+            
+            GenerateUI();
+            
+            
             this.WindowState = FormWindowState.Maximized;
+            Console.WriteLine("Initialization of components has been completed.");
         }
         private void GenerateUI()
         {
+            
             MenuStrip mainMenuStrip = GenerateMenuStrip();
             TableLayoutPanel mainLayout = new TableLayoutPanel
             {
@@ -113,7 +116,6 @@ namespace Auto_UI_Test
                             Size = new Size(300, 700),
                             Padding = new Padding(4),
                             Margin = new Padding(2),
-                            //Tag = Path.Combine(group.Path, group.FileName), // Tag holds the path to the file
                         };
 
                         layout = new TableLayoutPanel
@@ -167,14 +169,17 @@ namespace Auto_UI_Test
                                     TextAlign = ContentAlignment.MiddleLeft,
                                     Anchor = AnchorStyles.Left,
                                     Dock = DockStyle.Top,
-                                    Margin = new Padding(0, 0, 2, 15)
+                                    Margin = new Padding(0, 0, 2, 15),
                                 };
-
+                                //ToolTip tt = new ToolTip();
+                                //tt.SetToolTip(label, "Testing");
+                                
                                 Control control = ControlFactory.CreateControlFromJson(field);
                                 control.Anchor = AnchorStyles.Left | AnchorStyles.Right;
                                 control.Margin = new Padding(2, 0, 0, 15);
                                 control.Dock = DockStyle.Top;
                                 control.Text = field.DefaultText;
+                                //tt.SetToolTip(control, "some other thesting");
 
                                 if (this.debug && string.IsNullOrEmpty(control.Text))
                                 {
@@ -251,8 +256,10 @@ namespace Auto_UI_Test
 
             mainLayout.Controls.Add(mainMenuStrip, 0, 0);
             mainLayout.Controls.Add(tabControl, 0, 1);
-            mainLayout.Controls.Add(console, 0, 2);
+            mainLayout.Controls.Add(this.console, 0, 2);
             this.Controls.Add(mainLayout);
+            RedirectConsoleOutput();
+            CalculateWindowSize();
         }
 
         public void GenerateButton_Click(object sender, EventArgs e)
@@ -268,6 +275,8 @@ namespace Auto_UI_Test
 
             if (parentGroupBox.Tag.ToString() is not String originalPath)
                 throw new MissingFieldException("No file path given in GroupBox Tag property, 2.");
+
+            if (debug) this.config = Config.Pull();
 
             TableLayoutPanel layoutPanel = null;
             foreach (Control control in parentGroupBox.Controls)
@@ -317,52 +326,12 @@ namespace Auto_UI_Test
 
             // Create a new MenuStrip
             MenuStrip menuStrip = new MenuStrip();
-            //menuStrip.Dock = DockStyle.Top;
-
-            // Create "File" menu
             ToolStripMenuItem fileMenu = new ToolStripMenuItem("File");
             ToolStripMenuItem chooseSaveFolder = new ToolStripMenuItem("שמור בתיקייה");
-            //ToolStripMenuItem saveMenuItem = new ToolStripMenuItem("Save");
-            //ToolStripMenuItem exitMenuItem = new ToolStripMenuItem("Exit");
-
             chooseSaveFolder.Click += (s, e) => SaveFolderDialoge();
-            // Add event handlers for menu items
-            //openMenuItem.Click += (s, e) => OpenFile();
-            //saveMenuItem.Click += (s, e) => SaveFile();
-            //exitMenuItem.Click += (s, e) => ExitApplication();
-
-            // Add sub-items to "File" menu
-            //fileMenu.DropDownItems.Add(openMenuItem);
-            //fileMenu.DropDownItems.Add(saveMenuItem);
-            //fileMenu.DropDownItems.Add(new ToolStripSeparator()); // Adds a separator
             fileMenu.DropDownItems.Add(chooseSaveFolder);
 
-            // Create "Edit" menu
-            ToolStripMenuItem editMenu = new ToolStripMenuItem("Edit");
-            ToolStripMenuItem cutMenuItem = new ToolStripMenuItem("Cut");
-            ToolStripMenuItem copyMenuItem = new ToolStripMenuItem("Copy");
-            ToolStripMenuItem pasteMenuItem = new ToolStripMenuItem("Paste");
-
-            // Add event handlers for "Edit" menu items
-            //cutMenuItem.Click += (s, e) => Cut();
-            //copyMenuItem.Click += (s, e) => Copy();
-            //pasteMenuItem.Click += (s, e) => Paste();
-
-            // Add sub-items to "Edit" menu
-            editMenu.DropDownItems.Add(cutMenuItem);
-            editMenu.DropDownItems.Add(copyMenuItem);
-            editMenu.DropDownItems.Add(pasteMenuItem);
-
-            // Create "View" menu
-            ToolStripMenuItem viewMenu = new ToolStripMenuItem("View");
-            ToolStripMenuItem toggleDarkMode = new ToolStripMenuItem("Toggle Dark Mode");
-            //toggleDarkMode.Click += (s, e) => ToggleDarkMode();
-            viewMenu.DropDownItems.Add(toggleDarkMode);
-
-            // Add top-level menus to the MenuStrip
             menuStrip.Items.Add(fileMenu);
-            menuStrip.Items.Add(editMenu);
-            menuStrip.Items.Add(viewMenu);
 
             // Add the MenuStrip to the form
             this.MainMenuStrip = menuStrip;
@@ -438,62 +407,12 @@ namespace Auto_UI_Test
                 if (dr == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
                 {
                     this.config.GeneralSettings.SavePath = fbd.SelectedPath;
-                    UpdateConfig();
+                    Config.Update(this.config);
                     Console.WriteLine($"Files will be saved at: {fbd.SelectedPath}");
                 }
             }
         }
-        private UIConfig LoadConfiguration()
-        {
-            string jsonPath = Path.Combine(AppContext.BaseDirectory, "config.json");
-            return JsonConvert.DeserializeObject<UIConfig>(File.ReadAllText(jsonPath));
-        }
-        public class TextBoxWriter : TextWriter
-        {
-            private readonly TextBox _textBox;
-
-            public TextBoxWriter(TextBox textBox)
-            {
-                _textBox = textBox;
-            }
-
-            public override Encoding Encoding => Encoding.UTF8;
-
-            public override void Write(char value)
-            {
-                if (_textBox.InvokeRequired)
-                {
-                    _textBox.BeginInvoke(new Action(() => _textBox.AppendText(value.ToString())));
-                }
-                else
-                {
-                    _textBox.AppendText(value.ToString());
-                }
-            }
-
-            public override void Write(string value)
-            {
-                value = value.Replace("\n", "\r\n");
-                if (_textBox.InvokeRequired)
-                {
-                    _textBox.BeginInvoke(new Action(() => _textBox.AppendText(value)));
-                }
-                else
-                {
-                    _textBox.AppendText(value);
-                }
-            }
-        }
-        public void UpdateConfig()
-        {
-            string json = JsonConvert.SerializeObject(config, Formatting.Indented);
-            File.WriteAllText(Path.Combine(AppContext.BaseDirectory, "config.json"), json);
-        }
-        public void ReadConfig()
-        {
-            this.config = LoadConfiguration();
-        }
-
+        
         public void CalculateWindowSize()
         {
             if (this.config == null) { return; }

@@ -9,8 +9,26 @@ using iText.Layout.Element;
 using iText.Layout.Properties;
 using System.Drawing.Text;
 using System.Text.RegularExpressions;
+using System.Text;
+using static Org.BouncyCastle.Math.EC.ECCurve;
 
 
+public static class Config
+{
+    
+    public static UIConfig Pull()
+    {
+        string jsonPath = Path.Combine(AppContext.BaseDirectory, "config.json");
+        return JsonConvert.DeserializeObject<UIConfig>(File.ReadAllText(jsonPath));
+    }
+    public static void Update(UIConfig config)
+    {
+        string json = JsonConvert.SerializeObject(config, Formatting.Indented);
+        File.WriteAllText(Path.Combine(AppContext.BaseDirectory, "config.json"), json);
+    }
+
+
+}
 public static class Utility
 {
     public static string ReverseRtlString(string input)
@@ -167,15 +185,12 @@ public class UIConfig
     public List<TabObject> Tabs { get; set; }
 
 }
-
-
 public class GeneralSettings
 {
     public string SavePath { get; set; }
     public string InputPath {  get; set; }
     public bool Debug {  get; set; }
 }
-
 public class PDFSettings
 {
     public string Font { get; set; }
@@ -185,10 +200,45 @@ public class PDFSettings
     public bool RTL { get; set; }
     public List<Location> Location { get; set; }
 }
-
 public class Location
 {
     public int Page { get; set; }
     public float X { get; set; }
     public float Y { get; set; }
+}
+public class TextBoxWriter : TextWriter
+{
+    private readonly TextBox _textBox;
+
+    public TextBoxWriter(TextBox textBox)
+    {
+        _textBox = textBox;
+    }
+
+    public override Encoding Encoding => Encoding.UTF8;
+
+    public override void Write(char value)
+    {
+        if (_textBox.InvokeRequired)
+        {
+            _textBox.BeginInvoke(new Action(() => _textBox.AppendText(value.ToString())));
+        }
+        else
+        {
+            _textBox.AppendText(value.ToString());
+        }
+    }
+
+    public override void Write(string value)
+    {
+        value = value.Replace("\n", "\r\n");
+        if (_textBox.InvokeRequired)
+        {
+            _textBox.BeginInvoke(new Action(() => _textBox.AppendText(value)));
+        }
+        else
+        {
+            _textBox.AppendText(value);
+        }
+    }
 }
