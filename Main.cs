@@ -22,16 +22,14 @@ namespace Auto_UI_Test
             this.debug = this.config.GeneralSettings.Debug;
             this.Text = "מערכת מילוי טפסים- להט הנדסת חשמל";
             this.RightToLeft = RightToLeft.Yes;
-            
+
             GenerateUI();
-            
-            
-            //this.WindowState = FormWindowState.Maximized;
+
             Console.WriteLine("Initialization of components has been completed.");
         }
         private void GenerateUI()
         {
-            
+
             MenuStrip mainMenuStrip = GenerateMenuStrip();
             TableLayoutPanel mainLayout = new TableLayoutPanel
             {
@@ -76,8 +74,8 @@ namespace Auto_UI_Test
                 {
                     tabSpacing = 100 / formsCount;
                 }
-                
-                
+
+
 
                 TableLayoutPanel tabLayoutPanel = new TableLayoutPanel
                 {
@@ -89,13 +87,13 @@ namespace Auto_UI_Test
                     Padding = new Padding(2),
                     Margin = new Padding(1),
                 };
-                
-                
+
+
                 for (int i = 0; i < formsCount; i++)
                 {
                     tabLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, ((float)Math.Floor(tabSpacing))));
                 }
-                for (int i = 0;i < neededRows; i++)
+                for (int i = 0; i < neededRows; i++)
                 {
                     tabLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, (float)Math.Floor((decimal)100 / (decimal)neededRows)));
                 }
@@ -107,7 +105,8 @@ namespace Auto_UI_Test
                     TableLayoutPanel layout;
                     GroupBox groupBox;
                     int row = 0;
-                    if (group.FormName == null) { // <<<<<<< FOR TESTING PURPOUSE
+                    if (group.FormName == null)
+                    { // <<<<<<< FOR TESTING PURPOUSE
                         groupBox = new GroupBox
                         {
                             Text = (formNum++).ToString(),
@@ -158,7 +157,7 @@ namespace Auto_UI_Test
                         layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 45));
                         layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 10));
                         layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 45));
-                        
+
 
 
                         foreach (var field in group.Fields)
@@ -174,7 +173,7 @@ namespace Auto_UI_Test
                                     Dock = DockStyle.Top,
                                     Margin = new Padding(0, 0, 0, 15),
                                 };
-                                
+
                                 Control control = ControlFactory.CreateControlFromJson(field);
                                 control.Anchor = AnchorStyles.Left | AnchorStyles.Right;
                                 control.Margin = new Padding(0, 0, 0, 15);
@@ -185,7 +184,8 @@ namespace Auto_UI_Test
                                 {
                                     control.Text = field.Placeholder;
                                 }
-                                if (!string.IsNullOrEmpty(field.Description)) {
+                                if (!string.IsNullOrEmpty(field.Description))
+                                {
                                     Label infoLabel = new Label
                                     {
                                         Text = "\u2139", // Unicode for "Information" symbol
@@ -196,11 +196,18 @@ namespace Auto_UI_Test
                                         Cursor = Cursors.Hand, // Optional: Hand cursor
                                         Tag = field.Description
                                     };
-                                    infoLabel.Click += HelpButton_Click;
+                                    //infoLabel.Click += HelpButton_Click;
+                                    infoLabel.Click += (o, e) =>
+                                    {
+                                        if (o is Control c)
+                                        {
+                                            MessageBox.Show(c.Tag.ToString(), "מידע על שדה", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                        }
+                                    };
                                     layout.Controls.Add(infoLabel, 1, row);
                                 }
-                                
-                                
+
+
 
                                 layout.Controls.Add(label, 0, row); // Add label in the first column
                                 layout.Controls.Add(control, 2, row); // Add control in the third column
@@ -278,10 +285,11 @@ namespace Auto_UI_Test
         }
         public void HelpButton_Click(object sender, EventArgs e)
         {
-            if (sender is Control c) { 
+            if (sender is Control c)
+            {
                 MessageBox.Show(c.Tag.ToString(), "מידע על שדה", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            
+
         }
         public void GenerateButton_Click(object sender, EventArgs e)
         {
@@ -328,6 +336,10 @@ namespace Auto_UI_Test
             {
                 MessageBox.Show("Filename not provided.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
+            }
+            if (!newFilename.EndsWith(".pdf"))
+            {
+                newFilename += ".pdf";
             }
 
 
@@ -433,7 +445,7 @@ namespace Auto_UI_Test
                 }
             }
         }
-        
+
         public void CalculateWindowSize()
         {
             if (this.config == null) { return; }
@@ -444,7 +456,7 @@ namespace Auto_UI_Test
             int maxForms = 0;
             foreach (var tab in config.Tabs)
             {
-                if (tab.Forms.Count > maxForms) { maxForms = tab.Forms.Count;}
+                if (tab.Forms.Count > maxForms) { maxForms = tab.Forms.Count; }
                 foreach (var form in tab.Forms)
                 {
                     if (form.Fields == null) { continue; }
