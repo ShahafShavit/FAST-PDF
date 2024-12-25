@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Reflection.PortableExecutable;
-using System.Windows.Forms.VisualStyles;
 using Newtonsoft.Json;
 using iText.IO.Font;
 using iText.Kernel.Font;
@@ -11,6 +10,8 @@ using System.Drawing.Text;
 using System.Text.RegularExpressions;
 using System.Text;
 using static Org.BouncyCastle.Math.EC.ECCurve;
+using System.Diagnostics;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 
 public static class Config
@@ -93,11 +94,13 @@ public static class Utility
         throw new FileNotFoundException("Unable to locate font file path");
     }
 }
+
 public class InputField
 {
     public string Type { get; set; }
     [JsonIgnore]
     public string Text { get; set; }
+    public string ActionType { get; set; }
     public string Name { get; set; }
     public string Label { get; set; }
     public string Placeholder {  get; set; }
@@ -114,7 +117,7 @@ public class FormObject
 {
     public string FormName { get; set; }
     public string FileName { get; set; }
-    public string Path { get; set; }
+    public string Path { get; set; } // defines path to file within default input path defined in settings
     public string Checksum { get; set; }
     public List<InputField> Fields { get; set; }
     
@@ -172,6 +175,58 @@ public class FormObject
 
         }
     }
+    public void FillSpecialForm(string outputFilename, string outputDirectory, string inputFilename, string defaultInputPath)
+    {
+        string fileDirectory = System.IO.Path.GetDirectoryName(this.Path);
+        string fileInputPath = System.IO.Path.Combine(defaultInputPath, fileDirectory, inputFilename);  // Path to existing PDF
+        string fullOutputPath = System.IO.Path.Combine(outputDirectory, outputFilename);    // Path for the modified PDF
+        FileInfo fileInfo = new FileInfo(fileInputPath);
+
+        using (PdfReader reader = new PdfReader(fileInfo))
+        using (PdfWriter writer = new PdfWriter(fullOutputPath))
+        using (PdfDocument pdf = new PdfDocument(reader, writer))
+        {
+
+            foreach (InputField inputField in this.Fields)
+            {
+
+                foreach (Location c in inputField.PDFSettings.Location)
+                {
+                    var page = pdf.GetPage(c.Page);
+
+                    var canvas = new iText.Kernel.Pdf.Canvas.PdfCanvas(page);
+
+
+                    float x = c.X;
+                    float y = c.Y;
+
+                    var font = Utility.LoadSystemFont(inputField.PDFSettings.Font);
+                    var formattedText = "";
+                    if (Utility.IsDate(inputField.Text))
+                    {
+                        formattedText = inputField.Text;
+                    }
+                    else
+                    {
+                        formattedText = Utility.ReverseRtlString(inputField.Text);
+                    }
+                    Rectangle textbox = new Rectangle(((int)x), ((int)y), 100, 200);
+                    //formattedText = formattedText.Replace(" ", "\n");
+                    float fontSize = GetFontSize(formattedText.Length);
+
+                    Paragraph paragraph = new Paragraph(formattedText)
+                        .SetFont(font)
+                        .SetFontSize(fontSize)
+                        .SetBaseDirection(BaseDirection.RIGHT_TO_LEFT);
+
+                    var document = new iText.Layout.Document(pdf);
+                    document.ShowTextAligned(paragraph, x, y, c.Page, TextAlignment.RIGHT, iText.Layout.Properties.VerticalAlignment.BOTTOM, 0);
+                }
+
+            }
+
+        }
+    }
     public static int GetFontSize(int x)
     {
         if (x < 8) return 10;
@@ -209,9 +264,9 @@ public class Location
 }
 public class TextBoxWriter : TextWriter
 {
-    private readonly TextBox _textBox;
+    private readonly System.Windows.Forms.TextBox _textBox;
 
-    public TextBoxWriter(TextBox textBox)
+    public TextBoxWriter(System.Windows.Forms.TextBox textBox)
     {
         _textBox = textBox;
     }

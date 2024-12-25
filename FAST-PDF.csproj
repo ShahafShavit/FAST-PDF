@@ -6,7 +6,41 @@
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
+    <Title>FAST PDF</Title>
+    <IsPublishable>True</IsPublishable>
+    <AssemblyTitle>FAST PDF</AssemblyTitle>
+    <AssemblyDescription>Form Automation and Smart Templates for PDF. Tailored for companies that handle large amounts of forms.</AssemblyDescription>
+    <AssemblyCompany>Shahaf Shavit</AssemblyCompany>
+    <AssemblyProduct>F.A.S.T PDF</AssemblyProduct>
+    <AssemblyCopyright></AssemblyCopyright>
+    <AssemblyVersion>0.9.1</AssemblyVersion>
+    <FileVersion>0.9.1</FileVersion>
+    <Description>Form Automation and Smart Templates for PDF. Tailored specifically for companies that handle large amounts of forms.
+Icon: Flaticon.com. This icon has been designed using resources from Flaticon.com</Description>
+    <Copyright>© 2024 Shahaf Shavit</Copyright>
+    <PackageProjectUrl>shahafshavit.com</PackageProjectUrl>
+    <PackageIcon>icon.png</PackageIcon>
+    <ApplicationIcon>icon.ico</ApplicationIcon>
   </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <GenerateAssemblyInfo>True</GenerateAssemblyInfo>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <GenerateAssemblyInfo>True</GenerateAssemblyInfo>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="config.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="config.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icon.ico" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="itext" Version="9.0.0" />
@@ -16,6 +50,18 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Properties\Settings.Designer.cs">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="icon.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
     <None Update="input\b_OC.pdf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -57,6 +103,10 @@
     </None>
     <None Update="input\פירוק חיבור.pdf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
 

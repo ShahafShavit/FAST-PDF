@@ -1,0 +1,1208 @@
+{
+  "GeneralSettings": {
+    "SavePath": "C:\\Users\\shaha\\Documents\\tests",
+    "InputPath": "input\\",
+    "Debug": false
+  },
+  "Tabs": [
+    {
+      "TabName": "בסיס",
+      "Forms": [
+        {
+          "FormName": "חטיבת קרקע",
+          "FileName": "b_OC.pdf",
+          "Path": "b_OC.pdf",
+          "Checksum": "",
+          "Fields": [
+            {
+              "Type": "TextBox",
+              "ActionType": null,
+              "Name": "b_OC_Name",
+              "Label": "שם בעל קרקע",
+              "Placeholder": "בעל קרקע",
+              "DefaultText": "",
+              "Description": "שם בעל הקרקע כפי שמופיע בחוזה",
+              "PDFSettings": {
+                "Font": "Arial",
+                "Size": 12,
+                "SizeFunctionOverride": true,
+                "Required": true,
+                "RTL": true,
+                "Location": [
+                  {
+                    "Page": 1,
+                    "X": 438.0,
+                    "Y": 635.0
+                  }
+                ]
+              }
+            },
+            {
+              "Type": "TextBox",
+              "ActionType": null,
+              "Name": "b_OC_ID",
+              "Label": "תעודת זהות בעל קרקע",
+              "Placeholder": "123456789",
+              "DefaultText": "",
+              "Description": "מספר תעודת זהות בעל הקרקע",
+              "PDFSettings": {
+                "Font": "Arial",
+                "Size": 12,
+                "SizeFunctionOverride": true,
+                "Required": true,
+                "RTL": true,
+                "Location": [
+                  {
+                    "Page": 1,
+                    "X": 230.0,
+                    "Y": 635.0
+                  }
+                ]
+              }
+            },
+            {
+              "Type": "TextBox",
+              "ActionType": null,
+              "Name": "b_OC_Address",
+              "Label": "כתובת בעל קרקע",
+              "Placeholder": "כתובת 21, עיר",
+              "DefaultText": "",
+              "Description": "כתובת מלאה של בעל הקרקע",
+              "PDFSettings": {
+                "Font": "Arial",
+                "Size": 12,
+                "SizeFunctionOverride": true,
+                "Required": true,
+                "RTL": true,
+                "Location": [
+                  {
+                    "Page": 1,
+                    "X": 472.0,
+                    "Y": 620.0
+                  }
+                ]
+              }
+            },
+            {
+              "Type": "TextBox",
+              "ActionType": null,
+              "Name": "b_OC_GAddress",
+              "Label": "כתובת קרקע",
+              "Placeholder": "כתובת 21, עיר",
+              "DefaultText": "",
+              "Description": "",
+              "PDFSettings": {
+                "Font": "Arial",
+                "Size": 12,
+                "SizeFunctionOverride": true,
+                "Required": true,
+                "RTL": true,
+                "Location": [
+                  {
+                    "Page": 1,
+                    "X": 505.0,
+                    "Y": 590.0
+                  }
+                ]
+              }
+            },
+            {
+              "Type": "TextBox",
+              "ActionType": null,
+              "Name": "b_OC_gush",
+              "Label": "גוש",
+              "Placeholder": "גוש",
+              "DefaultText": "",
+              "Description": "",
+              "PDFSettings": {
+                "Font": "Arial",
+                "Size": 12,
+                "SizeFunctionOverride": true,
+                "Required": true,
+                "RTL": true,
+                "Location": [
+                  {
+                    "Page": 1,
+                    "X": 180.0,
+                    "Y": 590.0
+                  }
+                ]
+              }
+            },
+            {
+              "Type": "TextBox",
+              "ActionType": null,
+              "Name": "b_OC_helka",
+              "Label": "חלקה",
+              "Placeholder": "חלקה",
+              "DefaultText": "",
+              "Description": "",
+              "PDFSettings": {
+                "Font": "Arial",
+                "Size": 12,
+                "SizeFunctionOverride": true,
+                "Required": true,
+                "RTL": true,
+                "Location": [
+                  {
+                    "Page": 1,
+                    "X": 472.0,
+                    "Y": 575.0
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "FormName": "ייפוי כח",
+          "FileName": "b_YK.pdf",
+          "Path": "b_YK.pdf",
+          "Checksum": "",
+          "Fields": [
+            {
+              "Type": "TextBox",
+              "ActionType": null,
+              "Name": "b_YK_LandOwnerName",
+              "Label": "שם בעל הקרקע",
+              "Placeholder": "בעל קרקע",
+              "DefaultText": "",
+              "Description": "",
+              "PDFSettings": {
+                "Font": "Arial",
+                "Size": 10,
+                "SizeFunctionOverride": true,
+                "Required": true,
+                "RTL": false,
+                "Location": [
+                  {
+                    "Page": 1,
+                    "X": 268.0,
+                    "Y": 654.5
+                  }
+                ]
+              }
+            },
+            {
+              "Type": "TextBox",
+              "ActionType": null,
+              "Name": "b_YK_LandOwnerPhone",
+              "Label": "מספר טלפון בעל הקרקע",
+              "Placeholder": "0504651234",
+              "DefaultText": "",
+              "Description": "",
+              "PDFSettings": {
+                "Font": "Arial",
+                "Size": 10,
+                "SizeFunctionOverride": true,
+                "Required": true,
+                "RTL": false,
+                "Location": [
+                  {
+                    "Page": 1,
+                    "X": 345.0,
+                    "Y": 640.0
+                  }
+                ]
+              }
+            },
+            {
+              "Type": "TextBox",
+              "ActionType": null,
+              "Name": "b_YK_LandOwnerCompany",
+              "Label": "שם חברה- בעל הקרקע",
+              "Placeholder": "שם החברה בעמ",
+              "DefaultText": "",
+              "Description": "",
+              "PDFSettings": {
+                "Font": "Arial",
+                "Size": 10,
+                "SizeFunctionOverride": true,
+                "Required": true,
+                "RTL": false,
+                "Location": [
+                  {
+                    "Page": 1,
+                    "X": 483.0,
+                    "Y": 606.5
+                  }
+                ]
+              }
+            },
+            {
+              "Type": "TextBox",
+              "ActionType": null,
+              "Name": "b_YK_LandOwnerHetPei",
+              "Label": "ח.פ. בעל קרקע",
+              "Placeholder": "ח.פ. בעל קרקע",
+              "DefaultText": "",
+              "Description": "",
+              "PDFSettings": {
+                "Font": "Arial",
+                "Size": 10,
+                "SizeFunctionOverride": true,
+                "Required": true,
+                "RTL": false,
+                "Location": [
+                  {
+                    "Page": 1,
+                    "X": 200.0,
+                    "Y": 606.0
+                  }
+                ]
+              }
+            },
+            {
+              "Type": "TextBox",
+              "ActionType": null,
+              "Name": "b_YK_OrdererName",
+              "Label": "שם מזמין",
+              "Placeholder": "שם המזמין",
+              "DefaultText": "",
+              "Description": "",
+              "PDFSettings": {
+                "Font": "Arial",
+                "Size": 10,
+                "SizeFunctionOverride": true,
+                "Required": true,
+                "RTL": false,
+                "Location": [
+                  {
+                    "Page": 1,
+                    "X": 307.0,
+                    "Y": 591.5
+                  }
+                ]
+              }
+            },
+            {
+              "Type": "TextBox",
+              "ActionType": null,
+              "Name": "b_YK_OrdererHetPei",
+              "Label": "ח.פ מזמין",
+              "Placeholder": "ח.פ מזמין",
+              "DefaultText": "",
+              "Description": "",
+              "PDFSettings": {
+                "Font": "Arial",
+                "Size": 10,
+                "SizeFunctionOverride": true,
+                "Required": true,
+                "RTL": false,
+                "Location": [
+                  {
+                    "Page": 1,
+                    "X": 152.0,
+                    "Y": 592.0
+                  }
+                ]
+              }
+            },
+            {
+              "Type": "TextBox",
+              "ActionType": null,
+              "Name": "b_YK_OrderID",
+              "Label": "מספר חוזה/הזמנה",
+              "Placeholder": "12345678",
+              "DefaultText": "",
+              "Description": "",
+              "PDFSettings": {
+                "Font": "Arial",
+                "Size": 10,
+                "SizeFunctionOverride": true,
+                "Required": true,
+                "RTL": false,
+                "Location": [
+                  {
+                    "Page": 1,
+                    "X": 330.0,
+                    "Y": 489.0
+                  }
+                ]
+              }
+            },
+            {
+              "Type": "TextBox",
+              "ActionType": null,
+              "Name": "b_YK_ConnectionAddress",
+              "Label": "כתובת חיבור",
+              "Placeholder": "כתובת 12, עיר",
+              "DefaultText": "",
+              "Description": "",
+              "PDFSettings": {
+                "Font": "Arial",
+                "Size": 10,
+                "SizeFunctionOverride": true,
+                "Required": true,
+                "RTL": false,
+                "Location": [
+                  {
+                    "Page": 1,
+                    "X": 205.0,
+                    "Y": 489.0
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "FormName": "ייפוי כח- יועץ",
+          "FileName": "b_YKY.pdf",
+          "Path": "b_YKY.pdf",
+          "Checksum": "",
+          "Fields": [
+            {
+              "Type": "TextBox",
+              "ActionType": null,
+              "Name": "b_YKY_LandOwnerName",
+              "Label": "שם בעל הקרקע",
+              "Placeholder": "בעל קרקע",
+              "DefaultText": "",
+              "Description": "",
+              "PDFSettings": {
+                "Font": "Arial",
+                "Size": 10,
+                "SizeFunctionOverride": true,
+                "Required": true,
+                "RTL": false,
+                "Location": [
+                  {
+                    "Page": 1,
+                    "X": 268.0,
+                    "Y": 654.5
+                  }
+                ]
+              }
+            },
+            {
+              "Type": "TextBox",
+              "ActionType": null,
+              "Name": "b_YKY_LandOwnerPhone",
+              "Label": "מספר טלפון בעל הקרקע",
+              "Placeholder": "0501234567",
+              "DefaultText": "",
+              "Description": "",
+              "PDFSettings": {
+                "Font": "Arial",
+                "Size": 10,
+                "SizeFunctionOverride": true,
+                "Required": true,
+                "RTL": false,
+                "Location": [
+                  {
+                    "Page": 1,
+                    "X": 345.0,
+                    "Y": 640.0
+                  }
+                ]
+              }
+            },
+            {
+              "Type": "TextBox",
+              "ActionType": null,
+              "Name": "b_YKY_LandOwnerCompany",
+              "Label": "שם חברה- בעל הקרקע",
+              "Placeholder": "שם חברה בעמ",
+              "DefaultText": "",
+              "Description": "",
+              "PDFSettings": {
+                "Font": "Arial",
+                "Size": 10,
+                "SizeFunctionOverride": true,
+                "Required": true,
+                "RTL": false,
+                "Location": [
+                  {
+                    "Page": 1,
+                    "X": 483.0,
+                    "Y": 606.5
+                  }
+                ]
+              }
+            },
+            {
+              "Type": "TextBox",
+              "ActionType": null,
+              "Name": "b_YKY_LandOwnerHetPei",
+              "Label": "ח.פ. בעל הקרקע",
+              "Placeholder": "12345678",
+              "DefaultText": "",
+              "Description": "",
+              "PDFSettings": {
+                "Font": "Arial",
+                "Size": 10,
+                "SizeFunctionOverride": true,
+                "Required": true,
+                "RTL": false,
+                "Location": [
+                  {
+                    "Page": 1,
+                    "X": 200.0,
+                    "Y": 606.5
+                  }
+                ]
+              }
+            },
+            {
+              "Type": "TextBox",
+              "ActionType": null,
+              "Name": "b_YKY_OrderID",
+              "Label": "מספר חוזה/הזמנה",
+              "Placeholder": "123456",
+              "DefaultText": "",
+              "Description": "",
+              "PDFSettings": {
+                "Font": "Arial",
+                "Size": 10,
+                "SizeFunctionOverride": true,
+                "Required": true,
+                "RTL": false,
+                "Location": [
+                  {
+                    "Page": 1,
+                    "X": 330.0,
+                    "Y": 489.0
+                  }
+                ]
+              }
+            },
+            {
+              "Type": "TextBox",
+              "ActionType": null,
+              "Name": "b_YKY_ConnectionAddress",
+              "Label": "כתובת חיבור",
+              "Placeholder": "כתובת 32, עיר",
+              "DefaultText": "",
+              "Description": "",
+              "PDFSettings": {
+                "Font": "Arial",
+                "Size": 10,
+                "SizeFunctionOverride": true,
+                "Required": true,
+                "RTL": false,
+                "Location": [
+                  {
+                    "Page": 1,
+                    "X": 205.0,
+                    "Y": 489.0
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "FormName": "טופס יט",
+          "FileName": "b_YT.pdf",
+          "Path": "b_YT.pdf",
+          "Checksum": "",
+          "Fields": [
+            {
+              "Type": "TextBox",
+              "ActionType": null,
+              "Name": "b_YT_OrdererName",
+              "Label": "שם המזמין",
+              "Placeholder": "שם המזמין",
+              "DefaultText": "",
+              "Description": "",
+              "PDFSettings": {
+                "Font": "Arial",
+                "Size": 10,
+                "SizeFunctionOverride": true,
+                "Required": true,
+                "RTL": false,
+                "Location": [
+                  {
+                    "Page": 1,
+                    "X": 455.0,
+                    "Y": 688.5
+                  },
+                  {
+                    "Page": 1,
+                    "X": 458.0,
+                    "Y": 618.0
+                  }
+                ]
+              }
+            },
+            {
+              "Type": "TextBox",
+              "ActionType": null,
+              "Name": "b_YT_ConnectionAddress",
+              "Label": "כתובת חיבור",
+              "Placeholder": "כתובת חיבור",
+              "DefaultText": "",
+              "Description": "",
+              "PDFSettings": {
+                "Font": "Arial",
+                "Size": 10,
+                "SizeFunctionOverride": true,
+                "Required": true,
+                "RTL": false,
+                "Location": [
+                  {
+                    "Page": 1,
+                    "X": 338.0,
+                    "Y": 677.0
+                  },
+                  {
+                    "Page": 1,
+                    "X": 450.0,
+                    "Y": 560.0
+                  }
+                ]
+              }
+            },
+            {
+              "Type": "TextBox",
+              "ActionType": null,
+              "Name": "b_YT_OrderNum",
+              "Label": "מספר הזמנה",
+              "Placeholder": "123456",
+              "DefaultText": "",
+              "Description": "",
+              "PDFSettings": {
+                "Font": "Arial",
+                "Size": 10,
+                "SizeFunctionOverride": true,
+                "Required": true,
+                "RTL": false,
+                "Location": [
+                  {
+                    "Page": 1,
+                    "X": 140.0,
+                    "Y": 678.0
+                  },
+                  {
+                    "Page": 1,
+                    "X": 326.0,
+                    "Y": 584.0
+                  }
+                ]
+              }
+            },
+            {
+              "Type": "TextBox",
+              "ActionType": null,
+              "Name": "b_YT_OrdererHetPei",
+              "Label": "ח.פ מזמין",
+              "Placeholder": "4656789",
+              "DefaultText": "",
+              "Description": "",
+              "PDFSettings": {
+                "Font": "Arial",
+                "Size": 10,
+                "SizeFunctionOverride": true,
+                "Required": true,
+                "RTL": false,
+                "Location": [
+                  {
+                    "Page": 1,
+                    "X": 324.0,
+                    "Y": 618.5
+                  }
+                ]
+              }
+            },
+            {
+              "Type": "TextBox",
+              "ActionType": null,
+              "Name": "b_YT_Date",
+              "Label": "תאריך",
+              "Placeholder": "01.12.24",
+              "DefaultText": "",
+              "Description": "",
+              "PDFSettings": {
+                "Font": "Arial",
+                "Size": 10,
+                "SizeFunctionOverride": true,
+                "Required": true,
+                "RTL": false,
+                "Location": [
+                  {
+                    "Page": 1,
+                    "X": 468.0,
+                    "Y": 585.0
+                  }
+                ]
+              }
+            },
+            {
+              "Type": "TextBox",
+              "ActionType": null,
+              "Name": "b_YT_gush",
+              "Label": "גוש",
+              "Placeholder": "גוש",
+              "DefaultText": "",
+              "Description": "",
+              "PDFSettings": {
+                "Font": "Arial",
+                "Size": 10,
+                "SizeFunctionOverride": true,
+                "Required": true,
+                "RTL": false,
+                "Location": [
+                  {
+                    "Page": 1,
+                    "X": 359.0,
+                    "Y": 573.0
+                  }
+                ]
+              }
+            },
+            {
+              "Type": "TextBox",
+              "ActionType": null,
+              "Name": "b_YT_helka",
+              "Label": "חלקה",
+              "Placeholder": "חלקה",
+              "DefaultText": "",
+              "Description": "",
+              "PDFSettings": {
+                "Font": "Arial",
+                "Size": 10,
+                "SizeFunctionOverride": true,
+                "Required": true,
+                "RTL": false,
+                "Location": [
+                  {
+                    "Page": 1,
+                    "X": 294.0,
+                    "Y": 573.0
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "TabName": "הזמנת בדיקה",
+      "Forms": [
+        {
+          "FormName": null,
+          "FileName": null,
+          "Path": null,
+          "Checksum": null,
+          "Fields": null
+        },
+        {
+          "FormName": null,
+          "FileName": null,
+          "Path": null,
+          "Checksum": null,
+          "Fields": null
+        },
+        {
+          "FormName": "חטיבת קרקע",
+          "FileName": "b_OC.pdf",
+          "Path": "b_OC.pdf",
+          "Checksum": "",
+          "Fields": [
+            {
+              "Type": "CheckBox",
+              "ActionType": "NewForm, b_OC_m1.pdf",
+              "Name": "b_OC_Name",
+              "Label": "שם מהנדס חשמל",
+              "Placeholder": "",
+              "DefaultText": "שם מהנדס 1",
+              "Description": "שם בעל הקרקע כפי שמופיע בחוזה",
+              "PDFSettings": {
+                "Font": "Arial",
+                "Size": 12,
+                "SizeFunctionOverride": true,
+                "Required": true,
+                "RTL": true,
+                "Location": [
+                  {
+                    "Page": 1,
+                    "X": 438.0,
+                    "Y": 635.0
+                  }
+                ]
+              }
+            },
+            {
+              "Type": "CheckBox",
+              "ActionType": "NewForm, b_OC_m2.pdf",
+              "Name": "b_OC_aaaaame",
+              "Label": null,
+              "Placeholder": "",
+              "DefaultText": "שם מהנדס 2",
+              "Description": "",
+              "PDFSettings": {
+                "Font": "Arial",
+                "Size": 12,
+                "SizeFunctionOverride": true,
+                "Required": true,
+                "RTL": true,
+                "Location": [
+                  {
+                    "Page": 1,
+                    "X": 438.0,
+                    "Y": 635.0
+                  }
+                ]
+              }
+            },
+            {
+              "Type": "CheckBox",
+              "ActionType": "NewForm, b_OC_m3.pdf",
+              "Name": "b_OC_aaaaamaaae",
+              "Label": null,
+              "Placeholder": "",
+              "DefaultText": "שם מהנדס 3",
+              "Description": "",
+              "PDFSettings": {
+                "Font": "Arial",
+                "Size": 12,
+                "SizeFunctionOverride": true,
+                "Required": true,
+                "RTL": true,
+                "Location": [
+                  {
+                    "Page": 1,
+                    "X": 438.0,
+                    "Y": 635.0
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "TabName": "עעא",
+      "Forms": [
+        {
+          "FormName": null,
+          "FileName": null,
+          "Path": null,
+          "Checksum": null,
+          "Fields": null
+        },
+        {
+          "FormName": null,
+          "FileName": null,
+          "Path": null,
+          "Checksum": null,
+          "Fields": null
+        },
+        {
+          "FormName": null,
+          "FileName": null,
+          "Path": null,
+          "Checksum": null,
+          "Fields": null
+        },
+        {
+          "FormName": null,
+          "FileName": null,
+          "Path": null,
+          "Checksum": null,
+          "Fields": null
+        }
+      ]
+    },
+    {
+      "TabName": "כללי",
+      "Forms": [
+        {
+          "FormName": "החלפת שם לקוח בנכס",
+          "FileName": "g_NC.pdf",
+          "Path": "g_NC.pdf",
+          "Checksum": "",
+          "Fields": [
+            {
+              "Type": "TextBox",
+              "ActionType": null,
+              "Name": "g_NC_ContractID",
+              "Label": "מס' חוזה",
+              "Placeholder": "1234567",
+              "DefaultText": "",
+              "Description": "",
+              "PDFSettings": {
+                "Font": "Arial",
+                "Size": 10,
+                "SizeFunctionOverride": true,
+                "Required": true,
+                "RTL": true,
+                "Location": [
+                  {
+                    "Page": 1,
+                    "X": 0.0,
+                    "Y": 0.0
+                  },
+                  {
+                    "Page": 1,
+                    "X": 0.0,
+                    "Y": 0.0
+                  },
+                  {
+                    "Page": 1,
+                    "X": 0.0,
+                    "Y": 0.0
+                  }
+                ]
+              }
+            },
+            {
+              "Type": "TextBox",
+              "ActionType": null,
+              "Name": "g_NC_Address",
+              "Label": "כתובת נכס",
+              "Placeholder": "כתובת כלשהי",
+              "DefaultText": "",
+              "Description": "",
+              "PDFSettings": {
+                "Font": "Arial",
+                "Size": 10,
+                "SizeFunctionOverride": true,
+                "Required": true,
+                "RTL": true,
+                "Location": [
+                  {
+                    "Page": 1,
+                    "X": 0.0,
+                    "Y": 0.0
+                  },
+                  {
+                    "Page": 1,
+                    "X": 0.0,
+                    "Y": 0.0
+                  },
+                  {
+                    "Page": 1,
+                    "X": 0.0,
+                    "Y": 0.0
+                  }
+                ]
+              }
+            },
+            {
+              "Type": "TextBox",
+              "ActionType": null,
+              "Name": "g_NC_IncomingClient",
+              "Label": "שם לקוח נכנס",
+              "Placeholder": "שם לקוח",
+              "DefaultText": "",
+              "Description": "",
+              "PDFSettings": {
+                "Font": "Arial",
+                "Size": 10,
+                "SizeFunctionOverride": true,
+                "Required": true,
+                "RTL": true,
+                "Location": [
+                  {
+                    "Page": 1,
+                    "X": 0.0,
+                    "Y": 0.0
+                  },
+                  {
+                    "Page": 1,
+                    "X": 0.0,
+                    "Y": 0.0
+                  },
+                  {
+                    "Page": 1,
+                    "X": 0.0,
+                    "Y": 0.0
+                  }
+                ]
+              }
+            },
+            {
+              "Type": "TextBox",
+              "ActionType": null,
+              "Name": "g_NC_IncomingClientID",
+              "Label": "ת.ז. / ח.פ לקוח נכנס",
+              "Placeholder": "123412345",
+              "DefaultText": "",
+              "Description": "",
+              "PDFSettings": {
+                "Font": "Arial",
+                "Size": 10,
+                "SizeFunctionOverride": true,
+                "Required": true,
+                "RTL": true,
+                "Location": [
+                  {
+                    "Page": 1,
+                    "X": 0.0,
+                    "Y": 0.0
+                  },
+                  {
+                    "Page": 1,
+                    "X": 0.0,
+                    "Y": 0.0
+                  },
+                  {
+                    "Page": 1,
+                    "X": 0.0,
+                    "Y": 0.0
+                  }
+                ]
+              }
+            },
+            {
+              "Type": "TextBox",
+              "ActionType": null,
+              "Name": "g_NC_CounterID1",
+              "Label": "מס' מונה 1",
+              "Placeholder": "12313",
+              "DefaultText": "",
+              "Description": "",
+              "PDFSettings": {
+                "Font": "Arial",
+                "Size": 10,
+                "SizeFunctionOverride": true,
+                "Required": true,
+                "RTL": true,
+                "Location": [
+                  {
+                    "Page": 1,
+                    "X": 0.0,
+                    "Y": 0.0
+                  },
+                  {
+                    "Page": 1,
+                    "X": 0.0,
+                    "Y": 0.0
+                  },
+                  {
+                    "Page": 1,
+                    "X": 0.0,
+                    "Y": 0.0
+                  }
+                ]
+              }
+            },
+            {
+              "Type": "TextBox",
+              "ActionType": null,
+              "Name": "g_NC_CounterID2",
+              "Label": "מס' מונה 2",
+              "Placeholder": "12314",
+              "DefaultText": "",
+              "Description": "",
+              "PDFSettings": {
+                "Font": "Arial",
+                "Size": 10,
+                "SizeFunctionOverride": true,
+                "Required": true,
+                "RTL": true,
+                "Location": [
+                  {
+                    "Page": 1,
+                    "X": 0.0,
+                    "Y": 0.0
+                  },
+                  {
+                    "Page": 1,
+                    "X": 0.0,
+                    "Y": 0.0
+                  },
+                  {
+                    "Page": 1,
+                    "X": 0.0,
+                    "Y": 0.0
+                  }
+                ]
+              }
+            },
+            {
+              "Type": "TextBox",
+              "ActionType": null,
+              "Name": "g_NC_IncomingClientPhone",
+              "Label": "טלפון לקוח נכנס",
+              "Placeholder": "0503451234",
+              "DefaultText": "",
+              "Description": "",
+              "PDFSettings": {
+                "Font": "Arial",
+                "Size": 10,
+                "SizeFunctionOverride": true,
+                "Required": true,
+                "RTL": true,
+                "Location": [
+                  {
+                    "Page": 1,
+                    "X": 0.0,
+                    "Y": 0.0
+                  },
+                  {
+                    "Page": 1,
+                    "X": 0.0,
+                    "Y": 0.0
+                  },
+                  {
+                    "Page": 1,
+                    "X": 0.0,
+                    "Y": 0.0
+                  }
+                ]
+              }
+            },
+            {
+              "Type": "TextBox",
+              "ActionType": null,
+              "Name": "g_NC_IncomingClientAddress",
+              "Label": "כתובת לקוח נכנס למשלוח חשבונות",
+              "Placeholder": "כתובת כלשהי, כתובת",
+              "DefaultText": "",
+              "Description": "",
+              "PDFSettings": {
+                "Font": "Arial",
+                "Size": 10,
+                "SizeFunctionOverride": true,
+                "Required": true,
+                "RTL": true,
+                "Location": [
+                  {
+                    "Page": 1,
+                    "X": 0.0,
+                    "Y": 0.0
+                  },
+                  {
+                    "Page": 1,
+                    "X": 0.0,
+                    "Y": 0.0
+                  },
+                  {
+                    "Page": 1,
+                    "X": 0.0,
+                    "Y": 0.0
+                  }
+                ]
+              }
+            },
+            {
+              "Type": "TextBox",
+              "ActionType": null,
+              "Name": "g_NC_OutgoingClientName",
+              "Label": "שם לקוח יוצא",
+              "Placeholder": "שם כלשהו",
+              "DefaultText": "",
+              "Description": "",
+              "PDFSettings": {
+                "Font": "Arial",
+                "Size": 10,
+                "SizeFunctionOverride": true,
+                "Required": true,
+                "RTL": true,
+                "Location": [
+                  {
+                    "Page": 1,
+                    "X": 0.0,
+                    "Y": 0.0
+                  },
+                  {
+                    "Page": 1,
+                    "X": 0.0,
+                    "Y": 0.0
+                  },
+                  {
+                    "Page": 1,
+                    "X": 0.0,
+                    "Y": 0.0
+                  }
+                ]
+              }
+            },
+            {
+              "Type": "TextBox",
+              "ActionType": null,
+              "Name": "g_NC_OutgoingClientID",
+              "Label": "ת.ז. / ח.פ. לקוח יוצא",
+              "Placeholder": "132456438",
+              "DefaultText": "",
+              "Description": "",
+              "PDFSettings": {
+                "Font": "Arial",
+                "Size": 10,
+                "SizeFunctionOverride": true,
+                "Required": true,
+                "RTL": true,
+                "Location": [
+                  {
+                    "Page": 1,
+                    "X": 0.0,
+                    "Y": 0.0
+                  },
+                  {
+                    "Page": 1,
+                    "X": 0.0,
+                    "Y": 0.0
+                  },
+                  {
+                    "Page": 1,
+                    "X": 0.0,
+                    "Y": 0.0
+                  }
+                ]
+              }
+            },
+            {
+              "Type": "TextBox",
+              "ActionType": null,
+              "Name": "g_NC_OutgoingClientAddress",
+              "Label": "כתובת לקוח יוצא לחשבון סופי",
+              "Placeholder": "כתובת כלשהי, כתובת",
+              "DefaultText": "",
+              "Description": "",
+              "PDFSettings": {
+                "Font": "Arial",
+                "Size": 10,
+                "SizeFunctionOverride": true,
+                "Required": true,
+                "RTL": true,
+                "Location": [
+                  {
+                    "Page": 1,
+                    "X": 0.0,
+                    "Y": 0.0
+                  },
+                  {
+                    "Page": 1,
+                    "X": 0.0,
+                    "Y": 0.0
+                  },
+                  {
+                    "Page": 1,
+                    "X": 0.0,
+                    "Y": 0.0
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "FormName": null,
+          "FileName": null,
+          "Path": null,
+          "Checksum": null,
+          "Fields": null
+        },
+        {
+          "FormName": null,
+          "FileName": null,
+          "Path": null,
+          "Checksum": null,
+          "Fields": null
+        },
+        {
+          "FormName": null,
+          "FileName": null,
+          "Path": null,
+          "Checksum": null,
+          "Fields": null
+        }
+      ]
+    }
+  ]
+}

@@ -1,4 +1,5 @@
 using Newtonsoft.Json;
+using System.Diagnostics;
 using System.Reflection.Metadata;
 using System.Runtime.InteropServices.Marshalling;
 using System.Text;
@@ -18,13 +19,18 @@ namespace Auto_UI_Test
         public Main()
         {
             InitializeComponent();
-            this.config = Config.Pull();
+            try
+            {
+                this.config = Config.Pull();
+            }
+            catch (Exception e)
+            { MessageBox.Show("Error: " + e.Message); Environment.Exit(1); }
             this.debug = this.config.GeneralSettings.Debug;
             this.Text = "מערכת מילוי טפסים- להט הנדסת חשמל";
             this.RightToLeft = RightToLeft.Yes;
 
             GenerateUI();
-
+            this.AutoScaleMode = AutoScaleMode.Dpi;
             Console.WriteLine("Initialization of components has been completed.");
         }
         private void GenerateUI()
@@ -105,8 +111,8 @@ namespace Auto_UI_Test
                     TableLayoutPanel layout;
                     GroupBox groupBox;
                     int row = 0;
-                    if (group.FormName == null)
-                    { // <<<<<<< FOR TESTING PURPOUSE
+                    if (group.FormName == null) // <<<<<<< FOR TESTING PURPOUSE
+                    { 
                         groupBox = new GroupBox
                         {
                             Text = (formNum++).ToString(),
@@ -131,8 +137,9 @@ namespace Auto_UI_Test
                         layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50));
 
                     }
-                    else
+                    else // REGULAR LOADING CASE
                     {
+                        if (!File.Exists(Path.Combine(group.Path, group.FileName))) { Console.WriteLine($"Unable to locate file: {group.FileName} for form name {group.FormName} | Please contact software developer."); }
                         groupBox = new GroupBox
                         {
                             Text = group.FormName,
@@ -144,7 +151,7 @@ namespace Auto_UI_Test
                             Margin = new Padding(2),
                             Tag = Path.Combine(group.Path, group.FileName), // Tag holds the path to the file
                         };
-
+                        
                         layout = new TableLayoutPanel
                         {
                             AutoSize = true,
@@ -179,7 +186,10 @@ namespace Auto_UI_Test
                                 control.Margin = new Padding(0, 0, 0, 15);
                                 control.Dock = DockStyle.Top;
                                 control.Text = field.DefaultText;
-
+                                if (control is CheckBox cb)
+                                {
+                                    cb.Tag = field.ActionType;
+                                }
                                 if (this.debug && string.IsNullOrEmpty(control.Text))
                                 {
                                     control.Text = field.Placeholder;
@@ -287,7 +297,7 @@ namespace Auto_UI_Test
         {
             if (sender is Control c)
             {
-                MessageBox.Show(c.Tag.ToString(), "מידע על שדה", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(c.Tag?.ToString(), "מידע על שדה", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
         }
@@ -341,14 +351,32 @@ namespace Auto_UI_Test
             {
                 newFilename += ".pdf";
             }
+            bool standard = true;
+            foreach (CheckBox checkbox in layoutPanel.Controls.OfType<CheckBox>())
+            {
+                if (checkbox.Checked && checkbox.Tag != null)
+                {
+                    string? actionType = checkbox.Tag?.ToString()?.Split(',')[0];
+                    if (actionType == "NewForm" && checkbox.Checked)
+                    {
+                        string inputFormname = checkbox.Tag?.ToString()?.Split(',')[1].Trim(); // Get the input filename
+                        string outputName = newFilename.Replace(".pdf", "") + "_" + checkbox.Text.Replace(" ", "_") +".pdf";  // Produce output file
 
+                        standard = false;
 
+                        FormObject fo = FillDataStructure(layoutPanel.Controls, parentGroupBox.Text, clickedButton.Parent.Parent.Parent.Text);
+                        fo.FillSpecialForm(outputName, config.GeneralSettings.SavePath, inputFormname, config.GeneralSettings.InputPath);
+                        Console.WriteLine($"Form has been filled and saved at {Path.Combine(config.GeneralSettings.SavePath, outputName)}");
 
-
-            FormObject fo = FillDataStructure(layoutPanel.Controls, parentGroupBox.Text, clickedButton.Parent.Parent.Parent.Text);
-            fo.FillForm(newFilename, config.GeneralSettings.SavePath, config.GeneralSettings.InputPath);
-            Console.WriteLine($"Form has been filled and saved at {Path.Combine(config.GeneralSettings.SavePath, newFilename)}");
-
+                    }
+                }
+            }
+            if (standard)
+            {
+                FormObject fo = FillDataStructure(layoutPanel.Controls, parentGroupBox.Text, clickedButton.Parent.Parent.Parent.Text);
+                fo.FillForm(newFilename, config.GeneralSettings.SavePath, config.GeneralSettings.InputPath);
+                Console.WriteLine($"Form has been filled and saved at {Path.Combine(config.GeneralSettings.SavePath, newFilename)}");
+            }
         }
         private void RedirectConsoleOutput()
         {
@@ -359,18 +387,36 @@ namespace Auto_UI_Test
 
             // Create a new MenuStrip
             MenuStrip menuStrip = new MenuStrip();
-            ToolStripMenuItem fileMenu = new ToolStripMenuItem("File");
+            ToolStripMenuItem fileMenu = new ToolStripMenuItem("קובץ");
             ToolStripMenuItem chooseSaveFolder = new ToolStripMenuItem("שמור בתיקייה");
+            ToolStripMenuItem openFolder = new ToolStripMenuItem("פתח תיקייה מכילה");
+            ToolStripMenuItem about = new ToolStripMenuItem("אודות");
+
+            about.Click += About_Click;
             chooseSaveFolder.Click += (s, e) => SaveFolderDialoge();
+            openFolder.Click += (s, e) => System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo()
+            {
+                FileName = config.GeneralSettings.SavePath,
+                UseShellExecute = true,
+                Verb = "open"
+            });
             fileMenu.DropDownItems.Add(chooseSaveFolder);
+            fileMenu.DropDownItems.Add(openFolder);
 
             menuStrip.Items.Add(fileMenu);
-
+            menuStrip.Items.Add(about);
             // Add the MenuStrip to the form
             this.MainMenuStrip = menuStrip;
             return menuStrip;
 
         }
+
+        private void About_Click(object? sender, EventArgs e)
+        {
+            new AboutBox().ShowDialog();
+            //throw new NotImplementedException();
+        }
+
         private FormObject FillDataStructure(TableLayoutControlCollection controls, string formName, string tabName)
         {
             TabObject tabObject = null;

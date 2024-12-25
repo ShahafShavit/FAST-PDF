@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FAST-PDF-Filler-System", "FAST-PDF-Filler-System.csproj", "{B00C66F8-6AD4-4C2C-929C-2F0C278FEF3A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FAST-PDF", "FAST-PDF.csproj", "{B00C66F8-6AD4-4C2C-929C-2F0C278FEF3A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
