@@ -31,7 +31,19 @@ namespace Auto_UI_Test
 
             GenerateUI();
             this.AutoScaleMode = AutoScaleMode.Dpi;
+            this.AutoSize = true;
+            this.AutoSizeMode = AutoSizeMode.GrowOnly;
             Console.WriteLine("Initialization of components has been completed.");
+            this.FormClosing += (o, e) =>
+            {
+                if (debug)
+                {
+                    string debugFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "config.json");
+                    string solutionFilePath = Path.Combine(Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory).Parent.Parent.Parent.FullName, "config.json");
+
+                    File.Copy(debugFilePath, solutionFilePath, true);
+                }
+            };
         }
         private void GenerateUI()
         {
@@ -151,7 +163,7 @@ namespace Auto_UI_Test
                             Margin = new Padding(2),
                             Tag = Path.Combine(group.Path, group.FileName), // Tag holds the path to the file
                         };
-                        
+
                         layout = new TableLayoutPanel
                         {
                             AutoSize = true,
@@ -180,12 +192,14 @@ namespace Auto_UI_Test
                                     Dock = DockStyle.Top,
                                     Margin = new Padding(0, 0, 0, 15),
                                 };
+                                
 
                                 Control control = ControlFactory.CreateControlFromJson(field);
                                 control.Anchor = AnchorStyles.Left | AnchorStyles.Right;
                                 control.Margin = new Padding(0, 0, 0, 15);
                                 control.Dock = DockStyle.Top;
                                 control.Text = field.DefaultText;
+                                label.Click += (o, e) => new RelocatorForm(field, config).ShowDialog();
                                 if (control is CheckBox cb)
                                 {
                                     cb.Tag = field.ActionType;
@@ -244,7 +258,8 @@ namespace Auto_UI_Test
                         Anchor = AnchorStyles.Left | AnchorStyles.Right,
                         Margin = new Padding(0, 0, 0, 4),
                         Dock = DockStyle.Bottom,
-                        Tag = "FileName"
+                        Tag = "FileName",
+                        Text = group.FormName?.Replace(" ", "_") + "_"
                     };
                     if (this.debug)
                     {
@@ -293,6 +308,8 @@ namespace Auto_UI_Test
             RedirectConsoleOutput();
             CalculateWindowSize();
         }
+
+
         public void HelpButton_Click(object sender, EventArgs e)
         {
             if (sender is Control c)
@@ -315,7 +332,7 @@ namespace Auto_UI_Test
             if (parentGroupBox.Tag.ToString() is not String originalPath)
                 throw new MissingFieldException("No file path given in GroupBox Tag property, 2.");
 
-            if (debug) this.config = Config.Pull();
+            //if (debug) this.config = Config.Pull();
 
             TableLayoutPanel layoutPanel = null;
             foreach (Control control in parentGroupBox.Controls)
@@ -376,6 +393,15 @@ namespace Auto_UI_Test
                 FormObject fo = FillDataStructure(layoutPanel.Controls, parentGroupBox.Text, clickedButton.Parent.Parent.Parent.Text);
                 fo.FillForm(newFilename, config.GeneralSettings.SavePath, config.GeneralSettings.InputPath);
                 Console.WriteLine($"Form has been filled and saved at {Path.Combine(config.GeneralSettings.SavePath, newFilename)}");
+                if (config.GeneralSettings.LaunchFileAtGeneration)
+                {
+                    Process.Start(new System.Diagnostics.ProcessStartInfo()
+                    {
+                        FileName = Path.Combine(config.GeneralSettings.SavePath, newFilename),
+                        UseShellExecute = true,
+                        Verb = "open"
+                    });
+                }
             }
         }
         private void RedirectConsoleOutput()
@@ -385,37 +411,37 @@ namespace Auto_UI_Test
         private MenuStrip GenerateMenuStrip()
         {
 
-            // Create a new MenuStrip
             MenuStrip menuStrip = new MenuStrip();
             ToolStripMenuItem fileMenu = new ToolStripMenuItem("קובץ");
             ToolStripMenuItem chooseSaveFolder = new ToolStripMenuItem("שמור בתיקייה");
-            ToolStripMenuItem openFolder = new ToolStripMenuItem("פתח תיקייה מכילה");
-            ToolStripMenuItem about = new ToolStripMenuItem("אודות");
-
-            about.Click += About_Click;
             chooseSaveFolder.Click += (s, e) => SaveFolderDialoge();
+            
+            ToolStripMenuItem openFolder = new ToolStripMenuItem("פתח תיקייה מכילה");
             openFolder.Click += (s, e) => System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo()
             {
                 FileName = config.GeneralSettings.SavePath,
                 UseShellExecute = true,
                 Verb = "open"
             });
+            
+            ToolStripMenuItem about = new ToolStripMenuItem("אודות");
+            about.Click += (o, e) => { new AboutBox().ShowDialog(); };
+            
+            ToolStripMenuItem openFileAfterGeneration = new ToolStripMenuItem("פתח קובץ לאחר הפקה");
+            openFileAfterGeneration.Checked = this.config.GeneralSettings.LaunchFileAtGeneration;
+            openFileAfterGeneration.Click += (o, e) => { this.config.GeneralSettings.LaunchFileAtGeneration = !this.config.GeneralSettings.LaunchFileAtGeneration; openFileAfterGeneration.Checked = this.config.GeneralSettings.LaunchFileAtGeneration; Console.WriteLine($"Open file after generation status: {this.config.GeneralSettings.LaunchFileAtGeneration}"); };
+            
+            
             fileMenu.DropDownItems.Add(chooseSaveFolder);
             fileMenu.DropDownItems.Add(openFolder);
-
+            fileMenu.DropDownItems.Add(openFileAfterGeneration);
             menuStrip.Items.Add(fileMenu);
             menuStrip.Items.Add(about);
-            // Add the MenuStrip to the form
             this.MainMenuStrip = menuStrip;
             return menuStrip;
 
         }
 
-        private void About_Click(object? sender, EventArgs e)
-        {
-            new AboutBox().ShowDialog();
-            //throw new NotImplementedException();
-        }
 
         private FormObject FillDataStructure(TableLayoutControlCollection controls, string formName, string tabName)
         {

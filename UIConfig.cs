@@ -241,11 +241,13 @@ public class UIConfig
     public List<TabObject> Tabs { get; set; }
 
 }
+
 public class GeneralSettings
 {
     public string SavePath { get; set; }
     public string InputPath {  get; set; }
     public bool Debug {  get; set; }
+    public bool LaunchFileAtGeneration {  get; set; }
 }
 public class PDFSettings
 {
