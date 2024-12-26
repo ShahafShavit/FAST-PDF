@@ -5,6 +5,7 @@ using System.Runtime.InteropServices.Marshalling;
 using System.Text;
 using System.Windows.Forms;
 
+
 namespace Auto_UI_Test
 {
     public partial class Main : System.Windows.Forms.Form
@@ -309,7 +310,6 @@ namespace Auto_UI_Test
             CalculateWindowSize();
         }
 
-
         public void HelpButton_Click(object sender, EventArgs e)
         {
             if (sender is Control c)
@@ -331,9 +331,14 @@ namespace Auto_UI_Test
 
             if (parentGroupBox.Tag.ToString() is not String originalPath)
                 throw new MissingFieldException("No file path given in GroupBox Tag property, 2.");
-
+            if (!Directory.Exists(this.config.GeneralSettings.SavePath))
+            {
+                MessageBox.Show("אנא בחר תיקייה לשמור בה את הקובץ (קובץ > שמור בתיקייה).", "אנא בחר תיקייה", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.RtlReading);
+                Console.WriteLine($"Failed to find path: {this.config.GeneralSettings.SavePath}");
+                return;
+            }
             //if (debug) this.config = Config.Pull();
-
+            
             TableLayoutPanel layoutPanel = null;
             foreach (Control control in parentGroupBox.Controls)
             {

@@ -2,7 +2,7 @@
   "GeneralSettings": {
     "SavePath": "C:\\Users\\shaha\\Documents\\tests",
     "InputPath": "input\\",
-    "Debug": false,
+    "Debug": true,
     "LaunchFileAtGeneration": true
   },
   "Tabs": [

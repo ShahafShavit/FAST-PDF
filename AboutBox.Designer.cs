@@ -168,6 +168,7 @@ partial class AboutBox
         ShowInTaskbar = false;
         StartPosition = FormStartPosition.CenterParent;
         Text = "AboutBox";
+        Load += AboutBox_Load;
         tableLayoutPanel.ResumeLayout(false);
         tableLayoutPanel.PerformLayout();
         ((System.ComponentModel.ISupportInitialize)logoPictureBox).EndInit();

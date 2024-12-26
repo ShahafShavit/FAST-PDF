@@ -39,7 +39,7 @@ partial class AboutBox : Form
             return System.IO.Path.GetFileNameWithoutExtension(Assembly.GetExecutingAssembly().CodeBase);
         }
     }
-    public string AssemblyVersion
+    public static string AssemblyVersion
     {
         get
         {
@@ -95,5 +95,10 @@ partial class AboutBox : Form
         }
     }
     #endregion
+
+    private void AboutBox_Load(object sender, EventArgs e)
+    {
+
+    }
 }
 
