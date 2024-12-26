@@ -33,6 +33,22 @@ Icon: Flaticon.com. This icon has been designed using resources from Flaticon.co
 
   <ItemGroup>
     <None Remove="config.json" />
+    <None Remove="input\b_OC.pdf" />
+    <None Remove="input\b_OC_m3.pdf" />
+    <None Remove="input\b_YK.pdf" />
+    <None Remove="input\b_YKY.pdf" />
+    <None Remove="input\b_YT.pdf" />
+    <None Remove="input\g_HSM.pdf" />
+    <None Remove="input\g_NC.pdf" />
+    <None Remove="input\g_PHH.pdf" />
+    <None Remove="input\g_PMG.pdf" />
+    <None Remove="input\hb_BLTH.pdf" />
+    <None Remove="input\hb_FT.pdf" />
+    <None Remove="input\hb_TSB.pdf" />
+    <None Remove="input\iia_HH.pdf" />
+    <None Remove="input\iia_PH.pdf" />
+    <None Remove="input\‏‏b_OC_m1.pdf" />
+    <None Remove="input\‏‏b_OC_m2.pdf" />
   </ItemGroup>
 
   <ItemGroup>
@@ -40,6 +56,54 @@ Icon: Flaticon.com. This icon has been designed using resources from Flaticon.co
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="icon.ico" />
+    <Content Include="input\b_OC.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="input\b_OC_m3.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="input\b_YK.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="input\b_YKY.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="input\b_YT.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="input\g_NC.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="input\g_HSM.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="input\iia_HH.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="input\g_PHH.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="input\hb_BLTH.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="input\hb_FT.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="input\g_PMG.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="input\hb_TSB.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="input\iia_PH.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="input\‏‏b_OC_m1.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="input\‏‏b_OC_m2.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
@@ -61,48 +125,6 @@ Icon: Flaticon.com. This icon has been designed using resources from Flaticon.co
     <None Update="icon.png">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
-    </None>
-    <None Update="input\b_OC.pdf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="input\b_YK.pdf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="input\b_YKY.pdf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="input\b_YT.pdf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="input\החלפת שם לקוח בנכס.pdf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="input\החלפת שם מזמין בהזמנה.pdf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="input\העתקת חיבור.pdf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="input\הקמת חוזה חדש.pdf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="input\חטיבת קרקע.pdf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="input\טופס בדיקה עמדת טעינת רכבים.pdf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="input\טופס בדיקת מתקן - ריק.pdf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="input\טופס חיבור במתח גבוה.pdf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="input\טופס שינויים במתקן מתח נמוך.pdf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="input\פירוק חיבור.pdf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

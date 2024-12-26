@@ -43,6 +43,25 @@ public partial class RelocatorForm : Form
         this.FormClosing += (s, e) =>
         {
             Config.Update(config);
+            foreach (Control item in this.Controls)
+            {
+                if (item is TableLayoutPanel tableLayoutPanel)
+                    foreach (Control control in tableLayoutPanel.Controls)
+                    {
+                        foreach (Control tbcontrol in control.Controls)
+                        {
+                            if (tbcontrol is TableLayoutPanel tlp)
+                                foreach (Control item1 in tlp.Controls)
+                                {
+                                    if (item1 is TextBox tb)
+                                    {
+
+                                    }
+                                }
+
+                        }
+                    }
+            }
         };
     }
 

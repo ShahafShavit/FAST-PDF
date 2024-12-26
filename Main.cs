@@ -37,6 +37,7 @@ namespace Auto_UI_Test
             Console.WriteLine("Initialization of components has been completed.");
             this.FormClosing += (o, e) =>
             {
+                Config.Update(config);
                 if (debug)
                 {
                     string debugFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "config.json");
@@ -179,68 +180,70 @@ namespace Auto_UI_Test
                         layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 45));
 
 
-
-                        foreach (var field in group.Fields)
+                        if (group.Fields != null)
                         {
-                            try
+                            foreach (var field in group.Fields)
                             {
-                                Label label = new Label
+                                try
                                 {
-                                    Text = field.Label,
-                                    AutoSize = true,
-                                    TextAlign = ContentAlignment.MiddleLeft,
-                                    Anchor = AnchorStyles.Left,
-                                    Dock = DockStyle.Top,
-                                    Margin = new Padding(0, 0, 0, 15),
-                                };
-                                
-
-                                Control control = ControlFactory.CreateControlFromJson(field);
-                                control.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-                                control.Margin = new Padding(0, 0, 0, 15);
-                                control.Dock = DockStyle.Top;
-                                control.Text = field.DefaultText;
-                                label.Click += (o, e) => new RelocatorForm(field, config).ShowDialog();
-                                if (control is CheckBox cb)
-                                {
-                                    cb.Tag = field.ActionType;
-                                }
-                                if (this.debug && string.IsNullOrEmpty(control.Text))
-                                {
-                                    control.Text = field.Placeholder;
-                                }
-                                if (!string.IsNullOrEmpty(field.Description))
-                                {
-                                    Label infoLabel = new Label
+                                    Label label = new Label
                                     {
-                                        Text = "\u2139", // Unicode for "Information" symbol
-                                        Font = new Font("Arial", 12), // Adjust font and size
-                                        ForeColor = Color.Blue, // Color for visibility
+                                        Text = field.Label,
                                         AutoSize = true,
-                                        Dock = DockStyle.Left,
-                                        Cursor = Cursors.Hand, // Optional: Hand cursor
-                                        Tag = field.Description
+                                        TextAlign = ContentAlignment.MiddleLeft,
+                                        Anchor = AnchorStyles.Left,
+                                        Dock = DockStyle.Top,
+                                        Margin = new Padding(0, 0, 0, 15),
                                     };
-                                    //infoLabel.Click += HelpButton_Click;
-                                    infoLabel.Click += (o, e) =>
+
+
+                                    Control control = ControlFactory.CreateControlFromJson(field);
+                                    control.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+                                    control.Margin = new Padding(0, 0, 0, 15);
+                                    control.Dock = DockStyle.Top;
+                                    control.Text = field.DefaultText;
+                                    label.Click += (o, e) => new RelocatorForm(field, config).ShowDialog();
+                                    if (control is CheckBox cb)
                                     {
-                                        if (o is Control c)
+                                        cb.Tag = field.ActionType;
+                                    }
+                                    if (this.debug && string.IsNullOrEmpty(control.Text))
+                                    {
+                                        control.Text = field.Placeholder;
+                                    }
+                                    if (!string.IsNullOrEmpty(field.Description))
+                                    {
+                                        Label infoLabel = new Label
                                         {
-                                            MessageBox.Show(c.Tag.ToString(), "מידע על שדה", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                        }
-                                    };
-                                    layout.Controls.Add(infoLabel, 1, row);
+                                            Text = "\u2139", // Unicode for "Information" symbol
+                                            Font = new Font("Arial", 12), // Adjust font and size
+                                            ForeColor = Color.Blue, // Color for visibility
+                                            AutoSize = true,
+                                            Dock = DockStyle.Left,
+                                            Cursor = Cursors.Hand, // Optional: Hand cursor
+                                            Tag = field.Description
+                                        };
+                                        //infoLabel.Click += HelpButton_Click;
+                                        infoLabel.Click += (o, e) =>
+                                        {
+                                            if (o is Control c)
+                                            {
+                                                MessageBox.Show(c.Tag.ToString(), "מידע על שדה", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                            }
+                                        };
+                                        layout.Controls.Add(infoLabel, 1, row);
+                                    }
+
+
+
+                                    layout.Controls.Add(label, 0, row); // Add label in the first column
+                                    layout.Controls.Add(control, 2, row); // Add control in the third column
+                                    row++;
                                 }
-
-
-
-                                layout.Controls.Add(label, 0, row); // Add label in the first column
-                                layout.Controls.Add(control, 2, row); // Add control in the third column
-                                row++;
-                            }
-                            catch (Exception ex)
-                            {
-                                MessageBox.Show($"Error creating control: {ex.Message}");
+                                catch (Exception ex)
+                                {
+                                    MessageBox.Show($"Error creating control: {ex.Message}");
+                                }
                             }
                         }
                     }
@@ -389,7 +392,6 @@ namespace Auto_UI_Test
                         FormObject fo = FillDataStructure(layoutPanel.Controls, parentGroupBox.Text, clickedButton.Parent.Parent.Parent.Text);
                         fo.FillSpecialForm(outputName, config.GeneralSettings.SavePath, inputFormname, config.GeneralSettings.InputPath);
                         Console.WriteLine($"Form has been filled and saved at {Path.Combine(config.GeneralSettings.SavePath, outputName)}");
-
                     }
                 }
             }
@@ -435,11 +437,17 @@ namespace Auto_UI_Test
             ToolStripMenuItem openFileAfterGeneration = new ToolStripMenuItem("פתח קובץ לאחר הפקה");
             openFileAfterGeneration.Checked = this.config.GeneralSettings.LaunchFileAtGeneration;
             openFileAfterGeneration.Click += (o, e) => { this.config.GeneralSettings.LaunchFileAtGeneration = !this.config.GeneralSettings.LaunchFileAtGeneration; openFileAfterGeneration.Checked = this.config.GeneralSettings.LaunchFileAtGeneration; Console.WriteLine($"Open file after generation status: {this.config.GeneralSettings.LaunchFileAtGeneration}"); };
-            
-            
+
+            ToolStripMenuItem debugMode = new ToolStripMenuItem("מצב פיתוח");
+            debugMode.Checked = this.config.GeneralSettings.Debug;
+            debugMode.Click += (o, e) => { this.config.GeneralSettings.Debug = !this.config.GeneralSettings.Debug; debugMode.Checked = this.config.GeneralSettings.Debug; };
+
             fileMenu.DropDownItems.Add(chooseSaveFolder);
             fileMenu.DropDownItems.Add(openFolder);
             fileMenu.DropDownItems.Add(openFileAfterGeneration);
+            ToolStripSeparator toolStripSeparator1 = new ToolStripSeparator();
+            fileMenu.DropDownItems.Add(toolStripSeparator1);
+            fileMenu.DropDownItems.Add(debugMode);
             menuStrip.Items.Add(fileMenu);
             menuStrip.Items.Add(about);
             this.MainMenuStrip = menuStrip;

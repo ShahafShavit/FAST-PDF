@@ -10,6 +10,8 @@ using System.Windows.Forms;
 
 partial class AboutBox : Form
 {
+    private int clickCount = 0;
+    private System.Windows.Forms.Timer clickTimer;
     public AboutBox()
     {
         InitializeComponent();

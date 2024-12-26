@@ -12,6 +12,7 @@ using System.Text;
 using static Org.BouncyCastle.Math.EC.ECCurve;
 using System.Diagnostics;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Windows.Forms.VisualStyles;
 
 
 public static class Config
@@ -54,6 +55,45 @@ public static class Utility
         if (string.IsNullOrEmpty(input)) return false;
         string pattern = @"^(0[1-9]|[12][0-9]|3[01])[\/.\-](0[1-9]|1[0-2])[\/.\-](\d{2})$";
         return Regex.IsMatch(input, pattern);
+    }
+    public static bool IsEnglish(string input)
+    {
+        if (string.IsNullOrEmpty(input)) return false;
+        return Regex.IsMatch(input, "^[a-zA-Z0-9]*$");
+    }
+    public static string ReverseInput(string input)
+    {
+        StringBuilder sb = new StringBuilder();
+        string[] arr = input.Split(" ");
+        bool hebrew = false;
+        foreach (string item in arr)
+        {
+
+            if (!string.IsNullOrEmpty(item))
+            {
+                if (IsDate(item) || IsEnglish(item))
+                {
+                    sb.Append(item);
+                }
+                else
+                {
+                    sb.Append(ReverseRtlString(item));
+                    hebrew = true;
+                }
+                sb.Append(' ');
+            }
+        }
+        if (hebrew)
+        {
+            string[] newArr = sb.ToString().Split(" ");
+            Array.Reverse(newArr);
+            string output = string.Join(" ", newArr);
+            return output.Trim();
+        }
+        else
+        {
+            return sb.ToString().Trim();
+        }
     }
     public static PdfFont LoadSystemFont(string fontName)
     {
@@ -124,10 +164,14 @@ public class FormObject
     public void FillForm(string outputName, string outputPath, string inputPath)
     {
 
-        string fileinputPath = System.IO.Path.Combine(inputPath, this.Path);  // Path to your existing PDF
+        string fileinputPath = System.IO.Path.Combine(AppContext.BaseDirectory,inputPath, this.Path);  // Path to your existing PDF
         string fullOutputPath = System.IO.Path.Combine(outputPath, outputName);    // Path for the modified PDF
-
-
+        //C:\Users\shaha\source\repos\Auto_UI_Test\bin\Debug\net8.0-windows\input
+        if (!File.Exists(fileinputPath))
+        {
+            Console.WriteLine($"Could not locate file {fileinputPath} | Please check further.");
+            throw new FileNotFoundException(fileinputPath);
+        }
         using (PdfReader reader = new PdfReader(fileinputPath))
         using (PdfWriter writer = new PdfWriter(fullOutputPath))
         using (PdfDocument pdf = new PdfDocument(reader, writer))
@@ -142,22 +186,14 @@ public class FormObject
 
                     var canvas = new iText.Kernel.Pdf.Canvas.PdfCanvas(page);
 
-
                     float x = c.X;
                     float y = c.Y;
 
                     var font = Utility.LoadSystemFont(inputField.PDFSettings.Font);
                     var formattedText = "";
-                    if (Utility.IsDate(inputField.Text))
-                    {
-                        formattedText = inputField.Text;
-                    }
-                    else
-                    {
-                        formattedText = Utility.ReverseRtlString(inputField.Text);
-                    }
+                    formattedText = Utility.ReverseInput(inputField.Text);
+                    
                     Rectangle textbox = new Rectangle(((int)x), ((int)y), 100,200);
-                    //formattedText = formattedText.Replace(" ", "\n");
                     float fontSize = GetFontSize(formattedText.Length);
 
                     Paragraph paragraph = new Paragraph(formattedText)
@@ -168,7 +204,6 @@ public class FormObject
                     
                     var document = new iText.Layout.Document(pdf);
                     document.ShowTextAligned(paragraph, x, y, c.Page, TextAlignment.RIGHT, iText.Layout.Properties.VerticalAlignment.BOTTOM, 0);
-                    //document.ShowTextAligned(paragraph, textbox.X, textbox.Y+textbox.Height, c.Page, TextAlignment.RIGHT, iText.Layout.Properties.VerticalAlignment.BOTTOM, 0);
                 }
 
             }
@@ -201,15 +236,7 @@ public class FormObject
                     float y = c.Y;
 
                     var font = Utility.LoadSystemFont(inputField.PDFSettings.Font);
-                    var formattedText = "";
-                    if (Utility.IsDate(inputField.Text))
-                    {
-                        formattedText = inputField.Text;
-                    }
-                    else
-                    {
-                        formattedText = Utility.ReverseRtlString(inputField.Text);
-                    }
+                    var formattedText = Utility.ReverseInput(inputField.Text);
                     Rectangle textbox = new Rectangle(((int)x), ((int)y), 100, 200);
                     //formattedText = formattedText.Replace(" ", "\n");
                     float fontSize = GetFontSize(formattedText.Length);
