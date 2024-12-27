@@ -164,7 +164,7 @@ public class FormObject
     public string Checksum { get; set; }
     public List<InputField> Fields { get; set; }
 
-    public void FillForm(string outputName, string outputPath, string inputPath)
+    public void FillForm(string outputName, string outputPath, string inputPath, iText.Kernel.Colors.Color color)
     {
 
         string fileinputPath = System.IO.Path.Combine(AppContext.BaseDirectory, inputPath, this.Path);  // Path to your existing PDF
@@ -178,7 +178,6 @@ public class FormObject
         using (PdfWriter writer = new PdfWriter(fullOutputPath))
         using (PdfDocument pdf = new PdfDocument(reader, writer))
         {
-
             foreach (InputField inputField in this.Fields)
             {
 
@@ -210,6 +209,7 @@ public class FormObject
                         Paragraph paragraph = new Paragraph(formattedText)
                             .SetFont(font)
                             .SetFontSize(fontSize)
+                            .SetFontColor(color)
                             .SetBaseDirection(BaseDirection.RIGHT_TO_LEFT);
 
 
@@ -241,6 +241,8 @@ public class FormObject
                         Paragraph paragraph = new Paragraph(formattedText)
                             .SetFont(font)
                             .SetFontSize(fontSize)
+                            .SetFontColor(color)
+                            
                             .SetBaseDirection(BaseDirection.RIGHT_TO_LEFT);
 
 
@@ -253,7 +255,7 @@ public class FormObject
 
         }
     }
-    public void FillSpecialForm(string outputFilename, string outputDirectory, string inputFilename, string defaultInputPath)
+    public void FillSpecialForm(string outputFilename, string outputDirectory, string inputFilename, string defaultInputPath, iText.Kernel.Colors.Color color)
     {
         string fileDirectory = System.IO.Path.GetDirectoryName(this.Path);
         string fileInputPath = System.IO.Path.Combine(defaultInputPath, fileDirectory, inputFilename);  // Path to existing PDF
@@ -287,6 +289,7 @@ public class FormObject
                     Paragraph paragraph = new Paragraph(formattedText)
                         .SetFont(font)
                         .SetFontSize(fontSize)
+                        .SetFontColor(color)
                         .SetBaseDirection(BaseDirection.RIGHT_TO_LEFT);
 
                     var document = new iText.Layout.Document(pdf);

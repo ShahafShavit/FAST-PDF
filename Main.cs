@@ -4,12 +4,14 @@ using System.Reflection.Metadata;
 using System.Runtime.InteropServices.Marshalling;
 using System.Text;
 using System.Windows.Forms;
-
+using iText.Kernel.Colors;
 
 namespace Auto_UI_Test
 {
     public partial class Main : System.Windows.Forms.Form
     {
+        public System.Drawing.Color mainColor;
+        private ColorDialog mainColorDialog = new ColorDialog();
         private TextBox console;
         private UIConfig config;
         private bool debug;
@@ -217,7 +219,7 @@ namespace Auto_UI_Test
                                         {
                                             Text = "\u2139", // Unicode for "Information" symbol
                                             Font = new Font("Arial", 12), // Adjust font and size
-                                            ForeColor = Color.Blue, // Color for visibility
+                                            ForeColor = System.Drawing.Color.Blue, // Color for visibility
                                             AutoSize = true,
                                             Dock = DockStyle.Left,
                                             Cursor = Cursors.Hand, // Optional: Hand cursor
@@ -390,7 +392,7 @@ namespace Auto_UI_Test
                         standard = false;
 
                         FormObject fo = FillDataStructure(layoutPanel.Controls, parentGroupBox.Text, clickedButton.Parent.Parent.Parent.Text);
-                        fo.FillSpecialForm(outputName, config.GeneralSettings.SavePath, inputFormname, config.GeneralSettings.InputPath);
+                        fo.FillSpecialForm(outputName, config.GeneralSettings.SavePath, inputFormname, config.GeneralSettings.InputPath, new DeviceRgb(this.mainColor.R, this.mainColor.G, this.mainColor.B));
                         Console.WriteLine($"Form has been filled and saved at {Path.Combine(config.GeneralSettings.SavePath, outputName)}");
                     }
                 }
@@ -398,7 +400,7 @@ namespace Auto_UI_Test
             if (standard)
             {
                 FormObject fo = FillDataStructure(layoutPanel.Controls, parentGroupBox.Text, clickedButton.Parent.Parent.Parent.Text);
-                fo.FillForm(newFilename, config.GeneralSettings.SavePath, config.GeneralSettings.InputPath);
+                fo.FillForm(newFilename, config.GeneralSettings.SavePath, config.GeneralSettings.InputPath, new DeviceRgb(this.mainColor.R, this.mainColor.G, this.mainColor.B));
                 Console.WriteLine($"Form has been filled and saved at {Path.Combine(config.GeneralSettings.SavePath, newFilename)}");
                 if (config.GeneralSettings.LaunchFileAtGeneration)
                 {
@@ -422,7 +424,17 @@ namespace Auto_UI_Test
             ToolStripMenuItem fileMenu = new ToolStripMenuItem("קובץ");
             ToolStripMenuItem chooseSaveFolder = new ToolStripMenuItem("שמור בתיקייה");
             chooseSaveFolder.Click += (s, e) => SaveFolderDialoge();
-            
+
+            ToolStripMenuItem colorPallete = new ToolStripMenuItem("בחר צבע");
+            colorPallete.Click += (s, e) => { 
+                
+                if (mainColorDialog.ShowDialog() == DialogResult.OK)
+                {
+                    this.mainColor = mainColorDialog.Color; 
+                    Console.WriteLine(this.mainColor.ToString());
+                }
+                
+            };
             ToolStripMenuItem openFolder = new ToolStripMenuItem("פתח תיקייה מכילה");
             openFolder.Click += (s, e) => System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo()
             {
@@ -445,6 +457,7 @@ namespace Auto_UI_Test
             fileMenu.DropDownItems.Add(chooseSaveFolder);
             fileMenu.DropDownItems.Add(openFolder);
             fileMenu.DropDownItems.Add(openFileAfterGeneration);
+            fileMenu.DropDownItems.Add(colorPallete);
             ToolStripSeparator toolStripSeparator1 = new ToolStripSeparator();
             fileMenu.DropDownItems.Add(toolStripSeparator1);
             fileMenu.DropDownItems.Add(debugMode);
