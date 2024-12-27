@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Drawing;
 using System.Linq;
 using System.Reflection;
@@ -11,6 +12,7 @@ public static class ControlFactory
         // Map JSON `Type` to the corresponding WinForms control type
         string controlType = field.Type;
         Type type = Type.GetType($"System.Windows.Forms.{controlType}, System.Windows.Forms");
+
         if (type == null)
         {
             throw new Exception($"Control type '{controlType}' not recognized.");
@@ -24,6 +26,34 @@ public static class ControlFactory
         {
             string propertyName = property.Name;
             var propertyValue = property.GetValue(field);
+
+            // Special case: ComboBox items
+            if (type == typeof(ComboBox) && propertyName == "Items")
+            {
+                ComboBox comboBox = (ComboBox)control;
+                foreach (var item in propertyValue)
+                {
+                    ComboBoxItem comboBoxItem = new ComboBoxItem
+                    {
+                        Label = item.Label,
+                        Text = item.Text,
+                        Locations = item.Locations
+                    };
+                    comboBox.Items.Add(comboBoxItem);
+                }
+
+                // Set event to handle selection and custom rendering if needed
+                comboBox.SelectedIndexChanged += (sender, args) =>
+                {
+                    var selectedItem = comboBox.SelectedItem as ComboBoxItem;
+                    if (selectedItem != null)
+                    {
+                        Console.WriteLine($"Selected: {selectedItem.Label}, Location X: {selectedItem.Locations[0].X} Y: {selectedItem.Locations[0].Y} PAGE: {selectedItem.Locations[0].Page}");
+                    }
+                };
+
+                continue;
+            }
 
             // Check if the property exists in the control type
             PropertyInfo controlProperty = type.GetProperty(propertyName, BindingFlags.Public | BindingFlags.Instance);
@@ -48,5 +78,5 @@ public static class ControlFactory
 
         return control;
     }
-
 }
+

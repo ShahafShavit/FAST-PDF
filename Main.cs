@@ -510,7 +510,14 @@ namespace Auto_UI_Test
                     var matchingField = formObject.Fields?.Find(field => field.Name == control.Name);
                     if (matchingField != null)
                     {
-                        matchingField.Text = comboBox.SelectedItem?.ToString();
+                        if (comboBox.SelectedIndex == -1)
+                        {
+                            matchingField.SelectedItem = new ComboBoxItem { Label = comboBox.Text, Locations = matchingField.PDFSettings.Location, Text = comboBox.Text };
+                            continue;
+                        }
+                        
+                        matchingField.SelectedItem = (ComboBoxItem)comboBox.SelectedItem;
+                        matchingField.Text = ((ComboBoxItem)comboBox.SelectedItem)?.Text;
                         //Console.WriteLine($"Found and filled the {matchingField} object with {comboBox.SelectedItem.ToString()}");
                     }
                 }

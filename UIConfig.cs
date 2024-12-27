@@ -13,6 +13,7 @@ using static Org.BouncyCastle.Math.EC.ECCurve;
 using System.Diagnostics;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.Windows.Forms.VisualStyles;
+using Newtonsoft.Json.Linq;
 
 
 public static class Config
@@ -139,12 +140,15 @@ public class InputField
     public string Text { get; set; }
     [JsonIgnore]
     public bool Checked { get; set; }
+    [JsonIgnore]
+    public ComboBoxItem SelectedItem { get; set; }
     public string ActionType { get; set; }
     public string Name { get; set; }
     public string Label { get; set; }
     public string Placeholder { get; set; }
     public string DefaultText { get; set; }
     public string Description { get; set; }
+    public List<ComboBoxItem> Items { get; set; }
     public PDFSettings PDFSettings { get; set; }
 }
 public class TabObject
@@ -177,31 +181,72 @@ public class FormObject
 
             foreach (InputField inputField in this.Fields)
             {
+
                 if (inputField.Type == "CheckBox" && !inputField.Checked && inputField.ActionType == "Check") continue;
-                foreach (Location c in inputField.PDFSettings.Location)
+                else if (inputField.Type == "ComboBox")
                 {
-                    var page = pdf.GetPage(c.Page);
+                    //inputField.SelectedItem
 
-                    var canvas = new iText.Kernel.Pdf.Canvas.PdfCanvas(page);
+                    foreach (Location c in inputField.SelectedItem.Locations)
+                    {
+                        var page = pdf.GetPage(c.Page);
 
-                    float x = c.X;
-                    float y = c.Y;
+                        var canvas = new iText.Kernel.Pdf.Canvas.PdfCanvas(page);
 
-                    var font = Utility.LoadSystemFont(inputField.PDFSettings.Font);
-                    var formattedText = "";
-                    formattedText = Utility.ReverseInput(inputField.Text);
+                        float x = c.X;
+                        float y = c.Y;
 
-                    Rectangle textbox = new Rectangle(((int)x), ((int)y), 100, 200);
-                    float fontSize = GetFontSize(formattedText.Length);
+                        var font = Utility.LoadSystemFont(inputField.PDFSettings.Font);
+                        var formattedText = "";
+                        formattedText = Utility.ReverseInput(inputField.SelectedItem.Text);
 
-                    Paragraph paragraph = new Paragraph(formattedText)
-                        .SetFont(font)
-                        .SetFontSize(fontSize)
-                        .SetBaseDirection(BaseDirection.RIGHT_TO_LEFT);
+                        Rectangle textbox = new Rectangle(((int)x), ((int)y), 100, 200);
+                        float fontSize = inputField.PDFSettings.Size;
+                        if (inputField.PDFSettings.SizeFunctionUse) {
+                            fontSize = GetFontSize(formattedText.Length);
+                        }
+                        
+
+                        Paragraph paragraph = new Paragraph(formattedText)
+                            .SetFont(font)
+                            .SetFontSize(fontSize)
+                            .SetBaseDirection(BaseDirection.RIGHT_TO_LEFT);
 
 
-                    var document = new iText.Layout.Document(pdf);
-                    document.ShowTextAligned(paragraph, x, y, c.Page, TextAlignment.RIGHT, iText.Layout.Properties.VerticalAlignment.BOTTOM, 0);
+                        var document = new iText.Layout.Document(pdf);
+                        document.ShowTextAligned(paragraph, x, y, c.Page, TextAlignment.RIGHT, iText.Layout.Properties.VerticalAlignment.BOTTOM, 0);
+                    }
+                }
+                else
+                {
+                    foreach (Location c in inputField.PDFSettings.Location)
+                    {
+                        var page = pdf.GetPage(c.Page);
+
+                        var canvas = new iText.Kernel.Pdf.Canvas.PdfCanvas(page);
+
+                        float x = c.X;
+                        float y = c.Y;
+
+                        var font = Utility.LoadSystemFont(inputField.PDFSettings.Font);
+                        var formattedText = "";
+                        formattedText = Utility.ReverseInput(inputField.Text);
+
+                        Rectangle textbox = new Rectangle(((int)x), ((int)y), 100, 200);
+                        float fontSize = inputField.PDFSettings.Size;
+                        if (inputField.PDFSettings.SizeFunctionUse)
+                        {
+                            fontSize = GetFontSize(formattedText.Length);
+                        }
+                        Paragraph paragraph = new Paragraph(formattedText)
+                            .SetFont(font)
+                            .SetFontSize(fontSize)
+                            .SetBaseDirection(BaseDirection.RIGHT_TO_LEFT);
+
+
+                        var document = new iText.Layout.Document(pdf);
+                        document.ShowTextAligned(paragraph, x, y, c.Page, TextAlignment.RIGHT, iText.Layout.Properties.VerticalAlignment.BOTTOM, 0);
+                    }
                 }
 
             }
@@ -277,7 +322,7 @@ public class PDFSettings
 {
     public string Font { get; set; }
     public int Size { get; set; }
-    public bool SizeFunctionOverride { get; set; }
+    public bool SizeFunctionUse { get; set; }
     public bool Required { get; set; }
     public bool RTL { get; set; }
     public List<Location> Location { get; set; }
@@ -287,6 +332,17 @@ public class Location
     public int Page { get; set; }
     public float X { get; set; }
     public float Y { get; set; }
+}
+public class ComboBoxItem
+{
+    public string Label { get; set; }
+    public string Text { get; set; }
+    public List<Location> Locations { get; set; }
+
+    public override string ToString()
+    {
+        return Label; // Display Label in ComboBox dropdown
+    }
 }
 public class TextBoxWriter : TextWriter
 {

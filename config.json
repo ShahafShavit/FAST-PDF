@@ -23,10 +23,11 @@
               "Placeholder": "בעל קרקע",
               "DefaultText": "",
               "Description": "שם בעל הקרקע כפי שמופיע בחוזה",
+              "Items": null,
               "PDFSettings": {
                 "Font": "Arial",
                 "Size": 12,
-                "SizeFunctionOverride": true,
+                "SizeFunctionUse": true,
                 "Required": true,
                 "RTL": true,
                 "Location": [
@@ -46,10 +47,11 @@
               "Placeholder": "123456789",
               "DefaultText": "",
               "Description": "מספר תעודת זהות בעל הקרקע",
+              "Items": null,
               "PDFSettings": {
                 "Font": "Arial",
                 "Size": 12,
-                "SizeFunctionOverride": true,
+                "SizeFunctionUse": true,
                 "Required": true,
                 "RTL": true,
                 "Location": [
@@ -69,10 +71,11 @@
               "Placeholder": "כתובת 21, עיר",
               "DefaultText": "",
               "Description": "כתובת מלאה של בעל הקרקע",
+              "Items": null,
               "PDFSettings": {
                 "Font": "Arial",
                 "Size": 12,
-                "SizeFunctionOverride": true,
+                "SizeFunctionUse": true,
                 "Required": true,
                 "RTL": true,
                 "Location": [
@@ -92,10 +95,11 @@
               "Placeholder": "כתובת 21, עיר",
               "DefaultText": "",
               "Description": "",
+              "Items": null,
               "PDFSettings": {
                 "Font": "Arial",
                 "Size": 12,
-                "SizeFunctionOverride": true,
+                "SizeFunctionUse": true,
                 "Required": true,
                 "RTL": true,
                 "Location": [
@@ -115,10 +119,11 @@
               "Placeholder": "גוש",
               "DefaultText": "",
               "Description": "",
+              "Items": null,
               "PDFSettings": {
                 "Font": "Arial",
                 "Size": 12,
-                "SizeFunctionOverride": true,
+                "SizeFunctionUse": true,
                 "Required": true,
                 "RTL": true,
                 "Location": [
@@ -138,10 +143,11 @@
               "Placeholder": "חלקה",
               "DefaultText": "",
               "Description": "",
+              "Items": null,
               "PDFSettings": {
                 "Font": "Arial",
                 "Size": 12,
-                "SizeFunctionOverride": true,
+                "SizeFunctionUse": true,
                 "Required": true,
                 "RTL": true,
                 "Location": [
@@ -169,10 +175,11 @@
               "Placeholder": "בעל קרקע",
               "DefaultText": "",
               "Description": "",
+              "Items": null,
               "PDFSettings": {
                 "Font": "Arial",
                 "Size": 10,
-                "SizeFunctionOverride": true,
+                "SizeFunctionUse": true,
                 "Required": true,
                 "RTL": false,
                 "Location": [
@@ -192,10 +199,11 @@
               "Placeholder": "0504651234",
               "DefaultText": "",
               "Description": "",
+              "Items": null,
               "PDFSettings": {
                 "Font": "Arial",
                 "Size": 10,
-                "SizeFunctionOverride": true,
+                "SizeFunctionUse": true,
                 "Required": true,
                 "RTL": false,
                 "Location": [
@@ -215,10 +223,11 @@
               "Placeholder": "שם החברה בעמ",
               "DefaultText": "",
               "Description": "",
+              "Items": null,
               "PDFSettings": {
                 "Font": "Arial",
                 "Size": 10,
-                "SizeFunctionOverride": true,
+                "SizeFunctionUse": true,
                 "Required": true,
                 "RTL": false,
                 "Location": [
@@ -238,10 +247,11 @@
               "Placeholder": "ח.פ. בעל קרקע",
               "DefaultText": "",
               "Description": "",
+              "Items": null,
               "PDFSettings": {
                 "Font": "Arial",
                 "Size": 10,
-                "SizeFunctionOverride": true,
+                "SizeFunctionUse": true,
                 "Required": true,
                 "RTL": false,
                 "Location": [
@@ -261,10 +271,11 @@
               "Placeholder": "שם המזמין",
               "DefaultText": "",
               "Description": "",
+              "Items": null,
               "PDFSettings": {
                 "Font": "Arial",
                 "Size": 10,
-                "SizeFunctionOverride": true,
+                "SizeFunctionUse": true,
                 "Required": true,
                 "RTL": false,
                 "Location": [
@@ -284,10 +295,11 @@
               "Placeholder": "ח.פ מזמין",
               "DefaultText": "",
               "Description": "",
+              "Items": null,
               "PDFSettings": {
                 "Font": "Arial",
                 "Size": 10,
-                "SizeFunctionOverride": true,
+                "SizeFunctionUse": true,
                 "Required": true,
                 "RTL": false,
                 "Location": [
@@ -307,10 +319,11 @@
               "Placeholder": "12345678",
               "DefaultText": "",
               "Description": "",
+              "Items": null,
               "PDFSettings": {
                 "Font": "Arial",
                 "Size": 10,
-                "SizeFunctionOverride": true,
+                "SizeFunctionUse": true,
                 "Required": true,
                 "RTL": false,
                 "Location": [
@@ -330,10 +343,11 @@
               "Placeholder": "כתובת 12, עיר",
               "DefaultText": "",
               "Description": "",
+              "Items": null,
               "PDFSettings": {
                 "Font": "Arial",
                 "Size": 10,
-                "SizeFunctionOverride": true,
+                "SizeFunctionUse": true,
                 "Required": true,
                 "RTL": false,
                 "Location": [
@@ -361,10 +375,11 @@
               "Placeholder": "בעל קרקע",
               "DefaultText": "",
               "Description": "",
+              "Items": null,
               "PDFSettings": {
                 "Font": "Arial",
                 "Size": 10,
-                "SizeFunctionOverride": true,
+                "SizeFunctionUse": true,
                 "Required": true,
                 "RTL": false,
                 "Location": [
@@ -384,10 +399,11 @@
               "Placeholder": "0501234567",
               "DefaultText": "",
               "Description": "",
+              "Items": null,
               "PDFSettings": {
                 "Font": "Arial",
                 "Size": 10,
-                "SizeFunctionOverride": true,
+                "SizeFunctionUse": true,
                 "Required": true,
                 "RTL": false,
                 "Location": [
@@ -407,10 +423,11 @@
               "Placeholder": "שם חברה בעמ",
               "DefaultText": "",
               "Description": "",
+              "Items": null,
               "PDFSettings": {
                 "Font": "Arial",
                 "Size": 10,
-                "SizeFunctionOverride": true,
+                "SizeFunctionUse": true,
                 "Required": true,
                 "RTL": false,
                 "Location": [
@@ -430,10 +447,11 @@
               "Placeholder": "12345678",
               "DefaultText": "",
               "Description": "",
+              "Items": null,
               "PDFSettings": {
                 "Font": "Arial",
                 "Size": 10,
-                "SizeFunctionOverride": true,
+                "SizeFunctionUse": true,
                 "Required": true,
                 "RTL": false,
                 "Location": [
@@ -453,10 +471,11 @@
               "Placeholder": "123456",
               "DefaultText": "",
               "Description": "",
+              "Items": null,
               "PDFSettings": {
                 "Font": "Arial",
                 "Size": 10,
-                "SizeFunctionOverride": true,
+                "SizeFunctionUse": true,
                 "Required": true,
                 "RTL": false,
                 "Location": [
@@ -476,10 +495,11 @@
               "Placeholder": "כתובת 32, עיר",
               "DefaultText": "",
               "Description": "",
+              "Items": null,
               "PDFSettings": {
                 "Font": "Arial",
                 "Size": 10,
-                "SizeFunctionOverride": true,
+                "SizeFunctionUse": true,
                 "Required": true,
                 "RTL": false,
                 "Location": [
@@ -507,10 +527,11 @@
               "Placeholder": "שם המזמין",
               "DefaultText": "",
               "Description": "",
+              "Items": null,
               "PDFSettings": {
                 "Font": "Arial",
                 "Size": 10,
-                "SizeFunctionOverride": true,
+                "SizeFunctionUse": true,
                 "Required": true,
                 "RTL": false,
                 "Location": [
@@ -535,10 +556,11 @@
               "Placeholder": "כתובת חיבור",
               "DefaultText": "",
               "Description": "",
+              "Items": null,
               "PDFSettings": {
                 "Font": "Arial",
                 "Size": 10,
-                "SizeFunctionOverride": true,
+                "SizeFunctionUse": true,
                 "Required": true,
                 "RTL": false,
                 "Location": [
@@ -563,10 +585,11 @@
               "Placeholder": "123456",
               "DefaultText": "",
               "Description": "",
+              "Items": null,
               "PDFSettings": {
                 "Font": "Arial",
                 "Size": 10,
-                "SizeFunctionOverride": true,
+                "SizeFunctionUse": true,
                 "Required": true,
                 "RTL": false,
                 "Location": [
@@ -591,10 +614,11 @@
               "Placeholder": "4656789",
               "DefaultText": "",
               "Description": "",
+              "Items": null,
               "PDFSettings": {
                 "Font": "Arial",
                 "Size": 10,
-                "SizeFunctionOverride": true,
+                "SizeFunctionUse": true,
                 "Required": true,
                 "RTL": false,
                 "Location": [
@@ -614,10 +638,11 @@
               "Placeholder": "01.12.24",
               "DefaultText": "",
               "Description": "",
+              "Items": null,
               "PDFSettings": {
                 "Font": "Arial",
                 "Size": 10,
-                "SizeFunctionOverride": true,
+                "SizeFunctionUse": true,
                 "Required": true,
                 "RTL": false,
                 "Location": [
@@ -637,10 +662,11 @@
               "Placeholder": "גוש",
               "DefaultText": "",
               "Description": "",
+              "Items": null,
               "PDFSettings": {
                 "Font": "Arial",
                 "Size": 10,
-                "SizeFunctionOverride": true,
+                "SizeFunctionUse": true,
                 "Required": true,
                 "RTL": false,
                 "Location": [
@@ -660,10 +686,11 @@
               "Placeholder": "חלקה",
               "DefaultText": "",
               "Description": "",
+              "Items": null,
               "PDFSettings": {
                 "Font": "Arial",
                 "Size": 10,
-                "SizeFunctionOverride": true,
+                "SizeFunctionUse": true,
                 "Required": true,
                 "RTL": false,
                 "Location": [
@@ -693,30 +720,21 @@
               "ActionType": "",
               "Name": "hb_FT_OrderName",
               "Label": "מספר הזמנה",
-              "Placeholder": "",
+              "Placeholder": "1234567",
               "DefaultText": "",
               "Description": "",
+              "Items": null,
               "PDFSettings": {
                 "Font": "Arial",
-                "Size": 10,
-                "SizeFunctionOverride": true,
+                "Size": 16,
+                "SizeFunctionUse": false,
                 "Required": true,
                 "RTL": true,
                 "Location": [
                   {
                     "Page": 1,
                     "X": 300.0,
-                    "Y": 600.0
-                  },
-                  {
-                    "Page": 1,
-                    "X": 0.0,
-                    "Y": 0.0
-                  },
-                  {
-                    "Page": 1,
-                    "X": 0.0,
-                    "Y": 0.0
+                    "Y": 750.0
                   }
                 ]
               }
@@ -726,30 +744,21 @@
               "ActionType": "",
               "Name": "hb_FT_City",
               "Label": "עיר",
-              "Placeholder": "",
+              "Placeholder": "עיר כלשהי",
               "DefaultText": "",
               "Description": "",
+              "Items": null,
               "PDFSettings": {
                 "Font": "Arial",
                 "Size": 10,
-                "SizeFunctionOverride": true,
+                "SizeFunctionUse": true,
                 "Required": true,
                 "RTL": true,
                 "Location": [
                   {
                     "Page": 1,
-                    "X": 0.0,
-                    "Y": 0.0
-                  },
-                  {
-                    "Page": 1,
-                    "X": 0.0,
-                    "Y": 0.0
-                  },
-                  {
-                    "Page": 1,
-                    "X": 0.0,
-                    "Y": 0.0
+                    "X": 560.0,
+                    "Y": 695.0
                   }
                 ]
               }
@@ -757,22 +766,23 @@
             {
               "Type": "TextBox",
               "ActionType": "",
-              "Name": "hb_FT_ClientName",
+              "Name": "hb_FT_Street",
               "Label": "רחוב",
-              "Placeholder": "",
+              "Placeholder": "רחוב כלשהו",
               "DefaultText": "",
               "Description": "",
+              "Items": null,
               "PDFSettings": {
                 "Font": "Arial",
                 "Size": 10,
-                "SizeFunctionOverride": true,
+                "SizeFunctionUse": true,
                 "Required": true,
                 "RTL": true,
                 "Location": [
                   {
                     "Page": 1,
-                    "X": 0.0,
-                    "Y": 0.0
+                    "X": 450.0,
+                    "Y": 695.0
                   },
                   {
                     "Page": 1,
@@ -792,53 +802,21 @@
               "ActionType": "",
               "Name": "hb_FT_ClientName",
               "Label": "שם לקוח",
-              "Placeholder": "",
+              "Placeholder": "שם לקוח כלשהו",
               "DefaultText": "",
               "Description": "",
+              "Items": null,
               "PDFSettings": {
                 "Font": "Arial",
                 "Size": 10,
-                "SizeFunctionOverride": true,
+                "SizeFunctionUse": true,
                 "Required": true,
                 "RTL": true,
                 "Location": [
                   {
                     "Page": 1,
-                    "X": 0.0,
-                    "Y": 0.0
-                  },
-                  {
-                    "Page": 1,
-                    "X": 0.0,
-                    "Y": 0.0
-                  },
-                  {
-                    "Page": 1,
-                    "X": 0.0,
-                    "Y": 0.0
-                  }
-                ]
-              }
-            },
-            {
-              "Type": "TextBox",
-              "ActionType": "",
-              "Name": "hb_FT_Purpose",
-              "Label": "ייעוד",
-              "Placeholder": "",
-              "DefaultText": "",
-              "Description": "",
-              "PDFSettings": {
-                "Font": "Arial",
-                "Size": 10,
-                "SizeFunctionOverride": true,
-                "Required": true,
-                "RTL": true,
-                "Location": [
-                  {
-                    "Page": 1,
-                    "X": 0.0,
-                    "Y": 0.0
+                    "X": 261.0,
+                    "Y": 695.0
                   },
                   {
                     "Page": 1,
@@ -855,138 +833,160 @@
             },
             {
               "Type": "ComboBox",
-              "ActionType": "Check",
-              "Name": "hb_FT_CheckTestType1",
-              "Label": "סוג בדיקה",
+              "ActionType": "",
+              "Name": "hb_FT_PurposeComboBox",
+              "Label": "ייעוד המקום והבדיקה",
               "Placeholder": "",
-              "DefaultText": "בדיקת מתקן חדש",
+              "DefaultText": "אחר",
               "Description": "",
+              "Items": [
+                {
+                  "Label": "דירתי",
+                  "Text": "×",
+                  "Locations": [
+                    {
+                      "Page": 1,
+                      "X": 468.2,
+                      "Y": 623.5
+                    }
+                  ]
+                },
+                {
+                  "Label": "ציבורי",
+                  "Text": "×",
+                  "Locations": [
+                    {
+                      "Page": 1,
+                      "X": 422.5,
+                      "Y": 623.5
+                    }
+                  ]
+                },
+                {
+                  "Label": "משרד",
+                  "Text": "×",
+                  "Locations": [
+                    {
+                      "Page": 1,
+                      "X": 375.5,
+                      "Y": 623.5
+                    }
+                  ]
+                },
+                {
+                  "Label": "איחוד אספקות",
+                  "Text": "×",
+                  "Locations": [
+                    {
+                      "Page": 1,
+                      "X": 332.5,
+                      "Y": 623.5
+                    }
+                  ]
+                }
+              ],
               "PDFSettings": {
                 "Font": "Arial",
                 "Size": 10,
-                "SizeFunctionOverride": true,
+                "SizeFunctionUse": true,
                 "Required": true,
                 "RTL": true,
                 "Location": [
                   {
                     "Page": 1,
-                    "X": 507.5,
-                    "Y": 608.5
+                    "X": 223.5,
+                    "Y": 626.0
                   }
                 ]
               }
             },
             {
-              "Type": "CheckBox",
-              "ActionType": "Check",
-              "Name": "hb_FT_CheckTestType2",
+              "Type": "ComboBox",
+              "ActionType": "",
+              "Name": "hb_FT_TypeComboBox",
               "Label": "סוג בדיקה",
               "Placeholder": "",
-              "DefaultText": "הגדלת חיבור",
+              "DefaultText": "אחר",
               "Description": "",
+              "Items": [
+                {
+                  "Label": "בדיקת מתקן חדש",
+                  "Text": "×",
+                  "Locations": [
+                    {
+                      "Page": 1,
+                      "X": 508.0,
+                      "Y": 608.5
+                    }
+                  ]
+                },
+                {
+                  "Label": "הגדלת חיבור",
+                  "Text": "×",
+                  "Locations": [
+                    {
+                      "Page": 1,
+                      "X": 429.0,
+                      "Y": 608.5
+                    }
+                  ]
+                },
+                {
+                  "Label": "חידוש אספקה",
+                  "Text": "×",
+                  "Locations": [
+                    {
+                      "Page": 1,
+                      "X": 369.5,
+                      "Y": 608.5
+                    }
+                  ]
+                },
+                {
+                  "Label": "מיתקן ארעי",
+                  "Text": "×",
+                  "Locations": [
+                    {
+                      "Page": 1,
+                      "X": 301.5,
+                      "Y": 608.5
+                    }
+                  ]
+                },
+                {
+                  "Label": "העתקת חיבור",
+                  "Text": "×",
+                  "Locations": [
+                    {
+                      "Page": 1,
+                      "X": 242.0,
+                      "Y": 608.5
+                    }
+                  ]
+                },
+                {
+                  "Label": "בדיקה חוזרת",
+                  "Text": "×",
+                  "Locations": [
+                    {
+                      "Page": 1,
+                      "X": 177.0,
+                      "Y": 608.5
+                    }
+                  ]
+                }
+              ],
               "PDFSettings": {
                 "Font": "Arial",
                 "Size": 10,
-                "SizeFunctionOverride": true,
+                "SizeFunctionUse": true,
                 "Required": true,
                 "RTL": true,
                 "Location": [
                   {
                     "Page": 1,
-                    "X": 429.0,
-                    "Y": 608.5
-                  }
-                ]
-              }
-            },
-            {
-              "Type": "CheckBox",
-              "ActionType": "Check",
-              "Name": "hb_FT_CheckTestType3",
-              "Label": "סוג בדיקה",
-              "Placeholder": "",
-              "DefaultText": "חידוש אספקה",
-              "Description": "",
-              "PDFSettings": {
-                "Font": "Arial",
-                "Size": 10,
-                "SizeFunctionOverride": true,
-                "Required": true,
-                "RTL": true,
-                "Location": [
-                  {
-                    "Page": 1,
-                    "X": 369.5,
-                    "Y": 608.5
-                  }
-                ]
-              }
-            },
-            {
-              "Type": "CheckBox",
-              "ActionType": "Check",
-              "Name": "hb_FT_CheckTestType4",
-              "Label": "סוג בדיקה",
-              "Placeholder": "",
-              "DefaultText": "מיתקן ארעי",
-              "Description": "",
-              "PDFSettings": {
-                "Font": "Arial",
-                "Size": 10,
-                "SizeFunctionOverride": true,
-                "Required": true,
-                "RTL": true,
-                "Location": [
-                  {
-                    "Page": 1,
-                    "X": 301.5,
-                    "Y": 608.5
-                  }
-                ]
-              }
-            },
-            {
-              "Type": "CheckBox",
-              "ActionType": "Check",
-              "Name": "hb_FT_CheckTestType5",
-              "Label": "סוג בדיקה",
-              "Placeholder": "",
-              "DefaultText": "העתקת חיבור",
-              "Description": "",
-              "PDFSettings": {
-                "Font": "Arial",
-                "Size": 10,
-                "SizeFunctionOverride": true,
-                "Required": true,
-                "RTL": true,
-                "Location": [
-                  {
-                    "Page": 1,
-                    "X": 242.0,
-                    "Y": 608.5
-                  }
-                ]
-              }
-            },
-            {
-              "Type": "CheckBox",
-              "ActionType": "Check",
-              "Name": "hb_FT_CheckTestType6",
-              "Label": "סוג בדיקה",
-              "Placeholder": "",
-              "DefaultText": "בדיקה חוזרת",
-              "Description": "",
-              "PDFSettings": {
-                "Font": "Arial",
-                "Size": 10,
-                "SizeFunctionOverride": true,
-                "Required": true,
-                "RTL": true,
-                "Location": [
-                  {
-                    "Page": 1,
-                    "X": 177.0,
-                    "Y": 608.5
+                    "X": 85.0,
+                    "Y": 610.5
                   }
                 ]
               }
@@ -1014,10 +1014,11 @@
               "Placeholder": "שם צרכן כלשהו",
               "DefaultText": "",
               "Description": "",
+              "Items": null,
               "PDFSettings": {
                 "Font": "Arial",
                 "Size": 10,
-                "SizeFunctionOverride": true,
+                "SizeFunctionUse": true,
                 "Required": true,
                 "RTL": true,
                 "Location": [
@@ -1047,10 +1048,11 @@
               "Placeholder": "123456",
               "DefaultText": "",
               "Description": "",
+              "Items": null,
               "PDFSettings": {
                 "Font": "Arial",
                 "Size": 10,
-                "SizeFunctionOverride": true,
+                "SizeFunctionUse": true,
                 "Required": true,
                 "RTL": true,
                 "Location": [
@@ -1080,10 +1082,11 @@
               "Placeholder": "",
               "DefaultText": "ABB",
               "Description": "",
+              "Items": null,
               "PDFSettings": {
                 "Font": "Arial",
                 "Size": 10,
-                "SizeFunctionOverride": true,
+                "SizeFunctionUse": true,
                 "Required": true,
                 "RTL": true,
                 "Location": [
@@ -1113,10 +1116,11 @@
               "Placeholder": "",
               "DefaultText": "TERRA",
               "Description": "",
+              "Items": null,
               "PDFSettings": {
                 "Font": "Arial",
                 "Size": 10,
-                "SizeFunctionOverride": true,
+                "SizeFunctionUse": true,
                 "Required": true,
                 "RTL": true,
                 "Location": [
@@ -1146,10 +1150,11 @@
               "Placeholder": "כתובת כלשהי 28, עיר",
               "DefaultText": "",
               "Description": "",
+              "Items": null,
               "PDFSettings": {
                 "Font": "Arial",
                 "Size": 10,
-                "SizeFunctionOverride": true,
+                "SizeFunctionUse": true,
                 "Required": true,
                 "RTL": true,
                 "Location": [
@@ -1179,10 +1184,11 @@
               "Placeholder": "60",
               "DefaultText": "",
               "Description": "",
+              "Items": null,
               "PDFSettings": {
                 "Font": "Arial",
                 "Size": 10,
-                "SizeFunctionOverride": true,
+                "SizeFunctionUse": true,
                 "Required": true,
                 "RTL": true,
                 "Location": [
@@ -1212,10 +1218,11 @@
               "Placeholder": "160",
               "DefaultText": "",
               "Description": "",
+              "Items": null,
               "PDFSettings": {
                 "Font": "Arial",
                 "Size": 10,
-                "SizeFunctionOverride": true,
+                "SizeFunctionUse": true,
                 "Required": true,
                 "RTL": true,
                 "Location": [
@@ -1245,10 +1252,11 @@
               "Placeholder": "13",
               "DefaultText": "",
               "Description": "",
+              "Items": null,
               "PDFSettings": {
                 "Font": "Arial",
                 "Size": 10,
-                "SizeFunctionOverride": true,
+                "SizeFunctionUse": true,
                 "Required": true,
                 "RTL": true,
                 "Location": [
@@ -1278,10 +1286,11 @@
               "Placeholder": "בחוץ ליד הגדר",
               "DefaultText": "",
               "Description": "",
+              "Items": null,
               "PDFSettings": {
                 "Font": "Arial",
                 "Size": 10,
-                "SizeFunctionOverride": true,
+                "SizeFunctionUse": true,
                 "Required": true,
                 "RTL": true,
                 "Location": [
@@ -1311,10 +1320,11 @@
               "Placeholder": "",
               "DefaultText": "שם מהנדס 1",
               "Description": "שם בעל הקרקע כפי שמופיע בחוזה",
+              "Items": null,
               "PDFSettings": {
                 "Font": "Arial",
                 "Size": 12,
-                "SizeFunctionOverride": true,
+                "SizeFunctionUse": true,
                 "Required": true,
                 "RTL": true,
                 "Location": [
@@ -1334,10 +1344,11 @@
               "Placeholder": "",
               "DefaultText": "שם מהנדס 2",
               "Description": "",
+              "Items": null,
               "PDFSettings": {
                 "Font": "Arial",
                 "Size": 12,
-                "SizeFunctionOverride": true,
+                "SizeFunctionUse": true,
                 "Required": true,
                 "RTL": true,
                 "Location": [
@@ -1357,10 +1368,11 @@
               "Placeholder": "",
               "DefaultText": "שם מהנדס 3",
               "Description": "",
+              "Items": null,
               "PDFSettings": {
                 "Font": "Arial",
                 "Size": 12,
-                "SizeFunctionOverride": true,
+                "SizeFunctionUse": true,
                 "Required": true,
                 "RTL": true,
                 "Location": [
@@ -1412,10 +1424,11 @@
               "Placeholder": "1234567",
               "DefaultText": "",
               "Description": "",
+              "Items": null,
               "PDFSettings": {
                 "Font": "Arial",
                 "Size": 10,
-                "SizeFunctionOverride": true,
+                "SizeFunctionUse": true,
                 "Required": true,
                 "RTL": true,
                 "Location": [
@@ -1445,10 +1458,11 @@
               "Placeholder": "כתובת כלשהי",
               "DefaultText": "",
               "Description": "",
+              "Items": null,
               "PDFSettings": {
                 "Font": "Arial",
                 "Size": 10,
-                "SizeFunctionOverride": true,
+                "SizeFunctionUse": true,
                 "Required": true,
                 "RTL": true,
                 "Location": [
@@ -1478,10 +1492,11 @@
               "Placeholder": "שם לקוח",
               "DefaultText": "",
               "Description": "",
+              "Items": null,
               "PDFSettings": {
                 "Font": "Arial",
                 "Size": 10,
-                "SizeFunctionOverride": true,
+                "SizeFunctionUse": true,
                 "Required": true,
                 "RTL": true,
                 "Location": [
@@ -1489,17 +1504,8 @@
                     "Page": 1,
                     "X": 438.0,
                     "Y": 552.0
-                  },
-                  {
-                    "Page": 1,
-                    "X": 0.0,
-                    "Y": 0.0
-                  },
-                  {
-                    "Page": 1,
-                    "X": 0.0,
-                    "Y": 0.0
                   }
+                  
                 ]
               }
             },
@@ -1511,10 +1517,11 @@
               "Placeholder": "123412345",
               "DefaultText": "",
               "Description": "",
+              "Items": null,
               "PDFSettings": {
                 "Font": "Arial",
                 "Size": 10,
-                "SizeFunctionOverride": true,
+                "SizeFunctionUse": true,
                 "Required": true,
                 "RTL": true,
                 "Location": [
@@ -1522,16 +1529,6 @@
                     "Page": 1,
                     "X": 250.0,
                     "Y": 552.5
-                  },
-                  {
-                    "Page": 1,
-                    "X": 0.0,
-                    "Y": 0.0
-                  },
-                  {
-                    "Page": 1,
-                    "X": 0.0,
-                    "Y": 0.0
                   }
                 ]
               }
@@ -1544,10 +1541,11 @@
               "Placeholder": "12313",
               "DefaultText": "",
               "Description": "",
+              "Items": null,
               "PDFSettings": {
                 "Font": "Arial",
                 "Size": 10,
-                "SizeFunctionOverride": true,
+                "SizeFunctionUse": true,
                 "Required": true,
                 "RTL": true,
                 "Location": [
@@ -1555,16 +1553,6 @@
                     "Page": 1,
                     "X": 460.0,
                     "Y": 528.0
-                  },
-                  {
-                    "Page": 1,
-                    "X": 0.0,
-                    "Y": 0.0
-                  },
-                  {
-                    "Page": 1,
-                    "X": 0.0,
-                    "Y": 0.0
                   }
                 ]
               }
@@ -1577,10 +1565,11 @@
               "Placeholder": "12314",
               "DefaultText": "",
               "Description": "",
+              "Items": null,
               "PDFSettings": {
                 "Font": "Arial",
                 "Size": 10,
-                "SizeFunctionOverride": true,
+                "SizeFunctionUse": true,
                 "Required": true,
                 "RTL": true,
                 "Location": [
@@ -1588,16 +1577,6 @@
                     "Page": 1,
                     "X": 460.0,
                     "Y": 495.0
-                  },
-                  {
-                    "Page": 1,
-                    "X": 0.0,
-                    "Y": 0.0
-                  },
-                  {
-                    "Page": 1,
-                    "X": 0.0,
-                    "Y": 0.0
                   }
                 ]
               }
@@ -1610,10 +1589,11 @@
               "Placeholder": "0503451234",
               "DefaultText": "",
               "Description": "",
+              "Items": null,
               "PDFSettings": {
                 "Font": "Arial",
                 "Size": 10,
-                "SizeFunctionOverride": true,
+                "SizeFunctionUse": true,
                 "Required": true,
                 "RTL": true,
                 "Location": [
@@ -1621,16 +1601,6 @@
                     "Page": 1,
                     "X": 460.0,
                     "Y": 426.0
-                  },
-                  {
-                    "Page": 1,
-                    "X": 0.0,
-                    "Y": 0.0
-                  },
-                  {
-                    "Page": 1,
-                    "X": 0.0,
-                    "Y": 0.0
                   }
                 ]
               }
@@ -1643,10 +1613,11 @@
               "Placeholder": "כתובת כלשהי, כתובת",
               "DefaultText": "",
               "Description": "",
+              "Items": null,
               "PDFSettings": {
                 "Font": "Arial",
                 "Size": 10,
-                "SizeFunctionOverride": true,
+                "SizeFunctionUse": true,
                 "Required": true,
                 "RTL": true,
                 "Location": [
@@ -1654,16 +1625,6 @@
                     "Page": 1,
                     "X": 397.0,
                     "Y": 404.0
-                  },
-                  {
-                    "Page": 1,
-                    "X": 0.0,
-                    "Y": 0.0
-                  },
-                  {
-                    "Page": 1,
-                    "X": 0.0,
-                    "Y": 0.0
                   }
                 ]
               }
@@ -1676,10 +1637,11 @@
               "Placeholder": "שם כלשהו",
               "DefaultText": "",
               "Description": "",
+              "Items": null,
               "PDFSettings": {
                 "Font": "Arial",
                 "Size": 10,
-                "SizeFunctionOverride": true,
+                "SizeFunctionUse": true,
                 "Required": true,
                 "RTL": true,
                 "Location": [
@@ -1687,16 +1649,6 @@
                     "Page": 1,
                     "X": 440.0,
                     "Y": 348.0
-                  },
-                  {
-                    "Page": 1,
-                    "X": 0.0,
-                    "Y": 0.0
-                  },
-                  {
-                    "Page": 1,
-                    "X": 0.0,
-                    "Y": 0.0
                   }
                 ]
               }
@@ -1709,10 +1661,11 @@
               "Placeholder": "132456438",
               "DefaultText": "",
               "Description": "",
+              "Items": null,
               "PDFSettings": {
                 "Font": "Arial",
                 "Size": 10,
-                "SizeFunctionOverride": true,
+                "SizeFunctionUse": true,
                 "Required": true,
                 "RTL": true,
                 "Location": [
@@ -1720,16 +1673,6 @@
                     "Page": 1,
                     "X": 247.0,
                     "Y": 348.0
-                  },
-                  {
-                    "Page": 1,
-                    "X": 0.0,
-                    "Y": 0.0
-                  },
-                  {
-                    "Page": 1,
-                    "X": 0.0,
-                    "Y": 0.0
                   }
                 ]
               }
@@ -1742,10 +1685,11 @@
               "Placeholder": "כתובת כלשהי, כתובת",
               "DefaultText": "",
               "Description": "",
+              "Items": null,
               "PDFSettings": {
                 "Font": "Arial",
                 "Size": 10,
-                "SizeFunctionOverride": true,
+                "SizeFunctionUse": true,
                 "Required": true,
                 "RTL": true,
                 "Location": [
@@ -1753,16 +1697,6 @@
                     "Page": 1,
                     "X": 318.0,
                     "Y": 316.0
-                  },
-                  {
-                    "Page": 1,
-                    "X": 0.0,
-                    "Y": 0.0
-                  },
-                  {
-                    "Page": 1,
-                    "X": 0.0,
-                    "Y": 0.0
                   }
                 ]
               }
