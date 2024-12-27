@@ -17,7 +17,7 @@ using System.Windows.Forms.VisualStyles;
 
 public static class Config
 {
-    
+
     public static UIConfig Pull()
     {
         string jsonPath = Path.Combine(AppContext.BaseDirectory, "config.json");
@@ -63,6 +63,7 @@ public static class Utility
     }
     public static string ReverseInput(string input)
     {
+        if (string.IsNullOrEmpty(input)) return "";
         StringBuilder sb = new StringBuilder();
         string[] arr = input.Split(" ");
         bool hebrew = false;
@@ -97,18 +98,15 @@ public static class Utility
     }
     public static PdfFont LoadSystemFont(string fontName)
     {
-        // Use InstalledFontCollection to retrieve system fonts
         InstalledFontCollection fonts = new InstalledFontCollection();
         foreach (var fontFamily in fonts.Families)
         {
             if (fontFamily.Name.Equals(fontName, StringComparison.InvariantCultureIgnoreCase))
             {
-                // Get the font file path
                 string fontPath = GetFontFilePath(fontFamily.Name);
 
                 if (!string.IsNullOrEmpty(fontPath))
                 {
-                    // Create the font program
                     FontProgram fontProgram = FontProgramFactory.CreateFont(fontPath);
                     return PdfFontFactory.CreateFont(fontProgram, PdfEncodings.IDENTITY_H);
                 }
@@ -119,7 +117,6 @@ public static class Utility
     }
     public static string GetFontFilePath(string fontName)
     {
-        // Search in Windows Fonts directory
         string fontsFolder = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Fonts));
         string[] fontFiles = Directory.GetFiles(fontsFolder, "*.ttf");
 
@@ -140,12 +137,14 @@ public class InputField
     public string Type { get; set; }
     [JsonIgnore]
     public string Text { get; set; }
+    [JsonIgnore]
+    public bool Checked { get; set; }
     public string ActionType { get; set; }
     public string Name { get; set; }
     public string Label { get; set; }
-    public string Placeholder {  get; set; }
-    public string DefaultText {  get; set; }
-    public string Description {  get; set; }
+    public string Placeholder { get; set; }
+    public string DefaultText { get; set; }
+    public string Description { get; set; }
     public PDFSettings PDFSettings { get; set; }
 }
 public class TabObject
@@ -160,13 +159,12 @@ public class FormObject
     public string Path { get; set; } // defines path to file within default input path defined in settings
     public string Checksum { get; set; }
     public List<InputField> Fields { get; set; }
-    
+
     public void FillForm(string outputName, string outputPath, string inputPath)
     {
 
-        string fileinputPath = System.IO.Path.Combine(AppContext.BaseDirectory,inputPath, this.Path);  // Path to your existing PDF
+        string fileinputPath = System.IO.Path.Combine(AppContext.BaseDirectory, inputPath, this.Path);  // Path to your existing PDF
         string fullOutputPath = System.IO.Path.Combine(outputPath, outputName);    // Path for the modified PDF
-        //C:\Users\shaha\source\repos\Auto_UI_Test\bin\Debug\net8.0-windows\input
         if (!File.Exists(fileinputPath))
         {
             Console.WriteLine($"Could not locate file {fileinputPath} | Please check further.");
@@ -179,7 +177,7 @@ public class FormObject
 
             foreach (InputField inputField in this.Fields)
             {
-
+                if (inputField.Type == "CheckBox" && !inputField.Checked && inputField.ActionType == "Check") continue;
                 foreach (Location c in inputField.PDFSettings.Location)
                 {
                     var page = pdf.GetPage(c.Page);
@@ -192,8 +190,8 @@ public class FormObject
                     var font = Utility.LoadSystemFont(inputField.PDFSettings.Font);
                     var formattedText = "";
                     formattedText = Utility.ReverseInput(inputField.Text);
-                    
-                    Rectangle textbox = new Rectangle(((int)x), ((int)y), 100,200);
+
+                    Rectangle textbox = new Rectangle(((int)x), ((int)y), 100, 200);
                     float fontSize = GetFontSize(formattedText.Length);
 
                     Paragraph paragraph = new Paragraph(formattedText)
@@ -201,7 +199,7 @@ public class FormObject
                         .SetFontSize(fontSize)
                         .SetBaseDirection(BaseDirection.RIGHT_TO_LEFT);
 
-                    
+
                     var document = new iText.Layout.Document(pdf);
                     document.ShowTextAligned(paragraph, x, y, c.Page, TextAlignment.RIGHT, iText.Layout.Properties.VerticalAlignment.BOTTOM, 0);
                 }
@@ -224,13 +222,13 @@ public class FormObject
 
             foreach (InputField inputField in this.Fields)
             {
+                if (inputField.Type == "CheckBox" && !inputField.Checked && inputField.ActionType == "Check") continue;
 
                 foreach (Location c in inputField.PDFSettings.Location)
                 {
                     var page = pdf.GetPage(c.Page);
 
                     var canvas = new iText.Kernel.Pdf.Canvas.PdfCanvas(page);
-
 
                     float x = c.X;
                     float y = c.Y;
@@ -260,7 +258,6 @@ public class FormObject
         double realvalue = (1 / (0.05 * x + 0.1)) + 8;
         return (int)Math.Ceiling(realvalue);
     }
-    
 }
 public class UIConfig
 {
@@ -272,15 +269,15 @@ public class UIConfig
 public class GeneralSettings
 {
     public string SavePath { get; set; }
-    public string InputPath {  get; set; }
-    public bool Debug {  get; set; }
-    public bool LaunchFileAtGeneration {  get; set; }
+    public string InputPath { get; set; }
+    public bool Debug { get; set; }
+    public bool LaunchFileAtGeneration { get; set; }
 }
 public class PDFSettings
 {
     public string Font { get; set; }
     public int Size { get; set; }
-    public bool SizeFunctionOverride {  get; set; }
+    public bool SizeFunctionOverride { get; set; }
     public bool Required { get; set; }
     public bool RTL { get; set; }
     public List<Location> Location { get; set; }

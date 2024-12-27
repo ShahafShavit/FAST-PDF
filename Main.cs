@@ -500,7 +500,8 @@ namespace Auto_UI_Test
                     var matchingField = formObject.Fields?.Find(field => field.Name == control.Name);
                     if (matchingField != null)
                     {
-                        matchingField.Text = checkBox.Checked.ToString();
+                        matchingField.Text = "\u00D7";
+                        matchingField.Checked = checkBox.Checked;
                         //Console.WriteLine($"Found and filled the {matchingField} object with {checkBox.Checked.ToString()}");
                     }
                 }
