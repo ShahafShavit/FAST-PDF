@@ -159,8 +159,8 @@ public class TabObject
 public class FormObject
 {
     public string FormName { get; set; }
-    public string FileName { get; set; }
-    public string Path { get; set; } // defines path to file within default input path defined in settings
+    public string FileName { get; set; } // "FileName.pdf"
+    public string Path { get; set; } // "Path/To/FileName.pdf" // defines path to file within default input path defined in settings
     public string Checksum { get; set; }
     public List<InputField> Fields { get; set; }
 
