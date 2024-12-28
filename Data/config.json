@@ -27,7 +27,7 @@
               "PDFSettings": {
                 "Font": "Arial",
                 "Size": 12,
-                "SizeFunctionUse": true,
+                "ResizeFunctionUse": true,
                 "Required": true,
                 "RTL": true,
                 "Location": [
@@ -51,7 +51,7 @@
               "PDFSettings": {
                 "Font": "Arial",
                 "Size": 12,
-                "SizeFunctionUse": true,
+                "ResizeFunctionUse": true,
                 "Required": true,
                 "RTL": true,
                 "Location": [
@@ -75,7 +75,7 @@
               "PDFSettings": {
                 "Font": "Arial",
                 "Size": 12,
-                "SizeFunctionUse": true,
+                "ResizeFunctionUse": true,
                 "Required": true,
                 "RTL": true,
                 "Location": [
@@ -99,7 +99,7 @@
               "PDFSettings": {
                 "Font": "Arial",
                 "Size": 12,
-                "SizeFunctionUse": true,
+                "ResizeFunctionUse": true,
                 "Required": true,
                 "RTL": true,
                 "Location": [
@@ -123,7 +123,7 @@
               "PDFSettings": {
                 "Font": "Arial",
                 "Size": 12,
-                "SizeFunctionUse": true,
+                "ResizeFunctionUse": true,
                 "Required": true,
                 "RTL": true,
                 "Location": [
@@ -147,7 +147,7 @@
               "PDFSettings": {
                 "Font": "Arial",
                 "Size": 12,
-                "SizeFunctionUse": true,
+                "ResizeFunctionUse": true,
                 "Required": true,
                 "RTL": true,
                 "Location": [
@@ -179,7 +179,7 @@
               "PDFSettings": {
                 "Font": "Arial",
                 "Size": 10,
-                "SizeFunctionUse": true,
+                "ResizeFunctionUse": true,
                 "Required": true,
                 "RTL": false,
                 "Location": [
@@ -203,7 +203,7 @@
               "PDFSettings": {
                 "Font": "Arial",
                 "Size": 10,
-                "SizeFunctionUse": true,
+                "ResizeFunctionUse": true,
                 "Required": true,
                 "RTL": false,
                 "Location": [
@@ -227,7 +227,7 @@
               "PDFSettings": {
                 "Font": "Arial",
                 "Size": 10,
-                "SizeFunctionUse": true,
+                "ResizeFunctionUse": true,
                 "Required": true,
                 "RTL": false,
                 "Location": [
@@ -251,7 +251,7 @@
               "PDFSettings": {
                 "Font": "Arial",
                 "Size": 10,
-                "SizeFunctionUse": true,
+                "ResizeFunctionUse": true,
                 "Required": true,
                 "RTL": false,
                 "Location": [
@@ -275,7 +275,7 @@
               "PDFSettings": {
                 "Font": "Arial",
                 "Size": 10,
-                "SizeFunctionUse": true,
+                "ResizeFunctionUse": true,
                 "Required": true,
                 "RTL": false,
                 "Location": [
@@ -299,7 +299,7 @@
               "PDFSettings": {
                 "Font": "Arial",
                 "Size": 10,
-                "SizeFunctionUse": true,
+                "ResizeFunctionUse": true,
                 "Required": true,
                 "RTL": false,
                 "Location": [
@@ -323,7 +323,7 @@
               "PDFSettings": {
                 "Font": "Arial",
                 "Size": 10,
-                "SizeFunctionUse": true,
+                "ResizeFunctionUse": true,
                 "Required": true,
                 "RTL": false,
                 "Location": [
@@ -347,7 +347,7 @@
               "PDFSettings": {
                 "Font": "Arial",
                 "Size": 10,
-                "SizeFunctionUse": true,
+                "ResizeFunctionUse": true,
                 "Required": true,
                 "RTL": false,
                 "Location": [
@@ -379,7 +379,7 @@
               "PDFSettings": {
                 "Font": "Arial",
                 "Size": 10,
-                "SizeFunctionUse": true,
+                "ResizeFunctionUse": true,
                 "Required": true,
                 "RTL": false,
                 "Location": [
@@ -403,7 +403,7 @@
               "PDFSettings": {
                 "Font": "Arial",
                 "Size": 10,
-                "SizeFunctionUse": true,
+                "ResizeFunctionUse": true,
                 "Required": true,
                 "RTL": false,
                 "Location": [
@@ -427,7 +427,7 @@
               "PDFSettings": {
                 "Font": "Arial",
                 "Size": 10,
-                "SizeFunctionUse": true,
+                "ResizeFunctionUse": true,
                 "Required": true,
                 "RTL": false,
                 "Location": [
@@ -451,7 +451,7 @@
               "PDFSettings": {
                 "Font": "Arial",
                 "Size": 10,
-                "SizeFunctionUse": true,
+                "ResizeFunctionUse": true,
                 "Required": true,
                 "RTL": false,
                 "Location": [
@@ -475,7 +475,7 @@
               "PDFSettings": {
                 "Font": "Arial",
                 "Size": 10,
-                "SizeFunctionUse": true,
+                "ResizeFunctionUse": true,
                 "Required": true,
                 "RTL": false,
                 "Location": [
@@ -499,7 +499,7 @@
               "PDFSettings": {
                 "Font": "Arial",
                 "Size": 10,
-                "SizeFunctionUse": true,
+                "ResizeFunctionUse": true,
                 "Required": true,
                 "RTL": false,
                 "Location": [
@@ -531,7 +531,7 @@
               "PDFSettings": {
                 "Font": "Arial",
                 "Size": 10,
-                "SizeFunctionUse": true,
+                "ResizeFunctionUse": true,
                 "Required": true,
                 "RTL": false,
                 "Location": [
@@ -560,7 +560,7 @@
               "PDFSettings": {
                 "Font": "Arial",
                 "Size": 10,
-                "SizeFunctionUse": true,
+                "ResizeFunctionUse": true,
                 "Required": true,
                 "RTL": false,
                 "Location": [
@@ -589,7 +589,7 @@
               "PDFSettings": {
                 "Font": "Arial",
                 "Size": 10,
-                "SizeFunctionUse": true,
+                "ResizeFunctionUse": true,
                 "Required": true,
                 "RTL": false,
                 "Location": [
@@ -618,7 +618,7 @@
               "PDFSettings": {
                 "Font": "Arial",
                 "Size": 10,
-                "SizeFunctionUse": true,
+                "ResizeFunctionUse": true,
                 "Required": true,
                 "RTL": false,
                 "Location": [
@@ -642,7 +642,7 @@
               "PDFSettings": {
                 "Font": "Arial",
                 "Size": 10,
-                "SizeFunctionUse": true,
+                "ResizeFunctionUse": true,
                 "Required": true,
                 "RTL": false,
                 "Location": [
@@ -666,7 +666,7 @@
               "PDFSettings": {
                 "Font": "Arial",
                 "Size": 10,
-                "SizeFunctionUse": true,
+                "ResizeFunctionUse": true,
                 "Required": true,
                 "RTL": false,
                 "Location": [
@@ -690,7 +690,7 @@
               "PDFSettings": {
                 "Font": "Arial",
                 "Size": 10,
-                "SizeFunctionUse": true,
+                "ResizeFunctionUse": true,
                 "Required": true,
                 "RTL": false,
                 "Location": [
@@ -727,7 +727,7 @@
               "PDFSettings": {
                 "Font": "Arial",
                 "Size": 16,
-                "SizeFunctionUse": false,
+                "ResizeFunctionUse": false,
                 "Required": true,
                 "RTL": true,
                 "Location": [
@@ -751,7 +751,7 @@
               "PDFSettings": {
                 "Font": "Arial",
                 "Size": 10,
-                "SizeFunctionUse": true,
+                "ResizeFunctionUse": true,
                 "Required": true,
                 "RTL": true,
                 "Location": [
@@ -775,7 +775,7 @@
               "PDFSettings": {
                 "Font": "Arial",
                 "Size": 10,
-                "SizeFunctionUse": true,
+                "ResizeFunctionUse": true,
                 "Required": true,
                 "RTL": true,
                 "Location": [
@@ -809,7 +809,7 @@
               "PDFSettings": {
                 "Font": "Arial",
                 "Size": 10,
-                "SizeFunctionUse": true,
+                "ResizeFunctionUse": true,
                 "Required": true,
                 "RTL": true,
                 "Location": [
@@ -888,7 +888,7 @@
               "PDFSettings": {
                 "Font": "Arial",
                 "Size": 10,
-                "SizeFunctionUse": true,
+                "ResizeFunctionUse": true,
                 "Required": true,
                 "RTL": true,
                 "Location": [
@@ -979,7 +979,7 @@
               "PDFSettings": {
                 "Font": "Arial",
                 "Size": 10,
-                "SizeFunctionUse": true,
+                "ResizeFunctionUse": true,
                 "Required": true,
                 "RTL": true,
                 "Location": [
@@ -1018,7 +1018,7 @@
               "PDFSettings": {
                 "Font": "Arial",
                 "Size": 10,
-                "SizeFunctionUse": true,
+                "ResizeFunctionUse": true,
                 "Required": true,
                 "RTL": true,
                 "Location": [
@@ -1052,7 +1052,7 @@
               "PDFSettings": {
                 "Font": "Arial",
                 "Size": 10,
-                "SizeFunctionUse": true,
+                "ResizeFunctionUse": true,
                 "Required": true,
                 "RTL": true,
                 "Location": [
@@ -1086,7 +1086,7 @@
               "PDFSettings": {
                 "Font": "Arial",
                 "Size": 10,
-                "SizeFunctionUse": true,
+                "ResizeFunctionUse": true,
                 "Required": true,
                 "RTL": true,
                 "Location": [
@@ -1120,7 +1120,7 @@
               "PDFSettings": {
                 "Font": "Arial",
                 "Size": 10,
-                "SizeFunctionUse": true,
+                "ResizeFunctionUse": true,
                 "Required": true,
                 "RTL": true,
                 "Location": [
@@ -1154,7 +1154,7 @@
               "PDFSettings": {
                 "Font": "Arial",
                 "Size": 10,
-                "SizeFunctionUse": true,
+                "ResizeFunctionUse": true,
                 "Required": true,
                 "RTL": true,
                 "Location": [
@@ -1188,7 +1188,7 @@
               "PDFSettings": {
                 "Font": "Arial",
                 "Size": 10,
-                "SizeFunctionUse": true,
+                "ResizeFunctionUse": true,
                 "Required": true,
                 "RTL": true,
                 "Location": [
@@ -1222,7 +1222,7 @@
               "PDFSettings": {
                 "Font": "Arial",
                 "Size": 10,
-                "SizeFunctionUse": true,
+                "ResizeFunctionUse": true,
                 "Required": true,
                 "RTL": true,
                 "Location": [
@@ -1256,7 +1256,7 @@
               "PDFSettings": {
                 "Font": "Arial",
                 "Size": 10,
-                "SizeFunctionUse": true,
+                "ResizeFunctionUse": true,
                 "Required": true,
                 "RTL": true,
                 "Location": [
@@ -1290,7 +1290,7 @@
               "PDFSettings": {
                 "Font": "Arial",
                 "Size": 10,
-                "SizeFunctionUse": true,
+                "ResizeFunctionUse": true,
                 "Required": true,
                 "RTL": true,
                 "Location": [
@@ -1324,7 +1324,7 @@
               "PDFSettings": {
                 "Font": "Arial",
                 "Size": 12,
-                "SizeFunctionUse": true,
+                "ResizeFunctionUse": true,
                 "Required": true,
                 "RTL": true,
                 "Location": [
@@ -1348,7 +1348,7 @@
               "PDFSettings": {
                 "Font": "Arial",
                 "Size": 12,
-                "SizeFunctionUse": true,
+                "ResizeFunctionUse": true,
                 "Required": true,
                 "RTL": true,
                 "Location": [
@@ -1372,7 +1372,7 @@
               "PDFSettings": {
                 "Font": "Arial",
                 "Size": 12,
-                "SizeFunctionUse": true,
+                "ResizeFunctionUse": true,
                 "Required": true,
                 "RTL": true,
                 "Location": [
@@ -1428,7 +1428,7 @@
               "PDFSettings": {
                 "Font": "Arial",
                 "Size": 10,
-                "SizeFunctionUse": true,
+                "ResizeFunctionUse": true,
                 "Required": true,
                 "RTL": true,
                 "Location": [
@@ -1462,7 +1462,7 @@
               "PDFSettings": {
                 "Font": "Arial",
                 "Size": 10,
-                "SizeFunctionUse": true,
+                "ResizeFunctionUse": true,
                 "Required": true,
                 "RTL": true,
                 "Location": [
@@ -1496,7 +1496,7 @@
               "PDFSettings": {
                 "Font": "Arial",
                 "Size": 10,
-                "SizeFunctionUse": true,
+                "ResizeFunctionUse": true,
                 "Required": true,
                 "RTL": true,
                 "Location": [
@@ -1520,7 +1520,7 @@
               "PDFSettings": {
                 "Font": "Arial",
                 "Size": 10,
-                "SizeFunctionUse": true,
+                "ResizeFunctionUse": true,
                 "Required": true,
                 "RTL": true,
                 "Location": [
@@ -1544,7 +1544,7 @@
               "PDFSettings": {
                 "Font": "Arial",
                 "Size": 10,
-                "SizeFunctionUse": true,
+                "ResizeFunctionUse": true,
                 "Required": true,
                 "RTL": true,
                 "Location": [
@@ -1568,7 +1568,7 @@
               "PDFSettings": {
                 "Font": "Arial",
                 "Size": 10,
-                "SizeFunctionUse": true,
+                "ResizeFunctionUse": true,
                 "Required": true,
                 "RTL": true,
                 "Location": [
@@ -1592,7 +1592,7 @@
               "PDFSettings": {
                 "Font": "Arial",
                 "Size": 10,
-                "SizeFunctionUse": true,
+                "ResizeFunctionUse": true,
                 "Required": true,
                 "RTL": true,
                 "Location": [
@@ -1616,7 +1616,7 @@
               "PDFSettings": {
                 "Font": "Arial",
                 "Size": 10,
-                "SizeFunctionUse": true,
+                "ResizeFunctionUse": true,
                 "Required": true,
                 "RTL": true,
                 "Location": [
@@ -1640,7 +1640,7 @@
               "PDFSettings": {
                 "Font": "Arial",
                 "Size": 10,
-                "SizeFunctionUse": true,
+                "ResizeFunctionUse": true,
                 "Required": true,
                 "RTL": true,
                 "Location": [
@@ -1664,7 +1664,7 @@
               "PDFSettings": {
                 "Font": "Arial",
                 "Size": 10,
-                "SizeFunctionUse": true,
+                "ResizeFunctionUse": true,
                 "Required": true,
                 "RTL": true,
                 "Location": [
@@ -1688,7 +1688,7 @@
               "PDFSettings": {
                 "Font": "Arial",
                 "Size": 10,
-                "SizeFunctionUse": true,
+                "ResizeFunctionUse": true,
                 "Required": true,
                 "RTL": true,
                 "Location": [

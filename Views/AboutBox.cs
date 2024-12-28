@@ -1,10 +1,10 @@
 ﻿using System.Reflection;
-
+#pragma warning disable CS8603
+#pragma warning disable CS8602
 
 partial class AboutBox : Form
 {
-    private int clickCount = 0;
-    private System.Windows.Forms.Timer clickTimer;
+    
     public AboutBox()
     {
         InitializeComponent();

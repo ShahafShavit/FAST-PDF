@@ -1,4 +1,5 @@
-﻿public partial class Relocator : UserControl
+﻿#pragma warning disable CS8602
+public partial class Relocator : UserControl
 {
 
     public Relocator(Location location)
