@@ -1,6 +1,6 @@
 ﻿public partial class RelocatorForm : Form
 {
-    public RelocatorForm(InputField inputField, UIConfig config)
+    public RelocatorForm(InputField inputField, Models models)
     {
         InitializeComponent();
         int locationsCount = inputField.PDFSettings.Location.Count;
@@ -31,7 +31,7 @@
         this.AutoSizeMode = AutoSizeMode.GrowAndShrink;
         this.FormClosing += (s, e) =>
         {
-            Config.Update(config);
+            Config.UpdateModels(models);
             foreach (Control item in this.Controls)
             {
                 if (item is TableLayoutPanel tableLayoutPanel)

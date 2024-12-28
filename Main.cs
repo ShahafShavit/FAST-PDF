@@ -8,7 +8,9 @@ namespace Auto_UI_Test
         public System.Drawing.Color mainColor;
         private ColorDialog mainColorDialog = new ColorDialog();
         private TextBox console;
-        private UIConfig config;
+        //private UIConfig config;
+        private GlobalSettings globalSettings;
+        private Models models;
         private bool debug;
         private const int MAX_FORMS_PER_PAGE = 5;
         private const int MIN_FORMS_PER_PAGE = 3;
@@ -19,11 +21,13 @@ namespace Auto_UI_Test
             InitializeComponent();
             try
             {
-                this.config = Config.Pull();
+                //this.config = Config.Pull();
+                this.globalSettings = Config.PullSettings();
+                this.models = Config.PullModels();
             }
             catch (Exception e)
             { MessageBox.Show("Error: " + e.Message); Environment.Exit(1); }
-            this.debug = this.config.GeneralSettings.Debug;
+            this.debug = this.globalSettings.Debug;
             this.Text = "מערכת מילוי טפסים- להט הנדסת חשמל";
             this.RightToLeft = RightToLeft.Yes;
 
@@ -34,13 +38,10 @@ namespace Auto_UI_Test
             Console.WriteLine("Initialization of components has been completed.");
             this.FormClosing += (o, e) =>
             {
-                Config.Update(config);
+                Config.UpdateModels(models);
                 if (debug)
                 {
-                    string debugFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "config.json");
-                    string solutionFilePath = Path.Combine(Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory).Parent.Parent.Parent.FullName, "config.json");
-
-                    File.Copy(debugFilePath, solutionFilePath, true);
+                    Config.DeveloperSwap();
                 }
             };
         }
@@ -65,7 +66,7 @@ namespace Auto_UI_Test
             };
 
 
-            foreach (var tab in config.Tabs)
+            foreach (var tab in this.models.Tabs)
             {
                 TabPage tabPage = new TabPage
                 {
@@ -199,7 +200,7 @@ namespace Auto_UI_Test
                                     control.Margin = new Padding(0, 0, 0, 15);
                                     control.Dock = DockStyle.Top;
                                     control.Text = field.DefaultText;
-                                    label.Click += (o, e) => new RelocatorForm(field, config).ShowDialog();
+                                    label.Click += (o, e) => new RelocatorForm(field, this.models).ShowDialog();
                                     if (control is CheckBox cb)
                                     {
                                         cb.Tag = field.ActionType;
@@ -331,10 +332,10 @@ namespace Auto_UI_Test
 
             if (parentGroupBox.Tag.ToString() is not String originalPath)
                 throw new MissingFieldException("No file path given in GroupBox Tag property, 2.");
-            if (!Directory.Exists(this.config.GeneralSettings.SavePath))
+            if (!Directory.Exists(this.globalSettings.SavePath))
             {
                 MessageBox.Show("אנא בחר תיקייה לשמור בה את הקובץ (קובץ > שמור בתיקייה).", "אנא בחר תיקייה", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.RtlReading);
-                Console.WriteLine($"Failed to find path: {this.config.GeneralSettings.SavePath}");
+                Console.WriteLine($"Failed to find path: {this.globalSettings.SavePath}");
                 return;
             }
             //if (debug) this.config = Config.Pull();
@@ -387,21 +388,21 @@ namespace Auto_UI_Test
                         standard = false;
 
                         FormObject fo = FillDataStructure(layoutPanel.Controls, parentGroupBox.Text, clickedButton.Parent.Parent.Parent.Text);
-                        fo.FillSpecialForm(outputName, config.GeneralSettings.SavePath, inputFormname, config.GeneralSettings.InputPath, new DeviceRgb(this.mainColor.R, this.mainColor.G, this.mainColor.B));
-                        Console.WriteLine($"Form has been filled and saved at {Path.Combine(config.GeneralSettings.SavePath, outputName)}");
+                        fo.FillSpecialForm(outputName, globalSettings.SavePath, inputFormname, globalSettings.InputPath, new DeviceRgb(this.mainColor.R, this.mainColor.G, this.mainColor.B));
+                        Console.WriteLine($"Form has been filled and saved at {Path.Combine(globalSettings.SavePath, outputName)}");
                     }
                 }
             }
             if (standard)
             {
                 FormObject fo = FillDataStructure(layoutPanel.Controls, parentGroupBox.Text, clickedButton.Parent.Parent.Parent.Text);
-                fo.FillForm(newFilename, config.GeneralSettings.SavePath, config.GeneralSettings.InputPath, new DeviceRgb(this.mainColor.R, this.mainColor.G, this.mainColor.B));
-                Console.WriteLine($"Form has been filled and saved at {Path.Combine(config.GeneralSettings.SavePath, newFilename)}");
-                if (config.GeneralSettings.LaunchFileAtGeneration)
+                fo.FillForm(newFilename, globalSettings.SavePath, globalSettings.InputPath, new DeviceRgb(this.mainColor.R, this.mainColor.G, this.mainColor.B));
+                Console.WriteLine($"Form has been filled and saved at {Path.Combine(globalSettings.SavePath, newFilename)}");
+                if (globalSettings.LaunchFileAtGeneration)
                 {
                     Process.Start(new System.Diagnostics.ProcessStartInfo()
                     {
-                        FileName = Path.Combine(config.GeneralSettings.SavePath, newFilename),
+                        FileName = Path.Combine(globalSettings.SavePath, newFilename),
                         UseShellExecute = true,
                         Verb = "open"
                     });
@@ -434,7 +435,7 @@ namespace Auto_UI_Test
             ToolStripMenuItem openFolder = new ToolStripMenuItem("פתח תיקייה מכילה");
             openFolder.Click += (s, e) => System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo()
             {
-                FileName = config.GeneralSettings.SavePath,
+                FileName = globalSettings.SavePath,
                 UseShellExecute = true,
                 Verb = "open"
             });
@@ -443,12 +444,12 @@ namespace Auto_UI_Test
             about.Click += (o, e) => { new AboutBox().ShowDialog(); };
 
             ToolStripMenuItem openFileAfterGeneration = new ToolStripMenuItem("פתח קובץ לאחר הפקה");
-            openFileAfterGeneration.Checked = this.config.GeneralSettings.LaunchFileAtGeneration;
-            openFileAfterGeneration.Click += (o, e) => { this.config.GeneralSettings.LaunchFileAtGeneration = !this.config.GeneralSettings.LaunchFileAtGeneration; openFileAfterGeneration.Checked = this.config.GeneralSettings.LaunchFileAtGeneration; Console.WriteLine($"Open file after generation status: {this.config.GeneralSettings.LaunchFileAtGeneration}"); };
+            openFileAfterGeneration.Checked = this.globalSettings.LaunchFileAtGeneration;
+            openFileAfterGeneration.Click += (o, e) => { this.globalSettings.LaunchFileAtGeneration = !this.globalSettings.LaunchFileAtGeneration; openFileAfterGeneration.Checked = this.globalSettings.LaunchFileAtGeneration; Console.WriteLine($"Open file after generation status: {this.globalSettings.LaunchFileAtGeneration}"); };
 
             ToolStripMenuItem debugMode = new ToolStripMenuItem("מצב פיתוח");
-            debugMode.Checked = this.config.GeneralSettings.Debug;
-            debugMode.Click += (o, e) => { this.config.GeneralSettings.Debug = !this.config.GeneralSettings.Debug; debugMode.Checked = this.config.GeneralSettings.Debug; };
+            debugMode.Checked = this.globalSettings.Debug;
+            debugMode.Click += (o, e) => { this.globalSettings.Debug = !this.globalSettings.Debug; debugMode.Checked = this.globalSettings.Debug; };
 
             fileMenu.DropDownItems.Add(chooseSaveFolder);
             fileMenu.DropDownItems.Add(openFolder);
@@ -468,7 +469,7 @@ namespace Auto_UI_Test
         private FormObject FillDataStructure(TableLayoutControlCollection controls, string formName, string tabName)
         {
             TabObject tabObject = null;
-            foreach (TabObject tab in config.Tabs)
+            foreach (TabObject tab in models.Tabs)
             {
                 if (tab.TabName == tabName)
                 {
@@ -541,8 +542,8 @@ namespace Auto_UI_Test
                 DialogResult dr = fbd.ShowDialog();
                 if (dr == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
                 {
-                    this.config.GeneralSettings.SavePath = fbd.SelectedPath;
-                    Config.Update(this.config);
+                    this.globalSettings.SavePath = fbd.SelectedPath;
+                    Config.UpdateSettings(this.globalSettings);
                     Console.WriteLine($"Files will be saved at: {fbd.SelectedPath}");
                 }
             }
@@ -550,13 +551,13 @@ namespace Auto_UI_Test
 
         public void CalculateWindowSize()
         {
-            if (this.config == null) { return; }
+            if (this.models == null) { return; }
             float windowHeight = console.Height;
             windowHeight += this.MainMenuStrip.Height;
             // find max count of fields and forms
             int maxFields = 0;
             int maxForms = 0;
-            foreach (var tab in config.Tabs)
+            foreach (var tab in models.Tabs)
             {
                 if (tab.Forms.Count > maxForms) { maxForms = tab.Forms.Count; }
                 foreach (var form in tab.Forms)

@@ -1,10 +1,4 @@
 {
-  "GlobalSettings": {
-    "SavePath": "C:\\Users\\shaha\\Documents\\tests",
-    "InputPath": "input\\",
-    "Debug": true,
-    "LaunchFileAtGeneration": true
-  },
   "Tabs": [
     {
       "TabName": "בסיס",

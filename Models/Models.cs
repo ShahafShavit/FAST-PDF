@@ -7,20 +7,39 @@ using Newtonsoft.Json;
 using System.Drawing.Text;
 using System.Text;
 using System.Text.RegularExpressions;
+using static Org.BouncyCastle.Math.EC.ECCurve;
 
 
 public static class Config
 {
-
-    public static UIConfig Pull()
+    private static string modelsFile = "models.json";
+    private static string settingsFile = "settings.json";
+    public static GlobalSettings PullSettings()
     {
-        string jsonPath = Path.Combine(AppContext.BaseDirectory, "config.json");
-        return JsonConvert.DeserializeObject<UIConfig>(File.ReadAllText(jsonPath));
+        string jsonPath = Path.Combine(AppContext.BaseDirectory, settingsFile);
+        return JsonConvert.DeserializeObject<GlobalSettings>(File.ReadAllText(jsonPath));
     }
-    public static void Update(UIConfig config)
+    public static void UpdateSettings(GlobalSettings settings)
     {
-        string json = JsonConvert.SerializeObject(config, Formatting.Indented);
-        File.WriteAllText(Path.Combine(AppContext.BaseDirectory, "config.json"), json);
+        string json = JsonConvert.SerializeObject(settings, Formatting.Indented);
+        File.WriteAllText(Path.Combine(AppContext.BaseDirectory, settingsFile), json);
+    }
+    public static void UpdateModels(Models models)
+    {
+        string json = JsonConvert.SerializeObject(models, Formatting.Indented);
+        File.WriteAllText(Path.Combine(AppContext.BaseDirectory, modelsFile), json);
+    }
+    public static Models PullModels()
+    {
+        string jsonPath = Path.Combine(AppContext.BaseDirectory, modelsFile);
+        return JsonConvert.DeserializeObject<Models>(File.ReadAllText(jsonPath));
+    }
+    public static void DeveloperSwap()
+    {
+        string debugFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, modelsFile);
+        string solutionFilePath = Path.Combine(Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory).Parent.Parent.Parent.FullName, modelsFile);
+
+        File.Copy(debugFilePath, solutionFilePath, true);
     }
 
 
@@ -304,12 +323,16 @@ public class FormObject
 }
 public class UIConfig
 {
-    public GeneralSettings GeneralSettings { get; set; }
+    public GlobalSettings GlobalSettings { get; set; }
     public List<TabObject> Tabs { get; set; }
-
 }
 
-public class GeneralSettings
+public class Models
+{
+    public List<TabObject> Tabs { get; set; }
+}
+
+public class GlobalSettings
 {
     public string SavePath { get; set; }
     public string InputPath { get; set; }
