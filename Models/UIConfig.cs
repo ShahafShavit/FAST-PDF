@@ -27,14 +27,48 @@ public static class Config
 }
 public static class Utility
 {
+    public static string ReverseHebrewText(string input)
+    {
+        // Regex pattern to match Hebrew words, with optional surrounding punctuation
+        var hebrewWordPattern = new Regex(@"[\u0590-\u05FF]+");
+
+        // Function to reverse the characters in a Hebrew word
+        string ReverseWord(string word)
+        {
+            char[] charArray = word.ToCharArray();
+            Array.Reverse(charArray);
+            return new string(charArray);
+        }
+
+        // Split the input into "tokens" (words and separators)
+        var tokens = Regex.Split(input, @"(\s+)"); // Keeps spaces as tokens
+
+        // Process tokens: reverse Hebrew words and their order
+        for (int i = 0; i < tokens.Length; i++)
+        {
+            if (hebrewWordPattern.IsMatch(tokens[i]))
+            {
+                tokens[i] = ReverseWord(tokens[i]); // Reverse individual Hebrew words
+            }
+        }
+
+        // Reverse the order of Hebrew word sequences in the tokens
+        var hebrewReversedTokens = new Regex(@"\s*([\u0590-\u05FF\s]+)\s*")
+            .Replace(string.Join("", tokens), match =>
+            {
+                var words = match.Groups[1].Value.Split(' ');
+                Array.Reverse(words);
+                return string.Join(" ", words);
+            });
+
+        return hebrewReversedTokens;
+    }
     public static string ReverseRtlString(string input)
     {
-        // Reverse the entire string
         char[] reversed = input.ToCharArray();
         Array.Reverse(reversed);
         string reversedString = new string(reversed);
 
-        // Use a regex to reverse numbers back to their original order
         string formatted = Regex.Replace(reversedString, @"\d+", match =>
         {
             char[] numArray = match.Value.ToCharArray();
@@ -174,8 +208,8 @@ public class FormObject
             foreach (InputField inputField in this.Fields)
             {
                 var font = Utility.LoadSystemFont(inputField.PDFSettings.Font);
-                var formattedText = Utility.ReverseInput(inputField.Text);
-                
+                var formattedText = Utility.ReverseRtlString(inputField.Text);
+
                 float fontSize = inputField.PDFSettings.Size;
 
                 var locations = inputField.PDFSettings.Location;
@@ -220,6 +254,7 @@ public class FormObject
         string fileDirectory = System.IO.Path.GetDirectoryName(this.Path);
         string fileInputPath = System.IO.Path.Combine(defaultInputPath, fileDirectory, inputFilename);  // Path to existing PDF
         string fullOutputPath = System.IO.Path.Combine(outputDirectory, outputFilename);    // Path for the modified PDF
+
         FileInfo fileInfo = new FileInfo(fileInputPath);
 
         using (PdfReader reader = new PdfReader(fileInfo))
