@@ -173,78 +173,44 @@ public class FormObject
         {
             foreach (InputField inputField in this.Fields)
             {
+                var font = Utility.LoadSystemFont(inputField.PDFSettings.Font);
+                var formattedText = Utility.ReverseInput(inputField.Text);
+                
+                float fontSize = inputField.PDFSettings.Size;
 
+                var locations = inputField.PDFSettings.Location;
+
+                if (inputField.PDFSettings.SizeFunctionUse)
+                {
+                    fontSize = GetFontSize(formattedText.Length);
+                }
                 if (inputField.Type == "CheckBox" && !inputField.Checked && inputField.ActionType == "Check") continue;
                 else if (inputField.Type == "ComboBox")
                 {
-                    //inputField.SelectedItem
-
-                    foreach (Location c in inputField.SelectedItem.Locations)
-                    {
-                        var page = pdf.GetPage(c.Page);
-
-                        var canvas = new iText.Kernel.Pdf.Canvas.PdfCanvas(page);
-
-                        float x = c.X;
-                        float y = c.Y;
-
-                        var font = Utility.LoadSystemFont(inputField.PDFSettings.Font);
-                        var formattedText = "";
-                        formattedText = Utility.ReverseInput(inputField.SelectedItem.Text);
-
-                        Rectangle textbox = new Rectangle(((int)x), ((int)y), 100, 200);
-                        float fontSize = inputField.PDFSettings.Size;
-                        if (inputField.PDFSettings.SizeFunctionUse)
-                        {
-                            fontSize = GetFontSize(formattedText.Length);
-                        }
-
-
-                        Paragraph paragraph = new Paragraph(formattedText)
-                            .SetFont(font)
-                            .SetFontSize(fontSize)
-                            .SetFontColor(color)
-                            .SetBaseDirection(BaseDirection.RIGHT_TO_LEFT);
-
-
-                        var document = new iText.Layout.Document(pdf);
-                        document.ShowTextAligned(paragraph, x, y, c.Page, TextAlignment.RIGHT, iText.Layout.Properties.VerticalAlignment.BOTTOM, 0);
-                    }
+                    formattedText = Utility.ReverseInput(inputField.SelectedItem.Text);
+                    locations = inputField.SelectedItem.Locations;
                 }
-                else
+
+                foreach (Location c in locations)
                 {
-                    foreach (Location c in inputField.PDFSettings.Location)
-                    {
-                        var page = pdf.GetPage(c.Page);
+                    var page = pdf.GetPage(c.Page);
 
-                        var canvas = new iText.Kernel.Pdf.Canvas.PdfCanvas(page);
+                    //var canvas = new iText.Kernel.Pdf.Canvas.PdfCanvas(page);
 
-                        float x = c.X;
-                        float y = c.Y;
+                    float x = c.X;
+                    float y = c.Y;
 
-                        var font = Utility.LoadSystemFont(inputField.PDFSettings.Font);
-                        var formattedText = "";
-                        formattedText = Utility.ReverseInput(inputField.Text);
+                    Rectangle textbox = new Rectangle(((int)x), ((int)y), 100, 200);
 
-                        Rectangle textbox = new Rectangle(((int)x), ((int)y), 100, 200);
-                        float fontSize = inputField.PDFSettings.Size;
-                        if (inputField.PDFSettings.SizeFunctionUse)
-                        {
-                            fontSize = GetFontSize(formattedText.Length);
-                        }
-                        Paragraph paragraph = new Paragraph(formattedText)
-                            .SetFont(font)
-                            .SetFontSize(fontSize)
-                            .SetFontColor(color)
+                    Paragraph paragraph = new Paragraph(formattedText)
+                        .SetFont(font)
+                        .SetFontSize(fontSize)
+                        .SetFontColor(color)
+                        .SetBaseDirection(BaseDirection.RIGHT_TO_LEFT);
 
-                            .SetBaseDirection(BaseDirection.RIGHT_TO_LEFT);
-
-
-                        var document = new iText.Layout.Document(pdf);
-                        document.ShowTextAligned(paragraph, x, y, c.Page, TextAlignment.RIGHT, iText.Layout.Properties.VerticalAlignment.BOTTOM, 0);
-                    }
+                    var document = new iText.Layout.Document(pdf);
+                    document.ShowTextAligned(paragraph, x, y, c.Page, TextAlignment.RIGHT, iText.Layout.Properties.VerticalAlignment.BOTTOM, 0);
                 }
-
             }
 
         }
