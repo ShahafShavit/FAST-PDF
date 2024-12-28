@@ -42,19 +42,10 @@ public static class ControlFactory
                     comboBox.Items.Add(comboBoxItem);
                 }
 
-                // Set event to handle selection and custom rendering if needed
-                comboBox.SelectedIndexChanged += (sender, args) =>
-                {
-                    var selectedItem = comboBox.SelectedItem as ComboBoxItem;
-                    if (selectedItem != null)
-                    {
-                        Console.WriteLine($"Selected: {selectedItem.Label}, Location X: {selectedItem.Locations[0].X} Y: {selectedItem.Locations[0].Y} PAGE: {selectedItem.Locations[0].Page}");
-                    }
-                };
-
+                comboBox.DataBindings.Add("SelectedItem", field, nameof(field.SelectedItem), false, DataSourceUpdateMode.OnPropertyChanged);
                 continue;
             }
-
+            if (propertyName == "Font" || propertyName == "Size") continue;
             // Check if the property exists in the control type
             PropertyInfo controlProperty = type.GetProperty(propertyName, BindingFlags.Public | BindingFlags.Instance);
 
@@ -75,7 +66,10 @@ public static class ControlFactory
                 }
             }
         }
-
+        if (control is TextBox textBox)
+        {
+            //textBox.DataBindings.Add("Text", field, nameof(field.Text), false, DataSourceUpdateMode.OnPropertyChanged);
+        }
         return control;
     }
 }

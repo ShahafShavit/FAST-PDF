@@ -22,7 +22,7 @@ public class InputField
     }
     public string? Type { get; set; }
     [JsonIgnore]
-    public string? Text { get; set; }
+    public string Text { get; set; }
     [JsonIgnore]
     public bool Checked { get; set; }
     [JsonIgnore]
@@ -30,12 +30,18 @@ public class InputField
     public string? ActionType { get; set; }
     public string? Name { get; set; }
     public string? Label { get; set; }
-    public string? Placeholder { get; set; }
+    public string? DebugPlaceholder { get; set; }
     public string? DefaultText { get; set; }
     public string? Description { get; set; }
     public List<ComboBoxItem>? Items { get; set; }
-    public PDFSettings? PDFSettings { get; set; }
+    
+    public string? Font { get; set; }
+    public int Size { get; set; }
+    public bool ResizeFunctionUse { get; set; }
+    public List<Location>? Locations { get; set; }
+
 }
+
 public class TabObject
 {
     public string? TabName { get; set; }
@@ -65,14 +71,14 @@ public class FormObject
         {
             foreach (InputField inputField in this.Fields)
             {
-                var font = Utility.LoadSystemFont(inputField.PDFSettings.Font);
+                var font = Utility.LoadSystemFont(inputField.Font);
                 var formattedText = Utility.ReverseRtlString(inputField.Text);
 
-                float fontSize = inputField.PDFSettings.Size;
+                float fontSize = inputField.Size;
 
-                var locations = inputField.PDFSettings.Locations;
+                var locations = inputField.Locations;
 
-                if (inputField.PDFSettings.ResizeFunctionUse)
+                if (inputField.ResizeFunctionUse)
                 {
                     fontSize = GetFontSize(formattedText.Length);
                 }
@@ -138,7 +144,7 @@ public class FormObject
             {
                 if (inputField.Type == "CheckBox" && !inputField.Checked && inputField.ActionType == "Check") continue;
 
-                foreach (Location c in inputField.PDFSettings.Locations)
+                foreach (Location c in inputField.Locations)
                 {
                     var page = pdf.GetPage(c.Page);
 
@@ -147,7 +153,7 @@ public class FormObject
                     float x = c.X;
                     float y = c.Y;
 
-                    var font = Utility.LoadSystemFont(inputField.PDFSettings.Font);
+                    var font = Utility.LoadSystemFont(inputField.Font);
                     var formattedText = Utility.ReverseInput(inputField.Text);
                     Rectangle textbox = new Rectangle(((int)x), ((int)y), 100, 200);
                     //formattedText = formattedText.Replace(" ", "\n");
@@ -185,15 +191,6 @@ public class GlobalSettings
     public string? InputPath { get; set; }
     public bool Debug { get; set; }
     public bool LaunchFileAtGeneration { get; set; }
-}
-public class PDFSettings
-{
-    public string? Font { get; set; }
-    public int Size { get; set; }
-    public bool ResizeFunctionUse { get; set; }
-    public bool Required { get; set; }
-    public bool RTL { get; set; }
-    public List<Location>? Locations { get; set; }
 }
 public class Location
 {

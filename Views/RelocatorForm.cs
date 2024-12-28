@@ -5,7 +5,7 @@
     {
         InitializeComponent();
 
-        int locationsCount = inputField.PDFSettings.Locations.Count;
+        int locationsCount = inputField.Locations.Count;
         TableLayoutPanel tableLayoutPanel = new TableLayoutPanel
         {
             Dock = DockStyle.Fill,
@@ -21,7 +21,7 @@
         for (int i = 0; i < locationsCount; i++)
         {
             tableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100 / locationsCount));
-            Relocator relocator = new Relocator(inputField.PDFSettings.Locations[i]);
+            Relocator relocator = new Relocator(inputField.Locations[i]);
             relocator.Dock = DockStyle.Fill;
             relocator.AutoSize = true;
             relocator.Anchor = AnchorStyles.None;

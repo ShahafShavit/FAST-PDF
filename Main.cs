@@ -24,7 +24,6 @@ public partial class Main : System.Windows.Forms.Form
         InitializeComponent();
         try
         {
-
             this.globalSettings = Config.PullSettings();
             this.models = Config.PullModels();
         }
@@ -32,12 +31,14 @@ public partial class Main : System.Windows.Forms.Form
         { MessageBox.Show("Error: " + e.Message); Environment.Exit(1); }
         this.debug = this.globalSettings.Debug;
         this.Text = "מערכת מילוי טפסים- להט הנדסת חשמל";
-        this.RightToLeft = RightToLeft.Yes;
 
-        GenerateUI();
+        this.RightToLeft = RightToLeft.Yes;
         this.AutoScaleMode = AutoScaleMode.Dpi;
         this.AutoSize = true;
         this.AutoSizeMode = AutoSizeMode.GrowOnly;
+
+        GenerateUI();
+
         Console.WriteLine("Initialization of components has been completed.");
         this.FormClosing += (o, e) =>
         {
@@ -137,6 +138,7 @@ public partial class Main : System.Windows.Forms.Form
                         Size = new Size(300, 700),
                         Padding = new Padding(4),
                         Margin = new Padding(2),
+                        Tag = group
                     };
 
                     layout = new TableLayoutPanel
@@ -164,7 +166,7 @@ public partial class Main : System.Windows.Forms.Form
                         Size = new Size(300, 700),
                         Padding = new Padding(4),
                         Margin = new Padding(2),
-                        Tag = Path.Combine(group.Path, group.FileName), // Tag holds the path to the file
+                        Tag = group//Path.Combine(group.Path, group.FileName), // Tag holds the path to the file
                     };
 
                     layout = new TableLayoutPanel
@@ -173,6 +175,7 @@ public partial class Main : System.Windows.Forms.Form
                         AutoSizeMode = AutoSizeMode.GrowAndShrink,
                         ColumnCount = 3,
                         Dock = DockStyle.Fill,
+                        Name = "layoutPanel"
 
                     };
 
@@ -198,19 +201,28 @@ public partial class Main : System.Windows.Forms.Form
                                 };
 
 
+                                // Ensure field.Text is initialized before creating the control
+                                if (string.IsNullOrEmpty(field.Text))
+                                {
+                                    field.Text = this.debug ? field.DebugPlaceholder : field.DefaultText;
+                                }
+
+                                // Create the control
                                 Control control = ControlFactory.CreateControlFromJson(field);
                                 control.Anchor = AnchorStyles.Left | AnchorStyles.Right;
                                 control.Margin = new Padding(0, 0, 0, 15);
                                 control.Dock = DockStyle.Top;
-                                control.Text = field.DefaultText;
-                                label.Click += (o, e) => new RelocatorForm(field, this.models).ShowDialog();
+
+                                // Handle special cases for CheckBox
                                 if (control is CheckBox cb)
                                 {
                                     cb.Tag = field.ActionType;
                                 }
-                                if (this.debug && string.IsNullOrEmpty(control.Text))
+
+                                // Bind the TextBox.Text property to field.Text
+                                if (control is TextBox tb)
                                 {
-                                    control.Text = field.Placeholder;
+                                    tb.DataBindings.Add("Text", field, nameof(field.Text), false, DataSourceUpdateMode.OnPropertyChanged);
                                 }
                                 if (!string.IsNullOrEmpty(field.Description))
                                 {
@@ -262,6 +274,7 @@ public partial class Main : System.Windows.Forms.Form
                 {
                     Anchor = AnchorStyles.Left | AnchorStyles.Right,
                     Margin = new Padding(0, 0, 0, 4),
+                    Name = "fileNameTextBox",
                     Dock = DockStyle.Bottom,
                     Tag = "FileName",
                     Text = group.FormName?.Replace(" ", "_") + "_"
@@ -322,44 +335,18 @@ public partial class Main : System.Windows.Forms.Form
         if (clickedButton.Parent is not GroupBox parentGroupBox)
             throw new NullReferenceException($"Parent of {clickedButton.Name} is not a GroupBox.");
 
-        if (parentGroupBox.Tag is not string tag || string.IsNullOrEmpty(tag))
-            throw new MissingFieldException("No file path given in GroupBox Tag property.");
-
-        if (parentGroupBox.Tag.ToString() is not String originalPath)
-            throw new MissingFieldException("No file path given in GroupBox Tag property, 2.");
+        if (parentGroupBox.Tag is not FormObject formObject)
+            throw new MissingFieldException("No Target FormObject given in GroupBox Tag property.");
+        
         if (!Directory.Exists(this.globalSettings.SavePath))
         {
-            MessageBox.Show("אנא בחר תיקייה לשמור בה את הקובץ (קובץ > שמור בתיקייה).", "אנא בחר תיקייה", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.RtlReading);
+            MessageBox.Show("תיקייה לשמירה לא נמצאה. אנא בחר תיקייה לשמור בה את הקובץ (קובץ > שמור בתיקייה).", "אנא בחר תיקייה", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.RtlReading);
             Console.WriteLine($"Failed to find path: {this.globalSettings.SavePath}");
             return;
         }
-        //if (debug) this.config = Config.Pull();
 
-        TableLayoutPanel layoutPanel = null;
-        foreach (Control control in parentGroupBox.Controls)
-        {
-            if (control is TableLayoutPanel tableLayout)
-            {
-                layoutPanel = tableLayout;
-                break;
-            }
-        }
-
-        if (layoutPanel == null)
-        {
-            MessageBox.Show("TableLayoutPanel not found in GroupBox.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            return;
-        }
-
-        string newFilename = string.Empty;
-        foreach (Control control in layoutPanel.Controls)
-        {
-            if (control is TextBox textBox && textBox.Tag?.ToString() == "FileName")
-            {
-                newFilename = textBox.Text;
-                break;
-            }
-        }
+        string newFilename = ((TextBox)parentGroupBox.Controls.Find("fileNameTextBox", true).First()).Text;
+        
         if (string.IsNullOrEmpty(newFilename))
         {
             MessageBox.Show("Filename not provided.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -370,7 +357,8 @@ public partial class Main : System.Windows.Forms.Form
             newFilename += ".pdf";
         }
         bool standard = true;
-        foreach (CheckBox checkbox in layoutPanel.Controls.OfType<CheckBox>())
+        
+        foreach (CheckBox checkbox in (parentGroupBox.Controls.Find("layoutPanel", false).First()).Controls.OfType<CheckBox>()) // multiple form versions.
         {
             if (checkbox.Checked && checkbox.Tag != null)
             {
@@ -382,16 +370,14 @@ public partial class Main : System.Windows.Forms.Form
 
                     standard = false;
 
-                    FormObject fo = FillDataStructure(layoutPanel.Controls, parentGroupBox.Text, clickedButton.Parent.Parent.Parent.Text);
-                    fo.FillSpecialForm(outputName, globalSettings.SavePath, inputFormname, globalSettings.InputPath, new DeviceRgb(this.mainColor.R, this.mainColor.G, this.mainColor.B));
+                    formObject.FillSpecialForm(outputName, globalSettings.SavePath, inputFormname, globalSettings.InputPath, new DeviceRgb(this.mainColor.R, this.mainColor.G, this.mainColor.B));
                     Console.WriteLine($"Form has been filled and saved at {Path.Combine(globalSettings.SavePath, outputName)}");
                 }
             }
         }
         if (standard)
         {
-            FormObject fo = FillDataStructure(layoutPanel.Controls, parentGroupBox.Text, clickedButton.Parent.Parent.Parent.Text);
-            fo.FillForm(newFilename, globalSettings.SavePath, globalSettings.InputPath, new DeviceRgb(this.mainColor.R, this.mainColor.G, this.mainColor.B));
+            formObject.FillForm(newFilename, globalSettings.SavePath, globalSettings.InputPath, new DeviceRgb(this.mainColor.R, this.mainColor.G, this.mainColor.B));
             Console.WriteLine($"Form has been filled and saved at {Path.Combine(globalSettings.SavePath, newFilename)}");
             if (globalSettings.LaunchFileAtGeneration)
             {
@@ -404,10 +390,9 @@ public partial class Main : System.Windows.Forms.Form
             }
         }
     }
-    
+
     private MenuStrip GenerateMenuStrip()
     {
-
         MenuStrip menuStrip = new MenuStrip();
         ToolStripMenuItem fileMenu = new ToolStripMenuItem("קובץ");
         ToolStripMenuItem chooseSaveFolder = new ToolStripMenuItem("שמור בתיקייה");
@@ -416,13 +401,10 @@ public partial class Main : System.Windows.Forms.Form
         ToolStripMenuItem colorPallete = new ToolStripMenuItem("בחר צבע");
         colorPallete.Click += (s, e) =>
         {
-
             if (mainColorDialog.ShowDialog() == DialogResult.OK)
             {
                 this.mainColor = mainColorDialog.Color;
-                Console.WriteLine(this.mainColor.ToString());
             }
-
         };
         ToolStripMenuItem openFolder = new ToolStripMenuItem("פתח תיקייה מכילה");
         openFolder.Click += (s, e) => System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo()
@@ -454,7 +436,6 @@ public partial class Main : System.Windows.Forms.Form
         menuStrip.Items.Add(about);
         this.MainMenuStrip = menuStrip;
         return menuStrip;
-
     }
 
     private FormObject FillDataStructure(TableLayoutControlCollection controls, string formName, string tabName)
@@ -512,12 +493,13 @@ public partial class Main : System.Windows.Forms.Form
                 {
                     if (comboBox.SelectedIndex == -1)
                     {
-                        matchingField.SelectedItem = new ComboBoxItem { Label = comboBox.Text, Locations = matchingField.PDFSettings.Locations, Text = comboBox.Text };
-                        continue;
+                        matchingField.SelectedItem = new ComboBoxItem { Label = comboBox.Text, Locations = matchingField.Locations, Text = comboBox.Text };
                     }
-
-                    matchingField.SelectedItem = (ComboBoxItem)comboBox.SelectedItem;
-                    matchingField.Text = ((ComboBoxItem)comboBox.SelectedItem)?.Text;
+                    else
+                    {
+                        matchingField.SelectedItem = (ComboBoxItem)comboBox.SelectedItem;
+                        matchingField.Text = ((ComboBoxItem)comboBox.SelectedItem)?.Text;
+                    }
                     //Console.WriteLine($"Found and filled the {matchingField} object with {comboBox.SelectedItem.ToString()}");
                 }
             }
@@ -562,7 +544,6 @@ public partial class Main : System.Windows.Forms.Form
         this.MinimumSize = new System.Drawing.Size(this.Width, this.MinimumSize.Height);
         windowHeight += (int)Math.Ceiling((double)maxFields * (double)SPACE_PER_INPUT * (double)neededRows);
         this.Height = (int)windowHeight;
-
     }
 }
 
