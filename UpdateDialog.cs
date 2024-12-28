@@ -1,15 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System;
-using System.Windows.Forms;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Net;
 
 public partial class UpdateDialog : Form
@@ -55,7 +44,7 @@ public partial class UpdateDialog : Form
                 await DownloadFileWithProgressAsync(zipUrl, tempZipPath, progressBar, sizeLabel, speedLabel, timeLabel);
 
                 UpdateStatus("Extracting update...", statusLabel);
-                
+
 
                 if (Directory.Exists(updatePath))
                     Directory.Delete(updatePath, true);

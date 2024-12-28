@@ -1,10 +1,5 @@
-using Newtonsoft.Json;
-using System.Diagnostics;
-using System.Reflection.Metadata;
-using System.Runtime.InteropServices.Marshalling;
-using System.Text;
-using System.Windows.Forms;
 using iText.Kernel.Colors;
+using System.Diagnostics;
 
 namespace Auto_UI_Test
 {
@@ -128,7 +123,7 @@ namespace Auto_UI_Test
                     GroupBox groupBox;
                     int row = 0;
                     if (group.FormName == null) // <<<<<<< FOR TESTING PURPOUSE
-                    { 
+                    {
                         groupBox = new GroupBox
                         {
                             Text = (formNum++).ToString(),
@@ -343,7 +338,7 @@ namespace Auto_UI_Test
                 return;
             }
             //if (debug) this.config = Config.Pull();
-            
+
             TableLayoutPanel layoutPanel = null;
             foreach (Control control in parentGroupBox.Controls)
             {
@@ -387,7 +382,7 @@ namespace Auto_UI_Test
                     if (actionType == "NewForm" && checkbox.Checked)
                     {
                         string inputFormname = checkbox.Tag?.ToString()?.Split(',')[1].Trim(); // Get the input filename
-                        string outputName = newFilename.Replace(".pdf", "") + "_" + checkbox.Text.Replace(" ", "_") +".pdf";  // Produce output file
+                        string outputName = newFilename.Replace(".pdf", "") + "_" + checkbox.Text.Replace(" ", "_") + ".pdf";  // Produce output file
 
                         standard = false;
 
@@ -426,14 +421,15 @@ namespace Auto_UI_Test
             chooseSaveFolder.Click += (s, e) => SaveFolderDialoge();
 
             ToolStripMenuItem colorPallete = new ToolStripMenuItem("בחר צבע");
-            colorPallete.Click += (s, e) => { 
-                
+            colorPallete.Click += (s, e) =>
+            {
+
                 if (mainColorDialog.ShowDialog() == DialogResult.OK)
                 {
-                    this.mainColor = mainColorDialog.Color; 
+                    this.mainColor = mainColorDialog.Color;
                     Console.WriteLine(this.mainColor.ToString());
                 }
-                
+
             };
             ToolStripMenuItem openFolder = new ToolStripMenuItem("פתח תיקייה מכילה");
             openFolder.Click += (s, e) => System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo()
@@ -442,10 +438,10 @@ namespace Auto_UI_Test
                 UseShellExecute = true,
                 Verb = "open"
             });
-            
+
             ToolStripMenuItem about = new ToolStripMenuItem("אודות");
             about.Click += (o, e) => { new AboutBox().ShowDialog(); };
-            
+
             ToolStripMenuItem openFileAfterGeneration = new ToolStripMenuItem("פתח קובץ לאחר הפקה");
             openFileAfterGeneration.Checked = this.config.GeneralSettings.LaunchFileAtGeneration;
             openFileAfterGeneration.Click += (o, e) => { this.config.GeneralSettings.LaunchFileAtGeneration = !this.config.GeneralSettings.LaunchFileAtGeneration; openFileAfterGeneration.Checked = this.config.GeneralSettings.LaunchFileAtGeneration; Console.WriteLine($"Open file after generation status: {this.config.GeneralSettings.LaunchFileAtGeneration}"); };
@@ -528,7 +524,7 @@ namespace Auto_UI_Test
                             matchingField.SelectedItem = new ComboBoxItem { Label = comboBox.Text, Locations = matchingField.PDFSettings.Location, Text = comboBox.Text };
                             continue;
                         }
-                        
+
                         matchingField.SelectedItem = (ComboBoxItem)comboBox.SelectedItem;
                         matchingField.Text = ((ComboBoxItem)comboBox.SelectedItem)?.Text;
                         //Console.WriteLine($"Found and filled the {matchingField} object with {comboBox.SelectedItem.ToString()}");

@@ -1,19 +1,12 @@
-﻿using System.Collections.Generic;
-using System.Reflection.PortableExecutable;
-using Newtonsoft.Json;
-using iText.IO.Font;
+﻿using iText.IO.Font;
 using iText.Kernel.Font;
 using iText.Kernel.Pdf;
 using iText.Layout.Element;
 using iText.Layout.Properties;
+using Newtonsoft.Json;
 using System.Drawing.Text;
-using System.Text.RegularExpressions;
 using System.Text;
-using static Org.BouncyCastle.Math.EC.ECCurve;
-using System.Diagnostics;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-using System.Windows.Forms.VisualStyles;
-using Newtonsoft.Json.Linq;
+using System.Text.RegularExpressions;
 
 
 public static class Config
@@ -201,10 +194,11 @@ public class FormObject
 
                         Rectangle textbox = new Rectangle(((int)x), ((int)y), 100, 200);
                         float fontSize = inputField.PDFSettings.Size;
-                        if (inputField.PDFSettings.SizeFunctionUse) {
+                        if (inputField.PDFSettings.SizeFunctionUse)
+                        {
                             fontSize = GetFontSize(formattedText.Length);
                         }
-                        
+
 
                         Paragraph paragraph = new Paragraph(formattedText)
                             .SetFont(font)
@@ -242,7 +236,7 @@ public class FormObject
                             .SetFont(font)
                             .SetFontSize(fontSize)
                             .SetFontColor(color)
-                            
+
                             .SetBaseDirection(BaseDirection.RIGHT_TO_LEFT);
 
 

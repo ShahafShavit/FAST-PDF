@@ -1,9 +1,5 @@
 //using squ
 
-using System.Net;
-using System.Threading.Tasks;
-using System.Diagnostics;
-
 namespace Auto_UI_Test
 {
 
