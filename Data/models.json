@@ -1425,16 +1425,7 @@
               "Font": "Arial",
               "Size": 10,
               "ResizeFunctionUse": true,
-              "Locations": [
-                {
-                  "Page": 1,
-                  "X": 85.0,
-                  "Y": 610.5,
-                  "Width": null,
-                  "Height": null,
-                  "Type": null
-                }
-              ]
+              "Locations": null
             },
             {
               "Type": "ComboBox",
@@ -1564,7 +1555,7 @@
                     {
                       "Page": 1,
                       "X": 500.0,
-                      "Y": 325.0,
+                      "Y": 326.0,
                       "Width": null,
                       "Height": null,
                       "Type": null
@@ -1706,7 +1697,241 @@
                     {
                       "Page": 1,
                       "X": 500.0,
-                      "Y": 236.0,
+                      "Y": 237.0,
+                      "Width": null,
+                      "Height": null,
+                      "Type": null
+                    }
+                  ]
+                }
+              ],
+              "Items": null,
+              "Font": "Arial",
+              "Size": 12,
+              "ResizeFunctionUse": true,
+              "Locations": null
+            },
+            {
+              "Type": "ComboBox",
+              "ActionType": "FormFiller",
+              "Name": "hb_FT_YipuyKoahHashmelaiMeyape",
+              "Label": "חשמלאי מייפה",
+              "DebugPlaceholder": "",
+              "DefaultText": "אחר",
+              "Description": "",
+              "DataType": 0,
+              "SubFields": [
+                {
+                  "Type": "TextBox",
+                  "ActionType": null,
+                  "Name": "hb_FT_YKHM_Name",
+                  "Label": "שם חשמלאי",
+                  "DebugPlaceholder": "שם כלשהו",
+                  "DefaultText": "",
+                  "Description": "",
+                  "DataType": 0,
+                  "SubFields": null,
+                  "Items": null,
+                  "Font": "Arial",
+                  "Size": 12,
+                  "ResizeFunctionUse": true,
+                  "Locations": [
+                    {
+                      "Page": 1,
+                      "X": 459.0,
+                      "Y": 190.0,
+                      "Width": null,
+                      "Height": null,
+                      "Type": null
+                    }
+                  ]
+                },
+                {
+                  "Type": "TextBox",
+                  "ActionType": null,
+                  "Name": "hb_FT_YKHM_SugRishion",
+                  "Label": "סוג רישיון",
+                  "DebugPlaceholder": "123456789",
+                  "DefaultText": "",
+                  "Description": "",
+                  "DataType": 3,
+                  "SubFields": null,
+                  "Items": null,
+                  "Font": "Arial",
+                  "Size": 12,
+                  "ResizeFunctionUse": false,
+                  "Locations": [
+                    {
+                      "Page": 1,
+                      "X": 319.0,
+                      "Y": 190.0,
+                      "Width": null,
+                      "Height": null,
+                      "Type": null
+                    }
+                  ]
+                },
+                {
+                  "Type": "TextBox",
+                  "ActionType": null,
+                  "Name": "hb_FT_YKHM_RishionNum",
+                  "Label": "מס רישיון",
+                  "DebugPlaceholder": "123456",
+                  "DefaultText": "",
+                  "Description": "",
+                  "DataType": 4,
+                  "SubFields": null,
+                  "Items": null,
+                  "Font": "Arial",
+                  "Size": 12,
+                  "ResizeFunctionUse": true,
+                  "Locations": [
+                    {
+                      "Page": 1,
+                      "X": 200.0,
+                      "Y": 190.0,
+                      "Width": null,
+                      "Height": null,
+                      "Type": null
+                    }
+                  ]
+                }
+              ],
+              "Items": null,
+              "Font": "Arial",
+              "Size": 12,
+              "ResizeFunctionUse": true,
+              "Locations": null
+            },
+            {
+              "Type": "ComboBox",
+              "ActionType": "FormFiller",
+              "Name": "hb_FT_YipuyKoahNohah",
+              "Label": "חשמלאי שנוכח בבדיקה",
+              "DebugPlaceholder": "",
+              "DefaultText": "אחר",
+              "Description": "",
+              "DataType": 0,
+              "SubFields": [
+                {
+                  "Type": "TextBox",
+                  "ActionType": null,
+                  "Name": "hb_FT_YKN_Name",
+                  "Label": "שם חשמלאי",
+                  "DebugPlaceholder": "שם כלשהו",
+                  "DefaultText": "",
+                  "Description": "",
+                  "DataType": 0,
+                  "SubFields": null,
+                  "Items": null,
+                  "Font": "Arial",
+                  "Size": 12,
+                  "ResizeFunctionUse": true,
+                  "Locations": [
+                    {
+                      "Page": 1,
+                      "X": 440.0,
+                      "Y": 169.0,
+                      "Width": null,
+                      "Height": null,
+                      "Type": null
+                    }
+                  ]
+                },
+                {
+                  "Type": "TextBox",
+                  "ActionType": null,
+                  "Name": "hb_FT_YKN_SugRishion",
+                  "Label": "סוג רישיון",
+                  "DebugPlaceholder": "123456789",
+                  "DefaultText": "",
+                  "Description": "",
+                  "DataType": 3,
+                  "SubFields": null,
+                  "Items": null,
+                  "Font": "Arial",
+                  "Size": 12,
+                  "ResizeFunctionUse": false,
+                  "Locations": [
+                    {
+                      "Page": 1,
+                      "X": 310.0,
+                      "Y": 169.0,
+                      "Width": null,
+                      "Height": null,
+                      "Type": null
+                    }
+                  ]
+                },
+                {
+                  "Type": "TextBox",
+                  "ActionType": null,
+                  "Name": "hb_FT_YKN_RishionNum",
+                  "Label": "מס רישיון",
+                  "DebugPlaceholder": "123456",
+                  "DefaultText": "",
+                  "Description": "",
+                  "DataType": 4,
+                  "SubFields": null,
+                  "Items": null,
+                  "Font": "Arial",
+                  "Size": 12,
+                  "ResizeFunctionUse": true,
+                  "Locations": [
+                    {
+                      "Page": 1,
+                      "X": 200.0,
+                      "Y": 169.0,
+                      "Width": null,
+                      "Height": null,
+                      "Type": null
+                    }
+                  ]
+                },
+                {
+                  "Type": "TextBox",
+                  "ActionType": null,
+                  "Name": "hb_FFT_YKN_Taz",
+                  "Label": "תעודת זהות",
+                  "DebugPlaceholder": "12345678",
+                  "DefaultText": "",
+                  "Description": "",
+                  "DataType": 1,
+                  "SubFields": null,
+                  "Items": null,
+                  "Font": "Arial",
+                  "Size": 12,
+                  "ResizeFunctionUse": true,
+                  "Locations": [
+                    {
+                      "Page": 1,
+                      "X": 114.0,
+                      "Y": 169.0,
+                      "Width": null,
+                      "Height": null,
+                      "Type": null
+                    }
+                  ]
+                },
+                {
+                  "Type": "TextBox",
+                  "ActionType": null,
+                  "Name": "hb_FFT_YKN_Phone",
+                  "Label": "טלפון",
+                  "DebugPlaceholder": "050505050",
+                  "DefaultText": "",
+                  "Description": "",
+                  "DataType": 2,
+                  "SubFields": null,
+                  "Items": null,
+                  "Font": "Arial",
+                  "Size": 12,
+                  "ResizeFunctionUse": true,
+                  "Locations": [
+                    {
+                      "Page": 1,
+                      "X": 500.0,
+                      "Y": 150.0,
                       "Width": null,
                       "Height": null,
                       "Type": null

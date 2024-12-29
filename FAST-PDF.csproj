@@ -144,4 +144,6 @@ Icon: Flaticon.com. This icon has been designed using resources from Flaticon.co
     </None>
   </ItemGroup>
 
+  <ProjectExtensions><VisualStudio><UserProperties /></VisualStudio></ProjectExtensions>
+
 </Project>
