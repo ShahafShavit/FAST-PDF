@@ -42,7 +42,6 @@ public static class ControlFactory
                     comboBox.Items.Add(comboBoxItem);
                 }
 
-                comboBox.DataBindings.Add("SelectedItem", field, nameof(field.SelectedItem), false, DataSourceUpdateMode.OnPropertyChanged);
                 continue;
             }
             if (propertyName == "Font" || propertyName == "Size") continue;

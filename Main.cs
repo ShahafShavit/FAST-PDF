@@ -1,5 +1,6 @@
 using iText.Kernel.Colors;
 using System.Diagnostics;
+using System.Text.RegularExpressions;
 
 #pragma warning disable CS8602
 #pragma warning disable CS8618
@@ -201,29 +202,55 @@ public partial class Main : System.Windows.Forms.Form
                                 };
 
 
-                                // Ensure field.Text is initialized before creating the control
                                 if (string.IsNullOrEmpty(field.Text))
-                                {
-                                    field.Text = this.debug ? field.DebugPlaceholder : field.DefaultText;
-                                }
+                                    field.Text = debug ? field.DebugPlaceholder : field.DefaultText;
 
-                                // Create the control
                                 Control control = ControlFactory.CreateControlFromJson(field);
                                 control.Anchor = AnchorStyles.Left | AnchorStyles.Right;
                                 control.Margin = new Padding(0, 0, 0, 15);
                                 control.Dock = DockStyle.Top;
 
-                                // Handle special cases for CheckBox
                                 if (control is CheckBox cb)
-                                {
                                     cb.Tag = field.ActionType;
+
+                                if (control is TextBox tb)
+                                    tb.DataBindings.Add("Text", field, nameof(field.Text), false, DataSourceUpdateMode.OnPropertyChanged);
+
+                                if (control is ComboBox comb)
+                                {
+                                    
+                                    field.SelectedItem = new ComboBoxItem { Label = "אחר", Locations = field.Locations, Text = "אחר" };
+                                    field.Text = field.DefaultText ?? "אחר";
+
+                                    comb.DataBindings.Add("Text", field, nameof(field.Text), false, DataSourceUpdateMode.OnPropertyChanged);
+
+                                    comb.TextChanged += (sender, args) =>
+                                    {
+                                        if (!string.IsNullOrEmpty(comb.Text) && comb.SelectedIndex == -1)
+                                        {
+                                            var tempItem = new ComboBoxItem
+                                            {
+                                                Label = comb.Text,
+                                                Text = comb.Text,
+                                                Locations = field.Locations // Optional: Retain locations if needed
+                                            };
+
+                                            field.SelectedItem = tempItem;
+                                            field.Text = comb.Text;
+                                        }
+                                    };
+
+                                    comb.SelectedIndexChanged += (sender, args) =>
+                                    {
+                                        if (comb.SelectedItem is ComboBoxItem selectedItem)
+                                        {
+                                            field.SelectedItem = selectedItem;
+                                            field.Text = selectedItem.Text;
+                                        }
+                                    };
                                 }
 
-                                // Bind the TextBox.Text property to field.Text
-                                if (control is TextBox tb)
-                                {
-                                    tb.DataBindings.Add("Text", field, nameof(field.Text), false, DataSourceUpdateMode.OnPropertyChanged);
-                                }
+
                                 if (!string.IsNullOrEmpty(field.Description))
                                 {
                                     Label infoLabel = new Label
@@ -279,10 +306,15 @@ public partial class Main : System.Windows.Forms.Form
                     Tag = "FileName",
                     Text = group.FormName?.Replace(" ", "_") + "_"
                 };
-                if (this.debug)
+                fileNameTextBox.KeyPress += (s, e) =>
                 {
+                    char[] invalidChars = { '<', '>', ':', '"', '/', '\\', '|', '?', '*' };
+                    if (Array.Exists(invalidChars, c => c == e.KeyChar) || char.IsControl(e.KeyChar) && e.KeyChar != '\b')
+                        e.Handled = true; // Blocks the input
+                }; // Suppress the input if the character is disallowed
+                if (this.debug)
                     fileNameTextBox.Text = "aOut_" + group.FileName;
-                }
+
 
                 layout.Controls.Add(fileNameLabel, 0, row);
                 layout.Controls.Add(fileNameTextBox, 2, row);
@@ -337,7 +369,7 @@ public partial class Main : System.Windows.Forms.Form
 
         if (parentGroupBox.Tag is not FormObject formObject)
             throw new MissingFieldException("No Target FormObject given in GroupBox Tag property.");
-        
+
         if (!Directory.Exists(this.globalSettings.SavePath))
         {
             MessageBox.Show("תיקייה לשמירה לא נמצאה. אנא בחר תיקייה לשמור בה את הקובץ (קובץ > שמור בתיקייה).", "אנא בחר תיקייה", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.RtlReading);
@@ -346,10 +378,16 @@ public partial class Main : System.Windows.Forms.Form
         }
 
         string newFilename = ((TextBox)parentGroupBox.Controls.Find("fileNameTextBox", true).First()).Text;
-        
+
         if (string.IsNullOrEmpty(newFilename))
         {
-            MessageBox.Show("Filename not provided.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show("אנא ספק שם קובץ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            return;
+        }
+        string pattern = @"^(?!^(CON|PRN|AUX|NUL|COM[1-9]|LPT[1-9])$)[^<>:""/\\|?*\x00-\x1F]+(?<!\.)$";
+        if (!Regex.IsMatch(newFilename, pattern, RegexOptions.IgnoreCase))
+        {
+            MessageBox.Show("שם קובץ לא תקין", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             return;
         }
         if (!newFilename.EndsWith(".pdf"))
@@ -357,7 +395,7 @@ public partial class Main : System.Windows.Forms.Form
             newFilename += ".pdf";
         }
         bool standard = true;
-        
+
         foreach (CheckBox checkbox in (parentGroupBox.Controls.Find("layoutPanel", false).First()).Controls.OfType<CheckBox>()) // multiple form versions.
         {
             if (checkbox.Checked && checkbox.Tag != null)
