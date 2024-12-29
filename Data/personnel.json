@@ -1,0 +1,39 @@
+{
+  "PersonList": [
+    {
+      "Name": "אושר אשרקיאן",
+      "ID": "123456",
+      "Phone": "123456789",
+      "LicenseType": "Good",
+      "LicenseNumber": "12345567"
+    },
+    {
+      "Name": "מישהו אחר",
+      "ID": "159753",
+      "Phone": "050505050",
+      "LicenseType": "A+",
+      "LicenseNumber": "12345567"
+    },
+    {
+      "Name": "יעל לוי",
+      "ID": "789654",
+      "Phone": "0523334444",
+      "LicenseType": "B",
+      "LicenseNumber": "99887766"
+    },
+    {
+      "Name": "דניאל כהן",
+      "ID": "456789",
+      "Phone": "0541239876",
+      "LicenseType": "C",
+      "LicenseNumber": "11223344"
+    },
+    {
+      "Name": "נועה ישראלי",
+      "ID": "321987",
+      "Phone": "0587654321",
+      "LicenseType": "A",
+      "LicenseNumber": "66554433"
+    }
+  ]
+}

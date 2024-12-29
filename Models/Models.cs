@@ -4,6 +4,7 @@ using iText.Kernel.Pdf;
 using iText.Layout.Element;
 using iText.Layout.Properties;
 using Newtonsoft.Json;
+using System.ComponentModel.DataAnnotations;
 using System.Drawing.Text;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -33,15 +34,40 @@ public class InputField
     public string? DebugPlaceholder { get; set; }
     public string? DefaultText { get; set; }
     public string? Description { get; set; }
+    public Person.PersonDataType DataType { get; set; }
+    public List<InputField>? SubFields { get; set; }
     public List<ComboBoxItem>? Items { get; set; }
-    
     public string? Font { get; set; }
     public int Size { get; set; }
     public bool ResizeFunctionUse { get; set; }
     public List<Location>? Locations { get; set; }
 
-}
 
+}
+public class Personnel
+{
+    public List<Person> PersonList { get; set; }
+}
+public class Person
+{
+    public enum PersonDataType
+    {
+        Name,
+        ID,
+        Phone,
+        LicenseType,
+        LicenseNumber
+    }
+    public string Name { get; set; }
+    public string ID { get; set; }
+    public string Phone { get; set; }
+    public string LicenseType { get; set; }
+    public string LicenseNumber { get; set; }
+    public override string ToString()
+    {
+        return Name ?? "Null";
+    }
+}
 public class TabObject
 {
     public string? TabName { get; set; }
@@ -73,6 +99,8 @@ public class FormObject
             {
                 var font = Utility.LoadSystemFont(inputField.Font);
                 var formattedText = Utility.ReverseRtlString(inputField.Text);
+                if (Utility.IsDate(inputField.Text))
+                    formattedText = inputField.Text;
 
                 float fontSize = inputField.Size;
 
@@ -83,10 +111,64 @@ public class FormObject
                     fontSize = GetFontSize(formattedText.Length);
                 }
                 if (inputField.Type == "CheckBox" && !inputField.Checked && inputField.ActionType == "Check") continue;
+                else if (inputField.Type == "ComboBox" && inputField.ActionType == "FormFiller")
+                {
+                    foreach (InputField subField in inputField.SubFields)
+                    {
+
+                        formattedText = Utility.ReverseInput(subField.Text);
+                        locations = subField.Locations;
+
+                        if (subField.Type == "CheckBox" && subField.ActionType == "Check")
+                        {
+                            formattedText = "V";
+                        }
+
+                        foreach (Location c in locations)
+                        {
+                            var page = pdf.GetPage(c.Page);
+                            var canvas = new iText.Kernel.Pdf.Canvas.PdfCanvas(page);
+
+                            float x = c.X;
+                            float y = c.Y;
+                            if (c.Width.HasValue && c.Height.HasValue)
+                            {
+                                if (c.Type == InputField.ShapeType.Rectangle)
+                                {
+                                    iText.Kernel.Geom.Rectangle rect = new iText.Kernel.Geom.Rectangle(((int)x), ((int)y), -c.Width.Value, c.Height.Value);
+                                    canvas.SetStrokeColor(color);
+                                    canvas.SetLineWidth(1);
+                                    canvas.Rectangle(rect);
+                                    canvas.Stroke();
+                                }
+                                else if (c.Type == InputField.ShapeType.Ellipse)
+                                {
+                                    canvas.SetStrokeColor(color);
+                                    canvas.SetLineWidth(1);
+                                    canvas.Ellipse(c.X, c.Y, c.X - c.Width.Value, c.Y + c.Height.Value);
+                                    canvas.Stroke();
+                                }
+                            }
+                            Paragraph paragraph = new Paragraph(formattedText)
+                                .SetFont(font)
+                                .SetFontSize(fontSize)
+                                .SetFontColor(color)
+                                .SetBaseDirection(BaseDirection.RIGHT_TO_LEFT);
+
+                            var document = new iText.Layout.Document(pdf);
+                            document.ShowTextAligned(paragraph, x, y, c.Page, TextAlignment.RIGHT, iText.Layout.Properties.VerticalAlignment.BOTTOM, 0);
+                        }
+
+                    }
+                }
                 else if (inputField.Type == "ComboBox")
                 {
                     formattedText = Utility.ReverseInput(inputField.SelectedItem.Text);
                     locations = inputField.SelectedItem.Locations;
+                }
+                if (inputField.Type == "CheckBox" && inputField.ActionType == "Check")
+                {
+                    formattedText = "V";
                 }
 
                 foreach (Location c in locations)
@@ -199,7 +281,7 @@ public class Location
     public float Y { get; set; }
     public int? Width { get; set; }
     public int? Height { get; set; }
-    public InputField.ShapeType? Type {  get; set; }
+    public InputField.ShapeType? Type { get; set; }
 }
 
 public class ComboBoxItem

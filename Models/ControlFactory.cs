@@ -31,6 +31,7 @@ public static class ControlFactory
             if (type == typeof(ComboBox) && propertyName == "Items")
             {
                 ComboBox comboBox = (ComboBox)control;
+                if (propertyValue == null) continue;
                 foreach (var item in propertyValue)
                 {
                     ComboBoxItem comboBoxItem = new ComboBoxItem

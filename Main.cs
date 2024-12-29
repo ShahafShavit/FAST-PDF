@@ -1,18 +1,19 @@
 using iText.Kernel.Colors;
+using iText.Kernel.Utils.Objectpathitems;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
-
+/*
 #pragma warning disable CS8602
 #pragma warning disable CS8618
 #pragma warning disable CS8604
 #pragma warning disable CS8622
-#pragma warning disable CS8600
+#pragma warning disable CS8600*/
 public partial class Main : System.Windows.Forms.Form
 {
     public System.Drawing.Color mainColor;
     private ColorDialog mainColorDialog = new ColorDialog();
     private TextBox console;
-
+    private Personnel personnel;
     private GlobalSettings globalSettings;
     private Models models;
     private bool debug;
@@ -27,6 +28,7 @@ public partial class Main : System.Windows.Forms.Form
         {
             this.globalSettings = Config.PullSettings();
             this.models = Config.PullModels();
+            this.personnel = Config.PullPersonnel();
         }
         catch (Exception e)
         { MessageBox.Show("Error: " + e.Message); Environment.Exit(1); }
@@ -77,7 +79,7 @@ public partial class Main : System.Windows.Forms.Form
             {
                 Margin = new Padding(25),
                 Text = tab.TabName,
-                AutoScroll = true,
+                //AutoScroll = false,
             };
             int formsCount = tab.Forms.Count;
             int neededRows = (int)Math.Ceiling((float)formsCount / (float)MAX_FORMS_PER_PAGE);
@@ -103,8 +105,8 @@ public partial class Main : System.Windows.Forms.Form
             TableLayoutPanel tabLayoutPanel = new TableLayoutPanel
             {
                 Dock = DockStyle.Fill,
-                AutoSize = true,
-                AutoSizeMode = AutoSizeMode.GrowAndShrink,
+                AutoSize = false,
+                //AutoSizeMode = AutoSizeMode.GrowAndShrink,
                 ColumnCount = formsCount,
                 RowCount = neededRows,
                 Padding = new Padding(2),
@@ -139,16 +141,17 @@ public partial class Main : System.Windows.Forms.Form
                         Size = new Size(300, 700),
                         Padding = new Padding(4),
                         Margin = new Padding(2),
-                        Tag = group
+                        Tag = group // FOR TESTING
                     };
 
-                    layout = new TableLayoutPanel
+                    layout = new TableLayoutPanel // FOR TESTING
                     {
                         AutoSize = true,
+                        AutoScroll = true,
                         AutoSizeMode = AutoSizeMode.GrowAndShrink,
                         ColumnCount = 2,
                         Dock = DockStyle.Fill,
-
+                        // FOR TESTING
                     };
 
                     layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50));
@@ -162,9 +165,9 @@ public partial class Main : System.Windows.Forms.Form
                     {
                         Text = group.FormName,
                         Dock = DockStyle.Fill,
-                        AutoSize = true,
-                        AutoSizeMode = AutoSizeMode.GrowOnly,
-                        Size = new Size(300, 700),
+                        //AutoSize = false,
+                        //AutoSizeMode = AutoSizeMode.GrowOnly,
+                        //Size = new Size(300, 700),
                         Padding = new Padding(4),
                         Margin = new Padding(2),
                         Tag = group//Path.Combine(group.Path, group.FileName), // Tag holds the path to the file
@@ -172,16 +175,20 @@ public partial class Main : System.Windows.Forms.Form
 
                     layout = new TableLayoutPanel
                     {
-                        AutoSize = true,
-                        AutoSizeMode = AutoSizeMode.GrowAndShrink,
+                        AutoScroll = true,
+                        
                         ColumnCount = 3,
                         Dock = DockStyle.Fill,
-                        Name = "layoutPanel"
-
+                        Name = "layoutPanel",
                     };
 
+                    layout.AutoScrollMinSize = new Size(0, layout.GetPreferredSize(Size.Empty).Height);
+
+                    //layout.AutoScrollMinSize = layout.GetPreferredSize(Size.Empty);
+
+                    layout.Click += (o, e) => { Console.WriteLine(layout.Size); };
                     layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 45));
-                    layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 10));
+                    layout.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 35));
                     layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 45));
 
 
@@ -191,34 +198,60 @@ public partial class Main : System.Windows.Forms.Form
                         {
                             try
                             {
+                                if (field.Type != "ComboBox")
+                                {
+                                    layout.RowStyles.Add(new RowStyle(SizeType.Absolute, 35));
+                                }
+                                //layout.RowStyles.Add(new RowStyle(SizeType.AutoSize));
                                 Label label = new Label
                                 {
                                     Text = field.Label,
                                     AutoSize = true,
                                     TextAlign = ContentAlignment.MiddleLeft,
-                                    Anchor = AnchorStyles.Left,
+                                    Anchor = AnchorStyles.Left | AnchorStyles.Right,
                                     Dock = DockStyle.Top,
-                                    Margin = new Padding(0, 0, 0, 15),
                                 };
-
+                                label.Click += (o, e) => new RelocatorForm(field, this.models).ShowDialog();
 
                                 if (string.IsNullOrEmpty(field.Text))
                                     field.Text = debug ? field.DebugPlaceholder : field.DefaultText;
 
                                 Control control = ControlFactory.CreateControlFromJson(field);
                                 control.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-                                control.Margin = new Padding(0, 0, 0, 15);
                                 control.Dock = DockStyle.Top;
+                                if (!string.IsNullOrEmpty(field.Description))
+                                {
+                                    Label infoLabel = new Label
+                                    {
+                                        Text = "\u2139", // Unicode for "Information" symbol
+                                        Font = new Font("Arial", 12), // Adjust font and size
+                                        ForeColor = System.Drawing.Color.Blue, // Color for visibility
+                                        AutoSize = true,
+                                        Dock = DockStyle.Left,
+                                        Cursor = Cursors.Hand, // Optional: Hand cursor
+                                        Tag = field.Description
+                                    };
+                                    infoLabel.Click += (o, e) =>
+                                    {
+                                        if (o is Control c)
+                                        {
+                                            MessageBox.Show(c.Tag?.ToString(), "מידע על שדה", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                        }
+                                    };
+                                    layout.Controls.Add(infoLabel, 1, row);
+                                } // Information Button
 
                                 if (control is CheckBox cb)
+                                {
                                     cb.Tag = field.ActionType;
+                                    cb.DataBindings.Add("Checked", field, nameof(field.Checked), false, DataSourceUpdateMode.OnPropertyChanged);
+                                }
 
                                 if (control is TextBox tb)
                                     tb.DataBindings.Add("Text", field, nameof(field.Text), false, DataSourceUpdateMode.OnPropertyChanged);
 
-                                if (control is ComboBox comb)
+                                if (control is ComboBox comb && field.ActionType == "Selector")
                                 {
-                                    
                                     field.SelectedItem = new ComboBoxItem { Label = "אחר", Locations = field.Locations, Text = "אחר" };
                                     field.Text = field.DefaultText ?? "אחר";
 
@@ -249,36 +282,144 @@ public partial class Main : System.Windows.Forms.Form
                                         }
                                     };
                                 }
+                                
+                                layout.Controls.Add(label, 0, row); // Add label in the first column
+                                layout.Controls.Add(control, 2, row); // Add control in the third column
+                                row++;
 
-
-                                if (!string.IsNullOrEmpty(field.Description))
+                                if (control is ComboBox combo && field.ActionType == "FormFiller" && field.SubFields != null)
                                 {
-                                    Label infoLabel = new Label
+                                    Label toggleView = new Label
                                     {
-                                        Text = "\u2139", // Unicode for "Information" symbol
+                                        Text = "\u2193",
                                         Font = new Font("Arial", 12), // Adjust font and size
                                         ForeColor = System.Drawing.Color.Blue, // Color for visibility
                                         AutoSize = true,
                                         Dock = DockStyle.Left,
                                         Cursor = Cursors.Hand, // Optional: Hand cursor
-                                        Tag = field.Description
                                     };
-                                    //infoLabel.Click += HelpButton_Click;
-                                    infoLabel.Click += (o, e) =>
+                                    toggleView.Click += (o, e) =>
                                     {
-                                        if (o is Control c)
+                                        foreach (Control element in layout.Controls)
                                         {
-                                            MessageBox.Show(c.Tag.ToString(), "מידע על שדה", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                            object[] arr;
+                                            try
+                                            {
+                                                arr = ((object[])element.Tag);
+                                                if (arr == null) { continue; }
+                                            }
+                                            catch { continue; }
+                                            if (arr[0] == field)
+                                            {
+
+
+                                                element.Visible = !element.Visible;
+                                                if (element.Visible)
+                                                {
+                                                    toggleView.Text = "\u2191";
+                                                }
+                                                else
+                                                {
+                                                    toggleView.Text = "\u2193";
+                                                }
+                                            }
                                         }
                                     };
-                                    layout.Controls.Add(infoLabel, 1, row);
+                                    layout.Controls.Add(toggleView, 1, row-1);
+
+                                    combo.Items.AddRange(this.personnel.PersonList.ToArray());
+                                    combo.SelectedIndexChanged += (sender, args) =>
+                                    {
+                                        if (combo.SelectedIndex > -1)
+                                        {
+                                            foreach (Control element in layout.Controls)
+                                            {
+                                                object[] arr;
+                                                try
+                                                {
+                                                    arr = ((object[])element.Tag);
+                                                    if (arr == null) { continue; }
+                                                    if (arr[1] == null) { continue; }
+                                                }
+                                                catch { continue; }
+                                                if (arr[0] == field && element is TextBox tt)
+                                                {
+                                                    bool state = tt.Visible;
+                                                    tt.Visible = true;
+                                                    Person.PersonDataType featureType = (Person.PersonDataType)Enum.Parse(typeof(Person.PersonDataType), arr[1].ToString());
+                                                    switch (featureType)
+                                                    {
+                                                        case Person.PersonDataType.Name:
+                                                            tt.Text = ((Person)combo.SelectedItem).Name;
+                                                            break;
+                                                        case Person.PersonDataType.ID:
+                                                            tt.Text = ((Person)combo.SelectedItem).ID;
+                                                            break;
+                                                        case Person.PersonDataType.LicenseType:
+                                                            tt.Text = ((Person)combo.SelectedItem).LicenseType;
+                                                            break;
+                                                        case Person.PersonDataType.LicenseNumber:
+                                                            tt.Text = ((Person)combo.SelectedItem).LicenseNumber;
+                                                            break;
+                                                        case Person.PersonDataType.Phone:
+                                                            tt.Text = ((Person)combo.SelectedItem).Phone;
+                                                            break;
+                                                    }
+                                                    tt.DataBindings["Text"].WriteValue();
+                                                    tt.Visible = false;
+                                                    tt.Visible = state;
+                                                }
+                                                if (arr[0] == field && element is Label l)
+                                                {
+                                                    bool state = l.Visible;
+                                                    l.Visible = true;
+                                                    l.Visible = false;
+                                                    l.Visible = state;  
+                                                }
+                                            }
+                                        }
+                                    };
+                                    
+                                    foreach (InputField subField in field.SubFields)
+                                    {
+
+                                        Label subLabel = new Label
+                                        {
+                                            Text = subField.Label,
+                                            AutoSize = true,
+                                            TextAlign = ContentAlignment.MiddleLeft,
+                                            Anchor = AnchorStyles.Left | AnchorStyles.Right,
+                                            Dock = DockStyle.Top,
+                                            Tag = new object[] { field, null },
+                                            
+                                        };
+                                        subLabel.Visible = false;
+                                        subLabel.Click += (o, e) => new RelocatorForm(subField, this.models).ShowDialog();
+
+                                        if (string.IsNullOrEmpty(subField.Text))
+                                            subField.Text = debug ? subField.DebugPlaceholder : subField.DefaultText;
+
+
+                                        Control subControl = ControlFactory.CreateControlFromJson(subField);
+                                        subControl.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+                                        subControl.Dock = DockStyle.Top;
+                                        subControl.Tag = new object[] { field, subField.DataType };
+                                        subControl.Visible = false;
+
+                                        if (subControl is CheckBox subCB)
+                                        {
+                                            subCB.Tag = subField.ActionType;
+                                            subCB.DataBindings.Add("Checked", subField, nameof(subField.Checked), false, DataSourceUpdateMode.OnPropertyChanged);
+                                        }
+
+                                        if (subControl is TextBox subTB)
+                                            subTB.DataBindings.Add("Text", subField, nameof(subField.Text), false, DataSourceUpdateMode.OnPropertyChanged);
+
+                                        layout.Controls.Add(subLabel, 0, row);
+                                        layout.Controls.Add(subControl, 2, row);
+                                        row++;
+                                    }
                                 }
-
-
-
-                                layout.Controls.Add(label, 0, row); // Add label in the first column
-                                layout.Controls.Add(control, 2, row); // Add control in the third column
-                                row++;
                             }
                             catch (Exception ex)
                             {
@@ -287,13 +428,27 @@ public partial class Main : System.Windows.Forms.Form
                         }
                     }
                 }
+                TableLayoutPanel fileNameBox = new TableLayoutPanel
+                {
+                    AutoSize = true,
+                    AutoSizeMode = AutoSizeMode.GrowAndShrink,
+                    ColumnCount = 2,
+                    RowCount = 1,
+                    Dock = DockStyle.Bottom,
+                    Name = "filenameLayout",
+
+                };
+                fileNameBox.RowStyles.Add(new RowStyle(SizeType.Percent, 100));
+                fileNameBox.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50));
+                fileNameBox.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50));
+
                 Label fileNameLabel = new Label
                 {
                     Text = "שם קובץ:",
                     AutoSize = true,
-                    TextAlign = ContentAlignment.MiddleLeft,
+                    TextAlign = ContentAlignment.MiddleCenter,
                     Anchor = AnchorStyles.Left,
-                    Dock = DockStyle.Bottom,
+                    Dock = DockStyle.Fill,
                     Margin = new Padding(0, 0, 0, 4)
                 };
 
@@ -316,8 +471,8 @@ public partial class Main : System.Windows.Forms.Form
                     fileNameTextBox.Text = "aOut_" + group.FileName;
 
 
-                layout.Controls.Add(fileNameLabel, 0, row);
-                layout.Controls.Add(fileNameTextBox, 2, row);
+                fileNameBox.Controls.Add(fileNameLabel, 0, 0);
+                fileNameBox.Controls.Add(fileNameTextBox, 2, 0);
                 row++;
                 var generateButton = new Button
                 {
@@ -331,6 +486,7 @@ public partial class Main : System.Windows.Forms.Form
                 generateButton.Click += GenerateButton_Click;
 
                 groupBox.Controls.Add(layout);
+                groupBox.Controls.Add(fileNameBox);
                 groupBox.Controls.Add(generateButton);
 
                 tabLayoutPanel.Controls.Add(groupBox);
@@ -405,7 +561,6 @@ public partial class Main : System.Windows.Forms.Form
                 {
                     string inputFormname = checkbox.Tag?.ToString()?.Split(',')[1].Trim(); // Get the input filename
                     string outputName = newFilename.Replace(".pdf", "") + "_" + checkbox.Text.Replace(" ", "_") + ".pdf";  // Produce output file
-
                     standard = false;
 
                     formObject.FillSpecialForm(outputName, globalSettings.SavePath, inputFormname, globalSettings.InputPath, new DeviceRgb(this.mainColor.R, this.mainColor.G, this.mainColor.B));

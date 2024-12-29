@@ -33,6 +33,7 @@ Icon: Flaticon.com. This icon has been designed using resources from Flaticon.co
 
   <ItemGroup>
     <None Remove="config.json" />
+    <None Remove="Data\personnel.json" />
     <None Remove="input\b_OC.pdf" />
     <None Remove="input\b_OC_m3.pdf" />
     <None Remove="input\b_YK.pdf" />
@@ -58,6 +59,9 @@ Icon: Flaticon.com. This icon has been designed using resources from Flaticon.co
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Data\icon.ico" />
+    <Content Include="Data\personnel.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="input\b_OC.pdf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

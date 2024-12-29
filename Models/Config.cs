@@ -11,6 +11,14 @@ public static class Config
 {
     private static string modelsFile = "Data\\models.json";
     private static string settingsFile = "Data\\settings.json";
+    private static string personnelFile = "Data\\personnel.json";
+    
+    public static Personnel PullPersonnel()
+    {
+        string jsonPath = Path.Combine(AppContext.BaseDirectory, personnelFile);
+
+        return JsonConvert.DeserializeObject<Personnel>(File.ReadAllText(jsonPath));
+    }
     public static GlobalSettings PullSettings()
     {
         string jsonPath = Path.Combine(AppContext.BaseDirectory, settingsFile);
