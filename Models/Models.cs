@@ -105,130 +105,102 @@ public class FormObject
 
     public void FillForm(string outputName, string outputPath, string inputPath, iText.Kernel.Colors.Color color)
     {
+        string fileInputPath = System.IO.Path.Combine(AppContext.BaseDirectory, inputPath, this.Path ?? "");
+        string fullOutputPath = System.IO.Path.Combine(outputPath, outputName);
 
-        string fileinputPath = System.IO.Path.Combine(AppContext.BaseDirectory, inputPath, this.Path ?? "");  // Path to your existing PDF
-        string fullOutputPath = System.IO.Path.Combine(outputPath, outputName);    // Path for the modified PDF
-        if (!File.Exists(fileinputPath))
+        if (!File.Exists(fileInputPath))
         {
-            Console.WriteLine($"Could not locate file {fileinputPath} | Please check further.");
-            throw new FileNotFoundException(fileinputPath);
+            Console.WriteLine($"Could not locate file {fileInputPath} | Please check further.");
+            throw new FileNotFoundException(fileInputPath);
         }
-        using (PdfReader reader = new PdfReader(fileinputPath))
-        using (PdfWriter writer = new PdfWriter(fullOutputPath))
-        using (PdfDocument pdf = new PdfDocument(reader, writer))
+
+        using var reader = new PdfReader(fileInputPath);
+        using var writer = new PdfWriter(fullOutputPath);
+        using var pdf = new PdfDocument(reader, writer);
+
+        foreach (InputField inputField in this.Fields)
         {
-            foreach (InputField inputField in this.Fields)
-            {
-                var font = Utility.LoadSystemFont(inputField.Font);
-                var formattedText = Utility.ReverseInput(inputField.Text);
-
-                float fontSize = inputField.Size;
-
-                var locations = inputField.Locations;
-
-                if (inputField.ResizeFunctionUse)
-                {
-                    fontSize = GetFontSize(formattedText.Length);
-                }
-                if (inputField.Type == "CheckBox" && !inputField.Checked && inputField.ActionType == "Check") continue;
-                else if (inputField.Type == "ComboBox" && inputField.ActionType == "FormFiller")
-                {
-                    foreach (InputField subField in inputField.SubFields)
-                    {
-
-                        formattedText = Utility.ReverseInput(subField.Text);
-                        locations = subField.Locations;
-
-                        if (subField.Type == "CheckBox" && subField.ActionType == "Check")
-                        {
-                            formattedText = "V";
-                        }
-
-                        foreach (Location c in locations)
-                        {
-                            var page = pdf.GetPage(c.Page);
-                            var canvas = new iText.Kernel.Pdf.Canvas.PdfCanvas(page);
-
-                            float x = c.X;
-                            float y = c.Y;
-                            if (c.Width.HasValue && c.Height.HasValue)
-                            {
-                                if (c.Type == InputField.ShapeType.Rectangle)
-                                {
-                                    iText.Kernel.Geom.Rectangle rect = new iText.Kernel.Geom.Rectangle(((int)x), ((int)y), -c.Width.Value, c.Height.Value);
-                                    canvas.SetStrokeColor(color);
-                                    canvas.SetLineWidth(1);
-                                    canvas.Rectangle(rect);
-                                    canvas.Stroke();
-                                }
-                                else if (c.Type == InputField.ShapeType.Ellipse)
-                                {
-                                    canvas.SetStrokeColor(color);
-                                    canvas.SetLineWidth(1);
-                                    canvas.Ellipse(c.X, c.Y, c.X - c.Width.Value, c.Y + c.Height.Value);
-                                    canvas.Stroke();
-                                }
-                            }
-                            Paragraph paragraph = new Paragraph(formattedText)
-                                .SetFont(font)
-                                .SetFontSize(fontSize)
-                                .SetFontColor(color)
-                                .SetBaseDirection(BaseDirection.RIGHT_TO_LEFT);
-
-                            var document = new iText.Layout.Document(pdf);
-                            document.ShowTextAligned(paragraph, x, y, c.Page, TextAlignment.RIGHT, iText.Layout.Properties.VerticalAlignment.BOTTOM, 0);
-                        }
-
-                    }
-                }
-                else if (inputField.Type == "ComboBox")
-                {
-                    formattedText = Utility.ReverseInput(inputField.SelectedItem.Text);
-                    locations = inputField.SelectedItem.Locations;
-                }
-                if (inputField.Type == "CheckBox" && inputField.ActionType == "Check")
-                {
-                    formattedText = "V";
-                }
-
-                foreach (Location c in locations)
-                {
-                    var page = pdf.GetPage(c.Page);
-                    var canvas = new iText.Kernel.Pdf.Canvas.PdfCanvas(page);
-
-                    float x = c.X;
-                    float y = c.Y;
-                    if (c.Width.HasValue && c.Height.HasValue)
-                    {
-                        if (c.Type == InputField.ShapeType.Rectangle)
-                        {
-                            iText.Kernel.Geom.Rectangle rect = new iText.Kernel.Geom.Rectangle(((int)x), ((int)y), -c.Width.Value, c.Height.Value);
-                            canvas.SetStrokeColor(color);
-                            canvas.SetLineWidth(1);
-                            canvas.Rectangle(rect);
-                            canvas.Stroke();
-                        }
-                        else if (c.Type == InputField.ShapeType.Ellipse)
-                        {
-                            canvas.SetStrokeColor(color);
-                            canvas.SetLineWidth(1);
-                            canvas.Ellipse(c.X, c.Y, c.X - c.Width.Value, c.Y + c.Height.Value);
-                            canvas.Stroke();
-                        }
-                    }
-                    Paragraph paragraph = new Paragraph(formattedText)
-                        .SetFont(font)
-                        .SetFontSize(fontSize)
-                        .SetFontColor(color)
-                        .SetBaseDirection(BaseDirection.RIGHT_TO_LEFT);
-
-                    var document = new iText.Layout.Document(pdf);
-                    document.ShowTextAligned(paragraph, x, y, c.Page, TextAlignment.RIGHT, iText.Layout.Properties.VerticalAlignment.BOTTOM, 0);
-                }
-            }
-
+            ProcessFieldRecursive(inputField, pdf, color);
         }
     }
+
+    private void ProcessFieldRecursive(InputField inputField, PdfDocument pdf, iText.Kernel.Colors.Color color)
+    {
+        var font = Utility.LoadSystemFont(inputField.Font);
+        string formattedText = Utility.ReverseInput(inputField.Text);
+        float fontSize = inputField.ResizeFunctionUse ? GetFontSize(formattedText.Length) : inputField.Size;
+
+        if (inputField.Type == "CheckBox" && !inputField.Checked && inputField.ActionType == "Check")
+        {
+            return; // Skip unchecked checkboxes
+        }
+
+        // Process current field
+
+        var locations = inputField.Type == "ComboBox" && inputField.ActionType == "Selector"
+            ? inputField.SelectedItem.Locations
+            : inputField.Locations;
+
+
+        if (inputField.Type == "CheckBox" && inputField.ActionType == "Check")
+        {
+            formattedText = "V";
+        }
+        if (locations != null)
+        {
+            DrawContent(pdf, formattedText, locations, fontSize, font, color);
+        }
+        // Recursively process subfields
+        if (inputField.SubFields != null && inputField.SubFields.Any())
+        {
+            foreach (var subField in inputField.SubFields)
+            {
+                ProcessFieldRecursive(subField, pdf, color);
+            }
+        }
+    }
+
+    private void DrawContent(PdfDocument pdf, string text, IEnumerable<Location> locations, float fontSize, PdfFont font, iText.Kernel.Colors.Color color)
+    {
+        foreach (var loc in locations)
+        {
+            var page = pdf.GetPage(loc.Page);
+            var canvas = new iText.Kernel.Pdf.Canvas.PdfCanvas(page);
+
+            if (loc.Width.HasValue && loc.Height.HasValue)
+            {
+                DrawShape(canvas, loc, color);
+                return;
+            }
+
+            var paragraph = new Paragraph(text)
+                .SetFont(font)
+                .SetFontSize(fontSize)
+                .SetFontColor(color)
+                .SetBaseDirection(BaseDirection.RIGHT_TO_LEFT);
+
+            var document = new iText.Layout.Document(pdf);
+            document.ShowTextAligned(paragraph, loc.X, loc.Y, loc.Page, TextAlignment.RIGHT, iText.Layout.Properties.VerticalAlignment.BOTTOM, 0);
+        }
+    }
+
+    private void DrawShape(iText.Kernel.Pdf.Canvas.PdfCanvas canvas, Location loc, iText.Kernel.Colors.Color color)
+    {
+        canvas.SetStrokeColor(color).SetLineWidth(1);
+
+        if (loc.Type == InputField.ShapeType.Rectangle)
+        {
+            var rect = new iText.Kernel.Geom.Rectangle(loc.X, loc.Y, -loc.Width.Value, loc.Height.Value);
+            canvas.Rectangle(rect).Stroke();
+        }
+        else if (loc.Type == InputField.ShapeType.Ellipse)
+        {
+            canvas.Ellipse(loc.X, loc.Y, loc.X - loc.Width.Value, loc.Y + loc.Height.Value).Stroke();
+        }
+    }
+
+
+
     public void FillSpecialForm(string outputFilename, string outputDirectory, string inputFilename, string defaultInputPath, iText.Kernel.Colors.Color color)
     {
         string fileDirectory = System.IO.Path.GetDirectoryName(this.Path);
