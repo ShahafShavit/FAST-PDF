@@ -12,12 +12,19 @@ public static class Config
     private static string modelsFile = "Data\\models.json";
     private static string settingsFile = "Data\\settings.json";
     private static string personnelFile = "Data\\personnel.json";
-    
+    private static string clientsFile = "Data\\clients.json";
     public static Personnel PullPersonnel()
     {
         string jsonPath = Path.Combine(AppContext.BaseDirectory, personnelFile);
 
         return JsonConvert.DeserializeObject<Personnel>(File.ReadAllText(jsonPath));
+    }
+
+    public static ClientsList PullClients()
+    {
+        string jsonPath = Path.Combine(AppContext.BaseDirectory, clientsFile);
+
+        return JsonConvert.DeserializeObject<ClientsList>(File.ReadAllText(jsonPath));
     }
     public static GlobalSettings PullSettings()
     {

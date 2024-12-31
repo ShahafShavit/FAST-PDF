@@ -71,11 +71,23 @@ public static class Utility
     public static bool IsEnglish(string input)
     {
         if (string.IsNullOrEmpty(input)) return false;
-        return Regex.IsMatch(input, "^[a-zA-Z0-9]*$");
+
+        return Regex.IsMatch(input, @"^[a-zA-Z0-9\s.,!?;:'""()-]*$");
     }
+    public static bool IsEmail(string input)
+    {
+        if (string.IsNullOrEmpty(input)) return false;
+
+        string emailPattern = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
+        return Regex.IsMatch(input, emailPattern);
+    }
+
     public static string ReverseInput(string input)
     {
         if (string.IsNullOrEmpty(input)) return "";
+        if (IsEmail(input)) return input;
+        if (IsDate(input)) return input;
+        if (IsEnglish(input)) return input;
         StringBuilder sb = new StringBuilder();
         string[] arr = input.Split(" ");
         bool hebrew = false;

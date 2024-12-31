@@ -5,7 +5,7 @@
     {
         InitializeComponent();
         
-        int locationsCount = inputField.Locations.Count;
+        int locationsCount = inputField.Locations == null ? 0 : inputField.Locations.Count;
 
 
         TableLayoutPanel tableLayoutPanel = new TableLayoutPanel

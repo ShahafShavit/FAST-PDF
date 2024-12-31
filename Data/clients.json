@@ -1,0 +1,18 @@
+{
+  "Clients": [
+    {
+      "Name": "פז חברת דלק",
+      "ID": "123456",
+      "HetPei": "1313131",
+      "Phone": "05078945612",
+      "EmailAddress": "Client@gmail.com"
+    },
+    {
+      "Name": "דלק חברת דלק",
+      "ID": "111111",
+      "HetPei": "444444",
+      "Phone": "023456788",
+      "EmailAddress": "Delek@gmail.com"
+    }
+  ]
+}

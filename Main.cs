@@ -13,6 +13,7 @@ public partial class Main : System.Windows.Forms.Form
     public System.Drawing.Color mainColor;
     private ColorDialog mainColorDialog = new ColorDialog();
     private TextBox console;
+    private ClientsList clients;
     private Personnel personnel;
     private GlobalSettings globalSettings;
     private Models models;
@@ -29,6 +30,7 @@ public partial class Main : System.Windows.Forms.Form
             this.globalSettings = Config.PullSettings();
             this.models = Config.PullModels();
             this.personnel = Config.PullPersonnel();
+            this.clients = Config.PullClients();
         }
         catch (Exception e)
         { MessageBox.Show("Error: " + e.Message); Environment.Exit(1); }
@@ -191,7 +193,7 @@ public partial class Main : System.Windows.Forms.Form
 
                     //layout.AutoScrollMinSize = layout.GetPreferredSize(Size.Empty);
 
-                    layout.Click += (o, e) => { Console.WriteLine(layout.Size); };
+                    //layout.Click += (o, e) => { Console.WriteLine(layout.Size); };
                     layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 55));
                     layout.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 35));
                     layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 45));
@@ -342,8 +344,14 @@ public partial class Main : System.Windows.Forms.Form
                                     };
                                     layout.Controls.Add(toggleView, 1, row-1);
 
-
-                                    combo.Items.AddRange(this.personnel.PersonList.ToArray());
+                                    if (field.Bank == "Personnel")
+                                    {
+                                        combo.Items.AddRange(this.personnel.PersonList.ToArray());
+                                    }
+                                    else if (field.Bank == "Clients")
+                                    {
+                                        combo.Items.AddRange(this.clients.Clients.ToArray());
+                                    }
                                     combo.SelectedIndexChanged += (sender, args) =>
                                     {
                                         if (combo.SelectedIndex > -1)
@@ -362,24 +370,48 @@ public partial class Main : System.Windows.Forms.Form
                                                 {
                                                     bool state = tt.Visible;
                                                     tt.Visible = true;
-                                                    Person.PersonDataType featureType = (Person.PersonDataType)Enum.Parse(typeof(Person.PersonDataType), arr[1].ToString());
-                                                    switch (featureType)
+                                                    Person.DataType featureType = (Person.DataType)Enum.Parse(typeof(Person.DataType), arr[1].ToString());
+                                                    if (combo.SelectedItem is Person)
                                                     {
-                                                        case Person.PersonDataType.Name:
-                                                            tt.Text = ((Person)combo.SelectedItem).Name;
-                                                            break;
-                                                        case Person.PersonDataType.ID:
-                                                            tt.Text = ((Person)combo.SelectedItem).ID;
-                                                            break;
-                                                        case Person.PersonDataType.LicenseType:
-                                                            tt.Text = ((Person)combo.SelectedItem).LicenseType;
-                                                            break;
-                                                        case Person.PersonDataType.LicenseNumber:
-                                                            tt.Text = ((Person)combo.SelectedItem).LicenseNumber;
-                                                            break;
-                                                        case Person.PersonDataType.Phone:
-                                                            tt.Text = ((Person)combo.SelectedItem).Phone;
-                                                            break;
+                                                        switch (featureType)
+                                                        {
+                                                            case Person.DataType.Name:
+                                                                tt.Text = ((Person)combo.SelectedItem).Name;
+                                                                break;
+                                                            case Person.DataType.ID:
+                                                                tt.Text = ((Person)combo.SelectedItem).ID;
+                                                                break;
+                                                            case Person.DataType.LicenseType:
+                                                                tt.Text = ((Person)combo.SelectedItem).LicenseType;
+                                                                break;
+                                                            case Person.DataType.LicenseNumber:
+                                                                tt.Text = ((Person)combo.SelectedItem).LicenseNumber;
+                                                                break;
+                                                            case Person.DataType.Phone:
+                                                                tt.Text = ((Person)combo.SelectedItem).Phone;
+                                                                break;
+                                                        }
+                                                    }
+                                                    else if (combo.SelectedItem is Client)
+                                                    {
+                                                        switch (featureType)
+                                                        {
+                                                            case Person.DataType.Name:
+                                                                tt.Text = ((Client)combo.SelectedItem).Name;
+                                                                break;
+                                                            case Person.DataType.ID:
+                                                                tt.Text = ((Client)combo.SelectedItem).ID;
+                                                                break;
+                                                            case Person.DataType.HetPei:
+                                                                tt.Text = ((Client)combo.SelectedItem).HetPei;
+                                                                break;
+                                                            case Person.DataType.EmailAddress:
+                                                                tt.Text = ((Client)combo.SelectedItem).EmailAddress;
+                                                                break;
+                                                            case Person.DataType.Phone:
+                                                                tt.Text = ((Client)combo.SelectedItem).Phone;
+                                                                break;
+                                                        }
                                                     }
                                                     tt.DataBindings["Text"].WriteValue();
                                                     tt.Visible = false;

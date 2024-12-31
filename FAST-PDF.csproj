@@ -33,9 +33,9 @@ Icon: Flaticon.com. This icon has been designed using resources from Flaticon.co
 
   <ItemGroup>
     <None Remove="config.json" />
+    <None Remove="Data\clients.json" />
     <None Remove="Data\personnel.json" />
     <None Remove="input\b_OC.pdf" />
-    <None Remove="input\b_OC_m3.pdf" />
     <None Remove="input\b_YK.pdf" />
     <None Remove="input\b_YKY.pdf" />
     <None Remove="input\b_YT.pdf" />
@@ -48,14 +48,15 @@ Icon: Flaticon.com. This icon has been designed using resources from Flaticon.co
     <None Remove="input\hb_TSB.pdf" />
     <None Remove="input\iia_HH.pdf" />
     <None Remove="input\iia_PH.pdf" />
-    <None Remove="input\‏‏b_OC_m1.pdf" />
-    <None Remove="input\‏‏b_OC_m2.pdf" />
     <None Remove="models.json" />
     <None Remove="settings.json" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Data\config.json">
+    <Content Include="Data\clients.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\config_dead.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Data\icon.ico" />
@@ -63,9 +64,6 @@ Icon: Flaticon.com. This icon has been designed using resources from Flaticon.co
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="input\b_OC.pdf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="input\b_OC_m3.pdf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="input\b_YK.pdf">
@@ -102,12 +100,6 @@ Icon: Flaticon.com. This icon has been designed using resources from Flaticon.co
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="input\iia_PH.pdf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="input\‏‏b_OC_m1.pdf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="input\‏‏b_OC_m2.pdf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Data\models.json">

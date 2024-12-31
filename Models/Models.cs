@@ -29,12 +29,13 @@ public class InputField
     [JsonIgnore]
     public ComboBoxItem? SelectedItem { get; set; }
     public string? ActionType { get; set; }
+    public string? Bank { get; set; }
     public string? Name { get; set; }
     public string? Label { get; set; }
     public string? DebugPlaceholder { get; set; }
     public string? DefaultText { get; set; }
     public string? Description { get; set; }
-    public Person.PersonDataType DataType { get; set; }
+    public Person.DataType? DataType { get; set; }
     public List<InputField>? SubFields { get; set; }
     public List<ComboBoxItem>? Items { get; set; }
     public string? Font { get; set; }
@@ -48,15 +49,34 @@ public class Personnel
 {
     public List<Person> PersonList { get; set; }
 }
+public class ClientsList
+{
+    public List<Client> Clients { get; set; }
+}
+public class Client
+{
+    public string Name { get; set; }
+    public string ID {  get; set; }
+    public string HetPei {  get; set; }
+    public string Phone {  get; set; }
+    public string EmailAddress {  get; set; }
+    public override string ToString()
+    {
+        return Name ?? "Null";
+    }
+}
 public class Person
 {
-    public enum PersonDataType
+    public enum DataType
     {
         Name,
         ID,
         Phone,
         LicenseType,
-        LicenseNumber
+        LicenseNumber,
+        Address,
+        EmailAddress,
+        HetPei
     }
     public string Name { get; set; }
     public string ID { get; set; }
@@ -100,9 +120,7 @@ public class FormObject
             foreach (InputField inputField in this.Fields)
             {
                 var font = Utility.LoadSystemFont(inputField.Font);
-                var formattedText = Utility.ReverseRtlString(inputField.Text);
-                if (Utility.IsDate(inputField.Text))
-                    formattedText = inputField.Text;
+                var formattedText = Utility.ReverseInput(inputField.Text);
 
                 float fontSize = inputField.Size;
 

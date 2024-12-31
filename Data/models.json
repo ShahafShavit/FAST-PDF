@@ -14,6 +14,7 @@
             {
               "Type": "TextBox",
               "ActionType": null,
+              "Bank": null,
               "Name": "b_OC_Name",
               "Label": "שם בעל קרקע",
               "DebugPlaceholder": "בעל קרקע",
@@ -39,6 +40,7 @@
             {
               "Type": "TextBox",
               "ActionType": null,
+              "Bank": null,
               "Name": "b_OC_ID",
               "Label": "תעודת זהות בעל קרקע",
               "DebugPlaceholder": "123456789",
@@ -64,6 +66,7 @@
             {
               "Type": "TextBox",
               "ActionType": null,
+              "Bank": null,
               "Name": "b_OC_Address",
               "Label": "כתובת בעל קרקע",
               "DebugPlaceholder": "כתובת 21, עיר",
@@ -89,6 +92,7 @@
             {
               "Type": "TextBox",
               "ActionType": null,
+              "Bank": null,
               "Name": "b_OC_GAddress",
               "Label": "כתובת קרקע",
               "DebugPlaceholder": "כתובת 21, עיר",
@@ -114,6 +118,7 @@
             {
               "Type": "TextBox",
               "ActionType": null,
+              "Bank": null,
               "Name": "b_OC_gush",
               "Label": "גוש",
               "DebugPlaceholder": "גוש",
@@ -139,6 +144,7 @@
             {
               "Type": "TextBox",
               "ActionType": null,
+              "Bank": null,
               "Name": "b_OC_helka",
               "Label": "חלקה",
               "DebugPlaceholder": "חלקה",
@@ -164,6 +170,7 @@
             {
               "Type": "CheckBox",
               "ActionType": "Check",
+              "Bank": null,
               "Name": "b_OC_NewConnection",
               "Label": "ייעוד הבקשה",
               "DebugPlaceholder": "",
@@ -197,6 +204,7 @@
             {
               "Type": "CheckBox",
               "ActionType": "Check",
+              "Bank": null,
               "Name": "b_OC_ConnectionRequirererCorp",
               "Label": "מבקשי חיבור",
               "DebugPlaceholder": "",
@@ -230,6 +238,7 @@
             {
               "Type": "CheckBox",
               "ActionType": "Check",
+              "Bank": null,
               "Name": "b_OC_ConnectionRequirererGroup",
               "Label": "",
               "DebugPlaceholder": "",
@@ -263,6 +272,7 @@
             {
               "Type": "CheckBox",
               "ActionType": "Check",
+              "Bank": null,
               "Name": "b_OC_RequestForFactory",
               "Label": "הבקשה מיועדת עבור",
               "DebugPlaceholder": "",
@@ -296,6 +306,7 @@
             {
               "Type": "CheckBox",
               "ActionType": "Check",
+              "Bank": null,
               "Name": "b_OC_FuturePartitionPlans",
               "Label": "הנכס עתיד לעבור",
               "DebugPlaceholder": "",
@@ -329,6 +340,7 @@
             {
               "Type": "CheckBox",
               "ActionType": "Check",
+              "Bank": null,
               "Name": "b_OC_YKAttached",
               "Label": "מצורף ייפוי כוח",
               "DebugPlaceholder": "",
@@ -371,6 +383,7 @@
             {
               "Type": "TextBox",
               "ActionType": null,
+              "Bank": null,
               "Name": "b_YKY_LandOwnerName",
               "Label": "שם בעל הקרקע- פרטי",
               "DebugPlaceholder": "בעל קרקע",
@@ -396,6 +409,7 @@
             {
               "Type": "TextBox",
               "ActionType": null,
+              "Bank": null,
               "Name": "b_YKY_LandOwnerTaz",
               "Label": "ת.ז. בעל קרקע- פרטי",
               "DebugPlaceholder": "123456789",
@@ -421,6 +435,7 @@
             {
               "Type": "TextBox",
               "ActionType": null,
+              "Bank": null,
               "Name": "b_YKY_LandOwnerPhone",
               "Label": "מספר טלפון בעל הקרקע",
               "DebugPlaceholder": "0501234567",
@@ -446,6 +461,7 @@
             {
               "Type": "TextBox",
               "ActionType": null,
+              "Bank": null,
               "Name": "b_YKY_LandOwnerCompany",
               "Label": "שם בעל הקרקע- חברה",
               "DebugPlaceholder": "שם חברה בעמ",
@@ -471,6 +487,7 @@
             {
               "Type": "TextBox",
               "ActionType": null,
+              "Bank": null,
               "Name": "b_YKY_LandOwnerHetPei",
               "Label": "ח.פ. בעל הקרקע",
               "DebugPlaceholder": "12345678",
@@ -496,6 +513,7 @@
             {
               "Type": "TextBox",
               "ActionType": null,
+              "Bank": null,
               "Name": "b_YKY_OrderID",
               "Label": "מספר חוזה/הזמנה",
               "DebugPlaceholder": "123456",
@@ -521,6 +539,7 @@
             {
               "Type": "TextBox",
               "ActionType": null,
+              "Bank": null,
               "Name": "b_YKY_ConnectionAddress",
               "Label": "כתובת חיבור",
               "DebugPlaceholder": "כתובת 32, עיר",
@@ -555,6 +574,7 @@
             {
               "Type": "TextBox",
               "ActionType": null,
+              "Bank": null,
               "Name": "b_YK_LandOwnerName",
               "Label": "שם בעל הקרקע- פרטי",
               "DebugPlaceholder": "בעל קרקע",
@@ -580,6 +600,7 @@
             {
               "Type": "TextBox",
               "ActionType": null,
+              "Bank": null,
               "Name": "b_YK_LandOwnerTaz",
               "Label": "ת.ז. בעל הקרקע- פרטי",
               "DebugPlaceholder": "123456789",
@@ -605,6 +626,7 @@
             {
               "Type": "TextBox",
               "ActionType": null,
+              "Bank": null,
               "Name": "b_YK_LandOwnerPhone",
               "Label": "מספר טלפון בעל הקרקע",
               "DebugPlaceholder": "0504651234",
@@ -630,6 +652,7 @@
             {
               "Type": "TextBox",
               "ActionType": null,
+              "Bank": null,
               "Name": "b_YK_LandOwnerCompany",
               "Label": "שם בעל הקרקע- חברה",
               "DebugPlaceholder": "שם החברה בעמ",
@@ -655,6 +678,7 @@
             {
               "Type": "TextBox",
               "ActionType": null,
+              "Bank": null,
               "Name": "b_YK_LandOwnerHetPei",
               "Label": "ח.פ. בעל קרקע",
               "DebugPlaceholder": "ח.פ. בעל קרקע",
@@ -680,6 +704,7 @@
             {
               "Type": "TextBox",
               "ActionType": null,
+              "Bank": null,
               "Name": "b_YK_OrdererName",
               "Label": "שם מזמין",
               "DebugPlaceholder": "שם המזמין",
@@ -705,6 +730,7 @@
             {
               "Type": "TextBox",
               "ActionType": null,
+              "Bank": null,
               "Name": "b_YK_OrdererHetPei",
               "Label": "ח.פ מזמין",
               "DebugPlaceholder": "ח.פ מזמין",
@@ -730,6 +756,7 @@
             {
               "Type": "TextBox",
               "ActionType": null,
+              "Bank": null,
               "Name": "b_YK_OrderID",
               "Label": "מספר חוזה/הזמנה",
               "DebugPlaceholder": "12345678",
@@ -755,6 +782,7 @@
             {
               "Type": "TextBox",
               "ActionType": null,
+              "Bank": null,
               "Name": "b_YK_ConnectionAddress",
               "Label": "כתובת חיבור",
               "DebugPlaceholder": "כתובת 12, עיר",
@@ -789,6 +817,7 @@
             {
               "Type": "TextBox",
               "ActionType": null,
+              "Bank": null,
               "Name": "b_YT_OrdererName",
               "Label": "שם המזמין",
               "DebugPlaceholder": "שם המזמין",
@@ -822,6 +851,7 @@
             {
               "Type": "TextBox",
               "ActionType": null,
+              "Bank": null,
               "Name": "b_YT_ConnectionAddress",
               "Label": "כתובת חיבור",
               "DebugPlaceholder": "כתובת חיבור",
@@ -855,6 +885,7 @@
             {
               "Type": "TextBox",
               "ActionType": null,
+              "Bank": null,
               "Name": "b_YT_OrderNum",
               "Label": "מספר הזמנה",
               "DebugPlaceholder": "123456",
@@ -888,6 +919,7 @@
             {
               "Type": "TextBox",
               "ActionType": null,
+              "Bank": null,
               "Name": "b_YT_OrdererHetPei",
               "Label": "ח.פ מזמין",
               "DebugPlaceholder": "4656789",
@@ -913,6 +945,7 @@
             {
               "Type": "TextBox",
               "ActionType": null,
+              "Bank": null,
               "Name": "b_YT_Date",
               "Label": "תאריך",
               "DebugPlaceholder": "01.12.24",
@@ -938,6 +971,7 @@
             {
               "Type": "TextBox",
               "ActionType": null,
+              "Bank": null,
               "Name": "b_YT_gush",
               "Label": "גוש",
               "DebugPlaceholder": "גוש",
@@ -963,6 +997,7 @@
             {
               "Type": "TextBox",
               "ActionType": null,
+              "Bank": null,
               "Name": "b_YT_helka",
               "Label": "חלקה",
               "DebugPlaceholder": "חלקה",
@@ -990,322 +1025,8 @@
       ]
     },
     {
-      "TabName": "כללי",
-      "Order": 0,
-      "Forms": [
-        {
-          "Order": 0,
-          "FormName": "החלפת שם לקוח בנכס",
-          "FileName": "g_NC.pdf",
-          "Path": "g_NC.pdf",
-          "Checksum": "",
-          "Fields": [
-            {
-              "Type": "TextBox",
-              "ActionType": null,
-              "Name": "g_NC_ContractID",
-              "Label": "מס' חוזה",
-              "DebugPlaceholder": "1234567",
-              "DefaultText": "",
-              "Description": "",
-              "DataType": 0,
-              "SubFields": null,
-              "Items": null,
-              "Font": "Arial",
-              "Size": 10,
-              "ResizeFunctionUse": true,
-              "Locations": [
-                {
-                  "Page": 1,
-                  "X": 330.0,
-                  "Y": 632.0,
-                  "Width": null,
-                  "Height": null,
-                  "Type": null
-                }
-              ]
-            },
-            {
-              "Type": "TextBox",
-              "ActionType": null,
-              "Name": "g_NC_Address",
-              "Label": "כתובת נכס",
-              "DebugPlaceholder": "כתובת כלשהי",
-              "DefaultText": "",
-              "Description": "",
-              "DataType": 0,
-              "SubFields": null,
-              "Items": null,
-              "Font": "Arial",
-              "Size": 10,
-              "ResizeFunctionUse": true,
-              "Locations": [
-                {
-                  "Page": 1,
-                  "X": 339.0,
-                  "Y": 610.0,
-                  "Width": null,
-                  "Height": null,
-                  "Type": null
-                }
-              ]
-            },
-            {
-              "Type": "TextBox",
-              "ActionType": null,
-              "Name": "g_NC_IncomingClient",
-              "Label": "שם לקוח נכנס",
-              "DebugPlaceholder": "שם לקוח",
-              "DefaultText": "",
-              "Description": "",
-              "DataType": 0,
-              "SubFields": null,
-              "Items": null,
-              "Font": "Arial",
-              "Size": 10,
-              "ResizeFunctionUse": true,
-              "Locations": [
-                {
-                  "Page": 1,
-                  "X": 438.0,
-                  "Y": 552.0,
-                  "Width": null,
-                  "Height": null,
-                  "Type": null
-                }
-              ]
-            },
-            {
-              "Type": "TextBox",
-              "ActionType": null,
-              "Name": "g_NC_IncomingClientID",
-              "Label": "ת.ז. / ח.פ לקוח נכנס",
-              "DebugPlaceholder": "123412345",
-              "DefaultText": "",
-              "Description": "",
-              "DataType": 0,
-              "SubFields": null,
-              "Items": null,
-              "Font": "Arial",
-              "Size": 10,
-              "ResizeFunctionUse": true,
-              "Locations": [
-                {
-                  "Page": 1,
-                  "X": 250.0,
-                  "Y": 552.5,
-                  "Width": null,
-                  "Height": null,
-                  "Type": null
-                }
-              ]
-            },
-            {
-              "Type": "TextBox",
-              "ActionType": null,
-              "Name": "g_NC_CounterID1",
-              "Label": "מס' מונה 1",
-              "DebugPlaceholder": "12313",
-              "DefaultText": "",
-              "Description": "",
-              "DataType": 0,
-              "SubFields": null,
-              "Items": null,
-              "Font": "Arial",
-              "Size": 10,
-              "ResizeFunctionUse": true,
-              "Locations": [
-                {
-                  "Page": 1,
-                  "X": 460.0,
-                  "Y": 528.0,
-                  "Width": null,
-                  "Height": null,
-                  "Type": null
-                }
-              ]
-            },
-            {
-              "Type": "TextBox",
-              "ActionType": null,
-              "Name": "g_NC_CounterID2",
-              "Label": "מס' מונה 2",
-              "DebugPlaceholder": "12314",
-              "DefaultText": "",
-              "Description": "",
-              "DataType": 0,
-              "SubFields": null,
-              "Items": null,
-              "Font": "Arial",
-              "Size": 10,
-              "ResizeFunctionUse": true,
-              "Locations": [
-                {
-                  "Page": 1,
-                  "X": 460.0,
-                  "Y": 495.0,
-                  "Width": null,
-                  "Height": null,
-                  "Type": null
-                }
-              ]
-            },
-            {
-              "Type": "TextBox",
-              "ActionType": null,
-              "Name": "g_NC_IncomingClientPhone",
-              "Label": "טלפון לקוח נכנס",
-              "DebugPlaceholder": "0503451234",
-              "DefaultText": "",
-              "Description": "",
-              "DataType": 0,
-              "SubFields": null,
-              "Items": null,
-              "Font": "Arial",
-              "Size": 10,
-              "ResizeFunctionUse": true,
-              "Locations": [
-                {
-                  "Page": 1,
-                  "X": 460.0,
-                  "Y": 426.0,
-                  "Width": null,
-                  "Height": null,
-                  "Type": null
-                }
-              ]
-            },
-            {
-              "Type": "TextBox",
-              "ActionType": null,
-              "Name": "g_NC_IncomingClientAddress",
-              "Label": "כתובת לקוח נכנס למשלוח חשבונות",
-              "DebugPlaceholder": "כתובת כלשהי, כתובת",
-              "DefaultText": "",
-              "Description": "",
-              "DataType": 0,
-              "SubFields": null,
-              "Items": null,
-              "Font": "Arial",
-              "Size": 10,
-              "ResizeFunctionUse": true,
-              "Locations": [
-                {
-                  "Page": 1,
-                  "X": 397.0,
-                  "Y": 404.0,
-                  "Width": null,
-                  "Height": null,
-                  "Type": null
-                }
-              ]
-            },
-            {
-              "Type": "TextBox",
-              "ActionType": null,
-              "Name": "g_NC_OutgoingClientName",
-              "Label": "שם לקוח יוצא",
-              "DebugPlaceholder": "שם כלשהו",
-              "DefaultText": "",
-              "Description": "",
-              "DataType": 0,
-              "SubFields": null,
-              "Items": null,
-              "Font": "Arial",
-              "Size": 10,
-              "ResizeFunctionUse": true,
-              "Locations": [
-                {
-                  "Page": 1,
-                  "X": 440.0,
-                  "Y": 348.0,
-                  "Width": null,
-                  "Height": null,
-                  "Type": null
-                }
-              ]
-            },
-            {
-              "Type": "TextBox",
-              "ActionType": null,
-              "Name": "g_NC_OutgoingClientID",
-              "Label": "ת.ז. / ח.פ. לקוח יוצא",
-              "DebugPlaceholder": "132456438",
-              "DefaultText": "",
-              "Description": "",
-              "DataType": 0,
-              "SubFields": null,
-              "Items": null,
-              "Font": "Arial",
-              "Size": 10,
-              "ResizeFunctionUse": true,
-              "Locations": [
-                {
-                  "Page": 1,
-                  "X": 247.0,
-                  "Y": 348.0,
-                  "Width": null,
-                  "Height": null,
-                  "Type": null
-                }
-              ]
-            },
-            {
-              "Type": "TextBox",
-              "ActionType": null,
-              "Name": "g_NC_OutgoingClientAddress",
-              "Label": "כתובת לקוח יוצא לחשבון סופי",
-              "DebugPlaceholder": "כתובת כלשהי, כתובת",
-              "DefaultText": "",
-              "Description": "",
-              "DataType": 0,
-              "SubFields": null,
-              "Items": null,
-              "Font": "Arial",
-              "Size": 10,
-              "ResizeFunctionUse": true,
-              "Locations": [
-                {
-                  "Page": 1,
-                  "X": 318.0,
-                  "Y": 316.0,
-                  "Width": null,
-                  "Height": null,
-                  "Type": null
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "Order": 1,
-          "FormName": "החלפת שם מזמין",
-          "FileName": "g_HSM.pdf",
-          "Path": "g_HSM.pdf",
-          "Checksum": null,
-          "Fields": null
-        },
-        {
-          "Order": 2,
-          "FormName": "פתיחת חוזה חדש",
-          "FileName": "g_PHH.pdf",
-          "Path": "g_PHH.pdf",
-          "Checksum": null,
-          "Fields": null
-        },
-        {
-          "Order": 3,
-          "FormName": "בקשה לחיבור במתח גבוה",
-          "FileName": "g_PMG.pdf",
-          "Path": "g_PMG.pdf",
-          "Checksum": null,
-          "Fields": null
-        }
-      ]
-    },
-    {
       "TabName": "הזמנת בדיקה",
-      "Order": 0,
+      "Order": 1,
       "Forms": [
         {
           "Order": 0,
@@ -1317,6 +1038,7 @@
             {
               "Type": "TextBox",
               "ActionType": "",
+              "Bank": null,
               "Name": "hb_FT_OrderName",
               "Label": "מספר הזמנה",
               "DebugPlaceholder": "1234567",
@@ -1342,6 +1064,7 @@
             {
               "Type": "TextBox",
               "ActionType": "",
+              "Bank": null,
               "Name": "hb_FT_City",
               "Label": "עיר",
               "DebugPlaceholder": "עיר כלשהי",
@@ -1367,6 +1090,7 @@
             {
               "Type": "TextBox",
               "ActionType": "",
+              "Bank": null,
               "Name": "hb_FT_Street",
               "Label": "רחוב",
               "DebugPlaceholder": "רחוב כלשהו",
@@ -1392,6 +1116,7 @@
             {
               "Type": "TextBox",
               "ActionType": "",
+              "Bank": null,
               "Name": "hb_FT_ClientName",
               "Label": "שם לקוח",
               "DebugPlaceholder": "שם לקוח כלשהו",
@@ -1417,6 +1142,7 @@
             {
               "Type": "ComboBox",
               "ActionType": "Selector",
+              "Bank": null,
               "Name": "hb_FT_PurposeComboBox",
               "Label": "ייעוד המקום והבדיקה",
               "DebugPlaceholder": "",
@@ -1499,6 +1225,7 @@
             {
               "Type": "ComboBox",
               "ActionType": "Selector",
+              "Bank": null,
               "Name": "hb_FT_TypeComboBox",
               "Label": "סוג בדיקה",
               "DebugPlaceholder": "",
@@ -1609,6 +1336,7 @@
             {
               "Type": "ComboBox",
               "ActionType": "FormFiller",
+              "Bank": "Personnel",
               "Name": "hb_FT_HazaratHashmelaiOreh",
               "Label": "הצהרת חשמלאי עורך",
               "DebugPlaceholder": "",
@@ -1619,6 +1347,7 @@
                 {
                   "Type": "TextBox",
                   "ActionType": null,
+                  "Bank": null,
                   "Name": "hb_FT_HHO_Name",
                   "Label": "שם חשמלאי",
                   "DebugPlaceholder": "שם כלשהו",
@@ -1644,6 +1373,7 @@
                 {
                   "Type": "TextBox",
                   "ActionType": null,
+                  "Bank": null,
                   "Name": "hb_FT_HHO_SugRishion",
                   "Label": "סוג רישיון",
                   "DebugPlaceholder": "123456789",
@@ -1669,6 +1399,7 @@
                 {
                   "Type": "TextBox",
                   "ActionType": null,
+                  "Bank": null,
                   "Name": "hb_FT_HHO_RishionNum",
                   "Label": "מס רישיון",
                   "DebugPlaceholder": "123456",
@@ -1694,6 +1425,7 @@
                 {
                   "Type": "TextBox",
                   "ActionType": null,
+                  "Bank": null,
                   "Name": "hb_FFT_HHO_Taz",
                   "Label": "תעודת זהות",
                   "DebugPlaceholder": "12345678",
@@ -1719,6 +1451,7 @@
                 {
                   "Type": "TextBox",
                   "ActionType": null,
+                  "Bank": null,
                   "Name": "hb_FFT_HHO_Phone",
                   "Label": "טלפון",
                   "DebugPlaceholder": "050505050",
@@ -1751,6 +1484,7 @@
             {
               "Type": "ComboBox",
               "ActionType": "FormFiller",
+              "Bank": "Personnel",
               "Name": "hb_FT_HazaratHashmelaiMevazea",
               "Label": "הצהרת חשמלאי מבצע",
               "DebugPlaceholder": "",
@@ -1761,6 +1495,7 @@
                 {
                   "Type": "TextBox",
                   "ActionType": null,
+                  "Bank": null,
                   "Name": "hb_FT_HHM_Name",
                   "Label": "שם חשמלאי",
                   "DebugPlaceholder": "שם כלשהו",
@@ -1786,6 +1521,7 @@
                 {
                   "Type": "TextBox",
                   "ActionType": null,
+                  "Bank": null,
                   "Name": "hb_FT_HHM_SugRishion",
                   "Label": "סוג רישיון",
                   "DebugPlaceholder": "123456789",
@@ -1811,6 +1547,7 @@
                 {
                   "Type": "TextBox",
                   "ActionType": null,
+                  "Bank": null,
                   "Name": "hb_FT_HHM_RishionNum",
                   "Label": "מס רישיון",
                   "DebugPlaceholder": "123456",
@@ -1836,6 +1573,7 @@
                 {
                   "Type": "TextBox",
                   "ActionType": null,
+                  "Bank": null,
                   "Name": "hb_FFT_HHM_Taz",
                   "Label": "תעודת זהות",
                   "DebugPlaceholder": "12345678",
@@ -1861,6 +1599,7 @@
                 {
                   "Type": "TextBox",
                   "ActionType": null,
+                  "Bank": null,
                   "Name": "hb_FFT_HHM_Phone",
                   "Label": "טלפון",
                   "DebugPlaceholder": "050505050",
@@ -1893,6 +1632,7 @@
             {
               "Type": "ComboBox",
               "ActionType": "FormFiller",
+              "Bank": "Personnel",
               "Name": "hb_FT_HazaratHashmelaiMashgiah",
               "Label": "הצהרת חשמלאי משגיח ואחראי",
               "DebugPlaceholder": "",
@@ -1903,6 +1643,7 @@
                 {
                   "Type": "TextBox",
                   "ActionType": null,
+                  "Bank": null,
                   "Name": "hb_FT_HHMV_Name",
                   "Label": "שם חשמלאי",
                   "DebugPlaceholder": "שם כלשהו",
@@ -1928,6 +1669,7 @@
                 {
                   "Type": "TextBox",
                   "ActionType": null,
+                  "Bank": null,
                   "Name": "hb_FT_HHMV_SugRishion",
                   "Label": "סוג רישיון",
                   "DebugPlaceholder": "123456789",
@@ -1953,6 +1695,7 @@
                 {
                   "Type": "TextBox",
                   "ActionType": null,
+                  "Bank": null,
                   "Name": "hb_FT_HHMV_RishionNum",
                   "Label": "מס רישיון",
                   "DebugPlaceholder": "123456",
@@ -1978,6 +1721,7 @@
                 {
                   "Type": "TextBox",
                   "ActionType": null,
+                  "Bank": null,
                   "Name": "hb_FFT_HHMV_Taz",
                   "Label": "תעודת זהות",
                   "DebugPlaceholder": "12345678",
@@ -2003,6 +1747,7 @@
                 {
                   "Type": "TextBox",
                   "ActionType": null,
+                  "Bank": null,
                   "Name": "hb_FFT_HHMV_Phone",
                   "Label": "טלפון",
                   "DebugPlaceholder": "050505050",
@@ -2035,6 +1780,7 @@
             {
               "Type": "ComboBox",
               "ActionType": "FormFiller",
+              "Bank": "Personnel",
               "Name": "hb_FT_YipuyKoahHashmelaiMeyape",
               "Label": "חשמלאי מייפה",
               "DebugPlaceholder": "",
@@ -2045,6 +1791,7 @@
                 {
                   "Type": "TextBox",
                   "ActionType": null,
+                  "Bank": null,
                   "Name": "hb_FT_YKHM_Name",
                   "Label": "שם חשמלאי",
                   "DebugPlaceholder": "שם כלשהו",
@@ -2070,6 +1817,7 @@
                 {
                   "Type": "TextBox",
                   "ActionType": null,
+                  "Bank": null,
                   "Name": "hb_FT_YKHM_SugRishion",
                   "Label": "סוג רישיון",
                   "DebugPlaceholder": "123456789",
@@ -2095,6 +1843,7 @@
                 {
                   "Type": "TextBox",
                   "ActionType": null,
+                  "Bank": null,
                   "Name": "hb_FT_YKHM_RishionNum",
                   "Label": "מס רישיון",
                   "DebugPlaceholder": "123456",
@@ -2127,6 +1876,7 @@
             {
               "Type": "ComboBox",
               "ActionType": "FormFiller",
+              "Bank": "Personnel",
               "Name": "hb_FT_YipuyKoahNohah",
               "Label": "חשמלאי שנוכח בבדיקה",
               "DebugPlaceholder": "",
@@ -2137,6 +1887,7 @@
                 {
                   "Type": "TextBox",
                   "ActionType": null,
+                  "Bank": null,
                   "Name": "hb_FT_YKN_Name",
                   "Label": "שם חשמלאי",
                   "DebugPlaceholder": "שם כלשהו",
@@ -2162,6 +1913,7 @@
                 {
                   "Type": "TextBox",
                   "ActionType": null,
+                  "Bank": null,
                   "Name": "hb_FT_YKN_SugRishion",
                   "Label": "סוג רישיון",
                   "DebugPlaceholder": "123456789",
@@ -2187,6 +1939,7 @@
                 {
                   "Type": "TextBox",
                   "ActionType": null,
+                  "Bank": null,
                   "Name": "hb_FT_YKN_RishionNum",
                   "Label": "מס רישיון",
                   "DebugPlaceholder": "123456",
@@ -2212,6 +1965,7 @@
                 {
                   "Type": "TextBox",
                   "ActionType": null,
+                  "Bank": null,
                   "Name": "hb_FFT_YKN_Taz",
                   "Label": "תעודת זהות",
                   "DebugPlaceholder": "12345678",
@@ -2237,6 +1991,7 @@
                 {
                   "Type": "TextBox",
                   "ActionType": null,
+                  "Bank": null,
                   "Name": "hb_FFT_YKN_Phone",
                   "Label": "טלפון",
                   "DebugPlaceholder": "050505050",
@@ -2278,6 +2033,7 @@
             {
               "Type": "ComboBox",
               "ActionType": "Selector",
+              "Bank": null,
               "Name": "hb_TSB_PurposeComboBox",
               "Label": "מהות שינוי",
               "DebugPlaceholder": "",
@@ -2360,6 +2116,7 @@
             {
               "Type": "TextBox",
               "ActionType": "",
+              "Bank": null,
               "Name": "hb_TSB_ClientName",
               "Label": "שם לקוח",
               "DebugPlaceholder": "שם לקוח כלשהו",
@@ -2393,6 +2150,7 @@
             {
               "Type": "TextBox",
               "ActionType": "",
+              "Bank": null,
               "Name": "hb_TSB_ClientTazHetPei",
               "Label": "ת.ז./ח.פ לקוח",
               "DebugPlaceholder": "20202020",
@@ -2418,6 +2176,7 @@
             {
               "Type": "TextBox",
               "ActionType": null,
+              "Bank": null,
               "Name": "hb_TSB_ContractID",
               "Label": "מס' חוזה/מונה",
               "DebugPlaceholder": "1234567",
@@ -2443,6 +2202,7 @@
             {
               "Type": "TextBox",
               "ActionType": "",
+              "Bank": null,
               "Name": "hb_TSB_OrderName",
               "Label": "מספר הזמנה",
               "DebugPlaceholder": "1231231",
@@ -2468,6 +2228,7 @@
             {
               "Type": "TextBox",
               "ActionType": "",
+              "Bank": null,
               "Name": "hb_TSB_SiteAddress",
               "Label": "כתובת מתקן",
               "DebugPlaceholder": "כתובת כלשהי, כתובת",
@@ -2493,6 +2254,7 @@
             {
               "Type": "TextBox",
               "ActionType": "",
+              "Bank": null,
               "Name": "hb_TSB_CurrentSize",
               "Label": "גודל קיים",
               "DebugPlaceholder": "גודל כלשהו",
@@ -2518,6 +2280,7 @@
             {
               "Type": "TextBox",
               "ActionType": "",
+              "Bank": null,
               "Name": "hb_TSB_AskingSize",
               "Label": "גודל מבוקש",
               "DebugPlaceholder": "גודל כלשהו",
@@ -2543,6 +2306,7 @@
             {
               "Type": "TextBox",
               "ActionType": "",
+              "Bank": null,
               "Name": "hb_TSB_Shinuim1",
               "Label": "פירוט שינויים 1",
               "DebugPlaceholder": "שינויים 1",
@@ -2568,6 +2332,7 @@
             {
               "Type": "TextBox",
               "ActionType": "",
+              "Bank": null,
               "Name": "hb_TSB_Shinuim2",
               "Label": "פירוט שינויים 2",
               "DebugPlaceholder": "שינויים 2",
@@ -2593,6 +2358,7 @@
             {
               "Type": "TextBox",
               "ActionType": "",
+              "Bank": null,
               "Name": "hb_TSB_Shinuim3",
               "Label": "פירוט שינויים 3",
               "DebugPlaceholder": "שינויים 3",
@@ -2618,6 +2384,7 @@
             {
               "Type": "TextBox",
               "ActionType": "",
+              "Bank": null,
               "Name": "hb_TSB_Shinuim4",
               "Label": "פירוט שינויים 4",
               "DebugPlaceholder": "שינויים 4",
@@ -2643,6 +2410,7 @@
             {
               "Type": "TextBox",
               "ActionType": "",
+              "Bank": null,
               "Name": "hb_TSB_Shinuim5",
               "Label": "פירוט שינויים 5",
               "DebugPlaceholder": "שינויים 5",
@@ -2668,6 +2436,7 @@
             {
               "Type": "ComboBox",
               "ActionType": "FormFiller",
+              "Bank": "Personnel",
               "Name": "hb_TSB_HashmelaiMevazea",
               "Label": "חשמלאי מבצע",
               "DebugPlaceholder": "",
@@ -2678,6 +2447,7 @@
                 {
                   "Type": "TextBox",
                   "ActionType": null,
+                  "Bank": null,
                   "Name": "hb_FT_HHM_Name",
                   "Label": "שם חשמלאי",
                   "DebugPlaceholder": "שם כלשהו",
@@ -2711,6 +2481,7 @@
                 {
                   "Type": "TextBox",
                   "ActionType": null,
+                  "Bank": null,
                   "Name": "hb_FT_HHM_SugRishion",
                   "Label": "סוג רישיון",
                   "DebugPlaceholder": "123456789",
@@ -2736,6 +2507,7 @@
                 {
                   "Type": "TextBox",
                   "ActionType": null,
+                  "Bank": null,
                   "Name": "hb_FT_HHM_RishionNum",
                   "Label": "מס רישיון",
                   "DebugPlaceholder": "123456",
@@ -2761,6 +2533,7 @@
                 {
                   "Type": "TextBox",
                   "ActionType": null,
+                  "Bank": null,
                   "Name": "hb_FFT_HHM_Phone",
                   "Label": "טלפון",
                   "DebugPlaceholder": "050505050",
@@ -2802,6 +2575,7 @@
             {
               "Type": "TextBox",
               "ActionType": "",
+              "Bank": null,
               "Name": "hb_BLTH_ConsumerName",
               "Label": "שם צרכן/בעל מתקן",
               "DebugPlaceholder": "שם צרכן כלשהו",
@@ -2827,6 +2601,7 @@
             {
               "Type": "TextBox",
               "ActionType": "",
+              "Bank": null,
               "Name": "hb_BLTH_OrderNumber",
               "Label": "מספר הזמנה",
               "DebugPlaceholder": "123456",
@@ -2852,6 +2627,7 @@
             {
               "Type": "TextBox",
               "ActionType": "",
+              "Bank": null,
               "Name": "hb_BLTH_ManufacturerName",
               "Label": "שם יצרן",
               "DebugPlaceholder": "",
@@ -2875,8 +2651,64 @@
               ]
             },
             {
+              "Type": "ComboBox",
+              "ActionType": "Selector",
+              "Bank": null,
+              "Name": "hb_BLTH_TestType",
+              "Label": "סוג הבדיקה",
+              "DebugPlaceholder": "",
+              "DefaultText": "אחר",
+              "Description": "",
+              "DataType": 0,
+              "SubFields": null,
+              "Items": [
+                {
+                  "Label": "לפני הפעלה",
+                  "Text": "",
+                  "Locations": [
+                    {
+                      "Page": 1,
+                      "X": 480.0,
+                      "Y": 702.0,
+                      "Width": 65,
+                      "Height": 20,
+                      "Type": 0
+                    }
+                  ]
+                },
+                {
+                  "Label": "תקופתית",
+                  "Text": "",
+                  "Locations": [
+                    {
+                      "Page": 1,
+                      "X": 416.0,
+                      "Y": 702.0,
+                      "Width": 85,
+                      "Height": 20,
+                      "Type": 0
+                    }
+                  ]
+                }
+              ],
+              "Font": "Arial",
+              "Size": 12,
+              "ResizeFunctionUse": false,
+              "Locations": [
+                {
+                  "Page": 1,
+                  "X": 270.0,
+                  "Y": 710.0,
+                  "Width": null,
+                  "Height": null,
+                  "Type": null
+                }
+              ]
+            },
+            {
               "Type": "TextBox",
               "ActionType": "",
+              "Bank": null,
               "Name": "hb_BLTH_Model",
               "Label": "דגם",
               "DebugPlaceholder": "",
@@ -2902,6 +2734,7 @@
             {
               "Type": "TextBox",
               "ActionType": "",
+              "Bank": null,
               "Name": "hb_BLTH_Address",
               "Label": "כתובת התקנת עמדה",
               "DebugPlaceholder": "כתובת כלשהי 28, עיר",
@@ -2927,6 +2760,7 @@
             {
               "Type": "TextBox",
               "ActionType": "",
+              "Bank": null,
               "Name": "hb_BLTH_Power",
               "Label": "הספק עמדת טעינה",
               "DebugPlaceholder": "60",
@@ -2952,6 +2786,7 @@
             {
               "Type": "TextBox",
               "ActionType": "",
+              "Bank": null,
               "Name": "hb_BLTH_MaxCurrent",
               "Label": "זרם מירבי",
               "DebugPlaceholder": "160",
@@ -2977,6 +2812,7 @@
             {
               "Type": "TextBox",
               "ActionType": "",
+              "Bank": null,
               "Name": "hb_BLTH_BoardSize",
               "Label": "גודל לוח",
               "DebugPlaceholder": "13",
@@ -3002,6 +2838,7 @@
             {
               "Type": "TextBox",
               "ActionType": "",
+              "Bank": null,
               "Name": "hb_BLTH_LocationDescription",
               "Label": "תיאור מקום התקנה",
               "DebugPlaceholder": "בחוץ ליד הגדר",
@@ -3025,79 +2862,292 @@
               ]
             },
             {
-              "Type": "CheckBox",
-              "ActionType": "NewForm, b_OC_m1.pdf",
-              "Name": "b_OC_Name",
-              "Label": "שם מהנדס חשמל",
+              "Type": "ComboBox",
+              "ActionType": "FormFiller",
+              "Bank": "Clients",
+              "Name": "hb_BLTH_BaalEmda",
+              "Label": "בעל העמדה",
               "DebugPlaceholder": "",
-              "DefaultText": "שם מהנדס 1",
-              "Description": "שם בעל הקרקע כפי שמופיע בחוזה",
-              "DataType": 0,
-              "SubFields": null,
-              "Items": null,
-              "Font": "Arial",
-              "Size": 12,
-              "ResizeFunctionUse": true,
-              "Locations": [
-                {
-                  "Page": 1,
-                  "X": 0.0,
-                  "Y": 0.0,
-                  "Width": null,
-                  "Height": null,
-                  "Type": null
-                }
-              ]
-            },
-            {
-              "Type": "CheckBox",
-              "ActionType": "NewForm, b_OC_m2.pdf",
-              "Name": "b_OC_aaaaame",
-              "Label": null,
-              "DebugPlaceholder": "",
-              "DefaultText": "שם מהנדס 2",
+              "DefaultText": "",
               "Description": "",
               "DataType": 0,
-              "SubFields": null,
+              "SubFields": [
+                {
+                  "Type": "TextBox",
+                  "ActionType": null,
+                  "Bank": null,
+                  "Name": "hb_BLTH_ShemBaalEmda",
+                  "Label": "שם בעל העמדה",
+                  "DebugPlaceholder": "שם כלשהו בע\"מ",
+                  "DefaultText": "",
+                  "Description": "",
+                  "DataType": 0,
+                  "SubFields": null,
+                  "Items": null,
+                  "Font": "Arial",
+                  "Size": 12,
+                  "ResizeFunctionUse": true,
+                  "Locations": [
+                    {
+                      "Page": 1,
+                      "X": 400.0,
+                      "Y": 338.0,
+                      "Width": null,
+                      "Height": null,
+                      "Type": null
+                    }
+                  ]
+                },
+                {
+                  "Type": "TextBox",
+                  "ActionType": null,
+                  "Bank": null,
+                  "Name": "hb_BLTH_ClientPhoneNumber",
+                  "Label": "מספר טלפון",
+                  "DebugPlaceholder": "123456789",
+                  "DefaultText": "",
+                  "Description": "",
+                  "DataType": 2,
+                  "SubFields": null,
+                  "Items": null,
+                  "Font": "Arial",
+                  "Size": 12,
+                  "ResizeFunctionUse": false,
+                  "Locations": [
+                    {
+                      "Page": 1,
+                      "X": 250.0,
+                      "Y": 338.0,
+                      "Width": null,
+                      "Height": null,
+                      "Type": null
+                    }
+                  ]
+                },
+                {
+                  "Type": "TextBox",
+                  "ActionType": null,
+                  "Bank": null,
+                  "Name": "hb_BLTH_EmailAddress",
+                  "Label": "אימייל",
+                  "DebugPlaceholder": "thisEmail@gmail.com",
+                  "DefaultText": "",
+                  "Description": "",
+                  "DataType": 6,
+                  "SubFields": null,
+                  "Items": null,
+                  "Font": "Arial",
+                  "Size": 12,
+                  "ResizeFunctionUse": true,
+                  "Locations": [
+                    {
+                      "Page": 1,
+                      "X": 155.0,
+                      "Y": 338.0,
+                      "Width": null,
+                      "Height": null,
+                      "Type": null
+                    }
+                  ]
+                }
+              ],
               "Items": null,
               "Font": "Arial",
-              "Size": 12,
+              "Size": 10,
               "ResizeFunctionUse": true,
-              "Locations": [
-                {
-                  "Page": 1,
-                  "X": 0.0,
-                  "Y": 0.0,
-                  "Width": null,
-                  "Height": null,
-                  "Type": null
-                }
-              ]
+              "Locations": null
             },
             {
-              "Type": "CheckBox",
-              "ActionType": "NewForm, b_OC_m3.pdf",
-              "Name": "b_OC_aaaaamaaae",
-              "Label": null,
+              "Type": "ComboBox",
+              "ActionType": "FormFiller",
+              "Bank": "Personnel",
+              "Name": "hb_BLTH_NazigBaalEmdaBbdika",
+              "Label": "נציג בעל העמדה בבדיקה",
               "DebugPlaceholder": "",
-              "DefaultText": "שם מהנדס 3",
+              "DefaultText": "",
               "Description": "",
               "DataType": 0,
-              "SubFields": null,
+              "SubFields": [
+                {
+                  "Type": "TextBox",
+                  "ActionType": null,
+                  "Bank": null,
+                  "Name": "hb_BLTH_ShemNazig",
+                  "Label": "שם נציג",
+                  "DebugPlaceholder": "שם כלשהו",
+                  "DefaultText": "",
+                  "Description": "",
+                  "DataType": 0,
+                  "SubFields": null,
+                  "Items": null,
+                  "Font": "Arial",
+                  "Size": 12,
+                  "ResizeFunctionUse": true,
+                  "Locations": [
+                    {
+                      "Page": 1,
+                      "X": 400.0,
+                      "Y": 320.0,
+                      "Width": null,
+                      "Height": null,
+                      "Type": null
+                    }
+                  ]
+                },
+                {
+                  "Type": "TextBox",
+                  "ActionType": null,
+                  "Bank": null,
+                  "Name": "hb_BLTH_ClientPhoneNumber",
+                  "Label": "מספר טלפון נציג",
+                  "DebugPlaceholder": "123456789",
+                  "DefaultText": "",
+                  "Description": "",
+                  "DataType": 2,
+                  "SubFields": null,
+                  "Items": null,
+                  "Font": "Arial",
+                  "Size": 12,
+                  "ResizeFunctionUse": false,
+                  "Locations": [
+                    {
+                      "Page": 1,
+                      "X": 250.0,
+                      "Y": 320.0,
+                      "Width": null,
+                      "Height": null,
+                      "Type": null
+                    }
+                  ]
+                },
+                {
+                  "Type": "TextBox",
+                  "ActionType": null,
+                  "Bank": null,
+                  "Name": "hb_BLTH_EmailAddress",
+                  "Label": "אימייל נציג",
+                  "DebugPlaceholder": "thisEmail@gmail.com",
+                  "DefaultText": "",
+                  "Description": "",
+                  "DataType": 6,
+                  "SubFields": null,
+                  "Items": null,
+                  "Font": "Arial",
+                  "Size": 12,
+                  "ResizeFunctionUse": true,
+                  "Locations": [
+                    {
+                      "Page": 1,
+                      "X": 155.0,
+                      "Y": 320.0,
+                      "Width": null,
+                      "Height": null,
+                      "Type": null
+                    }
+                  ]
+                }
+              ],
               "Items": null,
               "Font": "Arial",
-              "Size": 12,
+              "Size": 10,
               "ResizeFunctionUse": true,
-              "Locations": [
+              "Locations": null
+            },
+            {
+              "Type": "ComboBox",
+              "ActionType": "FormFiller",
+              "Bank": "Personnel",
+              "Name": "hb_BLTH_HashmelaiMevazea",
+              "Label": "החשמלאי המבצע",
+              "DebugPlaceholder": "",
+              "DefaultText": "",
+              "Description": "",
+              "DataType": 0,
+              "SubFields": [
                 {
-                  "Page": 1,
-                  "X": 0.0,
-                  "Y": 0.0,
-                  "Width": null,
-                  "Height": null,
-                  "Type": null
+                  "Type": "TextBox",
+                  "ActionType": null,
+                  "Bank": null,
+                  "Name": "hb_BLTH_ShemHashmelaiMebazea",
+                  "Label": "שם חשמלאי מבצע",
+                  "DebugPlaceholder": "שם כלשהו",
+                  "DefaultText": "",
+                  "Description": "",
+                  "DataType": 0,
+                  "SubFields": null,
+                  "Items": null,
+                  "Font": "Arial",
+                  "Size": 12,
+                  "ResizeFunctionUse": true,
+                  "Locations": [
+                    {
+                      "Page": 1,
+                      "X": 400.0,
+                      "Y": 294.0,
+                      "Width": null,
+                      "Height": null,
+                      "Type": null
+                    }
+                  ]
+                },
+                {
+                  "Type": "TextBox",
+                  "ActionType": null,
+                  "Bank": null,
+                  "Name": "hb_BLTH_HashmelaiLicenseNumber",
+                  "Label": "מספר רישיון",
+                  "DebugPlaceholder": "123456789",
+                  "DefaultText": "",
+                  "Description": "",
+                  "DataType": 4,
+                  "SubFields": null,
+                  "Items": null,
+                  "Font": "Arial",
+                  "Size": 12,
+                  "ResizeFunctionUse": false,
+                  "Locations": [
+                    {
+                      "Page": 1,
+                      "X": 322.0,
+                      "Y": 291.0,
+                      "Width": null,
+                      "Height": null,
+                      "Type": null
+                    }
+                  ]
+                },
+                {
+                  "Type": "TextBox",
+                  "ActionType": null,
+                  "Bank": null,
+                  "Name": "hb_BLTH_EmailAddress",
+                  "Label": "טלפון",
+                  "DebugPlaceholder": "050505056",
+                  "DefaultText": "",
+                  "Description": "",
+                  "DataType": 2,
+                  "SubFields": null,
+                  "Items": null,
+                  "Font": "Arial",
+                  "Size": 12,
+                  "ResizeFunctionUse": true,
+                  "Locations": [
+                    {
+                      "Page": 1,
+                      "X": 240.0,
+                      "Y": 292.0,
+                      "Width": null,
+                      "Height": null,
+                      "Type": null
+                    }
+                  ]
                 }
-              ]
+              ],
+              "Items": null,
+              "Font": "Arial",
+              "Size": 10,
+              "ResizeFunctionUse": true,
+              "Locations": null
             }
           ]
         }
@@ -3105,7 +3155,7 @@
     },
     {
       "TabName": "עעא",
-      "Order": 0,
+      "Order": 2,
       "Forms": [
         {
           "Order": 0,
@@ -3120,6 +3170,331 @@
           "FormName": "העתקת חיבור",
           "FileName": "iia_HH.pdf",
           "Path": "iia_HH.pdf",
+          "Checksum": null,
+          "Fields": null
+        }
+      ]
+    },
+    {
+      "TabName": "כללי",
+      "Order": 3,
+      "Forms": [
+        {
+          "Order": 0,
+          "FormName": "החלפת שם לקוח בנכס",
+          "FileName": "g_NC.pdf",
+          "Path": "g_NC.pdf",
+          "Checksum": "",
+          "Fields": [
+            {
+              "Type": "TextBox",
+              "ActionType": null,
+              "Bank": null,
+              "Name": "g_NC_ContractID",
+              "Label": "מס' חוזה",
+              "DebugPlaceholder": "1234567",
+              "DefaultText": "",
+              "Description": "",
+              "DataType": 0,
+              "SubFields": null,
+              "Items": null,
+              "Font": "Arial",
+              "Size": 10,
+              "ResizeFunctionUse": true,
+              "Locations": [
+                {
+                  "Page": 1,
+                  "X": 330.0,
+                  "Y": 632.0,
+                  "Width": null,
+                  "Height": null,
+                  "Type": null
+                }
+              ]
+            },
+            {
+              "Type": "TextBox",
+              "ActionType": null,
+              "Bank": null,
+              "Name": "g_NC_Address",
+              "Label": "כתובת נכס",
+              "DebugPlaceholder": "כתובת כלשהי",
+              "DefaultText": "",
+              "Description": "",
+              "DataType": 0,
+              "SubFields": null,
+              "Items": null,
+              "Font": "Arial",
+              "Size": 10,
+              "ResizeFunctionUse": true,
+              "Locations": [
+                {
+                  "Page": 1,
+                  "X": 339.0,
+                  "Y": 610.0,
+                  "Width": null,
+                  "Height": null,
+                  "Type": null
+                }
+              ]
+            },
+            {
+              "Type": "TextBox",
+              "ActionType": null,
+              "Bank": null,
+              "Name": "g_NC_IncomingClient",
+              "Label": "שם לקוח נכנס",
+              "DebugPlaceholder": "שם לקוח",
+              "DefaultText": "",
+              "Description": "",
+              "DataType": 0,
+              "SubFields": null,
+              "Items": null,
+              "Font": "Arial",
+              "Size": 10,
+              "ResizeFunctionUse": true,
+              "Locations": [
+                {
+                  "Page": 1,
+                  "X": 438.0,
+                  "Y": 552.0,
+                  "Width": null,
+                  "Height": null,
+                  "Type": null
+                }
+              ]
+            },
+            {
+              "Type": "TextBox",
+              "ActionType": null,
+              "Bank": null,
+              "Name": "g_NC_IncomingClientID",
+              "Label": "ת.ז. / ח.פ לקוח נכנס",
+              "DebugPlaceholder": "123412345",
+              "DefaultText": "",
+              "Description": "",
+              "DataType": 0,
+              "SubFields": null,
+              "Items": null,
+              "Font": "Arial",
+              "Size": 10,
+              "ResizeFunctionUse": true,
+              "Locations": [
+                {
+                  "Page": 1,
+                  "X": 250.0,
+                  "Y": 552.5,
+                  "Width": null,
+                  "Height": null,
+                  "Type": null
+                }
+              ]
+            },
+            {
+              "Type": "TextBox",
+              "ActionType": null,
+              "Bank": null,
+              "Name": "g_NC_CounterID1",
+              "Label": "מס' מונה 1",
+              "DebugPlaceholder": "12313",
+              "DefaultText": "",
+              "Description": "",
+              "DataType": 0,
+              "SubFields": null,
+              "Items": null,
+              "Font": "Arial",
+              "Size": 10,
+              "ResizeFunctionUse": true,
+              "Locations": [
+                {
+                  "Page": 1,
+                  "X": 460.0,
+                  "Y": 528.0,
+                  "Width": null,
+                  "Height": null,
+                  "Type": null
+                }
+              ]
+            },
+            {
+              "Type": "TextBox",
+              "ActionType": null,
+              "Bank": null,
+              "Name": "g_NC_CounterID2",
+              "Label": "מס' מונה 2",
+              "DebugPlaceholder": "12314",
+              "DefaultText": "",
+              "Description": "",
+              "DataType": 0,
+              "SubFields": null,
+              "Items": null,
+              "Font": "Arial",
+              "Size": 10,
+              "ResizeFunctionUse": true,
+              "Locations": [
+                {
+                  "Page": 1,
+                  "X": 460.0,
+                  "Y": 495.0,
+                  "Width": null,
+                  "Height": null,
+                  "Type": null
+                }
+              ]
+            },
+            {
+              "Type": "TextBox",
+              "ActionType": null,
+              "Bank": null,
+              "Name": "g_NC_IncomingClientPhone",
+              "Label": "טלפון לקוח נכנס",
+              "DebugPlaceholder": "0503451234",
+              "DefaultText": "",
+              "Description": "",
+              "DataType": 0,
+              "SubFields": null,
+              "Items": null,
+              "Font": "Arial",
+              "Size": 10,
+              "ResizeFunctionUse": true,
+              "Locations": [
+                {
+                  "Page": 1,
+                  "X": 460.0,
+                  "Y": 426.0,
+                  "Width": null,
+                  "Height": null,
+                  "Type": null
+                }
+              ]
+            },
+            {
+              "Type": "TextBox",
+              "ActionType": null,
+              "Bank": null,
+              "Name": "g_NC_IncomingClientAddress",
+              "Label": "כתובת לקוח נכנס למשלוח חשבונות",
+              "DebugPlaceholder": "כתובת כלשהי, כתובת",
+              "DefaultText": "",
+              "Description": "",
+              "DataType": 0,
+              "SubFields": null,
+              "Items": null,
+              "Font": "Arial",
+              "Size": 10,
+              "ResizeFunctionUse": true,
+              "Locations": [
+                {
+                  "Page": 1,
+                  "X": 397.0,
+                  "Y": 404.0,
+                  "Width": null,
+                  "Height": null,
+                  "Type": null
+                }
+              ]
+            },
+            {
+              "Type": "TextBox",
+              "ActionType": null,
+              "Bank": null,
+              "Name": "g_NC_OutgoingClientName",
+              "Label": "שם לקוח יוצא",
+              "DebugPlaceholder": "שם כלשהו",
+              "DefaultText": "",
+              "Description": "",
+              "DataType": 0,
+              "SubFields": null,
+              "Items": null,
+              "Font": "Arial",
+              "Size": 10,
+              "ResizeFunctionUse": true,
+              "Locations": [
+                {
+                  "Page": 1,
+                  "X": 440.0,
+                  "Y": 348.0,
+                  "Width": null,
+                  "Height": null,
+                  "Type": null
+                }
+              ]
+            },
+            {
+              "Type": "TextBox",
+              "ActionType": null,
+              "Bank": null,
+              "Name": "g_NC_OutgoingClientID",
+              "Label": "ת.ז. / ח.פ. לקוח יוצא",
+              "DebugPlaceholder": "132456438",
+              "DefaultText": "",
+              "Description": "",
+              "DataType": 0,
+              "SubFields": null,
+              "Items": null,
+              "Font": "Arial",
+              "Size": 10,
+              "ResizeFunctionUse": true,
+              "Locations": [
+                {
+                  "Page": 1,
+                  "X": 247.0,
+                  "Y": 348.0,
+                  "Width": null,
+                  "Height": null,
+                  "Type": null
+                }
+              ]
+            },
+            {
+              "Type": "TextBox",
+              "ActionType": null,
+              "Bank": null,
+              "Name": "g_NC_OutgoingClientAddress",
+              "Label": "כתובת לקוח יוצא לחשבון סופי",
+              "DebugPlaceholder": "כתובת כלשהי, כתובת",
+              "DefaultText": "",
+              "Description": "",
+              "DataType": 0,
+              "SubFields": null,
+              "Items": null,
+              "Font": "Arial",
+              "Size": 10,
+              "ResizeFunctionUse": true,
+              "Locations": [
+                {
+                  "Page": 1,
+                  "X": 318.0,
+                  "Y": 316.0,
+                  "Width": null,
+                  "Height": null,
+                  "Type": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "Order": 1,
+          "FormName": "החלפת שם מזמין",
+          "FileName": "g_HSM.pdf",
+          "Path": "g_HSM.pdf",
+          "Checksum": null,
+          "Fields": null
+        },
+        {
+          "Order": 2,
+          "FormName": "פתיחת חוזה חדש",
+          "FileName": "g_PHH.pdf",
+          "Path": "g_PHH.pdf",
+          "Checksum": null,
+          "Fields": null
+        },
+        {
+          "Order": 3,
+          "FormName": "בקשה לחיבור במתח גבוה",
+          "FileName": "g_PMG.pdf",
+          "Path": "g_PMG.pdf",
           "Checksum": null,
           "Fields": null
         }
