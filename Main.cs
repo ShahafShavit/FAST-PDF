@@ -318,7 +318,7 @@ public partial class Main : System.Windows.Forms.Form
             TextAlign = ContentAlignment.MiddleLeft,
             Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top,
         };
-        label.Click += (o, e) => new RelocatorForm(field, this.models).ShowDialog();
+        label.Click += (o, e) => { if (this.debug) new RelocatorForm(field, this.models).ShowDialog(); };
 
         // Fill in default text if empty
         if (string.IsNullOrEmpty(field.Text))
@@ -541,7 +541,7 @@ public partial class Main : System.Windows.Forms.Form
             Tag = new object[] { parentField, null },
             Visible = false
         };
-        subLabel.Click += (o, e) => new RelocatorForm(subField, this.models).ShowDialog();
+        subLabel.Click += (o, e) => { if (this.debug) new RelocatorForm(subField, this.models).ShowDialog(); };
         if (string.IsNullOrEmpty(subField.Text))
             subField.Text = debug ? subField.DebugPlaceholder : subField.DefaultText;
         return subLabel;
