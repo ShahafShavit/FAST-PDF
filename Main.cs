@@ -59,495 +59,57 @@ public partial class Main : System.Windows.Forms.Form
     }
     private void GenerateUI()
     {
-
+        // Create the main layout and attach it to the form
+        TableLayoutPanel mainLayout = CreateMainLayout();
         MenuStrip mainMenuStrip = GenerateMenuStrip();
-        TableLayoutPanel mainLayout = new TableLayoutPanel
+        TabControl tabControl = CreateTabControl();
+        this.console = CreateConsoleTextBox();
+
+        // Build tab pages
+        PopulateTabControl(tabControl);
+
+        // Arrange the controls within the main layout
+        mainLayout.Controls.Add(mainMenuStrip, 0, 0);
+        mainLayout.Controls.Add(tabControl, 0, 1);
+        mainLayout.Controls.Add(this.console, 0, 2);
+
+        this.Controls.Add(mainLayout);
+
+        // Redirect console output to the TextBox
+        Console.SetOut(new TextBoxWriter(console));
+
+        // Calculate initial window size
+        CalculateWindowSize();
+    }
+
+    // ------------------------ Sub-Methods ------------------------ //
+
+    private TableLayoutPanel CreateMainLayout()
+    {
+        var mainLayout = new TableLayoutPanel
         {
             Dock = DockStyle.Fill,
             RowCount = 3
         };
-        mainLayout.RowStyles.Add(new RowStyle(SizeType.AutoSize)); // For MenuStrip
+        mainLayout.RowStyles.Add(new RowStyle(SizeType.AutoSize));     // For MenuStrip
         mainLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 100)); // For TabControl
-        mainLayout.RowStyles.Add(new RowStyle(SizeType.AutoSize)); // For Console
+        mainLayout.RowStyles.Add(new RowStyle(SizeType.AutoSize));     // For Console
+        return mainLayout;
+    }
 
-
-        TabControl tabControl = new TabControl
+    private TabControl CreateTabControl()
+    {
+        var tabControl = new TabControl
         {
             Dock = DockStyle.Fill,
-            RightToLeftLayout = true,
+            RightToLeftLayout = true
         };
+        return tabControl;
+    }
 
-
-        foreach (var tab in this.models.Tabs)
-        {
-            TabPage tabPage = new TabPage
-            {
-                Margin = new Padding(25),
-                Text = tab.TabName,
-                //AutoScroll = false,
-            };
-            int formsCount = tab.Forms.Count;
-            int neededRows = (int)Math.Ceiling((float)formsCount / (float)MAX_FORMS_PER_PAGE);
-            float tabSpacing = 0;
-            if (formsCount == 0) {; }
-            else if (formsCount <= MIN_FORMS_PER_PAGE)
-            {
-                formsCount = MIN_FORMS_PER_PAGE;
-                tabSpacing = 100 / formsCount;
-            }
-            else if (formsCount >= MAX_FORMS_PER_PAGE)
-            {
-                formsCount = MAX_FORMS_PER_PAGE;
-                tabSpacing = 100 / formsCount;
-            }
-            else
-            {
-                tabSpacing = 100 / formsCount;
-            }
-
-
-
-            TableLayoutPanel tabLayoutPanel = new TableLayoutPanel
-            {
-                Dock = DockStyle.Fill,
-                AutoSize = false,
-                //AutoSizeMode = AutoSizeMode.GrowAndShrink,
-                ColumnCount = formsCount,
-                RowCount = neededRows,
-                Padding = new Padding(2),
-                Margin = new Padding(1),
-            };
-
-
-            for (int i = 0; i < formsCount; i++)
-            {
-                tabLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, ((float)Math.Floor(tabSpacing))));
-            }
-            for (int i = 0; i < neededRows; i++)
-            {
-                tabLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, (float)Math.Floor((decimal)100 / (decimal)neededRows)));
-            }
-
-
-            int formNum = 1;
-            foreach (var group in tab.Forms)
-            {
-                TableLayoutPanel layout;
-                CustomGroupBox groupBox;
-                int row = 0;
-                if (group.FormName == null) // <<<<<<< FOR TESTING PURPOUSE
-                {
-                    groupBox = new CustomGroupBox
-                    {
-                        Text = (formNum++).ToString(),
-                        Dock = DockStyle.Fill,
-                        AutoSize = true,
-                        AutoSizeMode = AutoSizeMode.GrowOnly,
-                        Size = new Size(300, 700),
-                        Padding = new Padding(4),
-                        Margin = new Padding(2),
-                        Tag = group // FOR TESTING
-                    };
-
-                    layout = new TableLayoutPanel // FOR TESTING
-                    {
-                        AutoSize = true,
-                        AutoScroll = true,
-                        AutoSizeMode = AutoSizeMode.GrowAndShrink,
-                        ColumnCount = 2,
-                        Dock = DockStyle.Fill,
-                        // FOR TESTING
-                    };
-
-                    layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50));
-                    layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50));
-
-                }
-                else // REGULAR LOADING CASE
-                {
-                    if (!File.Exists(Path.Combine(group.Path, group.FileName))) { Console.WriteLine($"Unable to locate file: {group.FileName} for form name {group.FormName} | Please contact software developer."); }
-                    groupBox = new CustomGroupBox
-                    {
-                        Text = group.FormName,
-                        Dock = DockStyle.Fill,
-                        //AutoSize = false,
-                        //AutoSizeMode = AutoSizeMode.GrowOnly,
-                        //Size = new Size(300, 700),
-                        Padding = new Padding(4),
-                        Margin = new Padding(2),
-                        Tag = group//Path.Combine(group.Path, group.FileName), // Tag holds the path to the file
-                    };
-
-                    layout = new TableLayoutPanel
-                    {
-                        AutoScroll = true,
-                        
-                        ColumnCount = 3,
-                        Dock = DockStyle.Fill,
-                        //Anchor = AnchorStyles.Top | AnchorStyles.Right | AnchorStyles.Left | AnchorStyles.Bottom,
-                        Name = "layoutPanel",
-                        //CellBorderStyle = TableLayoutPanelCellBorderStyle.Single
-                    };
-
-                    layout.AutoScrollMinSize = new Size(0, layout.GetPreferredSize(Size.Empty).Height);
-
-                    //layout.AutoScrollMinSize = layout.GetPreferredSize(Size.Empty);
-
-                    //layout.Click += (o, e) => { Console.WriteLine(layout.Size); };
-                    layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 55));
-                    layout.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 35));
-                    layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 45));
-
-
-                    if (group.Fields != null)
-                    {
-                        foreach (var field in group.Fields)
-                        {
-                            try
-                            {
-                                if (field.Type != "ComboBox")
-                                {
-                                    layout.RowStyles.Add(new RowStyle(SizeType.Absolute, 35));
-                                }
-                                //layout.RowStyles.Add(new RowStyle(SizeType.AutoSize));
-                                //layout.RowStyles.Add(new RowStyle(SizeType.Absolute, 35));
-                                Label label = new Label
-                                {
-                                    Text = field.Label,
-                                    AutoSize = true,
-                                    TextAlign = ContentAlignment.MiddleLeft,
-                                    Anchor = AnchorStyles.Left | AnchorStyles.Right,
-                                    Dock = DockStyle.Top,
-                                    
-                                    
-                                };
-                                label.Click += (o, e) => new RelocatorForm(field, this.models).ShowDialog();
-
-                                if (string.IsNullOrEmpty(field.Text))
-                                    field.Text = debug ? field.DebugPlaceholder : field.DefaultText;
-
-                                Control control = ControlFactory.CreateControlFromJson(field);
-                                control.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-                                control.Dock = DockStyle.Top;
-                                if (!string.IsNullOrEmpty(field.Description))
-                                {
-                                    Label infoLabel = new Label
-                                    {
-                                        Text = "\u2139", // Unicode for "Information" symbol
-                                        Font = new Font("Arial", 12), // Adjust font and size
-                                        ForeColor = System.Drawing.Color.Blue, // Color for visibility
-                                        AutoSize = true,
-                                        Dock = DockStyle.Left,
-                                        Cursor = Cursors.Hand, // Optional: Hand cursor
-                                        Tag = field.Description
-                                    };
-                                    infoLabel.Click += (o, e) =>
-                                    {
-                                        if (o is Control c)
-                                        {
-                                            MessageBox.Show(c.Tag?.ToString(), "מידע על שדה", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                        }
-                                    };
-                                    layout.Controls.Add(infoLabel, 1, row);
-                                } // Information Button
-
-                                if (control is CheckBox cb)
-                                {
-                                    cb.Text = field.DefaultText;
-                                    cb.Tag = field.ActionType;
-                                    cb.DataBindings.Add("Checked", field, nameof(field.Checked), false, DataSourceUpdateMode.OnPropertyChanged);
-                                }
-
-                                if (control is TextBox tb)
-                                    tb.DataBindings.Add("Text", field, nameof(field.Text), false, DataSourceUpdateMode.OnPropertyChanged);
-
-                                if (control is ComboBox comb && field.ActionType == "Selector")
-                                {
-                                    field.SelectedItem = new ComboBoxItem { Label = "אחר", Locations = field.Locations, Text = "אחר" };
-                                    field.Text = field.DefaultText ?? "אחר";
-
-                                    comb.DataBindings.Add("Text", field, nameof(field.Text), false, DataSourceUpdateMode.OnPropertyChanged);
-
-                                    comb.TextChanged += (sender, args) =>
-                                    {
-                                        if (!string.IsNullOrEmpty(comb.Text) && comb.SelectedIndex == -1)
-                                        {
-                                            var tempItem = new ComboBoxItem
-                                            {
-                                                Label = comb.Text,
-                                                Text = comb.Text,
-                                                Locations = field.Locations // Optional: Retain locations if needed
-                                            };
-
-                                            field.SelectedItem = tempItem;
-                                            field.Text = comb.Text;
-                                        }
-                                    };
-
-                                    comb.SelectedIndexChanged += (sender, args) =>
-                                    {
-                                        if (comb.SelectedItem is ComboBoxItem selectedItem)
-                                        {
-                                            field.SelectedItem = selectedItem;
-                                            field.Text = selectedItem.Text;
-                                        }
-                                    };
-                                }
-                                
-                                layout.Controls.Add(label, 0, row); // Add label in the first column
-                                layout.Controls.Add(control, 2, row); // Add control in the third column
-                                row++;
-
-                                if (control is ComboBox combo && field.ActionType == "FormFiller" && field.SubFields != null)
-                                {
-                                    layout.RowStyles.Add(new RowStyle(SizeType.AutoSize));
-                                    Label toggleView = new Label
-                                    {
-                                        Text = "\u2193",
-                                        Font = new Font("Arial", 12), // Adjust font and size
-                                        ForeColor = System.Drawing.Color.Blue, // Color for visibility
-                                        //AutoSize = true,
-                                        //Dock = DockStyle.Left,
-                                        Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top,
-                                        Height = 28,
-                                        Cursor = Cursors.Hand, // Optional: Hand cursor
-                                        BorderStyle = BorderStyle.Fixed3D
-                                    };
-                                    toggleView.Click += (o, e) =>
-                                    {
-                                        foreach (Control element in layout.Controls)
-                                        {
-                                            object[] arr;
-                                            try
-                                            {
-                                                arr = ((object[])element.Tag);
-                                                if (arr == null) { continue; }
-                                            }
-                                            catch { continue; }
-                                            if (arr[0] == field)
-                                            {
-
-
-                                                element.Visible = !element.Visible;
-                                                if (element.Visible)
-                                                {
-                                                    toggleView.Text = "\u2191";
-                                                    //layout.RowStyles.Add(new RowStyle(SizeType.Absolute, 35));
-                                                }
-                                                else
-                                                {
-                                                    toggleView.Text = "\u2193";
-                                                    //layout.RowStyles.Remove(new RowStyle(SizeType.Absolute, 35));
-                                                }
-                                            }
-                                        }
-                                    };
-                                    layout.Controls.Add(toggleView, 1, row-1);
-
-                                    if (field.Bank == "Personnel")
-                                    {
-                                        combo.Items.AddRange(this.personnel.PersonList.ToArray());
-                                    }
-                                    else if (field.Bank == "Clients")
-                                    {
-                                        combo.Items.AddRange(this.clients.Clients.ToArray());
-                                    }
-                                    combo.SelectedIndexChanged += (sender, args) =>
-                                    {
-                                        if (combo.SelectedIndex > -1)
-                                        {
-                                            foreach (Control element in layout.Controls)
-                                            {
-                                                object[] arr;
-                                                try
-                                                {
-                                                    arr = ((object[])element.Tag);
-                                                    if (arr == null) { continue; }
-                                                    if (arr[1] == null) { continue; }
-                                                }
-                                                catch { continue; }
-                                                if (arr[0] == field && element is TextBox tt)
-                                                {
-                                                    bool state = tt.Visible;
-                                                    tt.Visible = true;
-                                                    Person.DataType featureType = (Person.DataType)Enum.Parse(typeof(Person.DataType), arr[1].ToString());
-                                                    if (combo.SelectedItem is Person)
-                                                    {
-                                                        switch (featureType)
-                                                        {
-                                                            case Person.DataType.Name:
-                                                                tt.Text = ((Person)combo.SelectedItem).Name;
-                                                                break;
-                                                            case Person.DataType.ID:
-                                                                tt.Text = ((Person)combo.SelectedItem).ID;
-                                                                break;
-                                                            case Person.DataType.LicenseType:
-                                                                tt.Text = ((Person)combo.SelectedItem).LicenseType;
-                                                                break;
-                                                            case Person.DataType.LicenseNumber:
-                                                                tt.Text = ((Person)combo.SelectedItem).LicenseNumber;
-                                                                break;
-                                                            case Person.DataType.Phone:
-                                                                tt.Text = ((Person)combo.SelectedItem).Phone;
-                                                                break;
-                                                        }
-                                                    }
-                                                    else if (combo.SelectedItem is Client)
-                                                    {
-                                                        switch (featureType)
-                                                        {
-                                                            case Person.DataType.Name:
-                                                                tt.Text = ((Client)combo.SelectedItem).Name;
-                                                                break;
-                                                            case Person.DataType.ID:
-                                                                tt.Text = ((Client)combo.SelectedItem).ID;
-                                                                break;
-                                                            case Person.DataType.HetPei:
-                                                                tt.Text = ((Client)combo.SelectedItem).HetPei;
-                                                                break;
-                                                            case Person.DataType.EmailAddress:
-                                                                tt.Text = ((Client)combo.SelectedItem).EmailAddress;
-                                                                break;
-                                                            case Person.DataType.Phone:
-                                                                tt.Text = ((Client)combo.SelectedItem).Phone;
-                                                                break;
-                                                        }
-                                                    }
-                                                    tt.DataBindings["Text"].WriteValue();
-                                                    tt.Visible = false;
-                                                    tt.Visible = state;
-                                                }
-                                                if (arr[0] == field && element is Label l)
-                                                {
-                                                    bool state = l.Visible;
-                                                    l.Visible = true;
-                                                    l.Visible = false;
-                                                    l.Visible = state;  
-                                                }
-                                            }
-                                        }
-                                    };
-                                    int subFieldsCount = field.SubFields.Count;
-                                    int counter = 0;
-                                    foreach (InputField subField in field.SubFields)
-                                    {
-                                        if (subFieldsCount - counter > 1)
-                                            layout.RowStyles.Add(new RowStyle(SizeType.AutoSize));
-                                        else
-                                            layout.RowStyles.Add(new RowStyle(SizeType.Absolute, 35));
-                                        Label subLabel = new Label
-                                        {
-                                            Text = subField.Label,
-                                            AutoSize = true,
-                                            TextAlign = ContentAlignment.MiddleLeft,
-                                            Anchor = AnchorStyles.Left | AnchorStyles.Right,
-                                            Dock = DockStyle.Top,
-                                            Tag = new object[] { field, null },
-                                        };
-                                        subLabel.Visible = false;
-                                        subLabel.Click += (o, e) => new RelocatorForm(subField, this.models).ShowDialog();
-
-                                        if (string.IsNullOrEmpty(subField.Text))
-                                            subField.Text = debug ? subField.DebugPlaceholder : subField.DefaultText;
-
-
-                                        Control subControl = ControlFactory.CreateControlFromJson(subField);
-                                        subControl.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-                                        subControl.Dock = DockStyle.Top;
-                                        subControl.Tag = new object[] { field, subField.DataType };
-                                        subControl.Visible = false;
-
-                                        if (subControl is CheckBox subCB)
-                                        {
-                                            subCB.Tag = subField.ActionType;
-                                            subCB.DataBindings.Add("Checked", subField, nameof(subField.Checked), false, DataSourceUpdateMode.OnPropertyChanged);
-                                        }
-
-                                        if (subControl is TextBox subTB)
-                                            subTB.DataBindings.Add("Text", subField, nameof(subField.Text), false, DataSourceUpdateMode.OnPropertyChanged);
-
-                                        layout.Controls.Add(subLabel, 0, row);
-                                        layout.Controls.Add(subControl, 2, row);
-                                        row++;
-                                    }
-                                }
-                            }
-                            catch (Exception ex)
-                            {
-                                MessageBox.Show($"Error creating control: {ex.Message}");
-                            }
-                        }
-                    }
-                }
-                TableLayoutPanel fileNameBox = new TableLayoutPanel
-                {
-                    AutoSize = true,
-                    AutoSizeMode = AutoSizeMode.GrowAndShrink,
-                    ColumnCount = 2,
-                    RowCount = 1,
-                    Dock = DockStyle.Bottom,
-                    Name = "filenameLayout",
-
-                };
-                fileNameBox.RowStyles.Add(new RowStyle(SizeType.Percent, 100));
-                fileNameBox.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50));
-                fileNameBox.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50));
-
-                Label fileNameLabel = new Label
-                {
-                    Text = "שם קובץ:",
-                    AutoSize = true,
-                    TextAlign = ContentAlignment.MiddleCenter,
-                    Anchor = AnchorStyles.Left,
-                    Dock = DockStyle.Fill,
-                    Margin = new Padding(0, 0, 0, 4)
-                };
-
-                TextBox fileNameTextBox = new TextBox
-                {
-                    Anchor = AnchorStyles.Left | AnchorStyles.Right,
-                    Margin = new Padding(0, 0, 0, 4),
-                    Name = "fileNameTextBox",
-                    Dock = DockStyle.Bottom,
-                    Tag = "FileName",
-                    Text = group.FormName?.Replace(" ", "_") + "_"
-                };
-                fileNameTextBox.KeyPress += (s, e) =>
-                {
-                    char[] invalidChars = { '<', '>', ':', '"', '/', '\\', '|', '?', '*' };
-                    if (Array.Exists(invalidChars, c => c == e.KeyChar) || char.IsControl(e.KeyChar) && e.KeyChar != '\b')
-                        e.Handled = true; // Blocks the input
-                }; // Suppress the input if the character is disallowed
-                if (this.debug)
-                    fileNameTextBox.Text = "aOut_" + group.FileName;
-
-
-                fileNameBox.Controls.Add(fileNameLabel, 0, 0);
-                fileNameBox.Controls.Add(fileNameTextBox, 2, 0);
-                row++;
-                var generateButton = new Button
-                {
-                    Text = "הפק טופס",
-                    AutoSize = true,
-                    AutoSizeMode = AutoSizeMode.GrowAndShrink,
-                    Dock = DockStyle.Bottom,
-
-                };
-
-                generateButton.Click += GenerateButton_Click;
-
-                groupBox.Controls.Add(layout);
-                groupBox.Controls.Add(fileNameBox);
-                groupBox.Controls.Add(generateButton);
-
-                tabLayoutPanel.Controls.Add(groupBox);
-            }
-
-            tabPage.Controls.Add(tabLayoutPanel);
-            tabControl.TabPages.Add(tabPage);
-        }
-
-        this.console = new TextBox
+    private TextBox CreateConsoleTextBox()
+    {
+        return new TextBox
         {
             Dock = DockStyle.Bottom,
             AutoSize = true,
@@ -557,14 +119,516 @@ public partial class Main : System.Windows.Forms.Form
             ScrollBars = ScrollBars.Vertical,
             RightToLeft = RightToLeft.No
         };
-
-        mainLayout.Controls.Add(mainMenuStrip, 0, 0);
-        mainLayout.Controls.Add(tabControl, 0, 1);
-        mainLayout.Controls.Add(this.console, 0, 2);
-        this.Controls.Add(mainLayout);
-        Console.SetOut(new TextBoxWriter(console));
-        CalculateWindowSize();
     }
+
+    private void PopulateTabControl(TabControl tabControl)
+    {
+        foreach (var tab in this.models.Tabs)
+        {
+            var tabPage = CreateTabPage(tab);
+            tabControl.TabPages.Add(tabPage);
+        }
+    }
+
+    private TabPage CreateTabPage(TabObject tab)
+    {
+        var tabPage = new TabPage
+        {
+            Margin = new Padding(25),
+            Text = tab.TabName,
+        };
+
+        // Compute row/column counts, prepare layout
+        var tabLayoutPanel = CreateTabLayoutPanel(tab);
+        tabPage.Controls.Add(tabLayoutPanel);
+
+        // Add forms (GroupBoxes) to the layout panel
+        foreach (var formObj in tab.Forms)
+        {
+            var groupBox = CreateFormGroupBox(formObj);
+            tabLayoutPanel.Controls.Add(groupBox);
+        }
+
+        return tabPage;
+    }
+
+    private TableLayoutPanel CreateTabLayoutPanel(TabObject tab)
+    {
+        int formsCount = tab.Forms.Count;
+        int neededRows = (int)Math.Ceiling((float)formsCount / (float)MAX_FORMS_PER_PAGE);
+        float tabSpacing = CalculateTabSpacing(formsCount);
+
+        // Ensure min/max boundaries
+        if (formsCount == 0) formsCount = 1;
+        else if (formsCount < MIN_FORMS_PER_PAGE) formsCount = MIN_FORMS_PER_PAGE;
+        else if (formsCount > MAX_FORMS_PER_PAGE) formsCount = MAX_FORMS_PER_PAGE;
+
+        var tabLayoutPanel = new TableLayoutPanel
+        {
+            Dock = DockStyle.Fill,
+            AutoSize = false,
+            ColumnCount = formsCount,
+            RowCount = neededRows,
+            Padding = new Padding(2),
+            Margin = new Padding(1)
+        };
+
+        // Column and row styles
+        for (int i = 0; i < formsCount; i++)
+            tabLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, (float)Math.Floor(tabSpacing)));
+
+        for (int i = 0; i < neededRows; i++)
+            tabLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, (float)Math.Floor((decimal)100 / (decimal)neededRows)));
+
+        return tabLayoutPanel;
+    }
+
+    private float CalculateTabSpacing(int formsCount)
+    {
+        if (formsCount <= 0) return 100; // fallback
+        return 100f / formsCount;
+    }
+
+    private CustomGroupBox CreateFormGroupBox(FormObject formObj)
+    {
+        // Distinguish between "test" scenario vs. "regular loading"
+        bool isTestMode = (formObj.FormName == null);
+
+        var groupBox = new CustomGroupBox
+        {
+            Text = isTestMode ? "Form" : formObj.FormName,
+            Dock = DockStyle.Fill,
+            Padding = new Padding(4),
+            Margin = new Padding(2),
+            Tag = formObj // Store the FormObject
+        };
+
+        // Build layout for the fields
+        TableLayoutPanel layoutPanel = isTestMode
+            ? BuildTestLayoutPanel(formObj)
+            : BuildRegularLayoutPanel(formObj);
+
+        // If "regular loading," populate with fields
+        if (!isTestMode && formObj.Fields != null)
+            PopulateFields(layoutPanel, formObj.Fields);
+
+        groupBox.Controls.Add(layoutPanel);
+
+        // Filename box + Generate button
+        var fileNameBox = CreateFileNameBox(formObj);
+        var generateButton = CreateGenerateButton();
+        groupBox.Controls.Add(fileNameBox);
+        groupBox.Controls.Add(generateButton);
+
+        return groupBox;
+    }
+
+    private TableLayoutPanel BuildTestLayoutPanel(FormObject formObj)
+    {
+        // Just for demonstration forms (FormName == null)
+        var layout = new TableLayoutPanel
+        {
+            AutoSize = true,
+            AutoScroll = true,
+            AutoSizeMode = AutoSizeMode.GrowAndShrink,
+            ColumnCount = 2,
+            Dock = DockStyle.Fill
+        };
+        layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50));
+        layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50));
+        return layout;
+    }
+
+    private TableLayoutPanel BuildRegularLayoutPanel(FormObject formObj)
+    {
+        // Attempt to locate the PDF file if needed
+        if (!File.Exists(Path.Combine(formObj.Path ?? "", formObj.FileName ?? "")))
+        {
+            Console.WriteLine(
+                $"Unable to locate file: {formObj.FileName} for form name {formObj.FormName} | Please contact software developer.");
+        }
+
+        var layout = new TableLayoutPanel
+        {
+            AutoScroll = true,
+            ColumnCount = 3,
+            Dock = DockStyle.Fill,
+            Name = "layoutPanel"
+        };
+        layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 55));
+        layout.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 35));
+        layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 45));
+        return layout;
+    }
+
+    private void PopulateFields(TableLayoutPanel layout, List<InputField> fields)
+    {
+        int row = 0;
+        foreach (var field in fields)
+        {
+            try
+            {
+                if (field.Type != "ComboBox")
+                    layout.RowStyles.Add(new RowStyle(SizeType.Absolute, 35));
+
+                var label = CreateFieldLabel(field, layout, row);
+                var control = ControlFactory.CreateControlFromJson(field);
+                SetupFieldControl(field, control);
+
+                // If there's a description, add the info label in the middle column
+                if (!string.IsNullOrEmpty(field.Description))
+                {
+                    var infoLabel = CreateInfoLabel(field.Description);
+                    layout.Controls.Add(infoLabel, 1, row);
+                }
+
+                layout.Controls.Add(label, 0, row);
+                layout.Controls.Add(control, 2, row);
+                row++;
+
+                // Special handling for "FormFiller" sub-fields
+                if (control is ComboBox combo && field.ActionType == "FormFiller" && field.SubFields != null)
+                {
+                    AddSubFieldsToggle(layout, field, ref row);
+                    AddFormFillerDataBindings(combo, field, layout);
+                    AddSubFields(layout, field, ref row);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error creating control: {ex.Message}");
+            }
+        }
+    }
+
+    private Label CreateFieldLabel(InputField field, TableLayoutPanel layout, int row)
+    {
+        var label = new Label
+        {
+            Text = field.Label,
+            AutoSize = true,
+            TextAlign = ContentAlignment.MiddleLeft,
+            Anchor = AnchorStyles.Left | AnchorStyles.Right,
+            Dock = DockStyle.Top
+        };
+        label.Click += (o, e) => new RelocatorForm(field, this.models).ShowDialog();
+
+        // Fill in default text if empty
+        if (string.IsNullOrEmpty(field.Text))
+            field.Text = debug ? field.DebugPlaceholder : field.DefaultText;
+
+        return label;
+    }
+
+    private void SetupFieldControl(InputField field, Control control)
+    {
+        control.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+        control.Dock = DockStyle.Top;
+
+        // CheckBox
+        if (control is CheckBox cb)
+        {
+            cb.Text = field.DefaultText;
+            cb.Tag = field.ActionType;
+            cb.DataBindings.Add("Checked", field, nameof(field.Checked), false, DataSourceUpdateMode.OnPropertyChanged);
+        }
+
+        // TextBox
+        if (control is TextBox tb)
+        {
+            tb.DataBindings.Add("Text", field, nameof(field.Text), false, DataSourceUpdateMode.OnPropertyChanged);
+        }
+
+        // ComboBox (Selector)
+        if (control is ComboBox comb && field.ActionType == "Selector")
+        {
+            field.SelectedItem = new ComboBoxItem { Label = "אחר", Locations = field.Locations, Text = "אחר" };
+            field.Text = field.DefaultText ?? "אחר";
+            comb.DataBindings.Add("Text", field, nameof(field.Text), false, DataSourceUpdateMode.OnPropertyChanged);
+            comb.TextChanged += (sender, args) => OnComboBoxTextChanged(field, comb);
+            comb.SelectedIndexChanged += (sender, args) => OnComboBoxSelectedIndexChanged(field, comb);
+        }
+    }
+
+    private Label CreateInfoLabel(string description)
+    {
+        var infoLabel = new Label
+        {
+            Text = "\u2139",
+            Font = new Font("Arial", 12),
+            ForeColor = System.Drawing.Color.Blue,
+            AutoSize = true,
+            Dock = DockStyle.Left,
+            Cursor = Cursors.Hand,
+            Tag = description
+        };
+        infoLabel.Click += (o, e) =>
+        {
+            if (o is Control c)
+            {
+                MessageBox.Show(c.Tag?.ToString(), "מידע על שדה", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        };
+        return infoLabel;
+    }
+
+    private void OnComboBoxTextChanged(InputField field, ComboBox comb)
+    {
+        if (!string.IsNullOrEmpty(comb.Text) && comb.SelectedIndex == -1)
+        {
+            var tempItem = new ComboBoxItem
+            {
+                Label = comb.Text,
+                Text = comb.Text,
+                Locations = field.Locations
+            };
+            field.SelectedItem = tempItem;
+            field.Text = comb.Text;
+        }
+    }
+
+    private void OnComboBoxSelectedIndexChanged(InputField field, ComboBox comb)
+    {
+        if (comb.SelectedItem is ComboBoxItem selectedItem)
+        {
+            field.SelectedItem = selectedItem;
+            field.Text = selectedItem.Text;
+        }
+    }
+
+    private void AddSubFieldsToggle(TableLayoutPanel layout, InputField field, ref int row)
+    {
+        // Add the toggle button in the middle column (same row as the ComboBox)
+        var toggleView = new Label
+        {
+            Text = "\u2193",
+            Font = new Font("Arial", 12),
+            ForeColor = System.Drawing.Color.Blue,
+            Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top,
+            Height = 28,
+            Cursor = Cursors.Hand,
+            BorderStyle = BorderStyle.Fixed3D
+        };
+        // Place the toggle label in column=1, row = combo's row-1
+        layout.Controls.Add(toggleView, 1, row - 1);
+        toggleView.Click += (o, e) => ToggleSubFieldsVisibility(field, layout, toggleView);
+    }
+
+    private void ToggleSubFieldsVisibility(InputField field, TableLayoutPanel layout, Label toggleView)
+    {
+        foreach (Control element in layout.Controls)
+        {
+            if (element.Tag is object[] arr && arr[0] == field)
+            {
+                element.Visible = !element.Visible;
+                toggleView.Text = element.Visible ? "\u2191" : "\u2193";
+            }
+        }
+    }
+
+    private void AddFormFillerDataBindings(ComboBox combo, InputField field, TableLayoutPanel layout)
+    {
+        // Load data from Personnel/Clients
+        if (field.Bank == "Personnel")
+        {
+            combo.Items.AddRange(this.personnel.PersonList.ToArray());
+        }
+        else if (field.Bank == "Clients")
+        {
+            combo.Items.AddRange(this.clients.Clients.ToArray());
+        }
+
+        combo.SelectedIndexChanged += (sender, args) =>
+        {
+            if (combo.SelectedIndex > -1)
+                FillFormWithSelectedItem(field, combo, layout);
+        };
+    }
+
+    private void FillFormWithSelectedItem(InputField field, ComboBox combo, TableLayoutPanel layout)
+    {
+        foreach (Control element in layout.Controls)
+        {
+            if (element.Tag is object[] arr && arr[0] == field)
+            {
+                // Re-populate text boxes with the selected Person/Client data
+                if (element is TextBox tt && arr[1] != null)
+                {
+                    bool originalVisibility = tt.Visible;
+                    tt.Visible = true;
+
+                    Person.DataType featureType = (Person.DataType)Enum.Parse(typeof(Person.DataType), arr[1].ToString());
+                    if (combo.SelectedItem is Person p)
+                        AssignPersonData(featureType, tt, p);
+                    else if (combo.SelectedItem is Client c)
+                        AssignClientData(featureType, tt, c);
+
+                    tt.DataBindings["Text"].WriteValue();
+                    tt.Visible = false;
+                    tt.Visible = originalVisibility;
+                }
+                else if (element is Label lbl)
+                {
+                    bool originalVisibility = lbl.Visible;
+                    lbl.Visible = true;
+                    lbl.Visible = false;
+                    lbl.Visible = originalVisibility;
+                }
+            }
+        }
+    }
+
+    private void AssignPersonData(Person.DataType featureType, TextBox tt, Person person)
+    {
+        switch (featureType)
+        {
+            case Person.DataType.Name: tt.Text = person.Name; break;
+            case Person.DataType.ID: tt.Text = person.ID; break;
+            case Person.DataType.Phone: tt.Text = person.Phone; break;
+            case Person.DataType.LicenseType: tt.Text = person.LicenseType; break;
+            case Person.DataType.LicenseNumber: tt.Text = person.LicenseNumber; break;
+        }
+    }
+
+    private void AssignClientData(Person.DataType featureType, TextBox tt, Client client)
+    {
+        switch (featureType)
+        {
+            case Person.DataType.Name: tt.Text = client.Name; break;
+            case Person.DataType.ID: tt.Text = client.ID; break;
+            case Person.DataType.HetPei: tt.Text = client.HetPei; break;
+            case Person.DataType.EmailAddress: tt.Text = client.EmailAddress; break;
+            case Person.DataType.Phone: tt.Text = client.Phone; break;
+        }
+    }
+
+    private void AddSubFields(TableLayoutPanel layout, InputField field, ref int row)
+    {
+        int subFieldsCount = field.SubFields.Count;
+        int counter = 0;
+        foreach (var subField in field.SubFields)
+        {
+            // Row style
+            if (subFieldsCount - counter > 1)
+                layout.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+            else
+                layout.RowStyles.Add(new RowStyle(SizeType.Absolute, 35));
+
+            var subLabel = CreateSubFieldLabel(subField, field);
+            var subControl = CreateSubFieldControl(subField, field);
+
+            layout.Controls.Add(subLabel, 0, row);
+            layout.Controls.Add(subControl, 2, row);
+            row++;
+            counter++;
+        }
+    }
+
+    private Label CreateSubFieldLabel(InputField subField, InputField parentField)
+    {
+        var subLabel = new Label
+        {
+            Text = subField.Label,
+            AutoSize = true,
+            TextAlign = ContentAlignment.MiddleLeft,
+            Anchor = AnchorStyles.Left | AnchorStyles.Right,
+            Dock = DockStyle.Top,
+            Tag = new object[] { parentField, null },
+            Visible = false
+        };
+        subLabel.Click += (o, e) => new RelocatorForm(subField, this.models).ShowDialog();
+        if (string.IsNullOrEmpty(subField.Text))
+            subField.Text = debug ? subField.DebugPlaceholder : subField.DefaultText;
+        return subLabel;
+    }
+
+    private Control CreateSubFieldControl(InputField subField, InputField parentField)
+    {
+        Control subControl = ControlFactory.CreateControlFromJson(subField);
+        subControl.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+        subControl.Dock = DockStyle.Top;
+        subControl.Tag = new object[] { parentField, subField.DataType };
+        subControl.Visible = false;
+
+        if (subControl is CheckBox subCB)
+        {
+            subCB.Tag = subField.ActionType;
+            subCB.DataBindings.Add("Checked", subField, nameof(subField.Checked), false, DataSourceUpdateMode.OnPropertyChanged);
+        }
+        else if (subControl is TextBox subTB)
+        {
+            subTB.DataBindings.Add("Text", subField, nameof(subField.Text), false, DataSourceUpdateMode.OnPropertyChanged);
+        }
+        return subControl;
+    }
+
+    private TableLayoutPanel CreateFileNameBox(FormObject formObj)
+    {
+        var fileNameBox = new TableLayoutPanel
+        {
+            AutoSize = true,
+            AutoSizeMode = AutoSizeMode.GrowAndShrink,
+            ColumnCount = 2,
+            RowCount = 1,
+            Dock = DockStyle.Bottom,
+            Name = "filenameLayout"
+        };
+        fileNameBox.RowStyles.Add(new RowStyle(SizeType.Percent, 100));
+        fileNameBox.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50));
+        fileNameBox.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50));
+
+        var fileNameLabel = new Label
+        {
+            Text = "שם קובץ:",
+            AutoSize = true,
+            TextAlign = ContentAlignment.MiddleCenter,
+            Anchor = AnchorStyles.Left,
+            Dock = DockStyle.Fill,
+            Margin = new Padding(0, 0, 0, 4)
+        };
+
+        var fileNameTextBox = new TextBox
+        {
+            Anchor = AnchorStyles.Left | AnchorStyles.Right,
+            Margin = new Padding(0, 0, 0, 4),
+            Name = "fileNameTextBox",
+            Dock = DockStyle.Bottom,
+            Tag = "FileName",
+            Text = formObj.FormName?.Replace(" ", "_") + "_"
+        };
+        fileNameTextBox.KeyPress += (s, e) =>
+        {
+            char[] invalidChars = { '<', '>', ':', '"', '/', '\\', '|', '?', '*' };
+            if (Array.Exists(invalidChars, c => c == e.KeyChar) ||
+                (char.IsControl(e.KeyChar) && e.KeyChar != '\b'))
+            {
+                e.Handled = true; // block invalid chars
+            }
+        };
+
+        // Debug placeholder
+        if (this.debug)
+            fileNameTextBox.Text = "aOut_" + formObj.FileName;
+
+        fileNameBox.Controls.Add(fileNameLabel, 0, 0);
+        fileNameBox.Controls.Add(fileNameTextBox, 1, 0);
+
+        return fileNameBox;
+    }
+
+    private Button CreateGenerateButton()
+    {
+        var generateButton = new Button
+        {
+            Text = "הפק טופס",
+            AutoSize = true,
+            AutoSizeMode = AutoSizeMode.GrowAndShrink,
+            Dock = DockStyle.Bottom
+        };
+        generateButton.Click += GenerateButton_Click;
+        return generateButton;
+    }
+
 
     public void GenerateButton_Click(object sender, EventArgs e)
     {
@@ -603,7 +667,8 @@ public partial class Main : System.Windows.Forms.Form
         }
         bool standard = true;
 
-        if (File.Exists(Path.Combine(this.globalSettings.SavePath, newFilename)) && !this.debug) {
+        if (File.Exists(Path.Combine(this.globalSettings.SavePath, newFilename)) && !this.debug)
+        {
             DialogResult dr = MessageBox.Show($"קובץ בשם {newFilename} כבר קיים בתיקיית השמירה. האם ברצונך לדרוס קובץ זה?", "אזהרה", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
             if (dr == DialogResult.Cancel) { return; }
         }
