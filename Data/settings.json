@@ -1,6 +1,6 @@
 {
   "SavePath": "C:\\Users\\shaha\\Documents\\tests",
   "InputPath": "input\\",
-  "Debug": true,
+  "Debug": false,
   "LaunchFileAtGeneration": true
 }

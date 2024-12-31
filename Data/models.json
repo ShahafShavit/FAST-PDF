@@ -2625,32 +2625,6 @@
               ]
             },
             {
-              "Type": "TextBox",
-              "ActionType": "",
-              "Bank": null,
-              "Name": "hb_BLTH_ManufacturerName",
-              "Label": "שם יצרן",
-              "DebugPlaceholder": "",
-              "DefaultText": "ABB",
-              "Description": "",
-              "DataType": 0,
-              "SubFields": null,
-              "Items": null,
-              "Font": "Arial",
-              "Size": 10,
-              "ResizeFunctionUse": true,
-              "Locations": [
-                {
-                  "Page": 1,
-                  "X": 480.0,
-                  "Y": 654.0,
-                  "Width": null,
-                  "Height": null,
-                  "Type": null
-                }
-              ]
-            },
-            {
               "Type": "ComboBox",
               "ActionType": "Selector",
               "Bank": null,
@@ -2699,6 +2673,32 @@
                   "Page": 1,
                   "X": 270.0,
                   "Y": 710.0,
+                  "Width": null,
+                  "Height": null,
+                  "Type": null
+                }
+              ]
+            },
+            {
+              "Type": "TextBox",
+              "ActionType": "",
+              "Bank": null,
+              "Name": "hb_BLTH_ManufacturerName",
+              "Label": "שם יצרן",
+              "DebugPlaceholder": "",
+              "DefaultText": "ABB",
+              "Description": "",
+              "DataType": 0,
+              "SubFields": null,
+              "Items": null,
+              "Font": "Arial",
+              "Size": 10,
+              "ResizeFunctionUse": true,
+              "Locations": [
+                {
+                  "Page": 1,
+                  "X": 480.0,
+                  "Y": 654.0,
                   "Width": null,
                   "Height": null,
                   "Type": null
@@ -3163,7 +3163,358 @@
           "FileName": "iia_PH.pdf",
           "Path": "iia_PH.pdf",
           "Checksum": null,
-          "Fields": null
+          "Fields": [
+            {
+              "Type": "TextBox",
+              "ActionType": "",
+              "Bank": null,
+              "Name": "iia_PH_OwnerName",
+              "Label": "שם בעלים/צרכן רשום",
+              "DebugPlaceholder": "שם בעלים כלשהו",
+              "DefaultText": "",
+              "Description": "",
+              "DataType": 0,
+              "SubFields": null,
+              "Items": null,
+              "Font": "Arial",
+              "Size": 10,
+              "ResizeFunctionUse": true,
+              "Locations": [
+                {
+                  "Page": 1,
+                  "X": 480.0,
+                  "Y": 526.0,
+                  "Width": null,
+                  "Height": null,
+                  "Type": null
+                },
+                {
+                  "Page": 2,
+                  "X": 480.0,
+                  "Y": 490.0,
+                  "Width": null,
+                  "Height": null,
+                  "Type": null
+                }
+              ]
+            },
+            {
+              "Type": "TextBox",
+              "ActionType": "",
+              "Bank": null,
+              "Name": "iia_PH_OwnerHetPei",
+              "Label": "ת.ז /ח.פ בעלים/צרכן רשום",
+              "DebugPlaceholder": "2071515151",
+              "DefaultText": "",
+              "Description": "",
+              "DataType": 0,
+              "SubFields": null,
+              "Items": null,
+              "Font": "Arial",
+              "Size": 10,
+              "ResizeFunctionUse": true,
+              "Locations": [
+                {
+                  "Page": 1,
+                  "X": 330.0,
+                  "Y": 526.0,
+                  "Width": null,
+                  "Height": null,
+                  "Type": null
+                },
+                {
+                  "Page": 2,
+                  "X": 330.0,
+                  "Y": 490.0,
+                  "Width": null,
+                  "Height": null,
+                  "Type": null
+                }
+              ]
+            },
+            {
+              "Type": "TextBox",
+              "ActionType": "",
+              "Bank": null,
+              "Name": "iia_PH_OwnerAddress",
+              "Label": "כתובת בעלים/צרכן רשום",
+              "DebugPlaceholder": "כתובת כלשהי 25, עיר",
+              "DefaultText": "",
+              "Description": "",
+              "DataType": 0,
+              "SubFields": null,
+              "Items": null,
+              "Font": "Arial",
+              "Size": 10,
+              "ResizeFunctionUse": true,
+              "Locations": [
+                {
+                  "Page": 1,
+                  "X": 210.0,
+                  "Y": 526.0,
+                  "Width": null,
+                  "Height": null,
+                  "Type": null
+                },
+                {
+                  "Page": 2,
+                  "X": 210.0,
+                  "Y": 490.0,
+                  "Width": null,
+                  "Height": null,
+                  "Type": null
+                }
+              ]
+            },
+            {
+              "Type": "TextBox",
+              "ActionType": "",
+              "Bank": null,
+              "Name": "iia_PH_ConnectionAddress",
+              "Label": "כתובת חיבור",
+              "DebugPlaceholder": "כתובת חיבור כלשהי 25, עיר",
+              "DefaultText": "",
+              "Description": "",
+              "DataType": 0,
+              "SubFields": null,
+              "Items": null,
+              "Font": "Arial",
+              "Size": 10,
+              "ResizeFunctionUse": true,
+              "Locations": [
+                {
+                  "Page": 1,
+                  "X": 290.0,
+                  "Y": 513.0,
+                  "Width": null,
+                  "Height": null,
+                  "Type": null
+                }
+              ]
+            },
+            {
+              "Type": "TextBox",
+              "ActionType": "",
+              "Bank": null,
+              "Name": "iia_PH_Gush",
+              "Label": "גוש",
+              "DebugPlaceholder": "גוש כלשהו",
+              "DefaultText": "",
+              "Description": "",
+              "DataType": 0,
+              "SubFields": null,
+              "Items": null,
+              "Font": "Arial",
+              "Size": 10,
+              "ResizeFunctionUse": true,
+              "Locations": [
+                {
+                  "Page": 1,
+                  "X": 490.0,
+                  "Y": 499.0,
+                  "Width": null,
+                  "Height": null,
+                  "Type": null
+                },
+                {
+                  "Page": 2,
+                  "X": 300.0,
+                  "Y": 478.0,
+                  "Width": null,
+                  "Height": null,
+                  "Type": null
+                }
+              ]
+            },
+            {
+              "Type": "TextBox",
+              "ActionType": "",
+              "Bank": null,
+              "Name": "iia_PH_Helka",
+              "Label": "חלקה",
+              "DebugPlaceholder": "חלקה כלשהי",
+              "DefaultText": "",
+              "Description": "",
+              "DataType": 0,
+              "SubFields": null,
+              "Items": null,
+              "Font": "Arial",
+              "Size": 10,
+              "ResizeFunctionUse": true,
+              "Locations": [
+                {
+                  "Page": 1,
+                  "X": 380.0,
+                  "Y": 499.0,
+                  "Width": null,
+                  "Height": null,
+                  "Type": null
+                },
+                {
+                  "Page": 2,
+                  "X": 480.0,
+                  "Y": 465.0,
+                  "Width": null,
+                  "Height": null,
+                  "Type": null
+                }
+              ]
+            },
+            {
+              "Type": "TextBox",
+              "ActionType": "",
+              "Bank": null,
+              "Name": "iia_PH_ContractNum",
+              "Label": "מספר חוזה",
+              "DebugPlaceholder": "131313",
+              "DefaultText": "",
+              "Description": "",
+              "DataType": 0,
+              "SubFields": null,
+              "Items": null,
+              "Font": "Arial",
+              "Size": 10,
+              "ResizeFunctionUse": true,
+              "Locations": [
+                {
+                  "Page": 1,
+                  "X": 490.0,
+                  "Y": 475.0,
+                  "Width": null,
+                  "Height": null,
+                  "Type": null
+                },
+                {
+                  "Page": 2,
+                  "X": 490.0,
+                  "Y": 441.0,
+                  "Width": null,
+                  "Height": null,
+                  "Type": null
+                }
+              ]
+            },
+            {
+              "Type": "TextBox",
+              "ActionType": "",
+              "Bank": null,
+              "Name": "iia_PH_CounterNumber",
+              "Label": "מספר מונה",
+              "DebugPlaceholder": "555555",
+              "DefaultText": "",
+              "Description": "",
+              "DataType": 0,
+              "SubFields": null,
+              "Items": null,
+              "Font": "Arial",
+              "Size": 10,
+              "ResizeFunctionUse": true,
+              "Locations": [
+                {
+                  "Page": 1,
+                  "X": 370.0,
+                  "Y": 475.0,
+                  "Width": null,
+                  "Height": null,
+                  "Type": null
+                },
+                {
+                  "Page": 2,
+                  "X": 370.0,
+                  "Y": 441.0,
+                  "Width": null,
+                  "Height": null,
+                  "Type": null
+                }
+              ]
+            },
+            {
+              "Type": "TextBox",
+              "ActionType": "",
+              "Bank": null,
+              "Name": "iia_PH_NamedContract",
+              "Label": "חוזה על שם",
+              "DebugPlaceholder": "שם כלשהו",
+              "DefaultText": "",
+              "Description": "",
+              "DataType": 0,
+              "SubFields": null,
+              "Items": null,
+              "Font": "Arial",
+              "Size": 10,
+              "ResizeFunctionUse": true,
+              "Locations": [
+                {
+                  "Page": 1,
+                  "X": 240.0,
+                  "Y": 475.0,
+                  "Width": null,
+                  "Height": null,
+                  "Type": null
+                },
+                {
+                  "Page": 2,
+                  "X": 240.0,
+                  "Y": 441.0,
+                  "Width": null,
+                  "Height": null,
+                  "Type": null
+                }
+              ]
+            },
+            {
+              "Type": "TextBox",
+              "ActionType": "",
+              "Bank": null,
+              "Name": "iia_PH_OrdererName",
+              "Label": "שם מזמין",
+              "DebugPlaceholder": "שם מזמין כלשהו",
+              "DefaultText": "",
+              "Description": "",
+              "DataType": 0,
+              "SubFields": null,
+              "Items": null,
+              "Font": "Arial",
+              "Size": 10,
+              "ResizeFunctionUse": true,
+              "Locations": [
+                {
+                  "Page": 2,
+                  "X": 148.0,
+                  "Y": 429.0,
+                  "Width": null,
+                  "Height": null,
+                  "Type": null
+                }
+              ]
+            },
+            {
+              "Type": "TextBox",
+              "ActionType": "",
+              "Bank": null,
+              "Name": "iia_PH_TazHetPeiMazmin",
+              "Label": "ת.ז/ח.פ מזמין",
+              "DebugPlaceholder": "123456712",
+              "DefaultText": "",
+              "Description": "",
+              "DataType": 0,
+              "SubFields": null,
+              "Items": null,
+              "Font": "Arial",
+              "Size": 10,
+              "ResizeFunctionUse": true,
+              "Locations": [
+                {
+                  "Page": 2,
+                  "X": 490.0,
+                  "Y": 417.0,
+                  "Width": null,
+                  "Height": null,
+                  "Type": null
+                }
+              ]
+            }
+          ]
         },
         {
           "Order": 1,
@@ -3171,7 +3522,366 @@
           "FileName": "iia_HH.pdf",
           "Path": "iia_HH.pdf",
           "Checksum": null,
-          "Fields": null
+          "Fields": [
+            {
+              "Type": "TextBox",
+              "ActionType": "",
+              "Bank": null,
+              "Name": "iia_HH_OwnerName",
+              "Label": "שם בעלים/צרכן רשום",
+              "DebugPlaceholder": "שם בעלים כלשהו",
+              "DefaultText": "",
+              "Description": "",
+              "DataType": 0,
+              "SubFields": null,
+              "Items": null,
+              "Font": "Arial",
+              "Size": 10,
+              "ResizeFunctionUse": true,
+              "Locations": [
+                {
+                  "Page": 1,
+                  "X": 480.0,
+                  "Y": 595.0,
+                  "Width": null,
+                  "Height": null,
+                  "Type": null
+                },
+                {
+                  "Page": 2,
+                  "X": 480.0,
+                  "Y": 557.0,
+                  "Width": null,
+                  "Height": null,
+                  "Type": null
+                }
+              ]
+            },
+            {
+              "Type": "TextBox",
+              "ActionType": "",
+              "Bank": null,
+              "Name": "iia_HH_OwnerHetPei",
+              "Label": "ת.ז /ח.פ בעלים/צרכן רשום",
+              "DebugPlaceholder": "2071515151",
+              "DefaultText": "",
+              "Description": "",
+              "DataType": 0,
+              "SubFields": null,
+              "Items": null,
+              "Font": "Arial",
+              "Size": 10,
+              "ResizeFunctionUse": true,
+              "Locations": [
+                {
+                  "Page": 1,
+                  "X": 330.0,
+                  "Y": 596.0,
+                  "Width": null,
+                  "Height": null,
+                  "Type": null
+                },
+                {
+                  "Page": 2,
+                  "X": 330.0,
+                  "Y": 557.0,
+                  "Width": null,
+                  "Height": null,
+                  "Type": null
+                }
+              ]
+            },
+            {
+              "Type": "TextBox",
+              "ActionType": "",
+              "Bank": null,
+              "Name": "iia_HH_OwnerAddress",
+              "Label": "כתובת בעלים/צרכן רשום",
+              "DebugPlaceholder": "כתובת כלשהי 25, עיר",
+              "DefaultText": "",
+              "Description": "",
+              "DataType": 0,
+              "SubFields": null,
+              "Items": null,
+              "Font": "Arial",
+              "Size": 10,
+              "ResizeFunctionUse": true,
+              "Locations": [
+                {
+                  "Page": 1,
+                  "X": 210.0,
+                  "Y": 596.0,
+                  "Width": null,
+                  "Height": null,
+                  "Type": null
+                },
+                {
+                  "Page": 2,
+                  "X": 470.0,
+                  "Y": 540.0,
+                  "Width": null,
+                  "Height": null,
+                  "Type": null
+                }
+              ]
+            },
+            {
+              "Type": "TextBox",
+              "ActionType": "",
+              "Bank": null,
+              "Name": "iia_HH_ConnectionAddress",
+              "Label": "כתובת חיבור",
+              "DebugPlaceholder": "כתובת חיבור כלשהי 25, עיר",
+              "DefaultText": "",
+              "Description": "",
+              "DataType": 0,
+              "SubFields": null,
+              "Items": null,
+              "Font": "Arial",
+              "Size": 10,
+              "ResizeFunctionUse": true,
+              "Locations": [
+                {
+                  "Page": 1,
+                  "X": 306.0,
+                  "Y": 579.0,
+                  "Width": null,
+                  "Height": null,
+                  "Type": null
+                },
+                {
+                  "Page": 2,
+                  "X": 500.0,
+                  "Y": 503.0,
+                  "Width": null,
+                  "Height": null,
+                  "Type": null
+                }
+              ]
+            },
+            {
+              "Type": "TextBox",
+              "ActionType": "",
+              "Bank": null,
+              "Name": "iia_HH_Gush",
+              "Label": "גוש",
+              "DebugPlaceholder": "גוש כלשהו",
+              "DefaultText": "",
+              "Description": "",
+              "DataType": 0,
+              "SubFields": null,
+              "Items": null,
+              "Font": "Arial",
+              "Size": 10,
+              "ResizeFunctionUse": true,
+              "Locations": [
+                {
+                  "Page": 1,
+                  "X": 490.0,
+                  "Y": 560.0,
+                  "Width": null,
+                  "Height": null,
+                  "Type": null
+                },
+                {
+                  "Page": 2,
+                  "X": 500.0,
+                  "Y": 520.0,
+                  "Width": null,
+                  "Height": null,
+                  "Type": null
+                }
+              ]
+            },
+            {
+              "Type": "TextBox",
+              "ActionType": "",
+              "Bank": null,
+              "Name": "iia_HH_Helka",
+              "Label": "חלקה",
+              "DebugPlaceholder": "חלקה כלשהי",
+              "DefaultText": "",
+              "Description": "",
+              "DataType": 0,
+              "SubFields": null,
+              "Items": null,
+              "Font": "Arial",
+              "Size": 10,
+              "ResizeFunctionUse": true,
+              "Locations": [
+                {
+                  "Page": 1,
+                  "X": 380.0,
+                  "Y": 560.0,
+                  "Width": null,
+                  "Height": null,
+                  "Type": null
+                },
+                {
+                  "Page": 2,
+                  "X": 390.0,
+                  "Y": 520.0,
+                  "Width": null,
+                  "Height": null,
+                  "Type": null
+                }
+              ]
+            },
+            {
+              "Type": "TextBox",
+              "ActionType": "",
+              "Bank": null,
+              "Name": "iia_HH_ContractNum",
+              "Label": "מספר חוזה",
+              "DebugPlaceholder": "131313",
+              "DefaultText": "",
+              "Description": "",
+              "DataType": 0,
+              "SubFields": null,
+              "Items": null,
+              "Font": "Arial",
+              "Size": 10,
+              "ResizeFunctionUse": true,
+              "Locations": [
+                {
+                  "Page": 1,
+                  "X": 490.0,
+                  "Y": 525.0,
+                  "Width": null,
+                  "Height": null,
+                  "Type": null
+                },
+                {
+                  "Page": 2,
+                  "X": 490.0,
+                  "Y": 467.0,
+                  "Width": null,
+                  "Height": null,
+                  "Type": null
+                }
+              ]
+            },
+            {
+              "Type": "TextBox",
+              "ActionType": "",
+              "Bank": null,
+              "Name": "iia_HH_CounterNumber",
+              "Label": "מספר מונה",
+              "DebugPlaceholder": "555555",
+              "DefaultText": "",
+              "Description": "",
+              "DataType": 0,
+              "SubFields": null,
+              "Items": null,
+              "Font": "Arial",
+              "Size": 10,
+              "ResizeFunctionUse": true,
+              "Locations": [
+                {
+                  "Page": 1,
+                  "X": 370.0,
+                  "Y": 525.0,
+                  "Width": null,
+                  "Height": null,
+                  "Type": null
+                },
+                {
+                  "Page": 2,
+                  "X": 370.0,
+                  "Y": 467.0,
+                  "Width": null,
+                  "Height": null,
+                  "Type": null
+                }
+              ]
+            },
+            {
+              "Type": "TextBox",
+              "ActionType": "",
+              "Bank": null,
+              "Name": "iia_HH_NamedContract",
+              "Label": "חוזה על שם",
+              "DebugPlaceholder": "שם כלשהו",
+              "DefaultText": "",
+              "Description": "",
+              "DataType": 0,
+              "SubFields": null,
+              "Items": null,
+              "Font": "Arial",
+              "Size": 10,
+              "ResizeFunctionUse": true,
+              "Locations": [
+                {
+                  "Page": 1,
+                  "X": 240.0,
+                  "Y": 525.0,
+                  "Width": null,
+                  "Height": null,
+                  "Type": null
+                },
+                {
+                  "Page": 2,
+                  "X": 230.0,
+                  "Y": 467.0,
+                  "Width": null,
+                  "Height": null,
+                  "Type": null
+                }
+              ]
+            },
+            {
+              "Type": "TextBox",
+              "ActionType": "",
+              "Bank": null,
+              "Name": "iia_HH_OrdererName",
+              "Label": "שם מזמין",
+              "DebugPlaceholder": "שם מזמין כלשהו",
+              "DefaultText": "",
+              "Description": "",
+              "DataType": 0,
+              "SubFields": null,
+              "Items": null,
+              "Font": "Arial",
+              "Size": 10,
+              "ResizeFunctionUse": true,
+              "Locations": [
+                {
+                  "Page": 2,
+                  "X": 512.0,
+                  "Y": 412.0,
+                  "Width": null,
+                  "Height": null,
+                  "Type": null
+                }
+              ]
+            },
+            {
+              "Type": "TextBox",
+              "ActionType": "",
+              "Bank": null,
+              "Name": "iia_HH_TazHetPeiMazmin",
+              "Label": "ת.ז/ח.פ מזמין",
+              "DebugPlaceholder": "123456712",
+              "DefaultText": "",
+              "Description": "",
+              "DataType": 0,
+              "SubFields": null,
+              "Items": null,
+              "Font": "Arial",
+              "Size": 10,
+              "ResizeFunctionUse": true,
+              "Locations": [
+                {
+                  "Page": 2,
+                  "X": 380.0,
+                  "Y": 412.0,
+                  "Width": null,
+                  "Height": null,
+                  "Type": null
+                }
+              ]
+            }
+          ]
         }
       ]
     },
@@ -3343,51 +4053,54 @@
               ]
             },
             {
-              "Type": "TextBox",
-              "ActionType": null,
+              "Type": "ComboBox",
+              "ActionType": "Selector",
               "Bank": null,
-              "Name": "g_NC_IncomingClientPhone",
-              "Label": "טלפון לקוח נכנס",
-              "DebugPlaceholder": "0503451234",
+              "Name": "g_NC_LocationPurposeComboBox",
+              "Label": "ייעוד המקום",
+              "DebugPlaceholder": "",
               "DefaultText": "",
               "Description": "",
               "DataType": 0,
               "SubFields": null,
-              "Items": null,
-              "Font": "Arial",
-              "Size": 10,
-              "ResizeFunctionUse": true,
-              "Locations": [
+              "Items": [
                 {
-                  "Page": 1,
-                  "X": 460.0,
-                  "Y": 426.0,
-                  "Width": null,
-                  "Height": null,
-                  "Type": null
+                  "Label": "מגורים",
+                  "Text": "",
+                  "Locations": [
+                    {
+                      "Page": 1,
+                      "X": 447.0,
+                      "Y": 367.0,
+                      "Width": 35,
+                      "Height": 15,
+                      "Type": 0
+                    }
+                  ]
+                },
+                {
+                  "Label": "עסקי",
+                  "Text": "",
+                  "Locations": [
+                    {
+                      "Page": 1,
+                      "X": 412.0,
+                      "Y": 367.0,
+                      "Width": 32,
+                      "Height": 15,
+                      "Type": 0
+                    }
+                  ]
                 }
-              ]
-            },
-            {
-              "Type": "TextBox",
-              "ActionType": null,
-              "Bank": null,
-              "Name": "g_NC_IncomingClientAddress",
-              "Label": "כתובת לקוח נכנס למשלוח חשבונות",
-              "DebugPlaceholder": "כתובת כלשהי, כתובת",
-              "DefaultText": "",
-              "Description": "",
-              "DataType": 0,
-              "SubFields": null,
-              "Items": null,
+              ],
               "Font": "Arial",
               "Size": 10,
-              "ResizeFunctionUse": true,
+              "ResizeFunctionUse": false,
               "Locations": [
                 {
                   "Page": 1,
-                  "X": 397.0,
-                  "Y": 404.0,
+                  "X": 196.0,
+                  "Y": 646.0,
                   "Width": null,
                   "Height": null,
                   "Type": null
@@ -3440,32 +4153,6 @@
                   "Page": 1,
                   "X": 247.0,
                   "Y": 348.0,
-                  "Width": null,
-                  "Height": null,
-                  "Type": null
-                }
-              ]
-            },
-            {
-              "Type": "TextBox",
-              "ActionType": null,
-              "Bank": null,
-              "Name": "g_NC_OutgoingClientAddress",
-              "Label": "כתובת לקוח יוצא לחשבון סופי",
-              "DebugPlaceholder": "כתובת כלשהי, כתובת",
-              "DefaultText": "",
-              "Description": "",
-              "DataType": 0,
-              "SubFields": null,
-              "Items": null,
-              "Font": "Arial",
-              "Size": 10,
-              "ResizeFunctionUse": true,
-              "Locations": [
-                {
-                  "Page": 1,
-                  "X": 318.0,
-                  "Y": 316.0,
                   "Width": null,
                   "Height": null,
                   "Type": null
