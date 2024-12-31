@@ -164,7 +164,12 @@ public class FormObject
     {
         foreach (var loc in locations)
         {
-            var page = pdf.GetPage(loc.Page);
+            PdfPage page;
+            try
+            {
+                page = pdf.GetPage(loc.Page);
+            }
+            catch { Console.WriteLine($"Invalid Page selected for InputField text {text}"); return; }
             var canvas = new iText.Kernel.Pdf.Canvas.PdfCanvas(page);
 
             if (loc.Width.HasValue && loc.Height.HasValue)
