@@ -56,9 +56,6 @@ Icon: Flaticon.com. This icon has been designed using resources from Flaticon.co
     <Content Include="Data\clients.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Data\config_dead.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="Data\icon.ico" />
     <Content Include="Data\personnel.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

@@ -2,6 +2,7 @@ using iText.Kernel.Colors;
 using iText.Kernel.Utils.Objectpathitems;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
+using System.Windows.Forms;
 /*
 #pragma warning disable CS8602
 #pragma warning disable CS8618
@@ -200,7 +201,7 @@ public partial class Main : System.Windows.Forms.Form
             Dock = DockStyle.Fill,
             Padding = new Padding(4),
             Margin = new Padding(2),
-            Tag = formObj // Store the FormObject
+            Tag = formObj, // Store the FormObject
         };
 
         // Build layout for the fields
@@ -253,8 +254,13 @@ public partial class Main : System.Windows.Forms.Form
             AutoScroll = true,
             ColumnCount = 3,
             Dock = DockStyle.Fill,
-            Name = "layoutPanel"
+            Name = "layoutPanel",
+            Padding = new Padding(10, 0, 0, 0)
+            //CellBorderStyle = TableLayoutPanelCellBorderStyle.Single,
+            //AutoScrollMargin = new Size(10, 20)
         };
+        // Enable auto-scrolling for the TableLayoutPanel
+        
         layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 55));
         layout.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 35));
         layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 45));
@@ -268,8 +274,8 @@ public partial class Main : System.Windows.Forms.Form
         {
             try
             {
-                if (field.Type != "ComboBox")
-                    layout.RowStyles.Add(new RowStyle(SizeType.Absolute, 35));
+                //if (field.Type != "ComboBox")
+                layout.RowStyles.Add(new RowStyle(SizeType.Absolute, 35));
 
                 var label = CreateFieldLabel(field, layout, row);
                 var control = ControlFactory.CreateControlFromJson(field);
@@ -284,8 +290,8 @@ public partial class Main : System.Windows.Forms.Form
 
                 layout.Controls.Add(label, 0, row);
                 layout.Controls.Add(control, 2, row);
-                row++;
 
+                
                 // Special handling for "FormFiller" sub-fields
                 if (control is ComboBox combo && field.ActionType == "FormFiller" && field.SubFields != null)
                 {
@@ -293,6 +299,8 @@ public partial class Main : System.Windows.Forms.Form
                     AddFormFillerDataBindings(combo, field, layout);
                     AddSubFields(layout, field, ref row);
                 }
+                row++;
+
             }
             catch (Exception ex)
             {
@@ -308,8 +316,7 @@ public partial class Main : System.Windows.Forms.Form
             Text = field.Label,
             AutoSize = true,
             TextAlign = ContentAlignment.MiddleLeft,
-            Anchor = AnchorStyles.Left | AnchorStyles.Right,
-            Dock = DockStyle.Top
+            Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top,
         };
         label.Click += (o, e) => new RelocatorForm(field, this.models).ShowDialog();
 
@@ -322,9 +329,7 @@ public partial class Main : System.Windows.Forms.Form
 
     private void SetupFieldControl(InputField field, Control control)
     {
-        control.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-        control.Dock = DockStyle.Top;
-
+        control.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top;
         // CheckBox
         if (control is CheckBox cb)
         {
@@ -407,15 +412,16 @@ public partial class Main : System.Windows.Forms.Form
             Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top,
             Height = 28,
             Cursor = Cursors.Hand,
-            BorderStyle = BorderStyle.Fixed3D
+            //BorderStyle = BorderStyle.Fixed3D
         };
         // Place the toggle label in column=1, row = combo's row-1
-        layout.Controls.Add(toggleView, 1, row - 1);
+        layout.Controls.Add(toggleView, 1, row);
         toggleView.Click += (o, e) => ToggleSubFieldsVisibility(field, layout, toggleView);
     }
 
     private void ToggleSubFieldsVisibility(InputField field, TableLayoutPanel layout, Label toggleView)
     {
+        layout.SuspendLayout();
         foreach (Control element in layout.Controls)
         {
             if (element.Tag is object[] arr && arr[0] == field)
@@ -424,6 +430,10 @@ public partial class Main : System.Windows.Forms.Form
                 toggleView.Text = element.Visible ? "\u2191" : "\u2193";
             }
         }
+        layout.ResumeLayout();
+        layout.Parent.PerformLayout();
+        layout.PerformLayout();
+        
     }
 
     private void AddFormFillerDataBindings(ComboBox combo, InputField field, TableLayoutPanel layout)
@@ -451,6 +461,7 @@ public partial class Main : System.Windows.Forms.Form
         {
             if (element.Tag is object[] arr && arr[0] == field)
             {
+                layout.SuspendLayout();
                 // Re-populate text boxes with the selected Person/Client data
                 if (element is TextBox tt && arr[1] != null)
                 {
@@ -474,6 +485,7 @@ public partial class Main : System.Windows.Forms.Form
                     lbl.Visible = false;
                     lbl.Visible = originalVisibility;
                 }
+                layout.ResumeLayout();
             }
         }
     }
@@ -504,23 +516,16 @@ public partial class Main : System.Windows.Forms.Form
 
     private void AddSubFields(TableLayoutPanel layout, InputField field, ref int row)
     {
-        int subFieldsCount = field.SubFields.Count;
-        int counter = 0;
         foreach (var subField in field.SubFields)
         {
-            // Row style
-            if (subFieldsCount - counter > 1)
-                layout.RowStyles.Add(new RowStyle(SizeType.AutoSize));
-            else
-                layout.RowStyles.Add(new RowStyle(SizeType.Absolute, 35));
 
+            layout.RowStyles.Add(new RowStyle(SizeType.AutoSize));
             var subLabel = CreateSubFieldLabel(subField, field);
             var subControl = CreateSubFieldControl(subField, field);
-
+            row++;
+            
             layout.Controls.Add(subLabel, 0, row);
             layout.Controls.Add(subControl, 2, row);
-            row++;
-            counter++;
         }
     }
 
@@ -549,6 +554,7 @@ public partial class Main : System.Windows.Forms.Form
         subControl.Dock = DockStyle.Top;
         subControl.Tag = new object[] { parentField, subField.DataType };
         subControl.Visible = false;
+        subControl.Margin = new Padding(0, 2, 0, 2);
 
         if (subControl is CheckBox subCB)
         {
