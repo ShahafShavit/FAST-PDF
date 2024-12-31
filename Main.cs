@@ -40,6 +40,8 @@ public partial class Main : System.Windows.Forms.Form
         this.AutoSize = true;
         this.AutoSizeMode = AutoSizeMode.GrowOnly;
 
+
+
         GenerateUI();
 
         Console.WriteLine("Initialization of components has been completed.");
@@ -51,6 +53,7 @@ public partial class Main : System.Windows.Forms.Form
                 Config.DeveloperSwap();
             }
         };
+        this.ToggleHighContrast(false);
     }
     private void GenerateUI()
     {
@@ -128,11 +131,11 @@ public partial class Main : System.Windows.Forms.Form
             foreach (var group in tab.Forms)
             {
                 TableLayoutPanel layout;
-                GroupBox groupBox;
+                CustomGroupBox groupBox;
                 int row = 0;
                 if (group.FormName == null) // <<<<<<< FOR TESTING PURPOUSE
                 {
-                    groupBox = new GroupBox
+                    groupBox = new CustomGroupBox
                     {
                         Text = (formNum++).ToString(),
                         Dock = DockStyle.Fill,
@@ -161,7 +164,7 @@ public partial class Main : System.Windows.Forms.Form
                 else // REGULAR LOADING CASE
                 {
                     if (!File.Exists(Path.Combine(group.Path, group.FileName))) { Console.WriteLine($"Unable to locate file: {group.FileName} for form name {group.FormName} | Please contact software developer."); }
-                    groupBox = new GroupBox
+                    groupBox = new CustomGroupBox
                     {
                         Text = group.FormName,
                         Dock = DockStyle.Fill,
@@ -179,7 +182,9 @@ public partial class Main : System.Windows.Forms.Form
                         
                         ColumnCount = 3,
                         Dock = DockStyle.Fill,
+                        //Anchor = AnchorStyles.Top | AnchorStyles.Right | AnchorStyles.Left | AnchorStyles.Bottom,
                         Name = "layoutPanel",
+                        //CellBorderStyle = TableLayoutPanelCellBorderStyle.Single
                     };
 
                     layout.AutoScrollMinSize = new Size(0, layout.GetPreferredSize(Size.Empty).Height);
@@ -187,7 +192,7 @@ public partial class Main : System.Windows.Forms.Form
                     //layout.AutoScrollMinSize = layout.GetPreferredSize(Size.Empty);
 
                     layout.Click += (o, e) => { Console.WriteLine(layout.Size); };
-                    layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 45));
+                    layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 55));
                     layout.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 35));
                     layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 45));
 
@@ -203,6 +208,7 @@ public partial class Main : System.Windows.Forms.Form
                                     layout.RowStyles.Add(new RowStyle(SizeType.Absolute, 35));
                                 }
                                 //layout.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+                                //layout.RowStyles.Add(new RowStyle(SizeType.Absolute, 35));
                                 Label label = new Label
                                 {
                                     Text = field.Label,
@@ -210,6 +216,8 @@ public partial class Main : System.Windows.Forms.Form
                                     TextAlign = ContentAlignment.MiddleLeft,
                                     Anchor = AnchorStyles.Left | AnchorStyles.Right,
                                     Dock = DockStyle.Top,
+                                    
+                                    
                                 };
                                 label.Click += (o, e) => new RelocatorForm(field, this.models).ShowDialog();
 
@@ -243,6 +251,7 @@ public partial class Main : System.Windows.Forms.Form
 
                                 if (control is CheckBox cb)
                                 {
+                                    cb.Text = field.DefaultText;
                                     cb.Tag = field.ActionType;
                                     cb.DataBindings.Add("Checked", field, nameof(field.Checked), false, DataSourceUpdateMode.OnPropertyChanged);
                                 }
@@ -289,14 +298,18 @@ public partial class Main : System.Windows.Forms.Form
 
                                 if (control is ComboBox combo && field.ActionType == "FormFiller" && field.SubFields != null)
                                 {
+                                    layout.RowStyles.Add(new RowStyle(SizeType.AutoSize));
                                     Label toggleView = new Label
                                     {
                                         Text = "\u2193",
                                         Font = new Font("Arial", 12), // Adjust font and size
                                         ForeColor = System.Drawing.Color.Blue, // Color for visibility
-                                        AutoSize = true,
-                                        Dock = DockStyle.Left,
+                                        //AutoSize = true,
+                                        //Dock = DockStyle.Left,
+                                        Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top,
+                                        Height = 28,
                                         Cursor = Cursors.Hand, // Optional: Hand cursor
+                                        BorderStyle = BorderStyle.Fixed3D
                                     };
                                     toggleView.Click += (o, e) =>
                                     {
@@ -317,15 +330,18 @@ public partial class Main : System.Windows.Forms.Form
                                                 if (element.Visible)
                                                 {
                                                     toggleView.Text = "\u2191";
+                                                    //layout.RowStyles.Add(new RowStyle(SizeType.Absolute, 35));
                                                 }
                                                 else
                                                 {
                                                     toggleView.Text = "\u2193";
+                                                    //layout.RowStyles.Remove(new RowStyle(SizeType.Absolute, 35));
                                                 }
                                             }
                                         }
                                     };
                                     layout.Controls.Add(toggleView, 1, row-1);
+
 
                                     combo.Items.AddRange(this.personnel.PersonList.ToArray());
                                     combo.SelectedIndexChanged += (sender, args) =>
@@ -379,10 +395,14 @@ public partial class Main : System.Windows.Forms.Form
                                             }
                                         }
                                     };
-                                    
+                                    int subFieldsCount = field.SubFields.Count;
+                                    int counter = 0;
                                     foreach (InputField subField in field.SubFields)
                                     {
-
+                                        if (subFieldsCount - counter > 1)
+                                            layout.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+                                        else
+                                            layout.RowStyles.Add(new RowStyle(SizeType.Absolute, 35));
                                         Label subLabel = new Label
                                         {
                                             Text = subField.Label,
@@ -391,7 +411,6 @@ public partial class Main : System.Windows.Forms.Form
                                             Anchor = AnchorStyles.Left | AnchorStyles.Right,
                                             Dock = DockStyle.Top,
                                             Tag = new object[] { field, null },
-                                            
                                         };
                                         subLabel.Visible = false;
                                         subLabel.Click += (o, e) => new RelocatorForm(subField, this.models).ShowDialog();
@@ -552,6 +571,10 @@ public partial class Main : System.Windows.Forms.Form
         }
         bool standard = true;
 
+        if (File.Exists(Path.Combine(this.globalSettings.SavePath, newFilename)) && !this.debug) {
+            DialogResult dr = MessageBox.Show($"קובץ בשם {newFilename} כבר קיים בתיקיית השמירה. האם ברצונך לדרוס קובץ זה?", "אזהרה", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+            if (dr == DialogResult.Cancel) { return; }
+        }
         foreach (CheckBox checkbox in (parentGroupBox.Controls.Find("layoutPanel", false).First()).Controls.OfType<CheckBox>()) // multiple form versions.
         {
             if (checkbox.Checked && checkbox.Tag != null)
@@ -616,7 +639,7 @@ public partial class Main : System.Windows.Forms.Form
 
         ToolStripMenuItem debugMode = new ToolStripMenuItem("מצב פיתוח");
         debugMode.Checked = this.globalSettings.Debug;
-        debugMode.Click += (o, e) => { this.globalSettings.Debug = !this.globalSettings.Debug; debugMode.Checked = this.globalSettings.Debug; };
+        debugMode.Click += (o, e) => { this.globalSettings.Debug = !this.globalSettings.Debug; debugMode.Checked = this.globalSettings.Debug; Config.UpdateSettings(this.globalSettings); MessageBox.Show("Please restart the program for changes to take effect."); };
 
         fileMenu.DropDownItems.Add(chooseSaveFolder);
         fileMenu.DropDownItems.Add(openFolder);
@@ -711,6 +734,89 @@ public partial class Main : System.Windows.Forms.Form
                 Config.UpdateSettings(this.globalSettings);
                 Console.WriteLine($"Files will be saved at: {fbd.SelectedPath}");
             }
+        }
+    }
+    private void ToggleHighContrast(bool enableHighContrast)
+    {
+        if (enableHighContrast)
+        {
+            //this.BackColor = System.Drawing.Color.Black;
+            //this.ForeColor = System.Drawing.Color.White;
+
+            foreach (Control control in this.Controls)
+            {
+                //control.BackColor = System.Drawing.Color.Black;
+                //control.ForeColor = System.Drawing.Color.White;
+                control.Font = new Font(control.Font.FontFamily, control.Font.Size, FontStyle.Bold);
+            }
+        }
+        else
+        {
+            this.BackColor = SystemColors.Control;
+            this.ForeColor = SystemColors.ControlText;
+
+            foreach (Control control in this.Controls)
+            {
+                control.BackColor = SystemColors.Control;
+                control.ForeColor = SystemColors.ControlText;
+            }
+        }
+    }
+
+    public class CustomGroupBox : GroupBox
+    {
+        protected override void OnPaint(PaintEventArgs e)
+        {
+            base.OnPaint(e);
+
+
+            // Use a custom bold font with an explicitly set size
+            float fontSize = this.Font.Size + 0.5f; // Preserve the GroupBox font size
+            using (Pen pen = new Pen(System.Drawing.Color.Black, 1.5f)) // Customize color and thickness
+            {
+                pen.Alignment = System.Drawing.Drawing2D.PenAlignment.Inset;
+                Rectangle borderRectangle = new Rectangle(
+                    this.ClientRectangle.X,
+                    this.ClientRectangle.Y + 7,
+                    this.ClientRectangle.Width - 1,
+                    this.ClientRectangle.Height - 8
+                );
+                e.Graphics.DrawRectangle(pen, borderRectangle);
+            }
+            using (Font boldFont = new Font(this.Font.FontFamily, fontSize, FontStyle.Bold))
+            {
+                // Measure the size of the title text
+                SizeF textSize = e.Graphics.MeasureString(this.Text, boldFont);
+
+                // Determine text position based on RightToLeft property
+                Point textLocation;
+                if (this.RightToLeft == RightToLeft.Yes)
+                {
+                    // Align text to the right side
+                    textLocation = new Point(
+                        this.Width - (int)textSize.Width - 10, // 10px padding from the right
+                        0
+                    );
+                }
+                else
+                {
+                    // Align text to the left side
+                    textLocation = new Point(10, 0); // 10px padding from the left
+                }
+
+                // Create a rectangle for clearing the background behind the text
+                Rectangle textRect = new Rectangle(
+                    textLocation.X, textLocation.Y,
+                    (int)textSize.Width + 2, (int)textSize.Height
+                );
+
+                // Clear the background behind the text
+                e.Graphics.FillRectangle(new SolidBrush(this.BackColor), textRect);
+
+                // Draw the title text
+                e.Graphics.DrawString(this.Text, boldFont, Brushes.Black, textLocation);
+            }
+
         }
     }
 

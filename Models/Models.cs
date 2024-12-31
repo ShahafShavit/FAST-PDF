@@ -71,10 +71,12 @@ public class Person
 public class TabObject
 {
     public string? TabName { get; set; }
+    public int Order { get; set; }
     public List<FormObject>? Forms { get; set; }
 }
 public class FormObject
 {
+    public int Order { get; set; }
     public string? FormName { get; set; }
     public string? FileName { get; set; } // "FileName.pdf"
     public string? Path { get; set; } // "Path/To/FileName.pdf" // defines path to file within default input path defined in settings

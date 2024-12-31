@@ -1,0 +1,284 @@
+{
+    "FormName": "החלפת שם לקוח בנכס",
+    "FileName": "g_NC.pdf",
+    "Path": "g_NC.pdf",
+    "Checksum": "",
+    "Fields": [
+        {
+            "Type": "TextBox",
+            "ActionType": null,
+            "Name": "g_NC_ContractID",
+            "Label": "מס' חוזה",
+            "DebugPlaceholder": "1234567",
+            "DefaultText": "",
+            "Description": "",
+            "DataType": 0,
+            "SubFields": null,
+            "Items": null,
+            "Font": "Arial",
+            "Size": 10,
+            "ResizeFunctionUse": true,
+            "Locations": [
+                {
+                    "Page": 1,
+                    "X": 330.0,
+                    "Y": 632.0,
+                    "Width": null,
+                    "Height": null,
+                    "Type": null
+                }
+            ]
+        },
+        {
+            "Type": "TextBox",
+            "ActionType": null,
+            "Name": "g_NC_Address",
+            "Label": "כתובת נכס",
+            "DebugPlaceholder": "כתובת כלשהי",
+            "DefaultText": "",
+            "Description": "",
+            "DataType": 0,
+            "SubFields": null,
+            "Items": null,
+            "Font": "Arial",
+            "Size": 10,
+            "ResizeFunctionUse": true,
+            "Locations": [
+                {
+                    "Page": 1,
+                    "X": 339.0,
+                    "Y": 610.0,
+                    "Width": null,
+                    "Height": null,
+                    "Type": null
+                }
+            ]
+        },
+        {
+            "Type": "TextBox",
+            "ActionType": null,
+            "Name": "g_NC_IncomingClient",
+            "Label": "שם לקוח נכנס",
+            "DebugPlaceholder": "שם לקוח",
+            "DefaultText": "",
+            "Description": "",
+            "DataType": 0,
+            "SubFields": null,
+            "Items": null,
+            "Font": "Arial",
+            "Size": 10,
+            "ResizeFunctionUse": true,
+            "Locations": [
+                {
+                    "Page": 1,
+                    "X": 438.0,
+                    "Y": 552.0,
+                    "Width": null,
+                    "Height": null,
+                    "Type": null
+                }
+            ]
+        },
+        {
+            "Type": "TextBox",
+            "ActionType": null,
+            "Name": "g_NC_IncomingClientID",
+            "Label": "ת.ז. / ח.פ לקוח נכנס",
+            "DebugPlaceholder": "123412345",
+            "DefaultText": "",
+            "Description": "",
+            "DataType": 0,
+            "SubFields": null,
+            "Items": null,
+            "Font": "Arial",
+            "Size": 10,
+            "ResizeFunctionUse": true,
+            "Locations": [
+                {
+                    "Page": 1,
+                    "X": 250.0,
+                    "Y": 552.5,
+                    "Width": null,
+                    "Height": null,
+                    "Type": null
+                }
+            ]
+        },
+        {
+            "Type": "TextBox",
+            "ActionType": null,
+            "Name": "g_NC_CounterID1",
+            "Label": "מס' מונה 1",
+            "DebugPlaceholder": "12313",
+            "DefaultText": "",
+            "Description": "",
+            "DataType": 0,
+            "SubFields": null,
+            "Items": null,
+            "Font": "Arial",
+            "Size": 10,
+            "ResizeFunctionUse": true,
+            "Locations": [
+                {
+                    "Page": 1,
+                    "X": 460.0,
+                    "Y": 528.0,
+                    "Width": null,
+                    "Height": null,
+                    "Type": null
+                }
+            ]
+        },
+        {
+            "Type": "TextBox",
+            "ActionType": null,
+            "Name": "g_NC_CounterID2",
+            "Label": "מס' מונה 2",
+            "DebugPlaceholder": "12314",
+            "DefaultText": "",
+            "Description": "",
+            "DataType": 0,
+            "SubFields": null,
+            "Items": null,
+            "Font": "Arial",
+            "Size": 10,
+            "ResizeFunctionUse": true,
+            "Locations": [
+                {
+                    "Page": 1,
+                    "X": 460.0,
+                    "Y": 495.0,
+                    "Width": null,
+                    "Height": null,
+                    "Type": null
+                }
+            ]
+        },
+        {
+            "Type": "TextBox",
+            "ActionType": null,
+            "Name": "g_NC_IncomingClientPhone",
+            "Label": "טלפון לקוח נכנס",
+            "DebugPlaceholder": "0503451234",
+            "DefaultText": "",
+            "Description": "",
+            "DataType": 0,
+            "SubFields": null,
+            "Items": null,
+            "Font": "Arial",
+            "Size": 10,
+            "ResizeFunctionUse": true,
+            "Locations": [
+                {
+                    "Page": 1,
+                    "X": 460.0,
+                    "Y": 426.0,
+                    "Width": null,
+                    "Height": null,
+                    "Type": null
+                }
+            ]
+        },
+        {
+            "Type": "TextBox",
+            "ActionType": null,
+            "Name": "g_NC_IncomingClientAddress",
+            "Label": "כתובת לקוח נכנס למשלוח חשבונות",
+            "DebugPlaceholder": "כתובת כלשהי, כתובת",
+            "DefaultText": "",
+            "Description": "",
+            "DataType": 0,
+            "SubFields": null,
+            "Items": null,
+            "Font": "Arial",
+            "Size": 10,
+            "ResizeFunctionUse": true,
+            "Locations": [
+                {
+                    "Page": 1,
+                    "X": 397.0,
+                    "Y": 404.0,
+                    "Width": null,
+                    "Height": null,
+                    "Type": null
+                }
+            ]
+        },
+        {
+            "Type": "TextBox",
+            "ActionType": null,
+            "Name": "g_NC_OutgoingClientName",
+            "Label": "שם לקוח יוצא",
+            "DebugPlaceholder": "שם כלשהו",
+            "DefaultText": "",
+            "Description": "",
+            "DataType": 0,
+            "SubFields": null,
+            "Items": null,
+            "Font": "Arial",
+            "Size": 10,
+            "ResizeFunctionUse": true,
+            "Locations": [
+                {
+                    "Page": 1,
+                    "X": 440.0,
+                    "Y": 348.0,
+                    "Width": null,
+                    "Height": null,
+                    "Type": null
+                }
+            ]
+        },
+        {
+            "Type": "TextBox",
+            "ActionType": null,
+            "Name": "g_NC_OutgoingClientID",
+            "Label": "ת.ז. / ח.פ. לקוח יוצא",
+            "DebugPlaceholder": "132456438",
+            "DefaultText": "",
+            "Description": "",
+            "DataType": 0,
+            "SubFields": null,
+            "Items": null,
+            "Font": "Arial",
+            "Size": 10,
+            "ResizeFunctionUse": true,
+            "Locations": [
+                {
+                    "Page": 1,
+                    "X": 247.0,
+                    "Y": 348.0,
+                    "Width": null,
+                    "Height": null,
+                    "Type": null
+                }
+            ]
+        },
+        {
+            "Type": "TextBox",
+            "ActionType": null,
+            "Name": "g_NC_OutgoingClientAddress",
+            "Label": "כתובת לקוח יוצא לחשבון סופי",
+            "DebugPlaceholder": "כתובת כלשהי, כתובת",
+            "DefaultText": "",
+            "Description": "",
+            "DataType": 0,
+            "SubFields": null,
+            "Items": null,
+            "Font": "Arial",
+            "Size": 10,
+            "ResizeFunctionUse": true,
+            "Locations": [
+                {
+                    "Page": 1,
+                    "X": 318.0,
+                    "Y": 316.0,
+                    "Width": null,
+                    "Height": null,
+                    "Type": null
+                }
+            ]
+        }
+    ],
+    "TabName": "כללי"
+}

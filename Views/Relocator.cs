@@ -2,10 +2,14 @@
 public partial class Relocator : UserControl
 {
 
-    public Relocator(Location location)
+    public Relocator(Location location, string LocationName)
     {
         int page = location.Page; float x = location.X; float y = location.Y;
         InitializeComponent();
+        RelocatorName.Text = LocationName;
+        if (LocationName.Length >18)
+            RelocatorName.Text = LocationName.Substring(0, 18);
+
         PAGE_TB.Text = page.ToString();
         X_TB.Text = x.ToString();
         Y_TB.Text = y.ToString();

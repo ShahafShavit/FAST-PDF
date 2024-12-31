@@ -39,9 +39,12 @@
         label3 = new Label();
         label1 = new Label();
         label2 = new Label();
+        RelocatorName = new Label();
+        tableLayoutPanel3 = new TableLayoutPanel();
         tableLayoutPanel1.SuspendLayout();
         ((System.ComponentModel.ISupportInitialize)PAGE_TB).BeginInit();
         tableLayoutPanel2.SuspendLayout();
+        tableLayoutPanel3.SuspendLayout();
         SuspendLayout();
         // 
         // tableLayoutPanel1
@@ -54,7 +57,7 @@
         tableLayoutPanel1.Controls.Add(down_btn, 1, 2);
         tableLayoutPanel1.Controls.Add(left_btn, 0, 1);
         tableLayoutPanel1.Controls.Add(right_btn, 2, 1);
-        tableLayoutPanel1.Location = new Point(0, 76);
+        tableLayoutPanel1.Location = new Point(0, 102);
         tableLayoutPanel1.Margin = new Padding(0);
         tableLayoutPanel1.Name = "tableLayoutPanel1";
         tableLayoutPanel1.RowCount = 3;
@@ -154,7 +157,7 @@
         tableLayoutPanel2.Controls.Add(label1, 0, 0);
         tableLayoutPanel2.Controls.Add(label2, 1, 0);
         tableLayoutPanel2.Controls.Add(PAGE_TB, 2, 1);
-        tableLayoutPanel2.Location = new Point(0, 0);
+        tableLayoutPanel2.Location = new Point(0, 27);
         tableLayoutPanel2.Margin = new Padding(0);
         tableLayoutPanel2.Name = "tableLayoutPanel2";
         tableLayoutPanel2.RowCount = 2;
@@ -196,19 +199,47 @@
         label2.Text = "Y";
         label2.TextAlign = ContentAlignment.MiddleCenter;
         // 
+        // RelocatorName
+        // 
+        RelocatorName.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+        RelocatorName.AutoSize = true;
+        RelocatorName.Location = new Point(3, 0);
+        RelocatorName.Name = "RelocatorName";
+        RelocatorName.RightToLeft = RightToLeft.Yes;
+        RelocatorName.Size = new Size(153, 22);
+        RelocatorName.TabIndex = 8;
+        RelocatorName.Text = "Filler";
+        RelocatorName.TextAlign = ContentAlignment.MiddleCenter;
+        // 
+        // tableLayoutPanel3
+        // 
+        tableLayoutPanel3.ColumnCount = 1;
+        tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+        tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+        tableLayoutPanel3.Controls.Add(RelocatorName, 0, 0);
+        tableLayoutPanel3.Location = new Point(0, 2);
+        tableLayoutPanel3.Name = "tableLayoutPanel3";
+        tableLayoutPanel3.RowCount = 1;
+        tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+        tableLayoutPanel3.Size = new Size(159, 22);
+        tableLayoutPanel3.TabIndex = 8;
+        // 
         // Relocator
         // 
         AutoScaleDimensions = new SizeF(8F, 20F);
         AutoScaleMode = AutoScaleMode.Font;
+        Controls.Add(tableLayoutPanel3);
         Controls.Add(tableLayoutPanel2);
         Controls.Add(tableLayoutPanel1);
         Margin = new Padding(3, 4, 3, 4);
         Name = "Relocator";
-        Size = new Size(162, 264);
+        Size = new Size(162, 292);
         tableLayoutPanel1.ResumeLayout(false);
         ((System.ComponentModel.ISupportInitialize)PAGE_TB).EndInit();
         tableLayoutPanel2.ResumeLayout(false);
         tableLayoutPanel2.PerformLayout();
+        tableLayoutPanel3.ResumeLayout(false);
+        tableLayoutPanel3.PerformLayout();
         ResumeLayout(false);
     }
 
@@ -226,6 +257,7 @@
     private Label label1;
     private Label label2;
     private Label label3;
-    
+    private Label RelocatorName;
+    private TableLayoutPanel tableLayoutPanel3;
 }
 

@@ -1,0 +1,357 @@
+{
+    "FormName": "חטיבת קרקע",
+    "FileName": "b_OC.pdf",
+    "Path": "b_OC.pdf",
+    "Checksum": "",
+    "Fields": [
+        {
+            "Type": "TextBox",
+            "ActionType": null,
+            "Name": "b_OC_Name",
+            "Label": "שם בעל קרקע",
+            "DebugPlaceholder": "בעל קרקע",
+            "DefaultText": "",
+            "Description": "שם בעל הקרקע כפי שמופיע בחוזה",
+            "DataType": 0,
+            "SubFields": null,
+            "Items": null,
+            "Font": "Arial",
+            "Size": 12,
+            "ResizeFunctionUse": true,
+            "Locations": [
+                {
+                    "Page": 1,
+                    "X": 438.0,
+                    "Y": 637.0,
+                    "Width": null,
+                    "Height": null,
+                    "Type": null
+                }
+            ]
+        },
+        {
+            "Type": "TextBox",
+            "ActionType": null,
+            "Name": "b_OC_ID",
+            "Label": "תעודת זהות בעל קרקע",
+            "DebugPlaceholder": "123456789",
+            "DefaultText": "",
+            "Description": "מספר תעודת זהות בעל הקרקע",
+            "DataType": 0,
+            "SubFields": null,
+            "Items": null,
+            "Font": "Arial",
+            "Size": 12,
+            "ResizeFunctionUse": false,
+            "Locations": [
+                {
+                    "Page": 1,
+                    "X": 230.0,
+                    "Y": 637.0,
+                    "Width": null,
+                    "Height": null,
+                    "Type": null
+                }
+            ]
+        },
+        {
+            "Type": "TextBox",
+            "ActionType": null,
+            "Name": "b_OC_Address",
+            "Label": "כתובת בעל קרקע",
+            "DebugPlaceholder": "כתובת 21, עיר",
+            "DefaultText": "",
+            "Description": "כתובת מלאה של בעל הקרקע",
+            "DataType": 0,
+            "SubFields": null,
+            "Items": null,
+            "Font": "Arial",
+            "Size": 12,
+            "ResizeFunctionUse": true,
+            "Locations": [
+                {
+                    "Page": 1,
+                    "X": 472.0,
+                    "Y": 622.0,
+                    "Width": null,
+                    "Height": null,
+                    "Type": null
+                }
+            ]
+        },
+        {
+            "Type": "TextBox",
+            "ActionType": null,
+            "Name": "b_OC_GAddress",
+            "Label": "כתובת קרקע",
+            "DebugPlaceholder": "כתובת 21, עיר",
+            "DefaultText": "",
+            "Description": "",
+            "DataType": 0,
+            "SubFields": null,
+            "Items": null,
+            "Font": "Arial",
+            "Size": 12,
+            "ResizeFunctionUse": true,
+            "Locations": [
+                {
+                    "Page": 1,
+                    "X": 505.0,
+                    "Y": 592.0,
+                    "Width": null,
+                    "Height": null,
+                    "Type": null
+                }
+            ]
+        },
+        {
+            "Type": "TextBox",
+            "ActionType": null,
+            "Name": "b_OC_gush",
+            "Label": "גוש",
+            "DebugPlaceholder": "גוש",
+            "DefaultText": "",
+            "Description": "",
+            "DataType": 0,
+            "SubFields": null,
+            "Items": null,
+            "Font": "Arial",
+            "Size": 12,
+            "ResizeFunctionUse": true,
+            "Locations": [
+                {
+                    "Page": 1,
+                    "X": 184.0,
+                    "Y": 592.0,
+                    "Width": null,
+                    "Height": null,
+                    "Type": null
+                }
+            ]
+        },
+        {
+            "Type": "TextBox",
+            "ActionType": null,
+            "Name": "b_OC_helka",
+            "Label": "חלקה",
+            "DebugPlaceholder": "חלקה",
+            "DefaultText": "",
+            "Description": "",
+            "DataType": 0,
+            "SubFields": null,
+            "Items": null,
+            "Font": "Arial",
+            "Size": 12,
+            "ResizeFunctionUse": true,
+            "Locations": [
+                {
+                    "Page": 1,
+                    "X": 476.0,
+                    "Y": 577.0,
+                    "Width": null,
+                    "Height": null,
+                    "Type": null
+                }
+            ]
+        },
+        {
+            "Type": "CheckBox",
+            "ActionType": "Check",
+            "Name": "b_OC_NewConnection",
+            "Label": "ייעוד הבקשה",
+            "DebugPlaceholder": "חיבור חדש",
+            "DefaultText": "",
+            "Description": "",
+            "DataType": 0,
+            "SubFields": null,
+            "Items": null,
+            "Font": "Arial",
+            "Size": 10,
+            "ResizeFunctionUse": true,
+            "Locations": [
+                {
+                    "Page": 1,
+                    "X": 487.0,
+                    "Y": 360.0,
+                    "Width": null,
+                    "Height": null,
+                    "Type": null
+                },
+                {
+                    "Page": 1,
+                    "X": 0.0,
+                    "Y": 0.0,
+                    "Width": null,
+                    "Height": null,
+                    "Type": null
+                }
+            ]
+        },
+        {
+            "Type": "CheckBox",
+            "ActionType": "Check",
+            "Name": "b_OC_ConnectionRequirererCorp",
+            "Label": "מבקשי חיבור- תאגיד",
+            "DebugPlaceholder": "מבקשי החיבור- תאגיד",
+            "DefaultText": "",
+            "Description": "",
+            "DataType": 0,
+            "SubFields": null,
+            "Items": null,
+            "Font": "Arial",
+            "Size": 10,
+            "ResizeFunctionUse": true,
+            "Locations": [
+                {
+                    "Page": 1,
+                    "X": 487.0,
+                    "Y": 309.0,
+                    "Width": null,
+                    "Height": null,
+                    "Type": null
+                },
+                {
+                    "Page": 1,
+                    "X": 0.0,
+                    "Y": 0.0,
+                    "Width": null,
+                    "Height": null,
+                    "Type": null
+                }
+            ]
+        },
+        {
+            "Type": "CheckBox",
+            "ActionType": "Check",
+            "Name": "b_OC_ConnectionRequirererGroup",
+            "Label": "מבקש החיבור- שותפות רשומה",
+            "DebugPlaceholder": "מבקש החיבור- שותפות רשומה",
+            "DefaultText": "",
+            "Description": "",
+            "DataType": 0,
+            "SubFields": null,
+            "Items": null,
+            "Font": "Arial",
+            "Size": 10,
+            "ResizeFunctionUse": true,
+            "Locations": [
+                {
+                    "Page": 1,
+                    "X": 487.0,
+                    "Y": 237.0,
+                    "Width": null,
+                    "Height": null,
+                    "Type": null
+                },
+                {
+                    "Page": 1,
+                    "X": 0.0,
+                    "Y": 0.0,
+                    "Width": null,
+                    "Height": null,
+                    "Type": null
+                }
+            ]
+        },
+        {
+            "Type": "CheckBox",
+            "ActionType": "Check",
+            "Name": "b_OC_RequestForFactory",
+            "Label": "הבקשה מיועדת עבור מפעל",
+            "DebugPlaceholder": "הבקשה מיועדת עבור מפעל",
+            "DefaultText": "",
+            "Description": "",
+            "DataType": 0,
+            "SubFields": null,
+            "Items": null,
+            "Font": "Arial",
+            "Size": 10,
+            "ResizeFunctionUse": true,
+            "Locations": [
+                {
+                    "Page": 1,
+                    "X": 487.0,
+                    "Y": 273.0,
+                    "Width": null,
+                    "Height": null,
+                    "Type": null
+                },
+                {
+                    "Page": 1,
+                    "X": 0.0,
+                    "Y": 0.0,
+                    "Width": null,
+                    "Height": null,
+                    "Type": null
+                }
+            ]
+        },
+        {
+            "Type": "CheckBox",
+            "ActionType": "Check",
+            "Name": "b_OC_FuturePartitionPlans",
+            "Label": "הנכס עתיד לעבור תהליכי פרצלציה",
+            "DebugPlaceholder": "הנכס עתיד לעבור תהליכי פרצלציה",
+            "DefaultText": "",
+            "Description": "",
+            "DataType": 0,
+            "SubFields": null,
+            "Items": null,
+            "Font": "Arial",
+            "Size": 10,
+            "ResizeFunctionUse": true,
+            "Locations": [
+                {
+                    "Page": 2,
+                    "X": 487.0,
+                    "Y": 752.0,
+                    "Width": null,
+                    "Height": null,
+                    "Type": null
+                },
+                {
+                    "Page": 1,
+                    "X": 0.0,
+                    "Y": 0.0,
+                    "Width": null,
+                    "Height": null,
+                    "Type": null
+                }
+            ]
+        },
+        {
+            "Type": "CheckBox",
+            "ActionType": "Check",
+            "Name": "b_OC_YKAttached",
+            "Label": "מצורף ייפוי כוח",
+            "DebugPlaceholder": "מצורף ייפוי כוח",
+            "DefaultText": "",
+            "Description": "",
+            "DataType": 0,
+            "SubFields": null,
+            "Items": null,
+            "Font": "Arial",
+            "Size": 10,
+            "ResizeFunctionUse": true,
+            "Locations": [
+                {
+                    "Page": 2,
+                    "X": 487.0,
+                    "Y": 671.0,
+                    "Width": null,
+                    "Height": null,
+                    "Type": null
+                },
+                {
+                    "Page": 1,
+                    "X": 0.0,
+                    "Y": 0.0,
+                    "Width": null,
+                    "Height": null,
+                    "Type": null
+                }
+            ]
+        }
+    ],
+    "TabName": "בסיס"
+}
