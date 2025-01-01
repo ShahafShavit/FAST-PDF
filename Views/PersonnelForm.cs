@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -17,11 +18,35 @@ public partial class PersonnelForm : Form
         InitializeComponent();
         InitializeDataGridView(personnel, clients);
         tabControl1.SelectTab(activeWindow);
-        this.FormClosing += (s,e) => { Config.UpdatePersonnel(personnel); Config.UpdateClients(clients); };
+
+        this.FormClosing += (s, e) => { Config.UpdatePersonnel(personnel); Config.UpdateClients(clients); };
     }
     private void InitializeDataGridView(Personnel personnel, ClientsList clients)
     {
-        
+        var tabPages = tabControl1.TabPages.Cast<TabPage>();
+        object[] objects = { personnel.PersonList, clients.Clients };
+        var zipped = objects.Zip(tabPages, (data, tabs) => (Data: data, Tabs: tabs));
+
+        foreach (var pairs in zipped)
+        {
+            PersonnelUserControl puc = new PersonnelUserControl();
+
+            if (pairs.Data is BindingList<Person> personList)
+            {
+                puc.SetDataSource(personList);
+            }
+            else if (pairs.Data is BindingList<Client> clientList)
+            {
+                puc.SetDataSource(clientList);
+            }
+
+            pairs.Tabs.Controls.Clear();
+            pairs.Tabs.Controls.Add(puc);
+            puc.Dock = DockStyle.Fill;
+            
+            //puc.Anchor = AnchorStyles.None;
+        }
+        /*
         tabPage1.Text = "אנשי מקצוע";
         tabPage3.Text = "לקוחות";
         personnelGridView.AutoGenerateColumns = true;
@@ -30,9 +55,12 @@ public partial class PersonnelForm : Form
         personnelGridView.ReadOnly = false;
         personnelGridView.DataSource = personnel.PersonList;
         clientsGridView.DataSource = clients.Clients;
-
+        */
     }
 
+    private void splitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
+    {
 
+    }
 }
 

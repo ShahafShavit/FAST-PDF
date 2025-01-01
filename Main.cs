@@ -448,13 +448,13 @@ public partial class Main : System.Windows.Forms.Form
         {
             var bindingSource = new BindingSource { DataSource = this.personnel.PersonList };
             combo.DataSource = bindingSource;
+            
         }
         else if (field.Bank == "Clients")
         {
             var bindingSource = new BindingSource { DataSource = this.clients.Clients };
             combo.DataSource = bindingSource;
         }
-
         combo.SelectedIndexChanged += (sender, args) =>
         {
             if (combo.SelectedIndex > -1)
