@@ -1,3 +1,4 @@
+//using FAST;
 using iText.Kernel.Colors;
 using iText.Kernel.Utils.Objectpathitems;
 using System.Diagnostics;
@@ -260,7 +261,7 @@ public partial class Main : System.Windows.Forms.Form
             //AutoScrollMargin = new Size(10, 20)
         };
         // Enable auto-scrolling for the TableLayoutPanel
-        
+
         layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 55));
         layout.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 35));
         layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 45));
@@ -291,7 +292,7 @@ public partial class Main : System.Windows.Forms.Form
                 layout.Controls.Add(label, 0, row);
                 layout.Controls.Add(control, 2, row);
 
-                
+
                 // Special handling for "FormFiller" sub-fields
                 if (control is ComboBox combo && field.ActionType == "FormFiller" && field.SubFields != null)
                 {
@@ -341,6 +342,10 @@ public partial class Main : System.Windows.Forms.Form
         // TextBox
         if (control is TextBox tb)
         {
+            if (string.IsNullOrEmpty(field.DebugPlaceholder))
+                field.Text = field.DefaultText;
+            else
+                field.Text = debug ? field.DebugPlaceholder : field.DefaultText;
             tb.DataBindings.Add("Text", field, nameof(field.Text), false, DataSourceUpdateMode.OnPropertyChanged);
         }
 
@@ -433,7 +438,7 @@ public partial class Main : System.Windows.Forms.Form
         layout.ResumeLayout();
         layout.Parent.PerformLayout();
         layout.PerformLayout();
-        
+
     }
 
     private void AddFormFillerDataBindings(ComboBox combo, InputField field, TableLayoutPanel layout)
@@ -441,11 +446,13 @@ public partial class Main : System.Windows.Forms.Form
         // Load data from Personnel/Clients
         if (field.Bank == "Personnel")
         {
-            combo.Items.AddRange(this.personnel.PersonList.ToArray());
+            var bindingSource = new BindingSource { DataSource = this.personnel.PersonList };
+            combo.DataSource = bindingSource;
         }
         else if (field.Bank == "Clients")
         {
-            combo.Items.AddRange(this.clients.Clients.ToArray());
+            var bindingSource = new BindingSource { DataSource = this.clients.Clients };
+            combo.DataSource = bindingSource;
         }
 
         combo.SelectedIndexChanged += (sender, args) =>
@@ -523,7 +530,7 @@ public partial class Main : System.Windows.Forms.Form
             var subLabel = CreateSubFieldLabel(subField, field);
             var subControl = CreateSubFieldControl(subField, field);
             row++;
-            
+
             layout.Controls.Add(subLabel, 0, row);
             layout.Controls.Add(subControl, 2, row);
         }
@@ -543,7 +550,9 @@ public partial class Main : System.Windows.Forms.Form
         };
         subLabel.Click += (o, e) => { if (this.debug) new RelocatorForm(subField, this.models).ShowDialog(); };
         if (string.IsNullOrEmpty(subField.Text))
+        {
             subField.Text = debug ? subField.DebugPlaceholder : subField.DefaultText;
+        }
         return subLabel;
     }
 
@@ -736,6 +745,17 @@ public partial class Main : System.Windows.Forms.Form
         ToolStripMenuItem about = new ToolStripMenuItem("אודות");
         about.Click += (o, e) => { new AboutBox().ShowDialog(); };
 
+        ToolStripMenuItem edit = new ToolStripMenuItem("עריכה");
+        ToolStripMenuItem editPersonnel = new ToolStripMenuItem("ערוך מאגר אנשי מקצוע");
+        ToolStripMenuItem editClients = new ToolStripMenuItem("ערוך מאגר לקוחות");
+        edit.DropDownItems.Add(editPersonnel);
+        edit.DropDownItems.Add(editClients);
+        editPersonnel.Click += (o, e) => { var f = new PersonnelForm(this.personnel, this.clients, 0); f.FormClosing += (s, e) => { this.PerformLayout(); }; f.Show(); };
+        editClients.Click += (o, e) =>
+        {
+            var f = new PersonnelForm(this.personnel, this.clients, 1); f.FormClosing += (s, e) => { this.PerformLayout(); };
+            f.Show();
+        };
         ToolStripMenuItem openFileAfterGeneration = new ToolStripMenuItem("פתח קובץ לאחר הפקה");
         openFileAfterGeneration.Checked = this.globalSettings.LaunchFileAtGeneration;
         openFileAfterGeneration.Click += (o, e) => { this.globalSettings.LaunchFileAtGeneration = !this.globalSettings.LaunchFileAtGeneration; openFileAfterGeneration.Checked = this.globalSettings.LaunchFileAtGeneration; Console.WriteLine($"Open file after generation status: {this.globalSettings.LaunchFileAtGeneration}"); };
@@ -743,6 +763,7 @@ public partial class Main : System.Windows.Forms.Form
         ToolStripMenuItem debugMode = new ToolStripMenuItem("מצב פיתוח");
         debugMode.Checked = this.globalSettings.Debug;
         debugMode.Click += (o, e) => { this.globalSettings.Debug = !this.globalSettings.Debug; debugMode.Checked = this.globalSettings.Debug; Config.UpdateSettings(this.globalSettings); MessageBox.Show("Please restart the program for changes to take effect."); };
+
 
         fileMenu.DropDownItems.Add(chooseSaveFolder);
         fileMenu.DropDownItems.Add(openFolder);
@@ -752,6 +773,7 @@ public partial class Main : System.Windows.Forms.Form
         fileMenu.DropDownItems.Add(toolStripSeparator1);
         fileMenu.DropDownItems.Add(debugMode);
         menuStrip.Items.Add(fileMenu);
+        menuStrip.Items.Add(edit);
         menuStrip.Items.Add(about);
         this.MainMenuStrip = menuStrip;
         return menuStrip;
