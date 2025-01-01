@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using FAST_PDF.Properties;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,12 +20,21 @@ public static class Config
 
         return JsonConvert.DeserializeObject<Personnel>(File.ReadAllText(jsonPath));
     }
-
+    public static void UpdatePersonnel(Personnel personnel)
+    {
+        string json = JsonConvert.SerializeObject(personnel, Formatting.Indented);
+        File.WriteAllText(Path.Combine(AppContext.BaseDirectory, personnelFile), json);
+    }
     public static ClientsList PullClients()
     {
         string jsonPath = Path.Combine(AppContext.BaseDirectory, clientsFile);
 
         return JsonConvert.DeserializeObject<ClientsList>(File.ReadAllText(jsonPath));
+    }
+    public static void UpdateClients(ClientsList clients)
+    {
+        string json = JsonConvert.SerializeObject(clients, Formatting.Indented);
+        File.WriteAllText(Path.Combine(AppContext.BaseDirectory, clientsFile), json);
     }
     public static GlobalSettings PullSettings()
     {
