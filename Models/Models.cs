@@ -7,6 +7,7 @@ using Newtonsoft.Json;
 using System.ComponentModel.DataAnnotations;
 using System.Drawing.Text;
 using System.Text;
+using System.ComponentModel;
 using System.Text.RegularExpressions;
 using static Org.BouncyCastle.Math.EC.ECCurve;
 
@@ -47,11 +48,11 @@ public class InputField
 }
 public class Personnel
 {
-    public List<Person> PersonList { get; set; }
+    public BindingList<Person> PersonList { get; set; }
 }
 public class ClientsList
 {
-    public List<Client> Clients { get; set; }
+    public BindingList<Client> Clients { get; set; }
 }
 public class Client
 {
