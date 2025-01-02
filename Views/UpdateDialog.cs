@@ -27,7 +27,17 @@ public partial class UpdateDialog : Form
             string updateVersionUrl = "https://fast.shahafshavit.com/updates/version.txt";
             string latestVersion = await new WebClient().DownloadStringTaskAsync(updateVersionUrl);
 
-            if (latestVersion.Trim() != currentVersion)
+            var localVersionSplit = currentVersion.Split(".");
+            var remoteVersionSplit = latestVersion.Split(".");
+            bool requireUpdate = false;
+            for (int i = 0; i < localVersionSplit.Length; i++)
+            {
+                var localVersion = int.Parse(localVersionSplit[i]);
+                var remoteVersion = int.Parse(remoteVersionSplit[i]);
+                if (localVersion < remoteVersion) { requireUpdate = true; MessageBox.Show("Found an update. Installing."); break; }
+            }
+
+            if (requireUpdate)
             {
                 string zipUrl = "https://fast.shahafshavit.com/updates/FAST-PDF_latest.zip";
                 string tempPath = Path.Combine(Path.GetTempPath(), "FAST-PDF_Update");
