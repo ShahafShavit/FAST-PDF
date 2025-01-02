@@ -2666,7 +2666,7 @@
                 }
               ],
               "Font": "Arial",
-              "Size": 12,
+              "Size": 10,
               "ResizeFunctionUse": false,
               "Locations": [
                 {
@@ -2697,7 +2697,7 @@
               "Locations": [
                 {
                   "Page": 1,
-                  "X": 480.0,
+                  "X": 450.0,
                   "Y": 654.0,
                   "Width": null,
                   "Height": null,
@@ -2723,7 +2723,7 @@
               "Locations": [
                 {
                   "Page": 1,
-                  "X": 346.0,
+                  "X": 300.0,
                   "Y": 654.0,
                   "Width": null,
                   "Height": null,
@@ -2775,7 +2775,7 @@
               "Locations": [
                 {
                   "Page": 1,
-                  "X": 376.0,
+                  "X": 345.0,
                   "Y": 594.0,
                   "Width": null,
                   "Height": null,
@@ -2801,7 +2801,7 @@
               "Locations": [
                 {
                   "Page": 1,
-                  "X": 182.0,
+                  "X": 155.0,
                   "Y": 594.0,
                   "Width": null,
                   "Height": null,
@@ -2827,7 +2827,7 @@
               "Locations": [
                 {
                   "Page": 1,
-                  "X": 340.0,
+                  "X": 310.0,
                   "Y": 561.0,
                   "Width": null,
                   "Height": null,
@@ -2885,7 +2885,7 @@
                   "SubFields": null,
                   "Items": null,
                   "Font": "Arial",
-                  "Size": 12,
+                  "Size": 10,
                   "ResizeFunctionUse": true,
                   "Locations": [
                     {
@@ -2911,8 +2911,8 @@
                   "SubFields": null,
                   "Items": null,
                   "Font": "Arial",
-                  "Size": 12,
-                  "ResizeFunctionUse": false,
+                  "Size": 10,
+                  "ResizeFunctionUse": true,
                   "Locations": [
                     {
                       "Page": 1,
@@ -2937,7 +2937,7 @@
                   "SubFields": null,
                   "Items": null,
                   "Font": "Arial",
-                  "Size": 12,
+                  "Size": 10,
                   "ResizeFunctionUse": true,
                   "Locations": [
                     {
@@ -2981,7 +2981,7 @@
                   "SubFields": null,
                   "Items": null,
                   "Font": "Arial",
-                  "Size": 12,
+                  "Size": 10,
                   "ResizeFunctionUse": true,
                   "Locations": [
                     {
@@ -3007,7 +3007,7 @@
                   "SubFields": null,
                   "Items": null,
                   "Font": "Arial",
-                  "Size": 12,
+                  "Size": 10,
                   "ResizeFunctionUse": false,
                   "Locations": [
                     {
@@ -3033,7 +3033,7 @@
                   "SubFields": null,
                   "Items": null,
                   "Font": "Arial",
-                  "Size": 12,
+                  "Size": 10,
                   "ResizeFunctionUse": true,
                   "Locations": [
                     {
@@ -3077,7 +3077,7 @@
                   "SubFields": null,
                   "Items": null,
                   "Font": "Arial",
-                  "Size": 12,
+                  "Size": 10,
                   "ResizeFunctionUse": true,
                   "Locations": [
                     {
@@ -3103,13 +3103,13 @@
                   "SubFields": null,
                   "Items": null,
                   "Font": "Arial",
-                  "Size": 12,
+                  "Size": 10,
                   "ResizeFunctionUse": false,
                   "Locations": [
                     {
                       "Page": 1,
                       "X": 322.0,
-                      "Y": 291.0,
+                      "Y": 289.0,
                       "Width": null,
                       "Height": null,
                       "Type": null
@@ -3129,7 +3129,7 @@
                   "SubFields": null,
                   "Items": null,
                   "Font": "Arial",
-                  "Size": 12,
+                  "Size": 10,
                   "ResizeFunctionUse": true,
                   "Locations": [
                     {
