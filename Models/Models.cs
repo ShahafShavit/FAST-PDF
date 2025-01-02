@@ -130,15 +130,18 @@ public class FormObject
         var font = Utility.LoadSystemFont(inputField.Font);
         string formattedText = Utility.ReverseInput(inputField.Text);
         float fontSize = inputField.ResizeFunctionUse ? GetFontSize(formattedText.Length) : inputField.Size;
-
+        var locations = inputField.Locations;
         if (inputField.Type == "CheckBox" && !inputField.Checked && inputField.ActionType == "Check")
         {
             return; // Skip unchecked checkboxes
         }
-
+        if (inputField.Type == "ComboBox" &&  inputField.ActionType == "Selector")
+        {
+            formattedText = Utility.ReverseInput(inputField.SelectedItem.Text);
+        }
         // Process current field
 
-        var locations = inputField.Type == "ComboBox" && inputField.ActionType == "Selector"
+        locations = inputField.Type == "ComboBox" && inputField.ActionType == "Selector"
             ? inputField.SelectedItem.Locations
             : inputField.Locations;
 
