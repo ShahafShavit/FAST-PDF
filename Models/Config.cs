@@ -59,15 +59,17 @@ public static class Config
     }
     public static void DeveloperSwap()
     {
+#if DEBUG
         string debugFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, modelsFile);
         string solutionFilePath = Path.Combine(Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory).Parent.Parent.Parent.FullName, modelsFile);
-
+        if (!Path.Exists(solutionFilePath)) return; 
         File.Copy(debugFilePath, solutionFilePath, true);
 
         debugFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, settingsFile);
         solutionFilePath = Path.Combine(Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory).Parent.Parent.Parent.FullName, settingsFile);
 
         File.Copy(debugFilePath, solutionFilePath, true);
+#endif
     }
 
 }
