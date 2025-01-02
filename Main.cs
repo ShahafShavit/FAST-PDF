@@ -24,6 +24,7 @@ public partial class Main : System.Windows.Forms.Form
     private const int MIN_FORMS_PER_PAGE = 3;
     private const int MIN_FORM_WIDTH = 400;
     private const int SPACE_PER_INPUT = 65;
+    private const int ELEMENT_PADDING = 3;
     public Main()
     {
         InitializeComponent();
@@ -262,9 +263,10 @@ public partial class Main : System.Windows.Forms.Form
         };
         // Enable auto-scrolling for the TableLayoutPanel
 
-        layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 55));
-        layout.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 35));
-        layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 45));
+        layout.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
+        layout.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
+        layout.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
+        
         return layout;
     }
 
@@ -276,8 +278,8 @@ public partial class Main : System.Windows.Forms.Form
             try
             {
                 //if (field.Type != "ComboBox")
-                layout.RowStyles.Add(new RowStyle(SizeType.Absolute, 35));
-
+                //layout.RowStyles.Add(new RowStyle(SizeType.Absolute, 35));
+                layout.RowStyles.Add(new RowStyle(SizeType.AutoSize));
                 var label = CreateFieldLabel(field, layout, row);
                 var control = ControlFactory.CreateControlFromJson(field);
                 SetupFieldControl(field, control);
@@ -318,6 +320,7 @@ public partial class Main : System.Windows.Forms.Form
             AutoSize = true,
             TextAlign = ContentAlignment.MiddleLeft,
             Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top,
+            Margin = new Padding(ELEMENT_PADDING)
         };
         label.Click += (o, e) => { if (this.debug) new RelocatorForm(field, this.models).ShowDialog(); };
 
@@ -331,6 +334,7 @@ public partial class Main : System.Windows.Forms.Form
     private void SetupFieldControl(InputField field, Control control)
     {
         control.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top;
+        control.Margin = new Padding(ELEMENT_PADDING);
         // CheckBox
         if (control is CheckBox cb)
         {
@@ -415,7 +419,7 @@ public partial class Main : System.Windows.Forms.Form
             Font = new Font("Arial", 12),
             ForeColor = System.Drawing.Color.Blue,
             Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top,
-            Height = 28,
+            AutoSize = true,
             Cursor = Cursors.Hand,
             //BorderStyle = BorderStyle.Fixed3D
         };
@@ -545,6 +549,7 @@ public partial class Main : System.Windows.Forms.Form
             TextAlign = ContentAlignment.MiddleLeft,
             Anchor = AnchorStyles.Left | AnchorStyles.Right,
             Dock = DockStyle.Top,
+            Margin = new Padding(ELEMENT_PADDING),
             Tag = new object[] { parentField, null },
             Visible = false
         };
@@ -563,7 +568,7 @@ public partial class Main : System.Windows.Forms.Form
         subControl.Dock = DockStyle.Top;
         subControl.Tag = new object[] { parentField, subField.DataType };
         subControl.Visible = false;
-        subControl.Margin = new Padding(0, 2, 0, 2);
+        subControl.Margin = new Padding(ELEMENT_PADDING);
 
         if (subControl is CheckBox subCB)
         {
