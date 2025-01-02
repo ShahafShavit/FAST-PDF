@@ -1,5 +1,6 @@
 ﻿1. Finish all dev & test
-2. REMOVE COMMENTING OF VERSION CHECK!!!
+2. REMOVE COMMENTING OF VERSION CHECK IN APPLICATION.RUN!!!
+3. INCREMENT VERSION IN ASSEMBLY INFO!!!
 2. Publish to portable folder
 3. Zip CONTENTS (NOT EXTERNAL FOLDER) to a zip named FAST-PDF_latest.zip
 4. upload to hosting website
