@@ -13,16 +13,20 @@
     <AssemblyCompany>Shahaf Shavit</AssemblyCompany>
     <AssemblyProduct>F.A.S.T PDF</AssemblyProduct>
     <AssemblyCopyright></AssemblyCopyright>
-    <AssemblyVersion>0.9.2.0</AssemblyVersion>
-    <FileVersion>0.9.2.0</FileVersion>
-    <Description>Form Automation and Smart Templates for PDF. Tailored specifically for companies that handle large amounts of forms.
-Icon: Flaticon.com. This icon has been designed using resources from Flaticon.com</Description>
+    <AssemblyVersion>0.9.5.1</AssemblyVersion>
+    <FileVersion>0.9.5.1</FileVersion>
+    <Description>
+      Form Automation and Smart Templates for PDF. Tailored specifically for companies that handle large amounts of forms.
+      Icon: Flaticon.com. This icon has been designed using resources from Flaticon.com
+    </Description>
     <Copyright>© 2024 Shahaf Shavit</Copyright>
     <PackageProjectUrl>shahafshavit.com</PackageProjectUrl>
     <PackageIcon>icon.png</PackageIcon>
     <ApplicationIcon>Data\icon.ico</ApplicationIcon>
   </PropertyGroup>
-
+  <PropertyGroup>
+    <EnableWindowsFormsHighDpiAutoResizing>true</EnableWindowsFormsHighDpiAutoResizing>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <GenerateAssemblyInfo>True</GenerateAssemblyInfo>
   </PropertyGroup>
@@ -30,6 +34,10 @@ Icon: Flaticon.com. This icon has been designed using resources from Flaticon.co
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <GenerateAssemblyInfo>True</GenerateAssemblyInfo>
   </PropertyGroup>
+
+  <Target Name="EnsureDebugModeOffInRelease" BeforeTargets="Build" Condition="'$(Configuration)' == 'Release'">
+    <Exec Command="powershell -NoProfile -ExecutionPolicy Bypass -File EnsureDebugModeOff.ps1 -FilePath &quot;$(TargetDir)Data\settings.json&quot;" />
+  </Target>
 
   <ItemGroup>
     <None Remove="config.json" />
@@ -60,6 +68,12 @@ Icon: Flaticon.com. This icon has been designed using resources from Flaticon.co
     <Content Include="Data\personnel.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Data\models.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\settings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="input\b_OC.pdf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -72,16 +86,16 @@ Icon: Flaticon.com. This icon has been designed using resources from Flaticon.co
     <Content Include="input\b_YT.pdf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="input\g_NC.pdf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="input\g_HSM.pdf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="input\iia_HH.pdf">
+    <Content Include="input\g_NC.pdf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="input\g_PHH.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="input\g_PMG.pdf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="input\hb_BLTH.pdf">
@@ -90,19 +104,13 @@ Icon: Flaticon.com. This icon has been designed using resources from Flaticon.co
     <Content Include="input\hb_FT.pdf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="input\g_PMG.pdf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="input\hb_TSB.pdf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="input\iia_HH.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="input\iia_PH.pdf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Data\models.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Data\settings.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
@@ -133,6 +141,10 @@ Icon: Flaticon.com. This icon has been designed using resources from Flaticon.co
     </None>
   </ItemGroup>
 
-  <ProjectExtensions><VisualStudio><UserProperties /></VisualStudio></ProjectExtensions>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties />
+    </VisualStudio>
+  </ProjectExtensions>
 
 </Project>
