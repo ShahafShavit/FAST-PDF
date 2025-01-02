@@ -27,6 +27,7 @@ public partial class Main : System.Windows.Forms.Form
     private const int ELEMENT_PADDING = 3;
     public Main()
     {
+
         InitializeComponent();
         try
         {
@@ -261,8 +262,7 @@ public partial class Main : System.Windows.Forms.Form
             //CellBorderStyle = TableLayoutPanelCellBorderStyle.Single,
             //AutoScrollMargin = new Size(10, 20)
         };
-        // Enable auto-scrolling for the TableLayoutPanel
-
+        
         layout.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
         layout.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
         layout.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
@@ -660,7 +660,10 @@ public partial class Main : System.Windows.Forms.Form
 
         if (parentGroupBox.Tag is not FormObject formObject)
             throw new MissingFieldException("No Target FormObject given in GroupBox Tag property.");
-
+        if (this.globalSettings.SavePath == null)
+        {
+            SaveFolderDialoge();
+        }
         if (!Directory.Exists(this.globalSettings.SavePath))
         {
             MessageBox.Show("תיקייה לשמירה לא נמצאה. אנא בחר תיקייה לשמור בה את הקובץ (קובץ > שמור בתיקייה).", "אנא בחר תיקייה", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.RtlReading);
