@@ -1,15 +1,10 @@
-﻿using iText.IO.Font;
-using iText.Kernel.Font;
+﻿using iText.Kernel.Font;
 using iText.Kernel.Pdf;
 using iText.Layout.Element;
 using iText.Layout.Properties;
 using Newtonsoft.Json;
-using System.ComponentModel.DataAnnotations;
-using System.Drawing.Text;
-using System.Text;
 using System.ComponentModel;
-using System.Text.RegularExpressions;
-using static Org.BouncyCastle.Math.EC.ECCurve;
+using System.Text;
 
 #pragma warning disable CS8602
 #pragma warning disable CS8604
@@ -57,10 +52,10 @@ public class ClientsList
 public class Client
 {
     public string Name { get; set; }
-    public string ID {  get; set; }
-    public string HetPei {  get; set; }
-    public string Phone {  get; set; }
-    public string EmailAddress {  get; set; }
+    public string ID { get; set; }
+    public string HetPei { get; set; }
+    public string Phone { get; set; }
+    public string EmailAddress { get; set; }
     public override string ToString()
     {
         return Name ?? "Null";
@@ -135,7 +130,7 @@ public class FormObject
         {
             return; // Skip unchecked checkboxes
         }
-        if (inputField.Type == "ComboBox" &&  inputField.ActionType == "Selector")
+        if (inputField.Type == "ComboBox" && inputField.ActionType == "Selector")
         {
             formattedText = Utility.ReverseInput(inputField.SelectedItem.Text);
         }

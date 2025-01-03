@@ -4,7 +4,7 @@
     public RelocatorForm(InputField inputField, Models models)
     {
         InitializeComponent();
-        
+
         int locationsCount = inputField.Locations == null ? 0 : inputField.Locations.Count;
 
 
@@ -43,12 +43,12 @@
                     relocator.Dock = DockStyle.Fill;
                     relocator.AutoSize = true;
                     relocator.Anchor = AnchorStyles.None;
-                    tableLayoutPanel.Controls.Add(relocator, column, 0 );
+                    tableLayoutPanel.Controls.Add(relocator, column, 0);
                     column++;
                 }
             }
         }
-        
+
         this.Controls.Add(tableLayoutPanel);
         this.AutoSize = true;
         this.AutoSizeMode = AutoSizeMode.GrowAndShrink;

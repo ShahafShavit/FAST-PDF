@@ -1,14 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Security.AccessControl;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.Header;
 
 
 public partial class PersonnelForm : Form
@@ -43,7 +34,7 @@ public partial class PersonnelForm : Form
             pairs.Tabs.Controls.Clear();
             pairs.Tabs.Controls.Add(puc);
             puc.Dock = DockStyle.Fill;
-            
+
             //puc.Anchor = AnchorStyles.None;
         }
         /*

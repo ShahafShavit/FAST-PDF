@@ -1,9 +1,7 @@
 //using FAST;
 using iText.Kernel.Colors;
-using iText.Kernel.Utils.Objectpathitems;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
-using System.Windows.Forms;
 /*
 #pragma warning disable CS8602
 #pragma warning disable CS8618
@@ -262,11 +260,11 @@ public partial class Main : System.Windows.Forms.Form
             //CellBorderStyle = TableLayoutPanelCellBorderStyle.Single,
             //AutoScrollMargin = new Size(10, 20)
         };
-        
+
         layout.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
         layout.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
         layout.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
-        
+
         return layout;
     }
 
@@ -452,7 +450,7 @@ public partial class Main : System.Windows.Forms.Form
         {
             var bindingSource = new BindingSource { DataSource = this.personnel.PersonList };
             combo.DataSource = bindingSource;
-            
+
         }
         else if (field.Bank == "Clients")
         {

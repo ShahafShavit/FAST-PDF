@@ -1,10 +1,4 @@
-﻿using FAST_PDF.Properties;
-using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Newtonsoft.Json;
 
 #pragma warning disable CS8603 // Possible null reference return.
 #pragma warning disable CS8602 // Possible null reference return.
@@ -62,7 +56,7 @@ public static class Config
 #if DEBUG
         string debugFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, modelsFile);
         string solutionFilePath = Path.Combine(Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory).Parent.Parent.Parent.FullName, modelsFile);
-        if (!Path.Exists(solutionFilePath)) return; 
+        if (!Path.Exists(solutionFilePath)) return;
         File.Copy(debugFilePath, solutionFilePath, true);
 
         debugFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, settingsFile);
