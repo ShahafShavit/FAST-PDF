@@ -91,11 +91,13 @@ public partial class Main : System.Windows.Forms.Form
         var mainLayout = new TableLayoutPanel
         {
             Dock = DockStyle.Fill,
-            RowCount = 3
+            RowCount = 3,
+            ColumnCount = 1,
         };
         mainLayout.RowStyles.Add(new RowStyle(SizeType.AutoSize));     // For MenuStrip
         mainLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 100)); // For TabControl
         mainLayout.RowStyles.Add(new RowStyle(SizeType.AutoSize));     // For Console
+        mainLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100));
         return mainLayout;
     }
 
@@ -104,7 +106,7 @@ public partial class Main : System.Windows.Forms.Form
         var tabControl = new TabControl
         {
             Dock = DockStyle.Fill,
-            RightToLeftLayout = true
+            RightToLeftLayout = true,
         };
         return tabControl;
     }
@@ -113,8 +115,7 @@ public partial class Main : System.Windows.Forms.Form
     {
         return new TextBox
         {
-            Dock = DockStyle.Bottom,
-            AutoSize = true,
+            Anchor = AnchorStyles.Left | AnchorStyles.Right,
             ReadOnly = true,
             Multiline = true,
             Height = 75,
@@ -138,6 +139,7 @@ public partial class Main : System.Windows.Forms.Form
         {
             Margin = new Padding(25),
             Text = tab.TabName,
+
         };
 
         // Compute row/column counts, prepare layout
