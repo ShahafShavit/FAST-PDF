@@ -12,6 +12,7 @@ public partial class Main : System.Windows.Forms.Form
 {
     public System.Drawing.Color mainColor;
     private ColorDialog mainColorDialog = new ColorDialog();
+    private FontDialog fontDialog = new FontDialog();
     private TextBox console;
     private ClientsList clients;
     private Personnel personnel;
@@ -25,6 +26,7 @@ public partial class Main : System.Windows.Forms.Form
     private const int ELEMENT_PADDING = 3;
     public Main()
     {
+        
 
         InitializeComponent();
         try
@@ -45,7 +47,6 @@ public partial class Main : System.Windows.Forms.Form
         this.AutoSizeMode = AutoSizeMode.GrowOnly;
 
 
-
         GenerateUI();
 
         Console.WriteLine("Initialization of components has been completed.");
@@ -58,6 +59,7 @@ public partial class Main : System.Windows.Forms.Form
             }
         };
         this.ToggleHighContrast(false);
+        //Console.WriteLine(GetNewFont(FontDialogUse.GeneralWindow).ToString());
     }
     private void GenerateUI()
     {
@@ -74,7 +76,7 @@ public partial class Main : System.Windows.Forms.Form
         mainLayout.Controls.Add(mainMenuStrip, 0, 0);
         mainLayout.Controls.Add(tabControl, 0, 1);
         mainLayout.Controls.Add(this.console, 0, 2);
-
+        //
         this.Controls.Add(mainLayout);
 
         // Redirect console output to the TextBox
@@ -258,7 +260,7 @@ public partial class Main : System.Windows.Forms.Form
             ColumnCount = 3,
             Dock = DockStyle.Fill,
             Name = "layoutPanel",
-            Padding = new Padding(10, 0, 0, 0)
+            Padding = new Padding(10, 0, 0, 0),
             //CellBorderStyle = TableLayoutPanelCellBorderStyle.Single,
             //AutoScrollMargin = new Size(10, 20)
         };
@@ -338,6 +340,11 @@ public partial class Main : System.Windows.Forms.Form
         // CheckBox
         if (control is CheckBox cb)
         {
+            cb.UseCompatibleTextRendering = true;
+            cb.Padding = new Padding(0);
+            cb.CheckAlign = ContentAlignment.BottomLeft;
+            
+            cb.TextAlign = ContentAlignment.TopLeft;
             cb.Text = field.DefaultText;
             cb.Tag = field.ActionType;
             cb.DataBindings.Add("Checked", field, nameof(field.Checked), false, DataSourceUpdateMode.OnPropertyChanged);
@@ -868,6 +875,30 @@ public partial class Main : System.Windows.Forms.Form
                 Console.WriteLine($"Files will be saved at: {fbd.SelectedPath}");
             }
         }
+    }
+    enum FontDialogUse {
+        PDFPrint,
+        GeneralWindow
+    }
+    private Font? GetNewFont(FontDialogUse usage)
+    {
+
+        this.fontDialog.ShowApply = false;
+        this.fontDialog.ShowColor = false;
+        this.fontDialog.ShowEffects = false;
+        this.fontDialog.ShowHelp = false;
+        this.fontDialog.ScriptsOnly = false;
+        this.fontDialog.AllowScriptChange = false;
+        this.fontDialog.FontMustExist = true;
+        if (usage == FontDialogUse.GeneralWindow) { this.fontDialog.MinSize = 10; this.fontDialog.MaxSize = 14; }
+        if (usage == FontDialogUse.PDFPrint) { this.fontDialog.MinSize = 8; this.fontDialog.MaxSize = 24; }
+
+        if (this.fontDialog.ShowDialog() != DialogResult.Cancel)
+        {
+            return this.fontDialog.Font;
+        }
+        return null;
+
     }
     private void ToggleHighContrast(bool enableHighContrast)
     {
