@@ -353,6 +353,7 @@ public partial class Main : System.Windows.Forms.Form
         // TextBox
         if (control is TextBox tb)
         {
+            tb.ShortcutsEnabled = true;
             if (string.IsNullOrEmpty(field.DebugPlaceholder))
                 field.Text = field.DefaultText;
             else
@@ -584,6 +585,7 @@ public partial class Main : System.Windows.Forms.Form
         }
         else if (subControl is TextBox subTB)
         {
+            subTB.ShortcutsEnabled = true;
             subTB.DataBindings.Add("Text", subField, nameof(subField.Text), false, DataSourceUpdateMode.OnPropertyChanged);
         }
         return subControl;
@@ -621,17 +623,46 @@ public partial class Main : System.Windows.Forms.Form
             Name = "fileNameTextBox",
             Dock = DockStyle.Bottom,
             Tag = "FileName",
-            Text = formObj.FormName?.Replace(" ", "_") + "_"
+            Text = formObj.FormName + " ",
         };
-        fileNameTextBox.KeyPress += (s, e) =>
+        fileNameTextBox.ShortcutsEnabled = true;
+        fileNameTextBox.KeyDown += (s, e) =>
         {
             char[] invalidChars = { '<', '>', ':', '"', '/', '\\', '|', '?', '*' };
-            if (Array.Exists(invalidChars, c => c == e.KeyChar) ||
-                (char.IsControl(e.KeyChar) && e.KeyChar != '\b'))
+
+            // Handle Ctrl+V (paste)
+            if (e.Control && e.KeyCode == Keys.V)
             {
-                e.Handled = true; // block invalid chars
+                string clipboardText = Clipboard.GetText();
+
+                // Filter invalid characters
+                string filteredText = new string(clipboardText.Where(c => !invalidChars.Contains(c)).ToArray());
+
+                if (clipboardText != filteredText)
+                {
+                    Clipboard.SetText(filteredText); // Update clipboard with valid text
+                    Console.WriteLine("הוסרו משם הקובץ תווים אסורים");
+                }
+
+                // Allow paste to proceed
+            }
+            else if (!e.Control) // Handle regular typing
+            {
+                Keys key = e.KeyCode;
+                char keyChar = (char)key;
+
+                // Check if typed character is invalid
+                if (invalidChars.Contains(keyChar) ||
+                    (char.IsControl(keyChar) && keyChar != '\b'))
+                {
+                    e.SuppressKeyPress = true; // Block invalid input
+                }
             }
         };
+
+
+
+
 
         // Debug placeholder
         if (this.debug)
