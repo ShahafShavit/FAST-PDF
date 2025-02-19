@@ -49,13 +49,10 @@ public class ClientsList
 {
     public BindingList<Client> Clients { get; set; }
 }
-public class Client
+public class Client : Person
 {
-    public string Name { get; set; }
-    public string ID { get; set; }
-    public string HetPei { get; set; }
-    public string Phone { get; set; }
-    public string EmailAddress { get; set; }
+    public string? HetPei { get; set; }
+    public string? EmailAddress { get; set; }
     public override string ToString()
     {
         return Name ?? "Null";
@@ -65,20 +62,20 @@ public class Person
 {
     public enum DataType
     {
-        Name,
-        ID,
-        Phone,
-        LicenseType,
-        LicenseNumber,
-        Address,
-        EmailAddress,
-        HetPei
+        Name,          // 0
+        ID,            // 1
+        Phone,         // 2
+        LicenseType,   // 3
+        LicenseNumber, // 4
+        Address,       // 5
+        EmailAddress,  // 6
+        HetPei         // 7
     }
-    public string Name { get; set; }
-    public string ID { get; set; }
-    public string Phone { get; set; }
-    public string LicenseType { get; set; }
-    public string LicenseNumber { get; set; }
+    public string? Name { get; set; }
+    public string? ID { get; set; }
+    public string? Phone { get; set; }
+    public string? LicenseType { get; set; }
+    public string? LicenseNumber { get; set; }
     public override string ToString()
     {
         return Name ?? "Null";
@@ -123,7 +120,8 @@ public class FormObject
     private void ProcessFieldRecursive(InputField inputField, PdfDocument pdf, iText.Kernel.Colors.Color color)
     {
         var font = Utility.LoadSystemFont(inputField.Font);
-        string formattedText = Utility.ReverseInput(inputField.Text);
+        //string formattedText = Utility.ReverseInput(inputField.Text);
+        string formattedText = new BidiString(inputField.Text).Visual;
         float fontSize = inputField.ResizeFunctionUse ? GetFontSize(formattedText.Length) : inputField.Size;
         var locations = inputField.Locations;
         if (inputField.Type == "CheckBox" && !inputField.Checked && inputField.ActionType == "Check")
@@ -251,11 +249,11 @@ public class FormObject
 
         }
     }
-    public static int GetFontSize(int x)
+    public static int GetFontSize(int inputLength)
     {
-        if (x < 8) return 10;
-        double realvalue = (1 / (0.05 * x + 0.1)) + 8;
-        return (int)Math.Ceiling(realvalue);
+        if (inputLength < 8) return 11;
+        double realvalue = -0.12 * inputLength + 12.5;
+        return (int)Math.Floor(realvalue);
     }
 }
 public class Models
