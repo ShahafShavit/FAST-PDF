@@ -48,7 +48,7 @@ partial class PersonnelForm
         tabPage3.Padding = new Padding(3);
         tabPage3.Size = new Size(1187, 558);
         tabPage3.TabIndex = 2;
-        tabPage3.Text = "tabPage3";
+        tabPage3.Text = "לקוחות";
         tabPage3.UseVisualStyleBackColor = true;
         // 
         // splitContainer2
@@ -100,7 +100,7 @@ partial class PersonnelForm
         tabPage1.Padding = new Padding(3);
         tabPage1.Size = new Size(1187, 558);
         tabPage1.TabIndex = 0;
-        tabPage1.Text = "tabPage1";
+        tabPage1.Text = "אנשי מקצוע";
         tabPage1.UseVisualStyleBackColor = true;
         // 
         // PersonnelForm
