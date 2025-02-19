@@ -26,7 +26,7 @@ public partial class Main : System.Windows.Forms.Form
     private const int ELEMENT_PADDING = 3;
     public Main()
     {
-        
+
 
         InitializeComponent();
         try
@@ -223,8 +223,21 @@ public partial class Main : System.Windows.Forms.Form
         // Filename box + Generate button
         var fileNameBox = CreateFileNameBox(formObj);
         var generateButton = CreateGenerateButton();
+        var clearButton = CreateClearAllButton();
+        clearButton.Click += (o, e) =>
+        {
+
+            foreach (Control control in layoutPanel.Controls)
+            {
+                if (control is TextBox tb)
+                {
+                    tb.Text = "";
+                }
+            }
+        };
         groupBox.Controls.Add(fileNameBox);
         groupBox.Controls.Add(generateButton);
+        groupBox.Controls.Add(clearButton);
 
         return groupBox;
     }
@@ -279,8 +292,6 @@ public partial class Main : System.Windows.Forms.Form
         {
             try
             {
-                //if (field.Type != "ComboBox")
-                //layout.RowStyles.Add(new RowStyle(SizeType.Absolute, 35));
                 layout.RowStyles.Add(new RowStyle(SizeType.AutoSize));
                 var label = CreateFieldLabel(field, layout, row);
                 var control = ControlFactory.CreateControlFromJson(field);
@@ -300,7 +311,7 @@ public partial class Main : System.Windows.Forms.Form
                 // Special handling for "FormFiller" sub-fields
                 if (control is ComboBox combo && field.ActionType == "FormFiller" && field.SubFields != null)
                 {
-                    AddSubFieldsToggle(layout, field, ref row);
+                    AddSubFieldsViewToggle(layout, field, ref row);
                     AddFormFillerDataBindings(combo, field, layout);
                     AddSubFields(layout, field, ref row);
                 }
@@ -343,7 +354,7 @@ public partial class Main : System.Windows.Forms.Form
             cb.UseCompatibleTextRendering = true;
             cb.Padding = new Padding(0);
             cb.CheckAlign = ContentAlignment.BottomLeft;
-            
+
             cb.TextAlign = ContentAlignment.TopLeft;
             cb.Text = field.DefaultText;
             cb.Tag = field.ActionType;
@@ -418,7 +429,7 @@ public partial class Main : System.Windows.Forms.Form
         }
     }
 
-    private void AddSubFieldsToggle(TableLayoutPanel layout, InputField field, ref int row)
+    private void AddSubFieldsViewToggle(TableLayoutPanel layout, InputField field, ref int row)
     {
         // Add the toggle button in the middle column (same row as the ComboBox)
         var toggleView = new Label
@@ -659,7 +670,8 @@ public partial class Main : System.Windows.Forms.Form
                 }
             }
         };
-
+        
+        
 
 
 
@@ -686,7 +698,17 @@ public partial class Main : System.Windows.Forms.Form
         generateButton.Click += GenerateButton_Click;
         return generateButton;
     }
-
+    private Button CreateClearAllButton()
+    {
+        var clearButton = new Button
+        {
+            Text = "נקה הכל",
+            AutoSize = true,
+            AutoSizeMode = AutoSizeMode.GrowAndShrink,
+            Dock = DockStyle.Bottom
+        };
+        return clearButton;
+    }
 
     public void GenerateButton_Click(object sender, EventArgs e)
     {
@@ -907,7 +929,8 @@ public partial class Main : System.Windows.Forms.Form
             }
         }
     }
-    enum FontDialogUse {
+    enum FontDialogUse
+    {
         PDFPrint,
         GeneralWindow
     }
