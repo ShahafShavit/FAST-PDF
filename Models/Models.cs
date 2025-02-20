@@ -49,8 +49,11 @@ public class ClientsList
 {
     public BindingList<Client> Clients { get; set; }
 }
-public class Client : Person
+public class Client
 {
+    public string? Name { get; set; }
+    public string? ID { get; set; }
+    public string? Phone { get; set; }
     public string? HetPei { get; set; }
     public string? EmailAddress { get; set; }
     public override string ToString()
@@ -58,6 +61,7 @@ public class Client : Person
         return Name ?? "Null";
     }
 }
+
 public class Person
 {
     public enum DataType
