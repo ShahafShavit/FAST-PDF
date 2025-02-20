@@ -3,6 +3,7 @@
 3. INCREMENT VERSION IN ASSEMBLY INFO!!!
 4. Commit all files.
 5. Publish to portable folder
+6. Remove clients and personnel json
 6. Zip CONTENTS (NOT EXTERNAL FOLDER) to a zip named FAST-PDF_latest.zip
 7. upload to hosting website
 8. increment the version.txt to match the newely uploaded product version.

@@ -74,7 +74,12 @@
                     }
                   ]
                 }
-              ]
+              ],
+              "Items": null,
+              "Font": "Arial",
+              "Size": 10,
+              "ResizeFunctionUse": true,
+              "Locations": null
             },
             {
               "Type": "TextBox",
@@ -898,7 +903,12 @@
                     }
                   ]
                 }
-              ]
+              ],
+              "Items": null,
+              "Font": "Arial",
+              "Size": 10,
+              "ResizeFunctionUse": true,
+              "Locations": null
             },
             {
               "Type": "TextBox",
@@ -1176,7 +1186,12 @@
                     }
                   ]
                 }
-              ]
+              ],
+              "Items": null,
+              "Font": "Arial",
+              "Size": 10,
+              "ResizeFunctionUse": true,
+              "Locations": null
             },
             {
               "Type": "ComboBox",
@@ -2661,7 +2676,12 @@
                     }
                   ]
                 }
-              ]
+              ],
+              "Items": null,
+              "Font": "Arial",
+              "Size": 10,
+              "ResizeFunctionUse": true,
+              "Locations": null
             },
             {
               "Type": "TextBox",
@@ -3308,7 +3328,12 @@
                     }
                   ]
                 }
-              ]
+              ],
+              "Items": null,
+              "Font": "Arial",
+              "Size": 10,
+              "ResizeFunctionUse": true,
+              "Locations": null
             },
             {
               "Type": "TextBox",
@@ -3603,7 +3628,12 @@
                     }
                   ]
                 }
-              ]
+              ],
+              "Items": null,
+              "Font": "Arial",
+              "Size": 10,
+              "ResizeFunctionUse": true,
+              "Locations": null
             }
           ]
         },
@@ -3693,7 +3723,12 @@
                     }
                   ]
                 }
-              ]
+              ],
+              "Items": null,
+              "Font": "Arial",
+              "Size": 10,
+              "ResizeFunctionUse": true,
+              "Locations": null
             },
             {
               "Type": "TextBox",
@@ -3996,7 +4031,12 @@
                     }
                   ]
                 }
-              ]
+              ],
+              "Items": null,
+              "Font": "Arial",
+              "Size": 10,
+              "ResizeFunctionUse": true,
+              "Locations": null
             }
           ]
         }
