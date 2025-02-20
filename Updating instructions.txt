@@ -1,8 +1,9 @@
 ﻿1. Finish all dev & test
-2. REMOVE COMMENTING OF VERSION CHECK IN APPLICATION.RUN!!!
+2. (DEPRECATED DUE TO #IF DEBUG CLAUSE) - REMOVE COMMENTING OF VERSION CHECK IN APPLICATION.RUN!!! 
 3. INCREMENT VERSION IN ASSEMBLY INFO!!!
-2. Publish to portable folder
-3. Zip CONTENTS (NOT EXTERNAL FOLDER) to a zip named FAST-PDF_latest.zip
-4. upload to hosting website
-5. increment the version.txt to the newely uploaded product version.
-6. TADAH!
+4. Commit all files.
+5. Publish to portable folder
+6. Zip CONTENTS (NOT EXTERNAL FOLDER) to a zip named FAST-PDF_latest.zip
+7. upload to hosting website
+8. increment the version.txt to match the newely uploaded product version.
+9. TADAH!
