@@ -306,7 +306,7 @@ public partial class Main : System.Windows.Forms.Form
 
                 layout.Controls.Add(label, 0, row);
                 layout.Controls.Add(control, 2, row);
-
+                
 
                 // Special handling for "FormFiller" sub-fields
                 if (control is ComboBox combo && field.ActionType == "FormFiller" && field.SubFields != null)
@@ -335,8 +335,8 @@ public partial class Main : System.Windows.Forms.Form
             Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top,
             Margin = new Padding(ELEMENT_PADDING)
         };
-        label.Click += (o, e) => { if (this.debug) new RelocatorForm(field, this.models).ShowDialog(); };
-
+        //label.Click += (o, e) => { if (this.debug) new RelocatorForm(field, this.models).ShowDialog(); };
+        label.DoubleClick += (o, e) => { new RelocatorForm(field, this.models).ShowDialog(); };
         // Fill in default text if empty
         if (string.IsNullOrEmpty(field.Text))
             field.Text = debug ? field.DebugPlaceholder : field.DefaultText;
@@ -348,6 +348,7 @@ public partial class Main : System.Windows.Forms.Form
     {
         control.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top;
         control.Margin = new Padding(ELEMENT_PADDING);
+
         // CheckBox
         if (control is CheckBox cb)
         {
@@ -364,6 +365,7 @@ public partial class Main : System.Windows.Forms.Form
         // TextBox
         if (control is TextBox tb)
         {
+
             tb.ShortcutsEnabled = true;
             if (string.IsNullOrEmpty(field.DebugPlaceholder))
                 field.Text = field.DefaultText;

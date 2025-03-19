@@ -2166,7 +2166,7 @@
                   "Type": null
                 }
               ]
-            }, // has
+            },
             {
               "Type": "ComboBox",
               "ActionType": "FormFiller",
@@ -2177,16 +2177,13 @@
               "DefaultText": "אחר",
               "Description": "",
               "DataType": 0,
-              "Font": "Arial",
-              "Size": 12,
-              "ResizeFunctionUse": true,
               "SubFields": [
                 {
-                  "Label": "שם לקוח",
                   "Type": "TextBox",
                   "ActionType": "",
                   "Bank": null,
                   "Name": "hb_TSB_ClientName",
+                  "Label": "שם לקוח",
                   "DebugPlaceholder": "שם לקוח כלשהו",
                   "DefaultText": "",
                   "Description": "",
@@ -2216,11 +2213,11 @@
                   ]
                 },
                 {
-                  "Label": "ת.ז./ח.פ לקוח",
                   "Type": "TextBox",
                   "ActionType": "",
                   "Bank": null,
                   "Name": "hb_TSB_ClientTazHetPei",
+                  "Label": "ת.ז./ח.פ לקוח",
                   "DebugPlaceholder": "20202020",
                   "DefaultText": "",
                   "Description": "",
@@ -2241,8 +2238,13 @@
                     }
                   ]
                 }
-              ]
-            }, // has
+              ],
+              "Items": null,
+              "Font": "Arial",
+              "Size": 12,
+              "ResizeFunctionUse": true,
+              "Locations": null
+            },
             {
               "Type": "TextBox",
               "ActionType": null,
@@ -2652,11 +2654,6 @@
               "DefaultText": "",
               "Description": "",
               "DataType": 0,
-              "Items": null,
-              "Font": "Arial",
-              "Size": 10,
-              "ResizeFunctionUse": true,
-              "Locations": null,
               "SubFields": [
                 {
                   "Type": "TextBox",
@@ -2684,7 +2681,12 @@
                     }
                   ]
                 }
-              ]
+              ],
+              "Items": null,
+              "Font": "Arial",
+              "Size": 10,
+              "ResizeFunctionUse": true,
+              "Locations": null
             },
             {
               "Type": "TextBox",
@@ -2723,9 +2725,6 @@
               "Description": "",
               "DataType": 0,
               "SubFields": null,
-              "Font": "Arial",
-              "Size": 10,
-              "ResizeFunctionUse": false,
               "Items": [
                 {
                   "Label": "לפני הפעלה",
@@ -2756,6 +2755,9 @@
                   ]
                 }
               ],
+              "Font": "Arial",
+              "Size": 10,
+              "ResizeFunctionUse": false,
               "Locations": [
                 {
                   "Page": 1,
