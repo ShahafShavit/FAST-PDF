@@ -42,14 +42,14 @@ jobs:
       run: Compress-Archive -Path ./publish/* -DestinationPath FAST-PDF_latest.zip
       shell: pwsh
 
-    # # ===================================================================
-    # # SECTION 2: Prepare the version.txt file locally.
-    # # ===================================================================
-    # - name: Read .csproj
-    #   id: read_project
-    #   uses: CumulusDS/read-file-action@v1
-    #   with:
-    #     path: './FAST-PDF.csproj'
+    # ===================================================================
+    # SECTION 2: Prepare the version.txt file locally.
+    # ===================================================================
+    - name: Read .csproj
+      id: read_project
+      uses: CumulusDS/read-file-action@v1
+      with:
+        path: './FAST-PDF.csproj'
 
     # - name: Extract Project Version
     #   id: extract_version
