@@ -25,11 +25,11 @@ jobs:
       with:
         dotnet-version: '8.0.x'
 
-    # - name: Publish Portable App
-    #   run: dotnet publish --configuration Release --runtime win-x64 --output ./publish -p:PublishSingleFile=true --self-contained true
+    - name: Publish Portable App
+      run: dotnet publish --configuration Release --runtime win-x64 --output ./publish -p:PublishSingleFile=true --self-contained true
 
-    # - name: DEBUG - List files in publish directory (before removal)
-    #   run: ls -R ./publish
+    - name: DEBUG - List files in publish directory (before removal)
+      run: ls -R ./publish
 
     # - name: Remove User-Specific Files
     #   run: |
