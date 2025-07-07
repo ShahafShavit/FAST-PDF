@@ -7,8 +7,26 @@ on:
     branches: [ "publish" ]
 
 jobs:
-  # The 'build' job is responsible for checking if a deployment is needed.
+  # New job to test FTP connection before starting the build process.
+  check_ftp:
+    name: Check FTP Connectivity
+    runs-on: ubuntu-latest
+    steps:
+      - name: Test FTP Connection
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server: ${{ secrets.REMOTE_HOST }}
+          username: ${{ secrets.REMOTE_USER }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          # The dry-run option will attempt to connect and list files without making changes.
+          # If the connection fails, the action will fail, stopping the workflow.
+          dry-run: true
+          # We check the target directory to ensure it exists and we have permissions.
+          server-dir: /updates/
+
+  # The 'build' job now depends on the FTP check and is responsible for checking if a deployment is needed.
   build:
+    needs: check_ftp
     runs-on: windows-latest
     # This job outputs whether to deploy and the version number from the project file.
     outputs:
@@ -113,7 +131,7 @@ jobs:
         state-name: ftp-state-version.json
         log-level: "verbose"
 
-  # This new job runs only if deployment is NOT needed.
+  # This job runs only if deployment is NOT needed.
   no_deployment_needed:
     name: No Deployment Needed
     runs-on: ubuntu-latest
