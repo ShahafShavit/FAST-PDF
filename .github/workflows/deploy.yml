@@ -60,7 +60,7 @@ jobs:
         regex: '(?<=<AssemblyVersion>).*(?=</AssemblyVersion>)'
 
     - name: DEBUG - Echo extracted version
-      run: echo "Version found: ${{ steps.extract_version.outputs.match }}"
+      run: echo "${{ steps.extract_version.outputs.match }}"
 
     - name: Create version.txt for deployment
       run: echo "${{ steps.extract_version.outputs.match }}" > version.txt
