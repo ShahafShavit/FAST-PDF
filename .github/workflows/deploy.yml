@@ -6,20 +6,15 @@ on:
 
 jobs:
   build-and-deploy:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
     # ===================================================================
     # SECTION 1: Build and package all local files first.
     # ===================================================================
-    
-    
-    - name: Check Life
-      run: echo "ALIVE"
-    
     - name: Checkout code
       uses: actions/checkout@v3
-    
+
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
       with:
@@ -29,17 +24,19 @@ jobs:
       run: dotnet publish --configuration Release --runtime win-x64 --output ./publish -p:PublishSingleFile=true --self-contained true
 
     - name: DEBUG - List files in publish directory (before removal)
-      run: ls -R ./publish
+      run: dir /s publish
+      shell: cmd
 
-    # - name: Remove User-Specific Files
-    #   run: |
-    #     rm ./publish/Data/clients.json
-    #     rm ./publish/Data/personnel.json
-    #     rm ./publish/Data/settings.json
-    #   shell: bash
+    - name: Remove User-Specific Files
+      run: |
+        del publish\Data\clients.json
+        del publish\Data\personnel.json
+        del publish\Data\settings.json
+      shell: cmd
 
-    # - name: DEBUG - List files in publish directory (after removal)
-    #   run: ls -R ./publish
+    - name: DEBUG - List files in publish directory (after removal)
+      run: dir /s publish
+      shell: cmd
 
     # - name: Zip the release
     #   uses: thejoshwolfe/zip-release-action@v1
@@ -65,13 +62,16 @@ jobs:
     #     regex: '(?<=<AssemblyVersion>).*(?=</AssemblyVersion>)'
 
     # - name: DEBUG - Echo extracted version
-    #   run: echo "${{ steps.extract_version.outputs.match }}"
+    #   run: echo "Version found: ${{ steps.extract_version.outputs.match }}"
+    #   shell: pwsh
 
     # - name: Create version.txt for deployment
     #   run: echo "${{ steps.extract_version.outputs.match }}" > version.txt
+    #   shell: pwsh
 
     # - name: DEBUG - Show final version.txt content
-    #   run: cat version.txt
+    #   run: type version.txt
+    #   shell: cmd
 
     # # ===================================================================
     # # SECTION 3: All local operations are done. Deploy to server.
