@@ -19,6 +19,33 @@ jobs:
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: '8.0.x'
+    
+    - name: Get Local Version
+      id: get_local_version
+      shell: pwsh
+      run: |
+        $csprojContent = Get-Content -Path './FAST-PDF.csproj'
+        $version = [regex]::Match($csprojContent, '(?<=<AssemblyVersion>).*(?=</AssemblyVersion>)').Value
+        echo "VERSION=$version" >> $env:GITHUB_OUTPUT
+
+    - name: Get Remote Version
+      id: get_remote_version
+      shell: pwsh
+      run: |
+        $version = Invoke-WebRequest -Uri "https://fast.shahafshavit.com/updates/version.txt" -UseBasicParsing | Select-Object -ExpandProperty Content
+        echo "VERSION=$version" >> $env:GITHUB_OUTPUT
+
+    - name: Compare Versions
+      id: compare_versions
+      shell: pwsh
+      run: |
+        $local_version = "${{ steps.get_local_version.outputs.VERSION }}"
+        $remote_version = "${{ steps.get_remote_version.outputs.VERSION }}"
+        if ([version]$local_version -gt [version]$remote_version) {
+          echo "SHOULD_DEPLOY=true" >> $env:GITHUB_OUTPUT
+        } else {
+          echo "SHOULD_DEPLOY=false" >> $env:GITHUB_OUTPUT
+        }
 
     - name: Publish Portable App
       run: dotnet publish --configuration Release --runtime win-x64 --output ./publish -p:PublishSingleFile=true --self-contained true
