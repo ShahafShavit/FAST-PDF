@@ -120,8 +120,7 @@ jobs:
         username: ${{ secrets.REMOTE_USER }}
         password: ${{ secrets.FTP_PASSWORD }}
         local-dir: ./upload/
-        server-dir: /updates/
-        log-level: "verbose"
+        server-dir: /public_html/updates/
 
   # This job runs only if deployment is NOT needed.
   no_deployment_needed:
