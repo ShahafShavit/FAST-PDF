@@ -88,30 +88,30 @@ jobs:
       run: echo "${{ needs.build.outputs.local_version }}" > version.txt
       shell: pwsh
 
-    # - name: Deploy Application ZIP
-    #   uses: SamKirkland/FTP-Deploy-Action@v4.3.4
-    #   with:
-    #     server: ${{ secrets.REMOTE_HOST }}
-    #     username: ${{ secrets.REMOTE_USER }}
-    #     password: ${{ secrets.FTP_PASSWORD }}
-    #     local-dir: ./
-    #     server-dir: /updates/
-    #     include: |
-    #       FAST-PDF_latest.zip
-    #     log-level: "verbose"
+    - name: Deploy Application ZIP
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+      with:
+        server: ${{ secrets.REMOTE_HOST }}
+        username: ${{ secrets.REMOTE_USER }}
+        password: ${{ secrets.FTP_PASSWORD }}
+        local-dir: ./
+        server-dir: /updates/
+        include: |
+          FAST-PDF_latest.zip
+        log-level: "verbose"
 
-    # - name: Deploy version.txt
-    #   uses: SamKirkland/FTP-Deploy-Action@v4.3.4
-    #   with:
-    #     server: ${{ secrets.REMOTE_HOST }}
-    #     username: ${{ secrets.REMOTE_USER }}
-    #     password: ${{ secrets.FTP_PASSWORD }}
-    #     local-dir: ./
-    #     server-dir: /updates/
-    #     include: |
-    #       version.txt
-    #     state-name: ftp-state-version.json
-    #     log-level: "verbose"
+    - name: Deploy version.txt
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+      with:
+        server: ${{ secrets.REMOTE_HOST }}
+        username: ${{ secrets.REMOTE_USER }}
+        password: ${{ secrets.FTP_PASSWORD }}
+        local-dir: ./
+        server-dir: /updates/
+        include: |
+          version.txt
+        state-name: ftp-state-version.json
+        log-level: "verbose"
 
   # This new job runs only if deployment is NOT needed.
   no_deployment_needed:
