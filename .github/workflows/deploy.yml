@@ -38,12 +38,12 @@ jobs:
       run: dir /s publish
       shell: cmd
 
-    # - name: Zip the release
-    #   uses: thejoshwolfe/zip-release-action@v1
-    #   with:
-    #     filename: 'FAST-PDF_latest.zip'
-    #     directory: './publish'
-    #     path: '.'
+    - name: Zip the release
+      uses: thejoshwolfe/zip-release-action@v1
+      with:
+        filename: 'FAST-PDF_latest.zip'
+        directory: './publish'
+        path: '.'
 
     # # ===================================================================
     # # SECTION 2: Prepare the version.txt file locally.
