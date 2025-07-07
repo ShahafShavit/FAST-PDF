@@ -10,7 +10,7 @@ jobs:
 
     steps:
     # ===================================================================
-    # STEP 1-5: Build, package, and prepare all files locally first.
+    # SECTION 1: Build and package all local files first.
     # ===================================================================
     - name: Checkout code
       uses: actions/checkout@v3
@@ -23,7 +23,7 @@ jobs:
     - name: Publish Portable App
       run: dotnet publish --configuration Release --runtime win-x64 --output ./publish -p:PublishSingleFile=true --self-contained true
 
-    - name: List files in publish directory (before removal)
+    - name: DEBUG - List files in publish directory (before removal)
       run: ls -R ./publish
 
     - name: Remove User-Specific Files
@@ -33,7 +33,7 @@ jobs:
         rm ./publish/Data/settings.json
       shell: bash
 
-    - name: List files in publish directory (after removal)
+    - name: DEBUG - List files in publish directory (after removal)
       run: ls -R ./publish
 
     - name: Zip the release
@@ -44,7 +44,7 @@ jobs:
         path: '.'
 
     # ===================================================================
-    # STEP 6-8: Prepare the version.txt file locally.
+    # SECTION 2: Prepare the version.txt file locally.
     # ===================================================================
     - name: Read .csproj
       id: read_project
@@ -59,18 +59,17 @@ jobs:
         text: ${{ steps.read_project.outputs.content }}
         regex: '(?<=<AssemblyVersion>).*(?=</AssemblyVersion>)'
 
+    - name: DEBUG - Echo extracted version
+      run: echo "Version found: ${{ steps.extract_version.outputs.match }}"
+
     - name: Create version.txt for deployment
       run: echo "${{ steps.extract_version.outputs.match }}" > version.txt
 
-    # DEBUG: Show the content of all files about to be deployed
-    - name: List final files in root directory
-      run: ls -l
-
-    - name: Show final version.txt content
+    - name: DEBUG - Show final version.txt content
       run: cat version.txt
 
     # ===================================================================
-    # STEP 9-10: All local operations are done. Begin deployment to server.
+    # SECTION 3: All local operations are done. Deploy to server.
     # ===================================================================
     - name: Deploy Application ZIP
       uses: SamKirkland/FTP-Deploy-Action@v4.3.4
@@ -79,7 +78,7 @@ jobs:
         username: ${{ secrets.REMOTE_USER }}
         password: ${{ secrets.FTP_PASSWORD }}
         local-dir: ./
-        server-dir: /fast.shahafshavit.com/updates/ # Make sure this server path is correct
+        server-dir: /path/to/your/updates/folder/
         include: |
           FAST-PDF_latest.zip
         log-level: "verbose"
@@ -91,7 +90,7 @@ jobs:
         username: ${{ secrets.REMOTE_USER }}
         password: ${{ secrets.FTP_PASSWORD }}
         local-dir: ./
-        server-dir: /fast.shahafshavit.com/updates/ # Make sure this server path is correct
+        server-dir: /path/to/your/updates/folder/
         include: |
           version.txt
         state-name: ftp-state-version.json
