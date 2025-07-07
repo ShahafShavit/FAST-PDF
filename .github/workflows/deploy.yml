@@ -9,10 +9,10 @@ on:
 jobs:
   # New job to test FTP connection before starting the build process.
   check_ftp:
-    name: Check FTP Connectivity
+    name: FTP- Check FTP Connectivity
     runs-on: ubuntu-latest
     steps:
-      - name: Test FTP Connection
+      - name: FTP- Test FTP Connection
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
           server: ${{ secrets.REMOTE_HOST }}
@@ -87,48 +87,40 @@ jobs:
       with:
         dotnet-version: '8.0.x'
         
-    - name: Publish Portable App
+    - name: dotnet- Publish Portable App
       run: dotnet publish --configuration Release --runtime win-x64 --output ./publish -p:PublishSingleFile=true --self-contained true
 
-    - name: Remove User-Specific Files
+    - name: CMD- Remove User-Specific Files
       run: |
         del publish\Data\clients.json
         del publish\Data\personnel.json
         del publish\Data\settings.json
       shell: cmd
 
-    - name: Create Zip Archive
+    - name: PS- Create Zip Archive
       run: Compress-Archive -Path ./publish/* -DestinationPath FAST-PDF_latest.zip
       shell: pwsh
 
-    - name: Create version.txt for deployment
+    - name: PS- Create version.txt for deployment
       # This step now correctly receives the local_version output from the 'build' job.
       run: echo "${{ needs.build.outputs.local_version }}" > version.txt
       shell: pwsh
 
-    - name: Deploy Application ZIP
-      uses: SamKirkland/FTP-Deploy-Action@v4.3.4
-      with:
-        server: ${{ secrets.REMOTE_HOST }}
-        username: ${{ secrets.REMOTE_USER }}
-        password: ${{ secrets.FTP_PASSWORD }}
-        local-dir: ./
-        server-dir: /updates/
-        include: |
-          FAST-PDF_latest.zip
-        log-level: "verbose"
+    - name: CMD- Stage files for deployment
+      shell: cmd
+      run: |
+        mkdir upload
+        move FAST-PDF_latest.zip upload\
+        move version.txt upload\
 
-    - name: Deploy version.txt
+    - name: FTP- Deploy Application Files to FTP
       uses: SamKirkland/FTP-Deploy-Action@v4.3.4
       with:
         server: ${{ secrets.REMOTE_HOST }}
         username: ${{ secrets.REMOTE_USER }}
         password: ${{ secrets.FTP_PASSWORD }}
-        local-dir: ./
+        local-dir: ./upload/
         server-dir: /updates/
-        include: |
-          version.txt
-        state-name: ftp-state-version.json
         log-level: "verbose"
 
   # This job runs only if deployment is NOT needed.
