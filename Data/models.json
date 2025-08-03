@@ -16,11 +16,16 @@
               "ActionType": "FormFiller",
               "Bank": "Clients",
               "Name": "b_OC_ShemBaalKarka",
-              "Label": "שם בעל קרקע",
+              "Label": "בעל קרקע",
               "DebugPlaceholder": "",
               "DefaultText": "",
               "Description": "",
               "DataType": 0,
+              "Font": "David",
+              "Size": 10,
+              "ResizeFunctionUse": false,
+              "Locations": null,
+              "Items": null,
               "SubFields": [
                 {
                   "Type": "TextBox",
@@ -32,11 +37,9 @@
                   "DefaultText": "",
                   "Description": "שם בעל הקרקע כפי שמופיע בחוזה",
                   "DataType": 0,
-                  "SubFields": null,
-                  "Items": null,
-                  "Font": "Arial",
+                  "Font": "David",
                   "Size": 12,
-                  "ResizeFunctionUse": true,
+                  "ResizeFunctionUse": false,
                   "Locations": [
                     {
                       "Page": 1,
@@ -46,7 +49,9 @@
                       "Height": null,
                       "Type": null
                     }
-                  ]
+                  ],
+                  "Items": null,
+                  "SubFields": null
                 },
                 {
                   "Type": "TextBox",
@@ -58,9 +63,7 @@
                   "DefaultText": "",
                   "Description": "מספר תעודת זהות בעל הקרקע",
                   "DataType": 1,
-                  "SubFields": null,
-                  "Items": null,
-                  "Font": "Arial",
+                  "Font": "David",
                   "Size": 12,
                   "ResizeFunctionUse": false,
                   "Locations": [
@@ -72,14 +75,11 @@
                       "Height": null,
                       "Type": null
                     }
-                  ]
+                  ],
+                  "Items": null,
+                  "SubFields": null
                 }
-              ],
-              "Items": null,
-              "Font": "Arial",
-              "Size": 10,
-              "ResizeFunctionUse": true,
-              "Locations": null
+              ]
             },
             {
               "Type": "TextBox",
@@ -91,11 +91,9 @@
               "DefaultText": "",
               "Description": "כתובת מלאה של בעל הקרקע",
               "DataType": 0,
-              "SubFields": null,
-              "Items": null,
-              "Font": "Arial",
+              "Font": "David",
               "Size": 12,
-              "ResizeFunctionUse": true,
+              "ResizeFunctionUse": false,
               "Locations": [
                 {
                   "Page": 1,
@@ -105,7 +103,9 @@
                   "Height": null,
                   "Type": null
                 }
-              ]
+              ],
+              "Items": null,
+              "SubFields": null
             },
             {
               "Type": "TextBox",
@@ -117,11 +117,9 @@
               "DefaultText": "",
               "Description": "",
               "DataType": 0,
-              "SubFields": null,
-              "Items": null,
-              "Font": "Arial",
+              "Font": "David",
               "Size": 12,
-              "ResizeFunctionUse": true,
+              "ResizeFunctionUse": false,
               "Locations": [
                 {
                   "Page": 1,
@@ -131,7 +129,9 @@
                   "Height": null,
                   "Type": null
                 }
-              ]
+              ],
+              "Items": null,
+              "SubFields": null
             },
             {
               "Type": "TextBox",
@@ -143,11 +143,9 @@
               "DefaultText": "",
               "Description": "",
               "DataType": 0,
-              "SubFields": null,
-              "Items": null,
-              "Font": "Arial",
+              "Font": "David",
               "Size": 12,
-              "ResizeFunctionUse": true,
+              "ResizeFunctionUse": false,
               "Locations": [
                 {
                   "Page": 1,
@@ -157,7 +155,9 @@
                   "Height": null,
                   "Type": null
                 }
-              ]
+              ],
+              "Items": null,
+              "SubFields": null
             },
             {
               "Type": "TextBox",
@@ -169,11 +169,9 @@
               "DefaultText": "",
               "Description": "",
               "DataType": 0,
-              "SubFields": null,
-              "Items": null,
-              "Font": "Arial",
+              "Font": "David",
               "Size": 12,
-              "ResizeFunctionUse": true,
+              "ResizeFunctionUse": false,
               "Locations": [
                 {
                   "Page": 1,
@@ -183,7 +181,9 @@
                   "Height": null,
                   "Type": null
                 }
-              ]
+              ],
+              "Items": null,
+              "SubFields": null
             },
             {
               "Type": "CheckBox",
@@ -195,11 +195,9 @@
               "DefaultText": "חיבור חדש",
               "Description": "",
               "DataType": 0,
-              "SubFields": null,
-              "Items": null,
-              "Font": "Arial",
+              "Font": "David",
               "Size": 10,
-              "ResizeFunctionUse": true,
+              "ResizeFunctionUse": false,
               "Locations": [
                 {
                   "Page": 1,
@@ -217,7 +215,9 @@
                   "Height": null,
                   "Type": null
                 }
-              ]
+              ],
+              "Items": null,
+              "SubFields": null
             },
             {
               "Type": "CheckBox",
@@ -229,11 +229,9 @@
               "DefaultText": "תאגיד",
               "Description": "",
               "DataType": 0,
-              "SubFields": null,
-              "Items": null,
-              "Font": "Arial",
+              "Font": "David",
               "Size": 10,
-              "ResizeFunctionUse": true,
+              "ResizeFunctionUse": false,
               "Locations": [
                 {
                   "Page": 1,
@@ -251,7 +249,9 @@
                   "Height": null,
                   "Type": null
                 }
-              ]
+              ],
+              "Items": null,
+              "SubFields": null
             },
             {
               "Type": "CheckBox",
@@ -263,11 +263,9 @@
               "DefaultText": "שותפות רשומה",
               "Description": "",
               "DataType": 0,
-              "SubFields": null,
-              "Items": null,
-              "Font": "Arial",
+              "Font": "David",
               "Size": 10,
-              "ResizeFunctionUse": true,
+              "ResizeFunctionUse": false,
               "Locations": [
                 {
                   "Page": 1,
@@ -285,7 +283,9 @@
                   "Height": null,
                   "Type": null
                 }
-              ]
+              ],
+              "Items": null,
+              "SubFields": null
             },
             {
               "Type": "CheckBox",
@@ -297,11 +297,9 @@
               "DefaultText": "מפעל",
               "Description": "",
               "DataType": 0,
-              "SubFields": null,
-              "Items": null,
-              "Font": "Arial",
+              "Font": "David",
               "Size": 10,
-              "ResizeFunctionUse": true,
+              "ResizeFunctionUse": false,
               "Locations": [
                 {
                   "Page": 1,
@@ -319,7 +317,9 @@
                   "Height": null,
                   "Type": null
                 }
-              ]
+              ],
+              "Items": null,
+              "SubFields": null
             },
             {
               "Type": "CheckBox",
@@ -331,11 +331,9 @@
               "DefaultText": "פרצלציה",
               "Description": "",
               "DataType": 0,
-              "SubFields": null,
-              "Items": null,
-              "Font": "Arial",
+              "Font": "David",
               "Size": 10,
-              "ResizeFunctionUse": true,
+              "ResizeFunctionUse": false,
               "Locations": [
                 {
                   "Page": 2,
@@ -353,7 +351,9 @@
                   "Height": null,
                   "Type": null
                 }
-              ]
+              ],
+              "Items": null,
+              "SubFields": null
             },
             {
               "Type": "CheckBox",
@@ -365,11 +365,9 @@
               "DefaultText": "מצורף",
               "Description": "",
               "DataType": 0,
-              "SubFields": null,
-              "Items": null,
-              "Font": "Arial",
+              "Font": "David",
               "Size": 10,
-              "ResizeFunctionUse": true,
+              "ResizeFunctionUse": false,
               "Locations": [
                 {
                   "Page": 2,
@@ -387,7 +385,9 @@
                   "Height": null,
                   "Type": null
                 }
-              ]
+              ],
+              "Items": null,
+              "SubFields": null
             }
           ]
         },
@@ -408,11 +408,9 @@
               "DefaultText": "",
               "Description": "",
               "DataType": 0,
-              "SubFields": null,
-              "Items": null,
-              "Font": "Arial",
+              "Font": "David",
               "Size": 10,
-              "ResizeFunctionUse": true,
+              "ResizeFunctionUse": false,
               "Locations": [
                 {
                   "Page": 1,
@@ -422,7 +420,9 @@
                   "Height": null,
                   "Type": null
                 }
-              ]
+              ],
+              "Items": null,
+              "SubFields": null
             },
             {
               "Type": "TextBox",
@@ -434,11 +434,9 @@
               "DefaultText": "",
               "Description": "",
               "DataType": 0,
-              "SubFields": null,
-              "Items": null,
-              "Font": "Arial",
+              "Font": "David",
               "Size": 10,
-              "ResizeFunctionUse": true,
+              "ResizeFunctionUse": false,
               "Locations": [
                 {
                   "Page": 1,
@@ -448,7 +446,9 @@
                   "Height": null,
                   "Type": null
                 }
-              ]
+              ],
+              "Items": null,
+              "SubFields": null
             },
             {
               "Type": "TextBox",
@@ -460,11 +460,9 @@
               "DefaultText": "",
               "Description": "",
               "DataType": 0,
-              "SubFields": null,
-              "Items": null,
-              "Font": "Arial",
+              "Font": "David",
               "Size": 10,
-              "ResizeFunctionUse": true,
+              "ResizeFunctionUse": false,
               "Locations": [
                 {
                   "Page": 1,
@@ -474,57 +472,77 @@
                   "Height": null,
                   "Type": null
                 }
-              ]
+              ],
+              "Items": null,
+              "SubFields": null
             },
             {
-              "Type": "TextBox",
-              "ActionType": null,
-              "Bank": null,
-              "Name": "b_YKY_LandOwnerCompany",
-              "Label": "שם בעל הקרקע- חברה",
-              "DebugPlaceholder": "שם חברה בעמ",
+              "Type": "ComboBox",
+              "ActionType": "FormFiller",
+              "Bank": "Clients",
+              "Name": "b_YKY_LandOwnerCompanyFiller",
+              "Label": "פרטי בעל קרקע- חברה",
+              "DebugPlaceholder": "",
               "DefaultText": "",
               "Description": "",
               "DataType": 0,
-              "SubFields": null,
-              "Items": null,
-              "Font": "Arial",
+              "Font": "David",
               "Size": 10,
-              "ResizeFunctionUse": true,
-              "Locations": [
-                {
-                  "Page": 1,
-                  "X": 483.0,
-                  "Y": 606.5,
-                  "Width": null,
-                  "Height": null,
-                  "Type": null
-                }
-              ]
-            },
-            {
-              "Type": "TextBox",
-              "ActionType": null,
-              "Bank": null,
-              "Name": "b_YKY_LandOwnerHetPei",
-              "Label": "ח.פ. בעל הקרקע",
-              "DebugPlaceholder": "12345678",
-              "DefaultText": "",
-              "Description": "",
-              "DataType": 0,
-              "SubFields": null,
+              "ResizeFunctionUse": false,
+              "Locations": null,
               "Items": null,
-              "Font": "Arial",
-              "Size": 10,
-              "ResizeFunctionUse": true,
-              "Locations": [
+              "SubFields": [
                 {
-                  "Page": 1,
-                  "X": 200.0,
-                  "Y": 606.5,
-                  "Width": null,
-                  "Height": null,
-                  "Type": null
+                  "Type": "TextBox",
+                  "ActionType": null,
+                  "Bank": null,
+                  "Name": "b_YKY_LandOwnerCompany",
+                  "Label": "שם בעל הקרקע- חברה",
+                  "DebugPlaceholder": "שם חברה בעמ",
+                  "DefaultText": "",
+                  "Description": "",
+                  "DataType": 0,
+                  "Font": "David",
+                  "Size": 10,
+                  "ResizeFunctionUse": false,
+                  "Locations": [
+                    {
+                      "Page": 1,
+                      "X": 483.0,
+                      "Y": 606.5,
+                      "Width": null,
+                      "Height": null,
+                      "Type": null
+                    }
+                  ],
+                  "Items": null,
+                  "SubFields": null
+                },
+                {
+                  "Type": "TextBox",
+                  "ActionType": null,
+                  "Bank": null,
+                  "Name": "b_YKY_LandOwnerHetPei",
+                  "Label": "ח.פ. בעל הקרקע",
+                  "DebugPlaceholder": "12345678",
+                  "DefaultText": "",
+                  "Description": "",
+                  "DataType": 7,
+                  "Font": "David",
+                  "Size": 10,
+                  "ResizeFunctionUse": false,
+                  "Locations": [
+                    {
+                      "Page": 1,
+                      "X": 200.0,
+                      "Y": 606.5,
+                      "Width": null,
+                      "Height": null,
+                      "Type": null
+                    }
+                  ],
+                  "Items": null,
+                  "SubFields": null
                 }
               ]
             },
@@ -538,11 +556,9 @@
               "DefaultText": "",
               "Description": "",
               "DataType": 0,
-              "SubFields": null,
-              "Items": null,
-              "Font": "Arial",
+              "Font": "David",
               "Size": 10,
-              "ResizeFunctionUse": true,
+              "ResizeFunctionUse": false,
               "Locations": [
                 {
                   "Page": 1,
@@ -552,7 +568,9 @@
                   "Height": null,
                   "Type": null
                 }
-              ]
+              ],
+              "Items": null,
+              "SubFields": null
             },
             {
               "Type": "TextBox",
@@ -564,11 +582,9 @@
               "DefaultText": "",
               "Description": "",
               "DataType": 0,
-              "SubFields": null,
-              "Items": null,
-              "Font": "Arial",
+              "Font": "David",
               "Size": 10,
-              "ResizeFunctionUse": true,
+              "ResizeFunctionUse": false,
               "Locations": [
                 {
                   "Page": 1,
@@ -578,7 +594,9 @@
                   "Height": null,
                   "Type": null
                 }
-              ]
+              ],
+              "Items": null,
+              "SubFields": null
             }
           ]
         },
@@ -599,11 +617,9 @@
               "DefaultText": "",
               "Description": "",
               "DataType": 0,
-              "SubFields": null,
-              "Items": null,
-              "Font": "Arial",
+              "Font": "David",
               "Size": 10,
-              "ResizeFunctionUse": true,
+              "ResizeFunctionUse": false,
               "Locations": [
                 {
                   "Page": 1,
@@ -613,7 +629,9 @@
                   "Height": null,
                   "Type": null
                 }
-              ]
+              ],
+              "Items": null,
+              "SubFields": null
             },
             {
               "Type": "TextBox",
@@ -625,11 +643,9 @@
               "DefaultText": "",
               "Description": "",
               "DataType": 0,
-              "SubFields": null,
-              "Items": null,
-              "Font": "Arial",
+              "Font": "David",
               "Size": 10,
-              "ResizeFunctionUse": true,
+              "ResizeFunctionUse": false,
               "Locations": [
                 {
                   "Page": 1,
@@ -639,7 +655,9 @@
                   "Height": null,
                   "Type": null
                 }
-              ]
+              ],
+              "Items": null,
+              "SubFields": null
             },
             {
               "Type": "TextBox",
@@ -651,11 +669,9 @@
               "DefaultText": "",
               "Description": "",
               "DataType": 0,
-              "SubFields": null,
-              "Items": null,
-              "Font": "Arial",
+              "Font": "David",
               "Size": 10,
-              "ResizeFunctionUse": true,
+              "ResizeFunctionUse": false,
               "Locations": [
                 {
                   "Page": 1,
@@ -665,109 +681,147 @@
                   "Height": null,
                   "Type": null
                 }
-              ]
+              ],
+              "Items": null,
+              "SubFields": null
             },
             {
-              "Type": "TextBox",
-              "ActionType": null,
-              "Bank": null,
-              "Name": "b_YK_LandOwnerCompany",
-              "Label": "שם בעל הקרקע- חברה",
-              "DebugPlaceholder": "שם החברה בעמ",
+              "Type": "ComboBox",
+              "ActionType": "FormFiller",
+              "Bank": "Clients",
+              "Name": "b_YK_LandOwnerDetails",
+              "Label": "פרטי בעל קרקע-חברה",
+              "DebugPlaceholder": "",
               "DefaultText": "",
               "Description": "",
               "DataType": 0,
-              "SubFields": null,
-              "Items": null,
-              "Font": "Arial",
+              "Font": "David",
               "Size": 10,
-              "ResizeFunctionUse": true,
-              "Locations": [
+              "ResizeFunctionUse": false,
+              "Locations": null,
+              "Items": null,
+              "SubFields": [
                 {
-                  "Page": 1,
-                  "X": 483.0,
-                  "Y": 606.5,
-                  "Width": null,
-                  "Height": null,
-                  "Type": null
+                  "Type": "TextBox",
+                  "ActionType": null,
+                  "Bank": null,
+                  "Name": "b_YK_LandOwnerCompany",
+                  "Label": "שם בעל הקרקע",
+                  "DebugPlaceholder": "שם החברה בעמ",
+                  "DefaultText": "",
+                  "Description": "",
+                  "DataType": 0,
+                  "Font": "David",
+                  "Size": 10,
+                  "ResizeFunctionUse": false,
+                  "Locations": [
+                    {
+                      "Page": 1,
+                      "X": 483.0,
+                      "Y": 606.5,
+                      "Width": null,
+                      "Height": null,
+                      "Type": null
+                    }
+                  ],
+                  "Items": null,
+                  "SubFields": null
+                },
+                {
+                  "Type": "TextBox",
+                  "ActionType": null,
+                  "Bank": null,
+                  "Name": "b_YK_LandOwnerHetPei",
+                  "Label": "ח.פ. בעל קרקע",
+                  "DebugPlaceholder": "ח.פ. בעל קרקע",
+                  "DefaultText": "",
+                  "Description": "",
+                  "DataType": 7,
+                  "Font": "David",
+                  "Size": 10,
+                  "ResizeFunctionUse": false,
+                  "Locations": [
+                    {
+                      "Page": 1,
+                      "X": 200.0,
+                      "Y": 606.0,
+                      "Width": null,
+                      "Height": null,
+                      "Type": null
+                    }
+                  ],
+                  "Items": null,
+                  "SubFields": null
                 }
               ]
             },
             {
-              "Type": "TextBox",
-              "ActionType": null,
-              "Bank": null,
-              "Name": "b_YK_LandOwnerHetPei",
-              "Label": "ח.פ. בעל קרקע",
-              "DebugPlaceholder": "ח.פ. בעל קרקע",
+              "Type": "ComboBox",
+              "ActionType": "FormFiller",
+              "Bank": "Clients",
+              "Name": "b_YK_OrdererDetails",
+              "Label": "פרטי מזמין",
+              "DebugPlaceholder": "",
               "DefaultText": "",
               "Description": "",
               "DataType": 0,
-              "SubFields": null,
-              "Items": null,
-              "Font": "Arial",
+              "Font": "David",
               "Size": 10,
-              "ResizeFunctionUse": true,
-              "Locations": [
-                {
-                  "Page": 1,
-                  "X": 200.0,
-                  "Y": 606.0,
-                  "Width": null,
-                  "Height": null,
-                  "Type": null
-                }
-              ]
-            },
-            {
-              "Type": "TextBox",
-              "ActionType": null,
-              "Bank": null,
-              "Name": "b_YK_OrdererName",
-              "Label": "שם מזמין",
-              "DebugPlaceholder": "שם המזמין",
-              "DefaultText": "",
-              "Description": "",
-              "DataType": 0,
-              "SubFields": null,
+              "ResizeFunctionUse": false,
+              "Locations": null,
               "Items": null,
-              "Font": "Arial",
-              "Size": 10,
-              "ResizeFunctionUse": true,
-              "Locations": [
+              "SubFields": [
                 {
-                  "Page": 1,
-                  "X": 307.0,
-                  "Y": 591.5,
-                  "Width": null,
-                  "Height": null,
-                  "Type": null
-                }
-              ]
-            },
-            {
-              "Type": "TextBox",
-              "ActionType": null,
-              "Bank": null,
-              "Name": "b_YK_OrdererHetPei",
-              "Label": "ח.פ מזמין",
-              "DebugPlaceholder": "ח.פ מזמין",
-              "DefaultText": "",
-              "Description": "",
-              "DataType": 0,
-              "SubFields": null,
-              "Items": null,
-              "Font": "Arial",
-              "Size": 10,
-              "ResizeFunctionUse": true,
-              "Locations": [
+                  "Type": "TextBox",
+                  "ActionType": null,
+                  "Bank": null,
+                  "Name": "b_YK_OrdererName",
+                  "Label": "שם מזמין",
+                  "DebugPlaceholder": "שם המזמין",
+                  "DefaultText": "",
+                  "Description": "",
+                  "DataType": 0,
+                  "Font": "David",
+                  "Size": 10,
+                  "ResizeFunctionUse": false,
+                  "Locations": [
+                    {
+                      "Page": 1,
+                      "X": 307.0,
+                      "Y": 591.5,
+                      "Width": null,
+                      "Height": null,
+                      "Type": null
+                    }
+                  ],
+                  "Items": null,
+                  "SubFields": null
+                },
                 {
-                  "Page": 1,
-                  "X": 152.0,
-                  "Y": 592.0,
-                  "Width": null,
-                  "Height": null,
-                  "Type": null
+                  "Type": "TextBox",
+                  "ActionType": null,
+                  "Bank": null,
+                  "Name": "b_YK_OrdererHetPei",
+                  "Label": "ח.פ מזמין",
+                  "DebugPlaceholder": "12345678",
+                  "DefaultText": "",
+                  "Description": "",
+                  "DataType": 7,
+                  "Font": "David",
+                  "Size": 10,
+                  "ResizeFunctionUse": false,
+                  "Locations": [
+                    {
+                      "Page": 1,
+                      "X": 152.0,
+                      "Y": 592.0,
+                      "Width": null,
+                      "Height": null,
+                      "Type": null
+                    }
+                  ],
+                  "Items": null,
+                  "SubFields": null
                 }
               ]
             },
@@ -781,11 +835,9 @@
               "DefaultText": "",
               "Description": "",
               "DataType": 0,
-              "SubFields": null,
-              "Items": null,
-              "Font": "Arial",
+              "Font": "David",
               "Size": 10,
-              "ResizeFunctionUse": true,
+              "ResizeFunctionUse": false,
               "Locations": [
                 {
                   "Page": 1,
@@ -795,7 +847,9 @@
                   "Height": null,
                   "Type": null
                 }
-              ]
+              ],
+              "Items": null,
+              "SubFields": null
             },
             {
               "Type": "TextBox",
@@ -807,11 +861,9 @@
               "DefaultText": "",
               "Description": "",
               "DataType": 0,
-              "SubFields": null,
-              "Items": null,
-              "Font": "Arial",
+              "Font": "David",
               "Size": 10,
-              "ResizeFunctionUse": true,
+              "ResizeFunctionUse": false,
               "Locations": [
                 {
                   "Page": 1,
@@ -821,7 +873,9 @@
                   "Height": null,
                   "Type": null
                 }
-              ]
+              ],
+              "Items": null,
+              "SubFields": null
             }
           ]
         },
@@ -842,6 +896,11 @@
               "DefaultText": "",
               "Description": "",
               "DataType": 0,
+              "Font": "David",
+              "Size": 10,
+              "ResizeFunctionUse": false,
+              "Locations": null,
+              "Items": null,
               "SubFields": [
                 {
                   "Type": "TextBox",
@@ -853,11 +912,9 @@
                   "DefaultText": "",
                   "Description": "",
                   "DataType": 0,
-                  "SubFields": null,
-                  "Items": null,
-                  "Font": "Arial",
+                  "Font": "David",
                   "Size": 10,
-                  "ResizeFunctionUse": true,
+                  "ResizeFunctionUse": false,
                   "Locations": [
                     {
                       "Page": 1,
@@ -875,7 +932,9 @@
                       "Height": null,
                       "Type": null
                     }
-                  ]
+                  ],
+                  "Items": null,
+                  "SubFields": null
                 },
                 {
                   "Type": "TextBox",
@@ -887,11 +946,9 @@
                   "DefaultText": "",
                   "Description": "",
                   "DataType": 7,
-                  "SubFields": null,
-                  "Items": null,
-                  "Font": "Arial",
+                  "Font": "David",
                   "Size": 10,
-                  "ResizeFunctionUse": true,
+                  "ResizeFunctionUse": false,
                   "Locations": [
                     {
                       "Page": 1,
@@ -901,14 +958,11 @@
                       "Height": null,
                       "Type": null
                     }
-                  ]
+                  ],
+                  "Items": null,
+                  "SubFields": null
                 }
-              ],
-              "Items": null,
-              "Font": "Arial",
-              "Size": 10,
-              "ResizeFunctionUse": true,
-              "Locations": null
+              ]
             },
             {
               "Type": "TextBox",
@@ -920,11 +974,9 @@
               "DefaultText": "",
               "Description": "",
               "DataType": 0,
-              "SubFields": null,
-              "Items": null,
-              "Font": "Arial",
+              "Font": "David",
               "Size": 10,
-              "ResizeFunctionUse": true,
+              "ResizeFunctionUse": false,
               "Locations": [
                 {
                   "Page": 1,
@@ -942,7 +994,9 @@
                   "Height": null,
                   "Type": null
                 }
-              ]
+              ],
+              "Items": null,
+              "SubFields": null
             },
             {
               "Type": "TextBox",
@@ -954,11 +1008,9 @@
               "DefaultText": "",
               "Description": "",
               "DataType": 0,
-              "SubFields": null,
-              "Items": null,
-              "Font": "Arial",
+              "Font": "David",
               "Size": 10,
-              "ResizeFunctionUse": true,
+              "ResizeFunctionUse": false,
               "Locations": [
                 {
                   "Page": 1,
@@ -976,7 +1028,9 @@
                   "Height": null,
                   "Type": null
                 }
-              ]
+              ],
+              "Items": null,
+              "SubFields": null
             },
             {
               "Type": "TextBox",
@@ -988,11 +1042,9 @@
               "DefaultText": "",
               "Description": "",
               "DataType": 0,
-              "SubFields": null,
-              "Items": null,
-              "Font": "Arial",
+              "Font": "David",
               "Size": 10,
-              "ResizeFunctionUse": true,
+              "ResizeFunctionUse": false,
               "Locations": [
                 {
                   "Page": 1,
@@ -1002,7 +1054,9 @@
                   "Height": null,
                   "Type": null
                 }
-              ]
+              ],
+              "Items": null,
+              "SubFields": null
             },
             {
               "Type": "TextBox",
@@ -1014,11 +1068,9 @@
               "DefaultText": "",
               "Description": "",
               "DataType": 0,
-              "SubFields": null,
-              "Items": null,
-              "Font": "Arial",
+              "Font": "David",
               "Size": 10,
-              "ResizeFunctionUse": true,
+              "ResizeFunctionUse": false,
               "Locations": [
                 {
                   "Page": 1,
@@ -1028,7 +1080,9 @@
                   "Height": null,
                   "Type": null
                 }
-              ]
+              ],
+              "Items": null,
+              "SubFields": null
             },
             {
               "Type": "TextBox",
@@ -1040,11 +1094,9 @@
               "DefaultText": "",
               "Description": "",
               "DataType": 0,
-              "SubFields": null,
-              "Items": null,
-              "Font": "Arial",
+              "Font": "David",
               "Size": 10,
-              "ResizeFunctionUse": true,
+              "ResizeFunctionUse": false,
               "Locations": [
                 {
                   "Page": 1,
@@ -1054,7 +1106,9 @@
                   "Height": null,
                   "Type": null
                 }
-              ]
+              ],
+              "Items": null,
+              "SubFields": null
             }
           ]
         }
@@ -1081,9 +1135,7 @@
               "DefaultText": "",
               "Description": "",
               "DataType": 0,
-              "SubFields": null,
-              "Items": null,
-              "Font": "Arial",
+              "Font": "David",
               "Size": 16,
               "ResizeFunctionUse": false,
               "Locations": [
@@ -1095,7 +1147,9 @@
                   "Height": null,
                   "Type": null
                 }
-              ]
+              ],
+              "Items": null,
+              "SubFields": null
             },
             {
               "Type": "TextBox",
@@ -1107,11 +1161,9 @@
               "DefaultText": "",
               "Description": "",
               "DataType": 0,
-              "SubFields": null,
-              "Items": null,
-              "Font": "Arial",
+              "Font": "David",
               "Size": 10,
-              "ResizeFunctionUse": true,
+              "ResizeFunctionUse": false,
               "Locations": [
                 {
                   "Page": 1,
@@ -1121,7 +1173,9 @@
                   "Height": null,
                   "Type": null
                 }
-              ]
+              ],
+              "Items": null,
+              "SubFields": null
             },
             {
               "Type": "TextBox",
@@ -1133,11 +1187,9 @@
               "DefaultText": "",
               "Description": "",
               "DataType": 0,
-              "SubFields": null,
-              "Items": null,
-              "Font": "Arial",
+              "Font": "David",
               "Size": 10,
-              "ResizeFunctionUse": true,
+              "ResizeFunctionUse": false,
               "Locations": [
                 {
                   "Page": 1,
@@ -1147,18 +1199,25 @@
                   "Height": null,
                   "Type": null
                 }
-              ]
+              ],
+              "Items": null,
+              "SubFields": null
             },
             {
               "Type": "ComboBox",
               "ActionType": "FormFiller",
               "Bank": "Clients",
               "Name": "hb_FT_ShemLakoahFiller",
-              "Label": "שם לקוח",
+              "Label": "פרטי לקוח",
               "DebugPlaceholder": "",
               "DefaultText": "",
               "Description": "",
               "DataType": 0,
+              "Font": "David",
+              "Size": 10,
+              "ResizeFunctionUse": false,
+              "Locations": null,
+              "Items": null,
               "SubFields": [
                 {
                   "Type": "TextBox",
@@ -1170,11 +1229,9 @@
                   "DefaultText": "",
                   "Description": "",
                   "DataType": 0,
-                  "SubFields": null,
-                  "Items": null,
-                  "Font": "Arial",
+                  "Font": "David",
                   "Size": 9,
-                  "ResizeFunctionUse": true,
+                  "ResizeFunctionUse": false,
                   "Locations": [
                     {
                       "Page": 1,
@@ -1184,14 +1241,37 @@
                       "Height": null,
                       "Type": null
                     }
-                  ]
+                  ],
+                  "Items": null,
+                  "SubFields": null
+                },
+                {
+                  "Type": "TextBox",
+                  "ActionType": "",
+                  "Bank": null,
+                  "Name": "hb_FT_ClientName",
+                  "Label": "ח.פ לקוח",
+                  "DebugPlaceholder": "11332255",
+                  "DefaultText": "",
+                  "Description": "",
+                  "DataType": 7,
+                  "Font": "David",
+                  "Size": 9,
+                  "ResizeFunctionUse": false,
+                  "Locations": [
+                    {
+                      "Page": 1,
+                      "X": 555.0,
+                      "Y": 664.0,
+                      "Width": null,
+                      "Height": null,
+                      "Type": null
+                    }
+                  ],
+                  "Items": null,
+                  "SubFields": null
                 }
-              ],
-              "Items": null,
-              "Font": "Arial",
-              "Size": 10,
-              "ResizeFunctionUse": true,
-              "Locations": null
+              ]
             },
             {
               "Type": "ComboBox",
@@ -1203,7 +1283,19 @@
               "DefaultText": "אחר",
               "Description": "",
               "DataType": 0,
-              "SubFields": null,
+              "Font": "David",
+              "Size": 10,
+              "ResizeFunctionUse": false,
+              "Locations": [
+                {
+                  "Page": 1,
+                  "X": 223.5,
+                  "Y": 626.0,
+                  "Width": null,
+                  "Height": null,
+                  "Type": null
+                }
+              ],
               "Items": [
                 {
                   "Label": "דירתי",
@@ -1262,19 +1354,7 @@
                   ]
                 }
               ],
-              "Font": "Arial",
-              "Size": 10,
-              "ResizeFunctionUse": true,
-              "Locations": [
-                {
-                  "Page": 1,
-                  "X": 223.5,
-                  "Y": 626.0,
-                  "Width": null,
-                  "Height": null,
-                  "Type": null
-                }
-              ]
+              "SubFields": null
             },
             {
               "Type": "ComboBox",
@@ -1286,7 +1366,19 @@
               "DefaultText": "אחר",
               "Description": "",
               "DataType": 0,
-              "SubFields": null,
+              "Font": "David",
+              "Size": 10,
+              "ResizeFunctionUse": false,
+              "Locations": [
+                {
+                  "Page": 1,
+                  "X": 85.0,
+                  "Y": 610.5,
+                  "Width": null,
+                  "Height": null,
+                  "Type": null
+                }
+              ],
               "Items": [
                 {
                   "Label": "בדיקת מתקן חדש",
@@ -1373,30 +1465,23 @@
                   ]
                 }
               ],
-              "Font": "Arial",
-              "Size": 10,
-              "ResizeFunctionUse": true,
-              "Locations": [
-                {
-                  "Page": 1,
-                  "X": 85.0,
-                  "Y": 610.5,
-                  "Width": null,
-                  "Height": null,
-                  "Type": null
-                }
-              ]
+              "SubFields": null
             },
             {
               "Type": "ComboBox",
               "ActionType": "FormFiller",
               "Bank": "Personnel",
               "Name": "hb_FT_HazaratHashmelaiOreh",
-              "Label": "הצהרת חשמלאי עורך",
+              "Label": "פרטי חשמלאי עורך",
               "DebugPlaceholder": "",
               "DefaultText": "אחר",
               "Description": "",
               "DataType": 0,
+              "Font": "David",
+              "Size": 10,
+              "ResizeFunctionUse": false,
+              "Locations": null,
+              "Items": null,
               "SubFields": [
                 {
                   "Type": "TextBox",
@@ -1408,11 +1493,9 @@
                   "DefaultText": "",
                   "Description": "",
                   "DataType": 0,
-                  "SubFields": null,
-                  "Items": null,
-                  "Font": "Arial",
+                  "Font": "David",
                   "Size": 12,
-                  "ResizeFunctionUse": true,
+                  "ResizeFunctionUse": false,
                   "Locations": [
                     {
                       "Page": 1,
@@ -1422,7 +1505,9 @@
                       "Height": null,
                       "Type": null
                     }
-                  ]
+                  ],
+                  "Items": null,
+                  "SubFields": null
                 },
                 {
                   "Type": "TextBox",
@@ -1434,9 +1519,7 @@
                   "DefaultText": "",
                   "Description": "",
                   "DataType": 3,
-                  "SubFields": null,
-                  "Items": null,
-                  "Font": "Arial",
+                  "Font": "David",
                   "Size": 12,
                   "ResizeFunctionUse": false,
                   "Locations": [
@@ -1448,7 +1531,9 @@
                       "Height": null,
                       "Type": null
                     }
-                  ]
+                  ],
+                  "Items": null,
+                  "SubFields": null
                 },
                 {
                   "Type": "TextBox",
@@ -1460,11 +1545,9 @@
                   "DefaultText": "",
                   "Description": "",
                   "DataType": 4,
-                  "SubFields": null,
-                  "Items": null,
-                  "Font": "Arial",
+                  "Font": "David",
                   "Size": 12,
-                  "ResizeFunctionUse": true,
+                  "ResizeFunctionUse": false,
                   "Locations": [
                     {
                       "Page": 1,
@@ -1474,7 +1557,9 @@
                       "Height": null,
                       "Type": null
                     }
-                  ]
+                  ],
+                  "Items": null,
+                  "SubFields": null
                 },
                 {
                   "Type": "TextBox",
@@ -1486,11 +1571,9 @@
                   "DefaultText": "",
                   "Description": "",
                   "DataType": 1,
-                  "SubFields": null,
-                  "Items": null,
-                  "Font": "Arial",
+                  "Font": "David",
                   "Size": 12,
-                  "ResizeFunctionUse": true,
+                  "ResizeFunctionUse": false,
                   "Locations": [
                     {
                       "Page": 1,
@@ -1500,7 +1583,9 @@
                       "Height": null,
                       "Type": null
                     }
-                  ]
+                  ],
+                  "Items": null,
+                  "SubFields": null
                 },
                 {
                   "Type": "TextBox",
@@ -1512,11 +1597,9 @@
                   "DefaultText": "",
                   "Description": "",
                   "DataType": 2,
-                  "SubFields": null,
-                  "Items": null,
-                  "Font": "Arial",
+                  "Font": "David",
                   "Size": 12,
-                  "ResizeFunctionUse": true,
+                  "ResizeFunctionUse": false,
                   "Locations": [
                     {
                       "Page": 1,
@@ -1526,25 +1609,27 @@
                       "Height": null,
                       "Type": null
                     }
-                  ]
+                  ],
+                  "Items": null,
+                  "SubFields": null
                 }
-              ],
-              "Items": null,
-              "Font": "Arial",
-              "Size": 10,
-              "ResizeFunctionUse": true,
-              "Locations": null
+              ]
             },
             {
               "Type": "ComboBox",
               "ActionType": "FormFiller",
               "Bank": "Personnel",
               "Name": "hb_FT_HazaratHashmelaiMevazea",
-              "Label": "הצהרת חשמלאי מבצע",
+              "Label": "פרטי חשמלאי מבצע",
               "DebugPlaceholder": "",
               "DefaultText": "אחר",
               "Description": "",
               "DataType": 0,
+              "Font": "David",
+              "Size": 12,
+              "ResizeFunctionUse": false,
+              "Locations": null,
+              "Items": null,
               "SubFields": [
                 {
                   "Type": "TextBox",
@@ -1556,11 +1641,9 @@
                   "DefaultText": "",
                   "Description": "",
                   "DataType": 0,
-                  "SubFields": null,
-                  "Items": null,
-                  "Font": "Arial",
+                  "Font": "David",
                   "Size": 12,
-                  "ResizeFunctionUse": true,
+                  "ResizeFunctionUse": false,
                   "Locations": [
                     {
                       "Page": 1,
@@ -1570,7 +1653,9 @@
                       "Height": null,
                       "Type": null
                     }
-                  ]
+                  ],
+                  "Items": null,
+                  "SubFields": null
                 },
                 {
                   "Type": "TextBox",
@@ -1582,9 +1667,7 @@
                   "DefaultText": "",
                   "Description": "",
                   "DataType": 3,
-                  "SubFields": null,
-                  "Items": null,
-                  "Font": "Arial",
+                  "Font": "David",
                   "Size": 12,
                   "ResizeFunctionUse": false,
                   "Locations": [
@@ -1596,7 +1679,9 @@
                       "Height": null,
                       "Type": null
                     }
-                  ]
+                  ],
+                  "Items": null,
+                  "SubFields": null
                 },
                 {
                   "Type": "TextBox",
@@ -1608,11 +1693,9 @@
                   "DefaultText": "",
                   "Description": "",
                   "DataType": 4,
-                  "SubFields": null,
-                  "Items": null,
-                  "Font": "Arial",
+                  "Font": "David",
                   "Size": 12,
-                  "ResizeFunctionUse": true,
+                  "ResizeFunctionUse": false,
                   "Locations": [
                     {
                       "Page": 1,
@@ -1622,7 +1705,9 @@
                       "Height": null,
                       "Type": null
                     }
-                  ]
+                  ],
+                  "Items": null,
+                  "SubFields": null
                 },
                 {
                   "Type": "TextBox",
@@ -1634,11 +1719,9 @@
                   "DefaultText": "",
                   "Description": "",
                   "DataType": 1,
-                  "SubFields": null,
-                  "Items": null,
-                  "Font": "Arial",
+                  "Font": "David",
                   "Size": 12,
-                  "ResizeFunctionUse": true,
+                  "ResizeFunctionUse": false,
                   "Locations": [
                     {
                       "Page": 1,
@@ -1648,7 +1731,9 @@
                       "Height": null,
                       "Type": null
                     }
-                  ]
+                  ],
+                  "Items": null,
+                  "SubFields": null
                 },
                 {
                   "Type": "TextBox",
@@ -1660,11 +1745,9 @@
                   "DefaultText": "",
                   "Description": "",
                   "DataType": 2,
-                  "SubFields": null,
-                  "Items": null,
-                  "Font": "Arial",
+                  "Font": "David",
                   "Size": 12,
-                  "ResizeFunctionUse": true,
+                  "ResizeFunctionUse": false,
                   "Locations": [
                     {
                       "Page": 1,
@@ -1674,25 +1757,27 @@
                       "Height": null,
                       "Type": null
                     }
-                  ]
+                  ],
+                  "Items": null,
+                  "SubFields": null
                 }
-              ],
-              "Items": null,
-              "Font": "Arial",
-              "Size": 12,
-              "ResizeFunctionUse": true,
-              "Locations": null
+              ]
             },
             {
               "Type": "ComboBox",
               "ActionType": "FormFiller",
               "Bank": "Personnel",
               "Name": "hb_FT_HazaratHashmelaiMashgiah",
-              "Label": "הצהרת חשמלאי משגיח ואחראי",
+              "Label": "פרטי חשמלאי משגיח ואחראי",
               "DebugPlaceholder": "",
               "DefaultText": "אחר",
               "Description": "",
               "DataType": 0,
+              "Font": "David",
+              "Size": 12,
+              "ResizeFunctionUse": false,
+              "Locations": null,
+              "Items": null,
               "SubFields": [
                 {
                   "Type": "TextBox",
@@ -1704,11 +1789,9 @@
                   "DefaultText": "",
                   "Description": "",
                   "DataType": 0,
-                  "SubFields": null,
-                  "Items": null,
-                  "Font": "Arial",
+                  "Font": "David",
                   "Size": 12,
-                  "ResizeFunctionUse": true,
+                  "ResizeFunctionUse": false,
                   "Locations": [
                     {
                       "Page": 1,
@@ -1718,7 +1801,9 @@
                       "Height": null,
                       "Type": null
                     }
-                  ]
+                  ],
+                  "Items": null,
+                  "SubFields": null
                 },
                 {
                   "Type": "TextBox",
@@ -1730,9 +1815,7 @@
                   "DefaultText": "",
                   "Description": "",
                   "DataType": 3,
-                  "SubFields": null,
-                  "Items": null,
-                  "Font": "Arial",
+                  "Font": "David",
                   "Size": 12,
                   "ResizeFunctionUse": false,
                   "Locations": [
@@ -1744,7 +1827,9 @@
                       "Height": null,
                       "Type": null
                     }
-                  ]
+                  ],
+                  "Items": null,
+                  "SubFields": null
                 },
                 {
                   "Type": "TextBox",
@@ -1756,11 +1841,9 @@
                   "DefaultText": "",
                   "Description": "",
                   "DataType": 4,
-                  "SubFields": null,
-                  "Items": null,
-                  "Font": "Arial",
+                  "Font": "David",
                   "Size": 12,
-                  "ResizeFunctionUse": true,
+                  "ResizeFunctionUse": false,
                   "Locations": [
                     {
                       "Page": 1,
@@ -1770,7 +1853,9 @@
                       "Height": null,
                       "Type": null
                     }
-                  ]
+                  ],
+                  "Items": null,
+                  "SubFields": null
                 },
                 {
                   "Type": "TextBox",
@@ -1782,11 +1867,9 @@
                   "DefaultText": "",
                   "Description": "",
                   "DataType": 1,
-                  "SubFields": null,
-                  "Items": null,
-                  "Font": "Arial",
+                  "Font": "David",
                   "Size": 12,
-                  "ResizeFunctionUse": true,
+                  "ResizeFunctionUse": false,
                   "Locations": [
                     {
                       "Page": 1,
@@ -1796,7 +1879,9 @@
                       "Height": null,
                       "Type": null
                     }
-                  ]
+                  ],
+                  "Items": null,
+                  "SubFields": null
                 },
                 {
                   "Type": "TextBox",
@@ -1808,11 +1893,9 @@
                   "DefaultText": "",
                   "Description": "",
                   "DataType": 2,
-                  "SubFields": null,
-                  "Items": null,
-                  "Font": "Arial",
+                  "Font": "David",
                   "Size": 12,
-                  "ResizeFunctionUse": true,
+                  "ResizeFunctionUse": false,
                   "Locations": [
                     {
                       "Page": 1,
@@ -1822,25 +1905,27 @@
                       "Height": null,
                       "Type": null
                     }
-                  ]
+                  ],
+                  "Items": null,
+                  "SubFields": null
                 }
-              ],
-              "Items": null,
-              "Font": "Arial",
-              "Size": 12,
-              "ResizeFunctionUse": true,
-              "Locations": null
+              ]
             },
             {
               "Type": "ComboBox",
               "ActionType": "FormFiller",
               "Bank": "Personnel",
               "Name": "hb_FT_YipuyKoahHashmelaiMeyape",
-              "Label": "חשמלאי מייפה",
+              "Label": "פרטי חשמלאי מייפה",
               "DebugPlaceholder": "",
               "DefaultText": "אחר",
               "Description": "",
               "DataType": 0,
+              "Font": "David",
+              "Size": 12,
+              "ResizeFunctionUse": false,
+              "Locations": null,
+              "Items": null,
               "SubFields": [
                 {
                   "Type": "TextBox",
@@ -1852,11 +1937,9 @@
                   "DefaultText": "",
                   "Description": "",
                   "DataType": 0,
-                  "SubFields": null,
-                  "Items": null,
-                  "Font": "Arial",
+                  "Font": "David",
                   "Size": 12,
-                  "ResizeFunctionUse": true,
+                  "ResizeFunctionUse": false,
                   "Locations": [
                     {
                       "Page": 1,
@@ -1866,7 +1949,9 @@
                       "Height": null,
                       "Type": null
                     }
-                  ]
+                  ],
+                  "Items": null,
+                  "SubFields": null
                 },
                 {
                   "Type": "TextBox",
@@ -1878,9 +1963,7 @@
                   "DefaultText": "",
                   "Description": "",
                   "DataType": 3,
-                  "SubFields": null,
-                  "Items": null,
-                  "Font": "Arial",
+                  "Font": "David",
                   "Size": 12,
                   "ResizeFunctionUse": false,
                   "Locations": [
@@ -1892,7 +1975,9 @@
                       "Height": null,
                       "Type": null
                     }
-                  ]
+                  ],
+                  "Items": null,
+                  "SubFields": null
                 },
                 {
                   "Type": "TextBox",
@@ -1904,11 +1989,9 @@
                   "DefaultText": "",
                   "Description": "",
                   "DataType": 4,
-                  "SubFields": null,
-                  "Items": null,
-                  "Font": "Arial",
+                  "Font": "David",
                   "Size": 12,
-                  "ResizeFunctionUse": true,
+                  "ResizeFunctionUse": false,
                   "Locations": [
                     {
                       "Page": 1,
@@ -1918,25 +2001,27 @@
                       "Height": null,
                       "Type": null
                     }
-                  ]
+                  ],
+                  "Items": null,
+                  "SubFields": null
                 }
-              ],
-              "Items": null,
-              "Font": "Arial",
-              "Size": 12,
-              "ResizeFunctionUse": true,
-              "Locations": null
+              ]
             },
             {
               "Type": "ComboBox",
               "ActionType": "FormFiller",
               "Bank": "Personnel",
               "Name": "hb_FT_YipuyKoahNohah",
-              "Label": "חשמלאי שנוכח בבדיקה",
+              "Label": "פרטי חשמלאי שנוכח בבדיקה",
               "DebugPlaceholder": "",
               "DefaultText": "אחר",
               "Description": "",
               "DataType": 0,
+              "Font": "David",
+              "Size": 12,
+              "ResizeFunctionUse": false,
+              "Locations": null,
+              "Items": null,
               "SubFields": [
                 {
                   "Type": "TextBox",
@@ -1948,11 +2033,9 @@
                   "DefaultText": "",
                   "Description": "",
                   "DataType": 0,
-                  "SubFields": null,
-                  "Items": null,
-                  "Font": "Arial",
+                  "Font": "David",
                   "Size": 12,
-                  "ResizeFunctionUse": true,
+                  "ResizeFunctionUse": false,
                   "Locations": [
                     {
                       "Page": 1,
@@ -1962,7 +2045,9 @@
                       "Height": null,
                       "Type": null
                     }
-                  ]
+                  ],
+                  "Items": null,
+                  "SubFields": null
                 },
                 {
                   "Type": "TextBox",
@@ -1974,9 +2059,7 @@
                   "DefaultText": "",
                   "Description": "",
                   "DataType": 3,
-                  "SubFields": null,
-                  "Items": null,
-                  "Font": "Arial",
+                  "Font": "David",
                   "Size": 12,
                   "ResizeFunctionUse": false,
                   "Locations": [
@@ -1988,7 +2071,9 @@
                       "Height": null,
                       "Type": null
                     }
-                  ]
+                  ],
+                  "Items": null,
+                  "SubFields": null
                 },
                 {
                   "Type": "TextBox",
@@ -2000,11 +2085,9 @@
                   "DefaultText": "",
                   "Description": "",
                   "DataType": 4,
-                  "SubFields": null,
-                  "Items": null,
-                  "Font": "Arial",
+                  "Font": "David",
                   "Size": 12,
-                  "ResizeFunctionUse": true,
+                  "ResizeFunctionUse": false,
                   "Locations": [
                     {
                       "Page": 1,
@@ -2014,7 +2097,9 @@
                       "Height": null,
                       "Type": null
                     }
-                  ]
+                  ],
+                  "Items": null,
+                  "SubFields": null
                 },
                 {
                   "Type": "TextBox",
@@ -2026,11 +2111,9 @@
                   "DefaultText": "",
                   "Description": "",
                   "DataType": 1,
-                  "SubFields": null,
-                  "Items": null,
-                  "Font": "Arial",
+                  "Font": "David",
                   "Size": 12,
-                  "ResizeFunctionUse": true,
+                  "ResizeFunctionUse": false,
                   "Locations": [
                     {
                       "Page": 1,
@@ -2040,7 +2123,9 @@
                       "Height": null,
                       "Type": null
                     }
-                  ]
+                  ],
+                  "Items": null,
+                  "SubFields": null
                 },
                 {
                   "Type": "TextBox",
@@ -2052,11 +2137,9 @@
                   "DefaultText": "",
                   "Description": "",
                   "DataType": 2,
-                  "SubFields": null,
-                  "Items": null,
-                  "Font": "Arial",
+                  "Font": "David",
                   "Size": 12,
-                  "ResizeFunctionUse": true,
+                  "ResizeFunctionUse": false,
                   "Locations": [
                     {
                       "Page": 1,
@@ -2066,14 +2149,11 @@
                       "Height": null,
                       "Type": null
                     }
-                  ]
+                  ],
+                  "Items": null,
+                  "SubFields": null
                 }
-              ],
-              "Items": null,
-              "Font": "Arial",
-              "Size": 12,
-              "ResizeFunctionUse": true,
-              "Locations": null
+              ]
             }
           ]
         },
@@ -2094,7 +2174,19 @@
               "DefaultText": "אחר",
               "Description": "",
               "DataType": 0,
-              "SubFields": null,
+              "Font": "David",
+              "Size": 16,
+              "ResizeFunctionUse": false,
+              "Locations": [
+                {
+                  "Page": 1,
+                  "X": 196.0,
+                  "Y": 646.0,
+                  "Width": null,
+                  "Height": null,
+                  "Type": null
+                }
+              ],
               "Items": [
                 {
                   "Label": "הגדלת גודל חיבור",
@@ -2153,19 +2245,7 @@
                   ]
                 }
               ],
-              "Font": "Arial",
-              "Size": 16,
-              "ResizeFunctionUse": false,
-              "Locations": [
-                {
-                  "Page": 1,
-                  "X": 196.0,
-                  "Y": 646.0,
-                  "Width": null,
-                  "Height": null,
-                  "Type": null
-                }
-              ]
+              "SubFields": null
             },
             {
               "Type": "ComboBox",
@@ -2177,6 +2257,11 @@
               "DefaultText": "אחר",
               "Description": "",
               "DataType": 0,
+              "Font": "David",
+              "Size": 12,
+              "ResizeFunctionUse": false,
+              "Locations": null,
+              "Items": null,
               "SubFields": [
                 {
                   "Type": "TextBox",
@@ -2188,11 +2273,9 @@
                   "DefaultText": "",
                   "Description": "",
                   "DataType": 0,
-                  "SubFields": null,
-                  "Items": null,
-                  "Font": "Arial",
+                  "Font": "David",
                   "Size": 9,
-                  "ResizeFunctionUse": true,
+                  "ResizeFunctionUse": false,
                   "Locations": [
                     {
                       "Page": 1,
@@ -2210,7 +2293,9 @@
                       "Height": null,
                       "Type": null
                     }
-                  ]
+                  ],
+                  "Items": null,
+                  "SubFields": null
                 },
                 {
                   "Type": "TextBox",
@@ -2222,9 +2307,7 @@
                   "DefaultText": "",
                   "Description": "",
                   "DataType": 7,
-                  "SubFields": null,
-                  "Items": null,
-                  "Font": "Arial",
+                  "Font": "David",
                   "Size": 10,
                   "ResizeFunctionUse": false,
                   "Locations": [
@@ -2236,14 +2319,11 @@
                       "Height": null,
                       "Type": null
                     }
-                  ]
+                  ],
+                  "Items": null,
+                  "SubFields": null
                 }
-              ],
-              "Items": null,
-              "Font": "Arial",
-              "Size": 12,
-              "ResizeFunctionUse": true,
-              "Locations": null
+              ]
             },
             {
               "Type": "TextBox",
@@ -2255,11 +2335,9 @@
               "DefaultText": "",
               "Description": "",
               "DataType": 0,
-              "SubFields": null,
-              "Items": null,
-              "Font": "Arial",
+              "Font": "David",
               "Size": 10,
-              "ResizeFunctionUse": true,
+              "ResizeFunctionUse": false,
               "Locations": [
                 {
                   "Page": 1,
@@ -2269,7 +2347,9 @@
                   "Height": null,
                   "Type": null
                 }
-              ]
+              ],
+              "Items": null,
+              "SubFields": null
             },
             {
               "Type": "TextBox",
@@ -2281,9 +2361,7 @@
               "DefaultText": "",
               "Description": "",
               "DataType": 0,
-              "SubFields": null,
-              "Items": null,
-              "Font": "Arial",
+              "Font": "David",
               "Size": 10,
               "ResizeFunctionUse": false,
               "Locations": [
@@ -2295,7 +2373,9 @@
                   "Height": null,
                   "Type": null
                 }
-              ]
+              ],
+              "Items": null,
+              "SubFields": null
             },
             {
               "Type": "TextBox",
@@ -2307,9 +2387,7 @@
               "DefaultText": "",
               "Description": "",
               "DataType": 0,
-              "SubFields": null,
-              "Items": null,
-              "Font": "Arial",
+              "Font": "David",
               "Size": 10,
               "ResizeFunctionUse": false,
               "Locations": [
@@ -2321,7 +2399,9 @@
                   "Height": null,
                   "Type": null
                 }
-              ]
+              ],
+              "Items": null,
+              "SubFields": null
             },
             {
               "Type": "TextBox",
@@ -2333,9 +2413,7 @@
               "DefaultText": "",
               "Description": "",
               "DataType": 0,
-              "SubFields": null,
-              "Items": null,
-              "Font": "Arial",
+              "Font": "David",
               "Size": 10,
               "ResizeFunctionUse": false,
               "Locations": [
@@ -2347,7 +2425,9 @@
                   "Height": null,
                   "Type": null
                 }
-              ]
+              ],
+              "Items": null,
+              "SubFields": null
             },
             {
               "Type": "TextBox",
@@ -2359,9 +2439,7 @@
               "DefaultText": "",
               "Description": "",
               "DataType": 0,
-              "SubFields": null,
-              "Items": null,
-              "Font": "Arial",
+              "Font": "David",
               "Size": 10,
               "ResizeFunctionUse": false,
               "Locations": [
@@ -2373,7 +2451,9 @@
                   "Height": null,
                   "Type": null
                 }
-              ]
+              ],
+              "Items": null,
+              "SubFields": null
             },
             {
               "Type": "TextBox",
@@ -2385,9 +2465,7 @@
               "DefaultText": "",
               "Description": "",
               "DataType": 0,
-              "SubFields": null,
-              "Items": null,
-              "Font": "Arial",
+              "Font": "David",
               "Size": 10,
               "ResizeFunctionUse": false,
               "Locations": [
@@ -2399,7 +2477,9 @@
                   "Height": null,
                   "Type": null
                 }
-              ]
+              ],
+              "Items": null,
+              "SubFields": null
             },
             {
               "Type": "TextBox",
@@ -2411,9 +2491,7 @@
               "DefaultText": "",
               "Description": "",
               "DataType": 0,
-              "SubFields": null,
-              "Items": null,
-              "Font": "Arial",
+              "Font": "David",
               "Size": 10,
               "ResizeFunctionUse": false,
               "Locations": [
@@ -2425,7 +2503,9 @@
                   "Height": null,
                   "Type": null
                 }
-              ]
+              ],
+              "Items": null,
+              "SubFields": null
             },
             {
               "Type": "TextBox",
@@ -2437,9 +2517,7 @@
               "DefaultText": "",
               "Description": "",
               "DataType": 0,
-              "SubFields": null,
-              "Items": null,
-              "Font": "Arial",
+              "Font": "David",
               "Size": 10,
               "ResizeFunctionUse": false,
               "Locations": [
@@ -2451,7 +2529,9 @@
                   "Height": null,
                   "Type": null
                 }
-              ]
+              ],
+              "Items": null,
+              "SubFields": null
             },
             {
               "Type": "TextBox",
@@ -2463,9 +2543,7 @@
               "DefaultText": "",
               "Description": "",
               "DataType": 0,
-              "SubFields": null,
-              "Items": null,
-              "Font": "Arial",
+              "Font": "David",
               "Size": 10,
               "ResizeFunctionUse": false,
               "Locations": [
@@ -2477,7 +2555,9 @@
                   "Height": null,
                   "Type": null
                 }
-              ]
+              ],
+              "Items": null,
+              "SubFields": null
             },
             {
               "Type": "TextBox",
@@ -2489,9 +2569,7 @@
               "DefaultText": "",
               "Description": "",
               "DataType": 0,
-              "SubFields": null,
-              "Items": null,
-              "Font": "Arial",
+              "Font": "David",
               "Size": 10,
               "ResizeFunctionUse": false,
               "Locations": [
@@ -2503,18 +2581,25 @@
                   "Height": null,
                   "Type": null
                 }
-              ]
+              ],
+              "Items": null,
+              "SubFields": null
             },
             {
               "Type": "ComboBox",
               "ActionType": "FormFiller",
               "Bank": "Personnel",
               "Name": "hb_TSB_HashmelaiMevazea",
-              "Label": "חשמלאי מבצע",
+              "Label": "פרטי חשמלאי מבצע",
               "DebugPlaceholder": "",
               "DefaultText": "אחר",
               "Description": "",
               "DataType": 0,
+              "Font": "David",
+              "Size": 12,
+              "ResizeFunctionUse": false,
+              "Locations": null,
+              "Items": null,
               "SubFields": [
                 {
                   "Type": "TextBox",
@@ -2526,11 +2611,9 @@
                   "DefaultText": "",
                   "Description": "",
                   "DataType": 0,
-                  "SubFields": null,
-                  "Items": null,
-                  "Font": "Arial",
+                  "Font": "David",
                   "Size": 12,
-                  "ResizeFunctionUse": true,
+                  "ResizeFunctionUse": false,
                   "Locations": [
                     {
                       "Page": 1,
@@ -2548,7 +2631,9 @@
                       "Height": null,
                       "Type": null
                     }
-                  ]
+                  ],
+                  "Items": null,
+                  "SubFields": null
                 },
                 {
                   "Type": "TextBox",
@@ -2560,9 +2645,7 @@
                   "DefaultText": "",
                   "Description": "",
                   "DataType": 3,
-                  "SubFields": null,
-                  "Items": null,
-                  "Font": "Arial",
+                  "Font": "David",
                   "Size": 12,
                   "ResizeFunctionUse": false,
                   "Locations": [
@@ -2574,7 +2657,9 @@
                       "Height": null,
                       "Type": null
                     }
-                  ]
+                  ],
+                  "Items": null,
+                  "SubFields": null
                 },
                 {
                   "Type": "TextBox",
@@ -2586,11 +2671,9 @@
                   "DefaultText": "",
                   "Description": "",
                   "DataType": 4,
-                  "SubFields": null,
-                  "Items": null,
-                  "Font": "Arial",
+                  "Font": "David",
                   "Size": 12,
-                  "ResizeFunctionUse": true,
+                  "ResizeFunctionUse": false,
                   "Locations": [
                     {
                       "Page": 1,
@@ -2600,7 +2683,9 @@
                       "Height": null,
                       "Type": null
                     }
-                  ]
+                  ],
+                  "Items": null,
+                  "SubFields": null
                 },
                 {
                   "Type": "TextBox",
@@ -2612,11 +2697,9 @@
                   "DefaultText": "",
                   "Description": "",
                   "DataType": 2,
-                  "SubFields": null,
-                  "Items": null,
-                  "Font": "Arial",
+                  "Font": "David",
                   "Size": 12,
-                  "ResizeFunctionUse": true,
+                  "ResizeFunctionUse": false,
                   "Locations": [
                     {
                       "Page": 1,
@@ -2626,14 +2709,11 @@
                       "Height": null,
                       "Type": null
                     }
-                  ]
+                  ],
+                  "Items": null,
+                  "SubFields": null
                 }
-              ],
-              "Items": null,
-              "Font": "Arial",
-              "Size": 12,
-              "ResizeFunctionUse": true,
-              "Locations": null
+              ]
             }
           ]
         },
@@ -2649,11 +2729,16 @@
               "ActionType": "FormFiller",
               "Bank": "Clients",
               "Name": "hb_BLTH_ShemTzarhanBaalHamitkan",
-              "Label": "שם צרכן/בעל המתקן",
+              "Label": "פרטי צרכן/בעל המתקן",
               "DebugPlaceholder": "",
               "DefaultText": "",
               "Description": "",
               "DataType": 0,
+              "Font": "David",
+              "Size": 10,
+              "ResizeFunctionUse": false,
+              "Locations": null,
+              "Items": null,
               "SubFields": [
                 {
                   "Type": "TextBox",
@@ -2665,11 +2750,9 @@
                   "DefaultText": "",
                   "Description": "",
                   "DataType": 0,
-                  "SubFields": null,
-                  "Items": null,
-                  "Font": "Arial",
+                  "Font": "David",
                   "Size": 10,
-                  "ResizeFunctionUse": true,
+                  "ResizeFunctionUse": false,
                   "Locations": [
                     {
                       "Page": 1,
@@ -2679,14 +2762,11 @@
                       "Height": null,
                       "Type": null
                     }
-                  ]
+                  ],
+                  "Items": null,
+                  "SubFields": null
                 }
-              ],
-              "Items": null,
-              "Font": "Arial",
-              "Size": 10,
-              "ResizeFunctionUse": true,
-              "Locations": null
+              ]
             },
             {
               "Type": "TextBox",
@@ -2698,11 +2778,9 @@
               "DefaultText": "",
               "Description": "",
               "DataType": 0,
-              "SubFields": null,
-              "Items": null,
-              "Font": "Arial",
+              "Font": "David",
               "Size": 10,
-              "ResizeFunctionUse": true,
+              "ResizeFunctionUse": false,
               "Locations": [
                 {
                   "Page": 1,
@@ -2712,7 +2790,9 @@
                   "Height": null,
                   "Type": null
                 }
-              ]
+              ],
+              "Items": null,
+              "SubFields": null
             },
             {
               "Type": "ComboBox",
@@ -2724,7 +2804,19 @@
               "DefaultText": "אחר",
               "Description": "",
               "DataType": 0,
-              "SubFields": null,
+              "Font": "David",
+              "Size": 10,
+              "ResizeFunctionUse": false,
+              "Locations": [
+                {
+                  "Page": 1,
+                  "X": 270.0,
+                  "Y": 710.0,
+                  "Width": null,
+                  "Height": null,
+                  "Type": null
+                }
+              ],
               "Items": [
                 {
                   "Label": "לפני הפעלה",
@@ -2755,19 +2847,7 @@
                   ]
                 }
               ],
-              "Font": "Arial",
-              "Size": 10,
-              "ResizeFunctionUse": false,
-              "Locations": [
-                {
-                  "Page": 1,
-                  "X": 270.0,
-                  "Y": 710.0,
-                  "Width": null,
-                  "Height": null,
-                  "Type": null
-                }
-              ]
+              "SubFields": null
             },
             {
               "Type": "TextBox",
@@ -2779,11 +2859,9 @@
               "DefaultText": "ABB",
               "Description": "",
               "DataType": 0,
-              "SubFields": null,
-              "Items": null,
-              "Font": "Arial",
+              "Font": "David",
               "Size": 10,
-              "ResizeFunctionUse": true,
+              "ResizeFunctionUse": false,
               "Locations": [
                 {
                   "Page": 1,
@@ -2793,7 +2871,9 @@
                   "Height": null,
                   "Type": null
                 }
-              ]
+              ],
+              "Items": null,
+              "SubFields": null
             },
             {
               "Type": "TextBox",
@@ -2805,11 +2885,9 @@
               "DefaultText": "TERRA",
               "Description": "",
               "DataType": 0,
-              "SubFields": null,
-              "Items": null,
-              "Font": "Arial",
+              "Font": "David",
               "Size": 10,
-              "ResizeFunctionUse": true,
+              "ResizeFunctionUse": false,
               "Locations": [
                 {
                   "Page": 1,
@@ -2819,7 +2897,9 @@
                   "Height": null,
                   "Type": null
                 }
-              ]
+              ],
+              "Items": null,
+              "SubFields": null
             },
             {
               "Type": "TextBox",
@@ -2831,11 +2911,9 @@
               "DefaultText": "",
               "Description": "",
               "DataType": 0,
-              "SubFields": null,
-              "Items": null,
-              "Font": "Arial",
+              "Font": "David",
               "Size": 10,
-              "ResizeFunctionUse": true,
+              "ResizeFunctionUse": false,
               "Locations": [
                 {
                   "Page": 1,
@@ -2845,7 +2923,9 @@
                   "Height": null,
                   "Type": null
                 }
-              ]
+              ],
+              "Items": null,
+              "SubFields": null
             },
             {
               "Type": "TextBox",
@@ -2857,11 +2937,9 @@
               "DefaultText": "",
               "Description": "",
               "DataType": 0,
-              "SubFields": null,
-              "Items": null,
-              "Font": "Arial",
+              "Font": "David",
               "Size": 10,
-              "ResizeFunctionUse": true,
+              "ResizeFunctionUse": false,
               "Locations": [
                 {
                   "Page": 1,
@@ -2871,7 +2949,9 @@
                   "Height": null,
                   "Type": null
                 }
-              ]
+              ],
+              "Items": null,
+              "SubFields": null
             },
             {
               "Type": "TextBox",
@@ -2883,11 +2963,9 @@
               "DefaultText": "",
               "Description": "",
               "DataType": 0,
-              "SubFields": null,
-              "Items": null,
-              "Font": "Arial",
+              "Font": "David",
               "Size": 10,
-              "ResizeFunctionUse": true,
+              "ResizeFunctionUse": false,
               "Locations": [
                 {
                   "Page": 1,
@@ -2897,7 +2975,9 @@
                   "Height": null,
                   "Type": null
                 }
-              ]
+              ],
+              "Items": null,
+              "SubFields": null
             },
             {
               "Type": "TextBox",
@@ -2909,11 +2989,9 @@
               "DefaultText": "",
               "Description": "",
               "DataType": 0,
-              "SubFields": null,
-              "Items": null,
-              "Font": "Arial",
+              "Font": "David",
               "Size": 10,
-              "ResizeFunctionUse": true,
+              "ResizeFunctionUse": false,
               "Locations": [
                 {
                   "Page": 1,
@@ -2923,7 +3001,9 @@
                   "Height": null,
                   "Type": null
                 }
-              ]
+              ],
+              "Items": null,
+              "SubFields": null
             },
             {
               "Type": "TextBox",
@@ -2935,11 +3015,9 @@
               "DefaultText": "",
               "Description": "",
               "DataType": 0,
-              "SubFields": null,
-              "Items": null,
-              "Font": "Arial",
+              "Font": "David",
               "Size": 10,
-              "ResizeFunctionUse": true,
+              "ResizeFunctionUse": false,
               "Locations": [
                 {
                   "Page": 1,
@@ -2949,18 +3027,25 @@
                   "Height": null,
                   "Type": null
                 }
-              ]
+              ],
+              "Items": null,
+              "SubFields": null
             },
             {
               "Type": "ComboBox",
               "ActionType": "FormFiller",
               "Bank": "Clients",
               "Name": "hb_BLTH_BaalEmda",
-              "Label": "בעל העמדה",
+              "Label": "פרטי בעל העמדה",
               "DebugPlaceholder": "",
               "DefaultText": "",
               "Description": "",
               "DataType": 0,
+              "Font": "David",
+              "Size": 10,
+              "ResizeFunctionUse": false,
+              "Locations": null,
+              "Items": null,
               "SubFields": [
                 {
                   "Type": "TextBox",
@@ -2972,11 +3057,9 @@
                   "DefaultText": "",
                   "Description": "",
                   "DataType": 0,
-                  "SubFields": null,
-                  "Items": null,
-                  "Font": "Arial",
+                  "Font": "David",
                   "Size": 10,
-                  "ResizeFunctionUse": true,
+                  "ResizeFunctionUse": false,
                   "Locations": [
                     {
                       "Page": 1,
@@ -2986,7 +3069,9 @@
                       "Height": null,
                       "Type": null
                     }
-                  ]
+                  ],
+                  "Items": null,
+                  "SubFields": null
                 },
                 {
                   "Type": "TextBox",
@@ -2998,11 +3083,9 @@
                   "DefaultText": "",
                   "Description": "",
                   "DataType": 2,
-                  "SubFields": null,
-                  "Items": null,
-                  "Font": "Arial",
+                  "Font": "David",
                   "Size": 10,
-                  "ResizeFunctionUse": true,
+                  "ResizeFunctionUse": false,
                   "Locations": [
                     {
                       "Page": 1,
@@ -3012,7 +3095,9 @@
                       "Height": null,
                       "Type": null
                     }
-                  ]
+                  ],
+                  "Items": null,
+                  "SubFields": null
                 },
                 {
                   "Type": "TextBox",
@@ -3024,11 +3109,9 @@
                   "DefaultText": "",
                   "Description": "",
                   "DataType": 6,
-                  "SubFields": null,
-                  "Items": null,
-                  "Font": "Arial",
+                  "Font": "David",
                   "Size": 10,
-                  "ResizeFunctionUse": true,
+                  "ResizeFunctionUse": false,
                   "Locations": [
                     {
                       "Page": 1,
@@ -3038,14 +3121,11 @@
                       "Height": null,
                       "Type": null
                     }
-                  ]
+                  ],
+                  "Items": null,
+                  "SubFields": null
                 }
-              ],
-              "Items": null,
-              "Font": "Arial",
-              "Size": 10,
-              "ResizeFunctionUse": true,
-              "Locations": null
+              ]
             },
             {
               "Type": "ComboBox",
@@ -3057,6 +3137,11 @@
               "DefaultText": "",
               "Description": "",
               "DataType": 0,
+              "Font": "David",
+              "Size": 10,
+              "ResizeFunctionUse": false,
+              "Locations": null,
+              "Items": null,
               "SubFields": [
                 {
                   "Type": "TextBox",
@@ -3068,11 +3153,9 @@
                   "DefaultText": "",
                   "Description": "",
                   "DataType": 0,
-                  "SubFields": null,
-                  "Items": null,
-                  "Font": "Arial",
+                  "Font": "David",
                   "Size": 10,
-                  "ResizeFunctionUse": true,
+                  "ResizeFunctionUse": false,
                   "Locations": [
                     {
                       "Page": 1,
@@ -3082,7 +3165,9 @@
                       "Height": null,
                       "Type": null
                     }
-                  ]
+                  ],
+                  "Items": null,
+                  "SubFields": null
                 },
                 {
                   "Type": "TextBox",
@@ -3094,9 +3179,7 @@
                   "DefaultText": "",
                   "Description": "",
                   "DataType": 2,
-                  "SubFields": null,
-                  "Items": null,
-                  "Font": "Arial",
+                  "Font": "David",
                   "Size": 10,
                   "ResizeFunctionUse": false,
                   "Locations": [
@@ -3108,7 +3191,9 @@
                       "Height": null,
                       "Type": null
                     }
-                  ]
+                  ],
+                  "Items": null,
+                  "SubFields": null
                 },
                 {
                   "Type": "TextBox",
@@ -3120,11 +3205,9 @@
                   "DefaultText": "",
                   "Description": "",
                   "DataType": 6,
-                  "SubFields": null,
-                  "Items": null,
-                  "Font": "Arial",
+                  "Font": "David",
                   "Size": 10,
-                  "ResizeFunctionUse": true,
+                  "ResizeFunctionUse": false,
                   "Locations": [
                     {
                       "Page": 1,
@@ -3134,25 +3217,27 @@
                       "Height": null,
                       "Type": null
                     }
-                  ]
+                  ],
+                  "Items": null,
+                  "SubFields": null
                 }
-              ],
-              "Items": null,
-              "Font": "Arial",
-              "Size": 10,
-              "ResizeFunctionUse": true,
-              "Locations": null
+              ]
             },
             {
               "Type": "ComboBox",
               "ActionType": "FormFiller",
               "Bank": "Personnel",
               "Name": "hb_BLTH_HashmelaiMevazea",
-              "Label": "החשמלאי המבצע",
+              "Label": "פרטי החשמלאי המבצע",
               "DebugPlaceholder": "",
               "DefaultText": "",
               "Description": "",
               "DataType": 0,
+              "Font": "David",
+              "Size": 10,
+              "ResizeFunctionUse": false,
+              "Locations": null,
+              "Items": null,
               "SubFields": [
                 {
                   "Type": "TextBox",
@@ -3164,11 +3249,9 @@
                   "DefaultText": "",
                   "Description": "",
                   "DataType": 0,
-                  "SubFields": null,
-                  "Items": null,
-                  "Font": "Arial",
+                  "Font": "David",
                   "Size": 10,
-                  "ResizeFunctionUse": true,
+                  "ResizeFunctionUse": false,
                   "Locations": [
                     {
                       "Page": 1,
@@ -3178,7 +3261,9 @@
                       "Height": null,
                       "Type": null
                     }
-                  ]
+                  ],
+                  "Items": null,
+                  "SubFields": null
                 },
                 {
                   "Type": "TextBox",
@@ -3190,9 +3275,7 @@
                   "DefaultText": "",
                   "Description": "",
                   "DataType": 4,
-                  "SubFields": null,
-                  "Items": null,
-                  "Font": "Arial",
+                  "Font": "David",
                   "Size": 10,
                   "ResizeFunctionUse": false,
                   "Locations": [
@@ -3204,7 +3287,9 @@
                       "Height": null,
                       "Type": null
                     }
-                  ]
+                  ],
+                  "Items": null,
+                  "SubFields": null
                 },
                 {
                   "Type": "TextBox",
@@ -3216,11 +3301,9 @@
                   "DefaultText": "",
                   "Description": "",
                   "DataType": 2,
-                  "SubFields": null,
-                  "Items": null,
-                  "Font": "Arial",
+                  "Font": "David",
                   "Size": 10,
-                  "ResizeFunctionUse": true,
+                  "ResizeFunctionUse": false,
                   "Locations": [
                     {
                       "Page": 1,
@@ -3230,14 +3313,11 @@
                       "Height": null,
                       "Type": null
                     }
-                  ]
+                  ],
+                  "Items": null,
+                  "SubFields": null
                 }
-              ],
-              "Items": null,
-              "Font": "Arial",
-              "Size": 10,
-              "ResizeFunctionUse": true,
-              "Locations": null
+              ]
             }
           ]
         }
@@ -3259,11 +3339,16 @@
               "ActionType": "FormFiller",
               "Bank": "Clients",
               "Name": "iia_PH_ShemBealim",
-              "Label": "שם בעלים/צרכן רשום",
+              "Label": "פרטי בעלים/צרכן רשום",
               "DebugPlaceholder": "",
               "DefaultText": "",
               "Description": "",
               "DataType": 0,
+              "Font": "David",
+              "Size": 10,
+              "ResizeFunctionUse": false,
+              "Locations": null,
+              "Items": null,
               "SubFields": [
                 {
                   "Type": "TextBox",
@@ -3275,11 +3360,9 @@
                   "DefaultText": "",
                   "Description": "",
                   "DataType": 0,
-                  "SubFields": null,
-                  "Items": null,
-                  "Font": "Arial",
+                  "Font": "David",
                   "Size": 10,
-                  "ResizeFunctionUse": true,
+                  "ResizeFunctionUse": false,
                   "Locations": [
                     {
                       "Page": 1,
@@ -3297,7 +3380,9 @@
                       "Height": null,
                       "Type": null
                     }
-                  ]
+                  ],
+                  "Items": null,
+                  "SubFields": null
                 },
                 {
                   "Type": "TextBox",
@@ -3309,11 +3394,9 @@
                   "DefaultText": "",
                   "Description": "",
                   "DataType": 7,
-                  "SubFields": null,
-                  "Items": null,
-                  "Font": "Arial",
+                  "Font": "David",
                   "Size": 10,
-                  "ResizeFunctionUse": true,
+                  "ResizeFunctionUse": false,
                   "Locations": [
                     {
                       "Page": 1,
@@ -3331,14 +3414,11 @@
                       "Height": null,
                       "Type": null
                     }
-                  ]
+                  ],
+                  "Items": null,
+                  "SubFields": null
                 }
-              ],
-              "Items": null,
-              "Font": "Arial",
-              "Size": 10,
-              "ResizeFunctionUse": true,
-              "Locations": null
+              ]
             },
             {
               "Type": "TextBox",
@@ -3350,11 +3430,9 @@
               "DefaultText": "",
               "Description": "",
               "DataType": 0,
-              "SubFields": null,
-              "Items": null,
-              "Font": "Arial",
+              "Font": "David",
               "Size": 10,
-              "ResizeFunctionUse": true,
+              "ResizeFunctionUse": false,
               "Locations": [
                 {
                   "Page": 1,
@@ -3372,7 +3450,9 @@
                   "Height": null,
                   "Type": null
                 }
-              ]
+              ],
+              "Items": null,
+              "SubFields": null
             },
             {
               "Type": "TextBox",
@@ -3384,11 +3464,9 @@
               "DefaultText": "",
               "Description": "",
               "DataType": 0,
-              "SubFields": null,
-              "Items": null,
-              "Font": "Arial",
+              "Font": "David",
               "Size": 10,
-              "ResizeFunctionUse": true,
+              "ResizeFunctionUse": false,
               "Locations": [
                 {
                   "Page": 1,
@@ -3398,7 +3476,9 @@
                   "Height": null,
                   "Type": null
                 }
-              ]
+              ],
+              "Items": null,
+              "SubFields": null
             },
             {
               "Type": "TextBox",
@@ -3410,11 +3490,9 @@
               "DefaultText": "",
               "Description": "",
               "DataType": 0,
-              "SubFields": null,
-              "Items": null,
-              "Font": "Arial",
+              "Font": "David",
               "Size": 10,
-              "ResizeFunctionUse": true,
+              "ResizeFunctionUse": false,
               "Locations": [
                 {
                   "Page": 1,
@@ -3432,7 +3510,9 @@
                   "Height": null,
                   "Type": null
                 }
-              ]
+              ],
+              "Items": null,
+              "SubFields": null
             },
             {
               "Type": "TextBox",
@@ -3444,11 +3524,9 @@
               "DefaultText": "",
               "Description": "",
               "DataType": 0,
-              "SubFields": null,
-              "Items": null,
-              "Font": "Arial",
+              "Font": "David",
               "Size": 10,
-              "ResizeFunctionUse": true,
+              "ResizeFunctionUse": false,
               "Locations": [
                 {
                   "Page": 1,
@@ -3466,7 +3544,9 @@
                   "Height": null,
                   "Type": null
                 }
-              ]
+              ],
+              "Items": null,
+              "SubFields": null
             },
             {
               "Type": "TextBox",
@@ -3478,11 +3558,9 @@
               "DefaultText": "",
               "Description": "",
               "DataType": 0,
-              "SubFields": null,
-              "Items": null,
-              "Font": "Arial",
+              "Font": "David",
               "Size": 10,
-              "ResizeFunctionUse": true,
+              "ResizeFunctionUse": false,
               "Locations": [
                 {
                   "Page": 1,
@@ -3500,7 +3578,9 @@
                   "Height": null,
                   "Type": null
                 }
-              ]
+              ],
+              "Items": null,
+              "SubFields": null
             },
             {
               "Type": "TextBox",
@@ -3512,11 +3592,9 @@
               "DefaultText": "",
               "Description": "",
               "DataType": 0,
-              "SubFields": null,
-              "Items": null,
-              "Font": "Arial",
+              "Font": "David",
               "Size": 10,
-              "ResizeFunctionUse": true,
+              "ResizeFunctionUse": false,
               "Locations": [
                 {
                   "Page": 1,
@@ -3534,7 +3612,9 @@
                   "Height": null,
                   "Type": null
                 }
-              ]
+              ],
+              "Items": null,
+              "SubFields": null
             },
             {
               "Type": "TextBox",
@@ -3546,11 +3626,9 @@
               "DefaultText": "",
               "Description": "",
               "DataType": 0,
-              "SubFields": null,
-              "Items": null,
-              "Font": "Arial",
+              "Font": "David",
               "Size": 10,
-              "ResizeFunctionUse": true,
+              "ResizeFunctionUse": false,
               "Locations": [
                 {
                   "Page": 1,
@@ -3568,18 +3646,25 @@
                   "Height": null,
                   "Type": null
                 }
-              ]
+              ],
+              "Items": null,
+              "SubFields": null
             },
             {
               "Type": "ComboBox",
               "ActionType": "FormFiller",
               "Bank": "Clients",
               "Name": "iia_PH_ShemMazmin",
-              "Label": "שם מזמין",
+              "Label": "פרטי המזמין",
               "DebugPlaceholder": "",
               "DefaultText": "",
               "Description": "",
               "DataType": 0,
+              "Font": "David",
+              "Size": 10,
+              "ResizeFunctionUse": false,
+              "Locations": null,
+              "Items": null,
               "SubFields": [
                 {
                   "Type": "TextBox",
@@ -3591,11 +3676,9 @@
                   "DefaultText": "",
                   "Description": "",
                   "DataType": 0,
-                  "SubFields": null,
-                  "Items": null,
-                  "Font": "Arial",
+                  "Font": "David",
                   "Size": 10,
-                  "ResizeFunctionUse": true,
+                  "ResizeFunctionUse": false,
                   "Locations": [
                     {
                       "Page": 2,
@@ -3605,7 +3688,9 @@
                       "Height": null,
                       "Type": null
                     }
-                  ]
+                  ],
+                  "Items": null,
+                  "SubFields": null
                 },
                 {
                   "Type": "TextBox",
@@ -3617,11 +3702,9 @@
                   "DefaultText": "",
                   "Description": "",
                   "DataType": 7,
-                  "SubFields": null,
-                  "Items": null,
-                  "Font": "Arial",
+                  "Font": "David",
                   "Size": 10,
-                  "ResizeFunctionUse": true,
+                  "ResizeFunctionUse": false,
                   "Locations": [
                     {
                       "Page": 2,
@@ -3631,14 +3714,11 @@
                       "Height": null,
                       "Type": null
                     }
-                  ]
+                  ],
+                  "Items": null,
+                  "SubFields": null
                 }
-              ],
-              "Items": null,
-              "Font": "Arial",
-              "Size": 10,
-              "ResizeFunctionUse": true,
-              "Locations": null
+              ]
             }
           ]
         },
@@ -3654,11 +3734,16 @@
               "ActionType": "FormFiller",
               "Bank": "Clients",
               "Name": "iia_HH_ShemBealim",
-              "Label": "שם בעלים/צרכן רשום",
+              "Label": "פרטי בעלים/צרכן רשום",
               "DebugPlaceholder": "",
               "DefaultText": "",
               "Description": "",
               "DataType": 0,
+              "Font": "David",
+              "Size": 10,
+              "ResizeFunctionUse": false,
+              "Locations": null,
+              "Items": null,
               "SubFields": [
                 {
                   "Type": "TextBox",
@@ -3670,11 +3755,9 @@
                   "DefaultText": "",
                   "Description": "",
                   "DataType": 0,
-                  "SubFields": null,
-                  "Items": null,
-                  "Font": "Arial",
+                  "Font": "David",
                   "Size": 10,
-                  "ResizeFunctionUse": true,
+                  "ResizeFunctionUse": false,
                   "Locations": [
                     {
                       "Page": 1,
@@ -3692,7 +3775,9 @@
                       "Height": null,
                       "Type": null
                     }
-                  ]
+                  ],
+                  "Items": null,
+                  "SubFields": null
                 },
                 {
                   "Type": "TextBox",
@@ -3704,11 +3789,9 @@
                   "DefaultText": "",
                   "Description": "",
                   "DataType": 7,
-                  "SubFields": null,
-                  "Items": null,
-                  "Font": "Arial",
+                  "Font": "David",
                   "Size": 10,
-                  "ResizeFunctionUse": true,
+                  "ResizeFunctionUse": false,
                   "Locations": [
                     {
                       "Page": 1,
@@ -3726,14 +3809,11 @@
                       "Height": null,
                       "Type": null
                     }
-                  ]
+                  ],
+                  "Items": null,
+                  "SubFields": null
                 }
-              ],
-              "Items": null,
-              "Font": "Arial",
-              "Size": 10,
-              "ResizeFunctionUse": true,
-              "Locations": null
+              ]
             },
             {
               "Type": "TextBox",
@@ -3745,11 +3825,9 @@
               "DefaultText": "",
               "Description": "",
               "DataType": 0,
-              "SubFields": null,
-              "Items": null,
-              "Font": "Arial",
+              "Font": "David",
               "Size": 10,
-              "ResizeFunctionUse": true,
+              "ResizeFunctionUse": false,
               "Locations": [
                 {
                   "Page": 1,
@@ -3767,7 +3845,9 @@
                   "Height": null,
                   "Type": null
                 }
-              ]
+              ],
+              "Items": null,
+              "SubFields": null
             },
             {
               "Type": "TextBox",
@@ -3779,11 +3859,9 @@
               "DefaultText": "",
               "Description": "",
               "DataType": 0,
-              "SubFields": null,
-              "Items": null,
-              "Font": "Arial",
+              "Font": "David",
               "Size": 10,
-              "ResizeFunctionUse": true,
+              "ResizeFunctionUse": false,
               "Locations": [
                 {
                   "Page": 1,
@@ -3801,7 +3879,9 @@
                   "Height": null,
                   "Type": null
                 }
-              ]
+              ],
+              "Items": null,
+              "SubFields": null
             },
             {
               "Type": "TextBox",
@@ -3813,11 +3893,9 @@
               "DefaultText": "",
               "Description": "",
               "DataType": 0,
-              "SubFields": null,
-              "Items": null,
-              "Font": "Arial",
+              "Font": "David",
               "Size": 10,
-              "ResizeFunctionUse": true,
+              "ResizeFunctionUse": false,
               "Locations": [
                 {
                   "Page": 1,
@@ -3835,7 +3913,9 @@
                   "Height": null,
                   "Type": null
                 }
-              ]
+              ],
+              "Items": null,
+              "SubFields": null
             },
             {
               "Type": "TextBox",
@@ -3847,11 +3927,9 @@
               "DefaultText": "",
               "Description": "",
               "DataType": 0,
-              "SubFields": null,
-              "Items": null,
-              "Font": "Arial",
+              "Font": "David",
               "Size": 10,
-              "ResizeFunctionUse": true,
+              "ResizeFunctionUse": false,
               "Locations": [
                 {
                   "Page": 1,
@@ -3869,7 +3947,9 @@
                   "Height": null,
                   "Type": null
                 }
-              ]
+              ],
+              "Items": null,
+              "SubFields": null
             },
             {
               "Type": "TextBox",
@@ -3881,11 +3961,9 @@
               "DefaultText": "",
               "Description": "",
               "DataType": 0,
-              "SubFields": null,
-              "Items": null,
-              "Font": "Arial",
+              "Font": "David",
               "Size": 10,
-              "ResizeFunctionUse": true,
+              "ResizeFunctionUse": false,
               "Locations": [
                 {
                   "Page": 1,
@@ -3903,7 +3981,9 @@
                   "Height": null,
                   "Type": null
                 }
-              ]
+              ],
+              "Items": null,
+              "SubFields": null
             },
             {
               "Type": "TextBox",
@@ -3915,11 +3995,9 @@
               "DefaultText": "",
               "Description": "",
               "DataType": 0,
-              "SubFields": null,
-              "Items": null,
-              "Font": "Arial",
+              "Font": "David",
               "Size": 10,
-              "ResizeFunctionUse": true,
+              "ResizeFunctionUse": false,
               "Locations": [
                 {
                   "Page": 1,
@@ -3937,7 +4015,9 @@
                   "Height": null,
                   "Type": null
                 }
-              ]
+              ],
+              "Items": null,
+              "SubFields": null
             },
             {
               "Type": "TextBox",
@@ -3949,11 +4029,9 @@
               "DefaultText": "",
               "Description": "",
               "DataType": 0,
-              "SubFields": null,
-              "Items": null,
-              "Font": "Arial",
+              "Font": "David",
               "Size": 10,
-              "ResizeFunctionUse": true,
+              "ResizeFunctionUse": false,
               "Locations": [
                 {
                   "Page": 1,
@@ -3971,18 +4049,25 @@
                   "Height": null,
                   "Type": null
                 }
-              ]
+              ],
+              "Items": null,
+              "SubFields": null
             },
             {
               "Type": "ComboBox",
               "ActionType": "FormFiller",
               "Bank": "Clients",
               "Name": "iia_PH_ShemMazmin",
-              "Label": "שם מזמין",
+              "Label": "פרטי מזמין",
               "DebugPlaceholder": "",
               "DefaultText": "",
               "Description": "",
               "DataType": 0,
+              "Font": "David",
+              "Size": 10,
+              "ResizeFunctionUse": false,
+              "Locations": null,
+              "Items": null,
               "SubFields": [
                 {
                   "Type": "TextBox",
@@ -3994,11 +4079,9 @@
                   "DefaultText": "",
                   "Description": "",
                   "DataType": 0,
-                  "SubFields": null,
-                  "Items": null,
-                  "Font": "Arial",
+                  "Font": "David",
                   "Size": 10,
-                  "ResizeFunctionUse": true,
+                  "ResizeFunctionUse": false,
                   "Locations": [
                     {
                       "Page": 2,
@@ -4008,7 +4091,9 @@
                       "Height": null,
                       "Type": null
                     }
-                  ]
+                  ],
+                  "Items": null,
+                  "SubFields": null
                 },
                 {
                   "Type": "TextBox",
@@ -4020,11 +4105,9 @@
                   "DefaultText": "",
                   "Description": "",
                   "DataType": 7,
-                  "SubFields": null,
-                  "Items": null,
-                  "Font": "Arial",
+                  "Font": "David",
                   "Size": 10,
-                  "ResizeFunctionUse": true,
+                  "ResizeFunctionUse": false,
                   "Locations": [
                     {
                       "Page": 2,
@@ -4034,14 +4117,11 @@
                       "Height": null,
                       "Type": null
                     }
-                  ]
+                  ],
+                  "Items": null,
+                  "SubFields": null
                 }
-              ],
-              "Items": null,
-              "Font": "Arial",
-              "Size": 10,
-              "ResizeFunctionUse": true,
-              "Locations": null
+              ]
             }
           ]
         }
@@ -4068,11 +4148,9 @@
               "DefaultText": "",
               "Description": "",
               "DataType": 0,
-              "SubFields": null,
-              "Items": null,
-              "Font": "Arial",
+              "Font": "David",
               "Size": 10,
-              "ResizeFunctionUse": true,
+              "ResizeFunctionUse": false,
               "Locations": [
                 {
                   "Page": 1,
@@ -4082,7 +4160,9 @@
                   "Height": null,
                   "Type": null
                 }
-              ]
+              ],
+              "Items": null,
+              "SubFields": null
             },
             {
               "Type": "TextBox",
@@ -4094,11 +4174,9 @@
               "DefaultText": "",
               "Description": "",
               "DataType": 0,
-              "SubFields": null,
-              "Items": null,
-              "Font": "Arial",
+              "Font": "David",
               "Size": 10,
-              "ResizeFunctionUse": true,
+              "ResizeFunctionUse": false,
               "Locations": [
                 {
                   "Page": 1,
@@ -4108,7 +4186,9 @@
                   "Height": null,
                   "Type": null
                 }
-              ]
+              ],
+              "Items": null,
+              "SubFields": null
             },
             {
               "Type": "TextBox",
@@ -4120,11 +4200,9 @@
               "DefaultText": "",
               "Description": "",
               "DataType": 0,
-              "SubFields": null,
-              "Items": null,
-              "Font": "Arial",
+              "Font": "David",
               "Size": 10,
-              "ResizeFunctionUse": true,
+              "ResizeFunctionUse": false,
               "Locations": [
                 {
                   "Page": 1,
@@ -4134,7 +4212,9 @@
                   "Height": null,
                   "Type": null
                 }
-              ]
+              ],
+              "Items": null,
+              "SubFields": null
             },
             {
               "Type": "TextBox",
@@ -4146,11 +4226,9 @@
               "DefaultText": "",
               "Description": "",
               "DataType": 0,
-              "SubFields": null,
-              "Items": null,
-              "Font": "Arial",
+              "Font": "David",
               "Size": 10,
-              "ResizeFunctionUse": true,
+              "ResizeFunctionUse": false,
               "Locations": [
                 {
                   "Page": 1,
@@ -4160,7 +4238,9 @@
                   "Height": null,
                   "Type": null
                 }
-              ]
+              ],
+              "Items": null,
+              "SubFields": null
             },
             {
               "Type": "TextBox",
@@ -4172,11 +4252,9 @@
               "DefaultText": "",
               "Description": "",
               "DataType": 0,
-              "SubFields": null,
-              "Items": null,
-              "Font": "Arial",
+              "Font": "David",
               "Size": 10,
-              "ResizeFunctionUse": true,
+              "ResizeFunctionUse": false,
               "Locations": [
                 {
                   "Page": 1,
@@ -4186,7 +4264,9 @@
                   "Height": null,
                   "Type": null
                 }
-              ]
+              ],
+              "Items": null,
+              "SubFields": null
             },
             {
               "Type": "TextBox",
@@ -4198,11 +4278,9 @@
               "DefaultText": "",
               "Description": "",
               "DataType": 0,
-              "SubFields": null,
-              "Items": null,
-              "Font": "Arial",
+              "Font": "David",
               "Size": 10,
-              "ResizeFunctionUse": true,
+              "ResizeFunctionUse": false,
               "Locations": [
                 {
                   "Page": 1,
@@ -4212,7 +4290,9 @@
                   "Height": null,
                   "Type": null
                 }
-              ]
+              ],
+              "Items": null,
+              "SubFields": null
             },
             {
               "Type": "ComboBox",
@@ -4224,7 +4304,19 @@
               "DefaultText": "",
               "Description": "",
               "DataType": 0,
-              "SubFields": null,
+              "Font": "David",
+              "Size": 10,
+              "ResizeFunctionUse": false,
+              "Locations": [
+                {
+                  "Page": 1,
+                  "X": 196.0,
+                  "Y": 646.0,
+                  "Width": null,
+                  "Height": null,
+                  "Type": null
+                }
+              ],
               "Items": [
                 {
                   "Label": "מגורים",
@@ -4255,19 +4347,7 @@
                   ]
                 }
               ],
-              "Font": "Arial",
-              "Size": 10,
-              "ResizeFunctionUse": false,
-              "Locations": [
-                {
-                  "Page": 1,
-                  "X": 196.0,
-                  "Y": 646.0,
-                  "Width": null,
-                  "Height": null,
-                  "Type": null
-                }
-              ]
+              "SubFields": null
             },
             {
               "Type": "TextBox",
@@ -4279,11 +4359,9 @@
               "DefaultText": "",
               "Description": "",
               "DataType": 0,
-              "SubFields": null,
-              "Items": null,
-              "Font": "Arial",
+              "Font": "David",
               "Size": 10,
-              "ResizeFunctionUse": true,
+              "ResizeFunctionUse": false,
               "Locations": [
                 {
                   "Page": 1,
@@ -4293,7 +4371,9 @@
                   "Height": null,
                   "Type": null
                 }
-              ]
+              ],
+              "Items": null,
+              "SubFields": null
             },
             {
               "Type": "TextBox",
@@ -4305,11 +4385,9 @@
               "DefaultText": "",
               "Description": "",
               "DataType": 0,
-              "SubFields": null,
-              "Items": null,
-              "Font": "Arial",
+              "Font": "David",
               "Size": 10,
-              "ResizeFunctionUse": true,
+              "ResizeFunctionUse": false,
               "Locations": [
                 {
                   "Page": 1,
@@ -4319,7 +4397,9 @@
                   "Height": null,
                   "Type": null
                 }
-              ]
+              ],
+              "Items": null,
+              "SubFields": null
             }
           ]
         },
