@@ -45,12 +45,13 @@ jobs:
       with:
         dotnet-version: '8.0.x'
 
-    - name: PS- Install Hebrew Language Pack
-      # This step installs the Hebrew language pack to make codepage 1255 available.
+    - name: PS- Set System Locale to Hebrew using DISM
+      # This step uses the DISM command to set the system locale to Hebrew (Israel),
+      # which makes codepage 1255 available.
       shell: pwsh
       run: |
-        Install-Language he-IL -CopyToSettings
-        Write-Host "Installed Hebrew language pack."
+        DISM /Online /Set-AllIntl:he-IL
+        Write-Host "System locale set to he-IL."
 
     - name: dotnet- Publish Portable App with Hebrew Codepage
       # This command includes -p:CodePage=1255 to correctly handle Hebrew characters.
