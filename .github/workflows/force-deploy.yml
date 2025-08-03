@@ -45,6 +45,13 @@ jobs:
       with:
         dotnet-version: '8.0.x'
 
+    - name: PS- Install Hebrew Language Pack
+      # This step installs the Hebrew language pack to make codepage 1255 available.
+      shell: pwsh
+      run: |
+        Install-Language he-IL -CopyToSettings
+        Write-Host "Installed Hebrew language pack."
+
     - name: dotnet- Publish Portable App with Hebrew Codepage
       # This command includes -p:CodePage=1255 to correctly handle Hebrew characters.
       run: dotnet publish --configuration Release --runtime win-x64 --output ./publish -p:PublishSingleFile=true --self-contained true -p:CodePage=1255
