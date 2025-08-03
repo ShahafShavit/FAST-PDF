@@ -834,6 +834,8 @@ public partial class Main : System.Windows.Forms.Form
         debugMode.Checked = this.globalSettings.Debug;
         debugMode.Click += (o, e) => { this.globalSettings.Debug = !this.globalSettings.Debug; debugMode.Checked = this.globalSettings.Debug; Config.UpdateSettings(this.globalSettings); MessageBox.Show("Please restart the program for changes to take effect."); };
 
+        ToolStripMenuItem forceUpdate = new ToolStripMenuItem("עדכון תוכנה כפוי");
+        forceUpdate.Click += forceUpdateButton_Click;
 
         fileMenu.DropDownItems.Add(chooseSaveFolder);
         fileMenu.DropDownItems.Add(openFolder);
@@ -842,6 +844,7 @@ public partial class Main : System.Windows.Forms.Form
         ToolStripSeparator toolStripSeparator1 = new ToolStripSeparator();
         fileMenu.DropDownItems.Add(toolStripSeparator1);
         fileMenu.DropDownItems.Add(debugMode);
+        fileMenu.DropDownItems.Add(forceUpdate);
         menuStrip.Items.Add(fileMenu);
         menuStrip.Items.Add(edit);
         menuStrip.Items.Add(about);
@@ -1063,6 +1066,28 @@ public partial class Main : System.Windows.Forms.Form
         this.MinimumSize = new System.Drawing.Size(this.Width, this.MinimumSize.Height);
         windowHeight += (int)Math.Ceiling((double)maxFields * (double)SPACE_PER_INPUT * (double)neededRows);
         this.Height = (int)windowHeight;
+    }
+    private void forceUpdateButton_Click(object sender, EventArgs e)
+    {
+        var confirmResult = MessageBox.Show(
+            "Are you sure you want to force an update? This will reinstall the latest version, even if you are up-to-date.",
+            "Confirm Force Update",
+            MessageBoxButtons.YesNo,
+            MessageBoxIcon.Warning);
+
+        if (confirmResult == DialogResult.Yes)
+        {
+            try
+            {
+                string exePath = Process.GetCurrentProcess().MainModule.FileName;
+                Process.Start(new ProcessStartInfo(exePath, "--force-update"));
+                Application.Exit();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Failed to start the update process: {ex.Message}");
+            }
+        }
     }
 }
 

@@ -1,76 +1,109 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
+using System.IO;
 using System.Net;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 public partial class UpdateDialog : Form
 {
-    private Stopwatch _stopwatch;
-    public UpdateDialog()
+    private readonly bool _forceUpdate;
+
+    public UpdateDialog(bool forceUpdate = false)
     {
         InitializeComponent();
-        _stopwatch = new Stopwatch();
+        _forceUpdate = forceUpdate;
     }
 
     private async void UpdateDialog_Load(object sender, EventArgs e)
     {
-        // Check for updates when the dialog loads
-        await Updater.CheckForUpdates(progressBar1, labelStatus, downloadSizeLabel, speedLabel, timeRemainingLabel);
+        await Updater.CheckForUpdates(progressBar1, labelStatus, downloadSizeLabel, speedLabel, timeRemainingLabel, _forceUpdate);
 
-        // Close the dialog after the update process completes or determines no updates are needed
-        this.Close();
+        if (!this.IsDisposed)
+        {
+            this.Close();
+        }
     }
 
     public static class Updater
     {
-        public static async Task CheckForUpdates(ProgressBar progressBar, Label statusLabel, Label sizeLabel, Label speedLabel, Label timeLabel)
+        public static async Task CheckForUpdates(ProgressBar progressBar, Label statusLabel, Label sizeLabel, Label speedLabel, Label timeLabel, bool forceUpdate = false)
         {
-            string currentVersion = AboutBox.AssemblyVersion;
-            string updateVersionUrl = "https://fast.shahafshavit.com/updates/version.txt";
-            string latestVersion = await new WebClient().DownloadStringTaskAsync(updateVersionUrl);
-
-            var localVersionSplit = currentVersion.Split(".");
-            var remoteVersionSplit = latestVersion.Split(".");
             bool requireUpdate = false;
-            for (int i = 0; i < localVersionSplit.Length; i++)
+
+            if (forceUpdate)
             {
-                var localVersion = int.Parse(localVersionSplit[i]);
-                var remoteVersion = int.Parse(remoteVersionSplit[i]);
-                if (localVersion < remoteVersion) { requireUpdate = true; MessageBox.Show("Found an update. Installing."); break; }
+                requireUpdate = true;
+                MessageBox.Show("Forcing update as requested. Installing the latest version from the server.");
+            }
+            else
+            {
+                try
+                {
+                    string currentVersionStr = AboutBox.AssemblyVersion;
+                    string updateVersionUrl = "https://fast.shahafshavit.com/updates/version.txt";
+                    string latestVersionStr;
+                    using (var client = new WebClient())
+                    {
+                        latestVersionStr = await client.DownloadStringTaskAsync(updateVersionUrl);
+                    }
+
+                    var localVersion = new Version(currentVersionStr);
+                    var remoteVersion = new Version(latestVersionStr.Trim());
+
+                    if (remoteVersion > localVersion)
+                    {
+                        requireUpdate = true;
+                        MessageBox.Show("Found a new update. Installing.");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error checking for updates: {ex.Message}");
+                    return; 
+                }
             }
 
             if (requireUpdate)
             {
-                string zipUrl = "https://fast.shahafshavit.com/updates/FAST-PDF_latest.zip";
-                string tempPath = Path.Combine(Path.GetTempPath(), "FAST-PDF_Update");
-                string tempZipPath = Path.Combine(tempPath, "FAST-PDF_update.zip");
-                string appPath = AppDomain.CurrentDomain.BaseDirectory;
-                MessageBox.Show(appPath);
-                string updatePath = Path.Combine(tempPath, "extracted");
+                try
+                {
+                    string zipUrl = "https://fast.shahafshavit.com/updates/FAST-PDF_latest.zip";
+                    string tempPath = Path.Combine(Path.GetTempPath(), "FAST-PDF_Update");
+                    string tempZipPath = Path.Combine(tempPath, "FAST-PDF_update.zip");
+                    string appPath = AppDomain.CurrentDomain.BaseDirectory;
+                    string updatePath = Path.Combine(tempPath, "extracted");
 
-                if (!Directory.Exists(tempPath))
-                    Directory.CreateDirectory(tempPath);
+                    if (!Directory.Exists(tempPath))
+                        Directory.CreateDirectory(tempPath);
 
-                UpdateStatus("Downloading update...", statusLabel);
+                    UpdateStatus("Downloading update...", statusLabel);
 
-                await DownloadFileWithProgressAsync(zipUrl, tempZipPath, progressBar, sizeLabel, speedLabel, timeLabel);
+                    await DownloadFileWithProgressAsync(zipUrl, tempZipPath, progressBar, sizeLabel, speedLabel, timeLabel);
 
-                UpdateStatus("Extracting update...", statusLabel);
+                    UpdateStatus("Extracting update...", statusLabel);
 
+                    if (Directory.Exists(updatePath))
+                        Directory.Delete(updatePath, true);
 
-                if (Directory.Exists(updatePath))
-                    Directory.Delete(updatePath, true);
+                    System.IO.Compression.ZipFile.ExtractToDirectory(tempZipPath, updatePath, true);
 
-                System.IO.Compression.ZipFile.ExtractToDirectory(tempZipPath, updatePath, true);
+                    UpdateStatus("Preparing update...", statusLabel);
+                    CreateBatchFile(updatePath, appPath);
 
-                UpdateStatus("Preparing update...", statusLabel);
-                CreateBatchFile(updatePath, appPath);
-
-                MessageBox.Show("Update downloaded. Restarting...");
-                RestartWithBatch();
-                Environment.Exit(0);
+                    MessageBox.Show("Update downloaded. The application will now restart.");
+                    RestartWithBatch();
+                    Environment.Exit(0);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"An error occurred during the update process: {ex.Message}");
+                }
             }
             else
             {
                 UpdateStatus("FAST-PDF is up-to-date.", statusLabel);
+                await Task.Delay(1500);
             }
         }
 
@@ -85,12 +118,10 @@ public partial class UpdateDialog : Form
                 {
                     progressBar.Value = e.ProgressPercentage;
 
-                    // Update size
                     double bytesInMb = e.TotalBytesToReceive / 1024d / 1024d;
                     double downloadedMb = e.BytesReceived / 1024d / 1024d;
                     sizeLabel.Text = $"Size: {downloadedMb:F2} MB / {bytesInMb:F2} MB";
 
-                    // Update speed
                     double speed = e.BytesReceived / 1024d / stopwatch.Elapsed.TotalSeconds;
                     string speedName = "KB/s";
                     if (speed > 1024d)
@@ -98,14 +129,16 @@ public partial class UpdateDialog : Form
                         speed /= 1024d;
                         speedName = "MB/s";
                     }
-                    speedLabel.Text = $"Speed: {speed:F2} " + speedName;
+                    speedLabel.Text = $"Speed: {speed:F2} {speedName}";
 
-                    // Update time remaining
-                    double timeRemaining = (e.TotalBytesToReceive - e.BytesReceived) / speed;
-                    timeLabel.Text = $"Time Remaining: {timeRemaining:F2} seconds";
+                    if (speed > 0)
+                    {
+                        double timeRemainingSeconds = (e.TotalBytesToReceive - e.BytesReceived) / (speed * 1024);
+                        timeLabel.Text = $"Time Remaining: {timeRemainingSeconds:F0} seconds";
+                    }
                 };
 
-                await webClient.DownloadFileTaskAsync(url, destinationPath);
+                await webClient.DownloadFileTaskAsync(new Uri(url), destinationPath);
                 stopwatch.Stop();
             }
         }
@@ -128,7 +161,7 @@ public partial class UpdateDialog : Form
             using (StreamWriter writer = new StreamWriter(batchPath))
             {
                 writer.WriteLine("@echo off");
-                writer.WriteLine("timeout /t 2 > nul");
+                writer.WriteLine("timeout /t 2 /nobreak > nul");
                 writer.WriteLine($"xcopy /e /y \"{updatePath}\\*\" \"{appPath}\"");
                 writer.WriteLine($"start \"\" \"{Path.Combine(appPath, "FAST-PDF.exe")}\"");
                 writer.WriteLine("del \"%~f0\" & exit");
@@ -147,6 +180,3 @@ public partial class UpdateDialog : Form
         }
     }
 }
-
-
-
