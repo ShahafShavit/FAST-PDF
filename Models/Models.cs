@@ -32,12 +32,12 @@ public class InputField
     public string? DefaultText { get; set; }
     public string? Description { get; set; }
     public Person.DataType? DataType { get; set; }
-    public List<InputField>? SubFields { get; set; }
-    public List<ComboBoxItem>? Items { get; set; }
     public string? Font { get; set; }
     public int Size { get; set; }
     public bool ResizeFunctionUse { get; set; }
     public List<Location>? Locations { get; set; }
+    public List<ComboBoxItem>? Items { get; set; }
+    public List<InputField>? SubFields { get; set; }
 
 
 }
