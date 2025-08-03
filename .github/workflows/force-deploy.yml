@@ -45,6 +45,14 @@ jobs:
       with:
         dotnet-version: '8.0.x'
 
+    - name: PS- Install Hebrew Language Capability using DISM
+      # This step uses DISM to add the Hebrew language capability,
+      # which should make codepage 1255 available for the compiler.
+      shell: pwsh
+      run: |
+        DISM /Online /Add-Capability /CapabilityName:Language.Basic~~~he-IL~0.0.1.0
+        Write-Host "Attempted to add Hebrew language capability."
+
     - name: dotnet- Publish Portable App with Hebrew Codepage
       # This command includes -p:CodePage=1255 to correctly handle Hebrew characters.
       run: dotnet publish --configuration Release --runtime win-x64 --output ./publish -p:PublishSingleFile=true --self-contained true -p:CodePage=1255
