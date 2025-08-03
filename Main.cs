@@ -1,4 +1,4 @@
-//using FAST;
+ο»Ώ//using FAST;
 using iText.Kernel.Colors;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
@@ -39,7 +39,7 @@ public partial class Main : System.Windows.Forms.Form
         catch (Exception e)
         { MessageBox.Show("Error: " + e.Message); Environment.Exit(1); }
         this.debug = this.globalSettings.Debug;
-        this.Text = "ξςψλϊ ξιμει θτριν- μδθ δπγρϊ ηωξμ";
+        this.Text = "ΧΧΆΧ¨Χ›Χª ΧΧ™ΧΧ•Χ™ ΧΧ¤Χ΅Χ™Χ- ΧΧ”Χ Χ”Χ Χ“Χ΅Χª Χ—Χ©ΧΧ";
 
         this.RightToLeft = RightToLeft.Yes;
         this.AutoScaleMode = AutoScaleMode.Dpi;
@@ -377,8 +377,8 @@ public partial class Main : System.Windows.Forms.Form
         // ComboBox (Selector)
         if (control is ComboBox comb && field.ActionType == "Selector")
         {
-            field.SelectedItem = new ComboBoxItem { Label = "ΰηψ", Locations = field.Locations, Text = "ΰηψ" };
-            field.Text = field.DefaultText ?? "ΰηψ";
+            field.SelectedItem = new ComboBoxItem { Label = "ΧΧ—Χ¨", Locations = field.Locations, Text = "ΧΧ—Χ¨" };
+            field.Text = field.DefaultText ?? "ΧΧ—Χ¨";
             comb.DataBindings.Add("Text", field, nameof(field.Text), false, DataSourceUpdateMode.OnPropertyChanged);
             comb.TextChanged += (sender, args) => OnComboBoxTextChanged(field, comb);
             comb.SelectedIndexChanged += (sender, args) => OnComboBoxSelectedIndexChanged(field, comb);
@@ -401,7 +401,7 @@ public partial class Main : System.Windows.Forms.Form
         {
             if (o is Control c)
             {
-                MessageBox.Show(c.Tag?.ToString(), "ξιγς ςμ ωγδ", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(c.Tag?.ToString(), "ΧΧ™Χ“ΧΆ ΧΆΧ Χ©Χ“Χ”", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         };
         return infoLabel;
@@ -621,7 +621,7 @@ public partial class Main : System.Windows.Forms.Form
 
         var fileNameLabel = new Label
         {
-            Text = "ων χεαυ:",
+            Text = "Χ©Χ Χ§Χ•Χ‘Χ¥:",
             AutoSize = true,
             TextAlign = ContentAlignment.MiddleCenter,
             Anchor = AnchorStyles.Left,
@@ -654,7 +654,7 @@ public partial class Main : System.Windows.Forms.Form
                 if (clipboardText != filteredText)
                 {
                     Clipboard.SetText(filteredText); // Update clipboard with valid text
-                    Console.WriteLine("δερψε ξων δχεαυ ϊεειν ΰρεψιν");
+                    Console.WriteLine("Χ”Χ•Χ΅Χ¨Χ• ΧΧ©Χ Χ”Χ§Χ•Χ‘Χ¥ ΧªΧ•Χ•Χ™Χ ΧΧ΅Χ•Χ¨Χ™Χ");
                 }
 
                 // Allow paste to proceed
@@ -692,7 +692,7 @@ public partial class Main : System.Windows.Forms.Form
     {
         var generateButton = new Button
         {
-            Text = "δτχ θετρ",
+            Text = "Χ”Χ¤Χ§ ΧΧ•Χ¤Χ΅",
             AutoSize = true,
             AutoSizeMode = AutoSizeMode.GrowAndShrink,
             Dock = DockStyle.Bottom
@@ -704,7 +704,7 @@ public partial class Main : System.Windows.Forms.Form
     {
         var clearButton = new Button
         {
-            Text = "πχδ δλμ",
+            Text = "Χ Χ§Χ” Χ”Χ›Χ",
             AutoSize = true,
             AutoSizeMode = AutoSizeMode.GrowAndShrink,
             Dock = DockStyle.Bottom
@@ -728,7 +728,7 @@ public partial class Main : System.Windows.Forms.Form
         }
         if (!Directory.Exists(this.globalSettings.SavePath))
         {
-            MessageBox.Show("ϊιχιιδ μωξιψδ μΰ πξφΰδ. ΰπΰ αηψ ϊιχιιδ μωξεψ αδ ΰϊ δχεαυ (χεαυ > ωξεψ αϊιχιιδ).", "ΰπΰ αηψ ϊιχιιδ", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.RtlReading);
+            MessageBox.Show("ΧªΧ™Χ§Χ™Χ™Χ” ΧΧ©ΧΧ™Χ¨Χ” ΧΧ Χ ΧΧ¦ΧΧ”. ΧΧ Χ Χ‘Χ—Χ¨ ΧªΧ™Χ§Χ™Χ™Χ” ΧΧ©ΧΧ•Χ¨ Χ‘Χ” ΧΧª Χ”Χ§Χ•Χ‘Χ¥ (Χ§Χ•Χ‘Χ¥ > Χ©ΧΧ•Χ¨ Χ‘ΧªΧ™Χ§Χ™Χ™Χ”).", "ΧΧ Χ Χ‘Χ—Χ¨ ΧªΧ™Χ§Χ™Χ™Χ”", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.RtlReading);
             Console.WriteLine($"Failed to find path: {this.globalSettings.SavePath}");
             return;
         }
@@ -737,13 +737,13 @@ public partial class Main : System.Windows.Forms.Form
 
         if (string.IsNullOrEmpty(newFilename))
         {
-            MessageBox.Show("ΰπΰ ρτχ ων χεαυ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show("ΧΧ Χ Χ΅Χ¤Χ§ Χ©Χ Χ§Χ•Χ‘Χ¥", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             return;
         }
         string pattern = @"^(?!^(CON|PRN|AUX|NUL|COM[1-9]|LPT[1-9])$)[^<>:""/\\|?*\x00-\x1F]+(?<!\.)$";
         if (!Regex.IsMatch(newFilename, pattern, RegexOptions.IgnoreCase))
         {
-            MessageBox.Show("ων χεαυ μΰ ϊχιο", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show("Χ©Χ Χ§Χ•Χ‘Χ¥ ΧΧ ΧªΧ§Χ™Χ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             return;
         }
         if (!newFilename.EndsWith(".pdf"))
@@ -754,7 +754,7 @@ public partial class Main : System.Windows.Forms.Form
 
         if (File.Exists(Path.Combine(this.globalSettings.SavePath, newFilename)) && !this.debug)
         {
-            DialogResult dr = MessageBox.Show($"χεαυ αων {newFilename} λαψ χιιν αϊιχιιϊ δωξιψδ. δΰν αψφεπκ μγψερ χεαυ ζδ?", "ΰζδψδ", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+            DialogResult dr = MessageBox.Show($"Χ§Χ•Χ‘Χ¥ Χ‘Χ©Χ {newFilename} Χ›Χ‘Χ¨ Χ§Χ™Χ™Χ Χ‘ΧªΧ™Χ§Χ™Χ™Χª Χ”Χ©ΧΧ™Χ¨Χ”. Χ”ΧΧ Χ‘Χ¨Χ¦Χ•Χ Χ ΧΧ“Χ¨Χ•Χ΅ Χ§Χ•Χ‘Χ¥ Χ–Χ”?", "ΧΧ–Χ”Χ¨Χ”", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
             if (dr == DialogResult.Cancel) { return; }
         }
         foreach (CheckBox checkbox in (parentGroupBox.Controls.Find("layoutPanel", false).First()).Controls.OfType<CheckBox>()) // multiple form versions.
@@ -792,11 +792,11 @@ public partial class Main : System.Windows.Forms.Form
     private MenuStrip GenerateMenuStrip()
     {
         MenuStrip menuStrip = new MenuStrip();
-        ToolStripMenuItem fileMenu = new ToolStripMenuItem("χεαυ");
-        ToolStripMenuItem chooseSaveFolder = new ToolStripMenuItem("ωξεψ αϊιχιιδ");
+        ToolStripMenuItem fileMenu = new ToolStripMenuItem("Χ§Χ•Χ‘Χ¥");
+        ToolStripMenuItem chooseSaveFolder = new ToolStripMenuItem("Χ©ΧΧ•Χ¨ Χ‘ΧªΧ™Χ§Χ™Χ™Χ”");
         chooseSaveFolder.Click += (s, e) => SaveFolderDialoge();
 
-        ToolStripMenuItem colorPallete = new ToolStripMenuItem("αηψ φας");
+        ToolStripMenuItem colorPallete = new ToolStripMenuItem("Χ‘Χ—Χ¨ Χ¦Χ‘ΧΆ");
         colorPallete.Click += (s, e) =>
         {
             if (mainColorDialog.ShowDialog() == DialogResult.OK)
@@ -804,7 +804,7 @@ public partial class Main : System.Windows.Forms.Form
                 this.mainColor = mainColorDialog.Color;
             }
         };
-        ToolStripMenuItem openFolder = new ToolStripMenuItem("τϊη ϊιχιιδ ξλιμδ");
+        ToolStripMenuItem openFolder = new ToolStripMenuItem("Χ¤ΧªΧ— ΧªΧ™Χ§Χ™Χ™Χ” ΧΧ›Χ™ΧΧ”");
         openFolder.Click += (s, e) => System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo()
         {
             FileName = globalSettings.SavePath,
@@ -812,12 +812,12 @@ public partial class Main : System.Windows.Forms.Form
             Verb = "open"
         });
 
-        ToolStripMenuItem about = new ToolStripMenuItem("ΰεγεϊ");
+        ToolStripMenuItem about = new ToolStripMenuItem("ΧΧ•Χ“Χ•Χª");
         about.Click += (o, e) => { new AboutBox().ShowDialog(); };
 
-        ToolStripMenuItem edit = new ToolStripMenuItem("ςψιλδ");
-        ToolStripMenuItem editPersonnel = new ToolStripMenuItem("ςψεκ ξΰβψ ΰπωι ξχφες");
-        ToolStripMenuItem editClients = new ToolStripMenuItem("ςψεκ ξΰβψ μχεηεϊ");
+        ToolStripMenuItem edit = new ToolStripMenuItem("ΧΆΧ¨Χ™Χ›Χ”");
+        ToolStripMenuItem editPersonnel = new ToolStripMenuItem("ΧΆΧ¨Χ•Χ ΧΧΧ’Χ¨ ΧΧ Χ©Χ™ ΧΧ§Χ¦Χ•ΧΆ");
+        ToolStripMenuItem editClients = new ToolStripMenuItem("ΧΆΧ¨Χ•Χ ΧΧΧ’Χ¨ ΧΧ§Χ•Χ—Χ•Χª");
         edit.DropDownItems.Add(editPersonnel);
         edit.DropDownItems.Add(editClients);
         editPersonnel.Click += (o, e) => { var f = new PersonnelForm(this.personnel, this.clients, 0); f.FormClosing += (s, e) => { this.PerformLayout(); }; f.Show(); };
@@ -826,11 +826,11 @@ public partial class Main : System.Windows.Forms.Form
             var f = new PersonnelForm(this.personnel, this.clients, 1); f.FormClosing += (s, e) => { this.PerformLayout(); };
             f.Show();
         };
-        ToolStripMenuItem openFileAfterGeneration = new ToolStripMenuItem("τϊη χεαυ μΰηψ δτχδ");
+        ToolStripMenuItem openFileAfterGeneration = new ToolStripMenuItem("Χ¤ΧªΧ— Χ§Χ•Χ‘Χ¥ ΧΧΧ—Χ¨ Χ”Χ¤Χ§Χ”");
         openFileAfterGeneration.Checked = this.globalSettings.LaunchFileAtGeneration;
         openFileAfterGeneration.Click += (o, e) => { this.globalSettings.LaunchFileAtGeneration = !this.globalSettings.LaunchFileAtGeneration; openFileAfterGeneration.Checked = this.globalSettings.LaunchFileAtGeneration; Console.WriteLine($"Open file after generation status: {this.globalSettings.LaunchFileAtGeneration}"); };
 
-        ToolStripMenuItem debugMode = new ToolStripMenuItem("ξφα τιϊεη");
+        ToolStripMenuItem debugMode = new ToolStripMenuItem("ΧΧ¦Χ‘ Χ¤Χ™ΧªΧ•Χ—");
         debugMode.Checked = this.globalSettings.Debug;
         debugMode.Click += (o, e) => { this.globalSettings.Debug = !this.globalSettings.Debug; debugMode.Checked = this.globalSettings.Debug; Config.UpdateSettings(this.globalSettings); MessageBox.Show("Please restart the program for changes to take effect."); };
 
