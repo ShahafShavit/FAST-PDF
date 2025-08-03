@@ -87,8 +87,8 @@ jobs:
       with:
         dotnet-version: '8.0.x'
         
-    - name: dotnet- Publish Portable App
-      run: dotnet publish --configuration Release --runtime win-x64 --output ./publish -p:PublishSingleFile=true --self-contained true -p:CodePage=1255
+    - name: dotnet- Publish Portable App with UTF-8 Codepage
+      run: dotnet publish --configuration Release --runtime win-x64 --output ./publish -p:PublishSingleFile=true --self-contained true -p:CodePage=65001
 
     - name: CMD- Remove User-Specific Files
       run: |
