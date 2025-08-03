@@ -1,0 +1,85 @@
+# Workflow name
+name: Force Deploy to FTP (Manual)
+
+# This action is triggered manually from the Actions tab in your GitHub repository.
+on:
+  workflow_dispatch:
+
+jobs:
+  # Job to test FTP connection before starting the build process.
+  check_ftp:
+    name: FTP- Check FTP Connectivity
+    runs-on: ubuntu-latest
+    steps:
+      - name: FTP- Test FTP Connection
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server: ${{ secrets.REMOTE_HOST }}
+          username: ${{ secrets.REMOTE_USER }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          # The dry-run option will attempt to connect and list files without making changes.
+          dry-run: true
+          # We check the target directory to ensure it exists and we have permissions.
+          server-dir: /public_html/updates/
+
+  # The 'deploy' job is responsible for building and deploying the application.
+  # It runs after the FTP check is successful.
+  deploy:
+    needs: check_ftp
+    runs-on: windows-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Get Local Version from .csproj
+      id: get_local_version
+      shell: pwsh
+      run: |
+        $csprojContent = Get-Content -Path './FAST-PDF.csproj'
+        $version = [regex]::Match($csprojContent, '(?<=<AssemblyVersion>).*(?=</AssemblyVersion>)').Value
+        echo "VERSION=$version" >> $env:GITHUB_OUTPUT
+        Write-Host "Project version is $version. This will be used for version.txt."
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '8.0.x'
+
+    - name: dotnet- Publish Portable App with Hebrew Codepage
+      # This command includes -p:CodePage=1255 to correctly handle Hebrew characters.
+      run: dotnet publish --configuration Release --runtime win-x64 --output ./publish -p:PublishSingleFile=true --self-contained true -p:CodePage=1255
+
+    - name: CMD- Remove User-Specific Files
+      run: |
+        if exist publish\Data\clients.json del publish\Data\clients.json
+        if exist publish\Data\personnel.json del publish\Data\personnel.json
+        if exist publish\Data\settings.json del publish\Data\settings.json
+      shell: cmd
+
+    - name: PS- Create Zip Archive
+      run: Compress-Archive -Path ./publish/* -DestinationPath FAST-PDF_latest.zip
+      shell: pwsh
+
+    - name: PS- Create version.txt for deployment
+      # This step uses the version extracted from the .csproj file earlier in this job.
+      run: echo "${{ steps.get_local_version.outputs.VERSION }}" > version.txt
+      shell: pwsh
+
+    - name: CMD- Stage files for deployment
+      shell: cmd
+      run: |
+        mkdir upload
+        move FAST-PDF_latest.zip upload\
+        move version.txt upload\
+
+    - name: FTP- Deploy Application Files to FTP
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+      with:
+        server: ${{ secrets.REMOTE_HOST }}
+        username: ${{ secrets.REMOTE_USER }}
+        password: ${{ secrets.FTP_PASSWORD }}
+        local-dir: ./upload/
+        server-dir: /public_html/updates/
+        # This will delete all existing files in the server-dir before uploading.
+        # Use with caution.
+        dangerous-clean-folders: true
