@@ -1,102 +1,136 @@
+# Workflow name
 name: Build, Zip, and Deploy via FTP
 
+# This action triggers on pushes to the 'publish' branch.
 on:
   push:
     branches: [ "publish" ]
 
 jobs:
-  build-and-deploy:
+  # New job to test FTP connection before starting the build process.
+  check_ftp:
+    name: FTP- Check FTP Connectivity
     runs-on: ubuntu-latest
-
     steps:
-    # ===================================================================
-    # SECTION 1: Build and package all local files first.
-    # ===================================================================
-    
-    
-    - name: Check Life
-      run: echo "ALIVE"
-    
+      - name: FTP- Test FTP Connection
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server: ${{ secrets.REMOTE_HOST }}
+          username: ${{ secrets.REMOTE_USER }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          # The dry-run option will attempt to connect and list files without making changes.
+          # If the connection fails, the action will fail, stopping the workflow.
+          dry-run: true
+          # We check the target directory to ensure it exists and we have permissions.
+          server-dir: /updates/
+
+  # The 'build' job now depends on the FTP check and is responsible for checking if a deployment is needed.
+  build:
+    needs: check_ftp
+    runs-on: windows-latest
+    # This job outputs whether to deploy and the version number from the project file.
+    outputs:
+      should_deploy: ${{ steps.compare_versions.outputs.SHOULD_DEPLOY }}
+      local_version: ${{ steps.get_local_version.outputs.VERSION }}
+    steps:
     - name: Checkout code
       uses: actions/checkout@v3
-    
+
+    - name: Get Local Version from .csproj
+      id: get_local_version
+      shell: pwsh
+      run: |
+        $csprojContent = Get-Content -Path './FAST-PDF.csproj'
+        $version = [regex]::Match($csprojContent, '(?<=<AssemblyVersion>).*(?=</AssemblyVersion>)').Value
+        echo "VERSION=$version" >> $env:GITHUB_OUTPUT
+
+    - name: Get Remote Version from Server
+      id: get_remote_version
+      shell: pwsh
+      run: |
+        try {
+          $version = Invoke-WebRequest -Uri "https://fast.shahafshavit.com/updates/version.txt" -UseBasicParsing | Select-Object -ExpandProperty Content
+        } catch {
+          # If version.txt doesn't exist (e.g., first deploy), default to 0.0.0.0
+          $version = "0.0.0.0"
+          Write-Host "Could not retrieve remote version. Defaulting to 0.0.0.0."
+        }
+        echo "VERSION=$version" >> $env:GITHUB_OUTPUT
+
+    - name: Compare Local and Remote Versions
+      id: compare_versions
+      shell: pwsh
+      run: |
+        $local_version = "${{ steps.get_local_version.outputs.VERSION }}"
+        $remote_version = "${{ steps.get_remote_version.outputs.VERSION }}"
+        Write-Host "Local version: $local_version"
+        Write-Host "Remote version: $remote_version"
+        if ([version]$local_version -gt [version]$remote_version) {
+          Write-Host "Decision: New version detected. Deployment will proceed."
+          echo "SHOULD_DEPLOY=true" >> $env:GITHUB_OUTPUT
+        } else {
+          Write-Host "Decision: Version is not new. Deployment will be skipped."
+          echo "SHOULD_DEPLOY=false" >> $env:GITHUB_OUTPUT
+        }
+
+  # The 'deploy' job runs only if the 'build' job determines a new version is available.
+  deploy:
+    needs: build
+    if: needs.build.outputs.should_deploy == 'true'
+    runs-on: windows-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: '8.0.x'
+        
+    - name: dotnet- Publish Portable App
+      run: dotnet publish --configuration Release --runtime win-x64 --output ./publish -p:PublishSingleFile=true --self-contained true
 
-    # - name: Publish Portable App
-    #   run: dotnet publish --configuration Release --runtime win-x64 --output ./publish -p:PublishSingleFile=true --self-contained true
+    - name: CMD- Remove User-Specific Files
+      run: |
+        del publish\Data\clients.json
+        del publish\Data\personnel.json
+        del publish\Data\settings.json
+      shell: cmd
 
-    # - name: DEBUG - List files in publish directory (before removal)
-    #   run: ls -R ./publish
+    - name: PS- Create Zip Archive
+      run: Compress-Archive -Path ./publish/* -DestinationPath FAST-PDF_latest.zip
+      shell: pwsh
 
-    # - name: Remove User-Specific Files
-    #   run: |
-    #     rm ./publish/Data/clients.json
-    #     rm ./publish/Data/personnel.json
-    #     rm ./publish/Data/settings.json
-    #   shell: bash
+    - name: PS- Create version.txt for deployment
+      # This step now correctly receives the local_version output from the 'build' job.
+      run: echo "${{ needs.build.outputs.local_version }}" > version.txt
+      shell: pwsh
 
-    # - name: DEBUG - List files in publish directory (after removal)
-    #   run: ls -R ./publish
+    - name: CMD- Stage files for deployment
+      shell: cmd
+      run: |
+        mkdir upload
+        move FAST-PDF_latest.zip upload\
+        move version.txt upload\
 
-    # - name: Zip the release
-    #   uses: thejoshwolfe/zip-release-action@v1
-    #   with:
-    #     filename: 'FAST-PDF_latest.zip'
-    #     directory: './publish'
-    #     path: '.'
+    - name: FTP- Deploy Application Files to FTP
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+      with:
+        server: ${{ secrets.REMOTE_HOST }}
+        username: ${{ secrets.REMOTE_USER }}
+        password: ${{ secrets.FTP_PASSWORD }}
+        local-dir: ./upload/
+        server-dir: /public_html/updates/
 
-    # # ===================================================================
-    # # SECTION 2: Prepare the version.txt file locally.
-    # # ===================================================================
-    # - name: Read .csproj
-    #   id: read_project
-    #   uses: CumulusDS/read-file-action@v1
-    #   with:
-    #     path: './FAST-PDF.csproj'
-
-    # - name: Extract Project Version
-    #   id: extract_version
-    #   uses: 'regex-match@v2'
-    #   with:
-    #     text: ${{ steps.read_project.outputs.content }}
-    #     regex: '(?<=<AssemblyVersion>).*(?=</AssemblyVersion>)'
-
-    # - name: DEBUG - Echo extracted version
-    #   run: echo "${{ steps.extract_version.outputs.match }}"
-
-    # - name: Create version.txt for deployment
-    #   run: echo "${{ steps.extract_version.outputs.match }}" > version.txt
-
-    # - name: DEBUG - Show final version.txt content
-    #   run: cat version.txt
-
-    # # ===================================================================
-    # # SECTION 3: All local operations are done. Deploy to server.
-    # # ===================================================================
-    # - name: Deploy Application ZIP
-    #   uses: SamKirkland/FTP-Deploy-Action@v4.3.4
-    #   with:
-    #     server: ${{ secrets.REMOTE_HOST }}
-    #     username: ${{ secrets.REMOTE_USER }}
-    #     password: ${{ secrets.FTP_PASSWORD }}
-    #     local-dir: ./
-    #     server-dir: /path/to/your/updates/folder/
-    #     include: |
-    #       FAST-PDF_latest.zip
-    #     log-level: "verbose"
-
-    # - name: Deploy version.txt
-    #   uses: SamKirkland/FTP-Deploy-Action@v4.3.4
-    #   with:
-    #     server: ${{ secrets.REMOTE_HOST }}
-    #     username: ${{ secrets.REMOTE_USER }}
-    #     password: ${{ secrets.FTP_PASSWORD }}
-    #     local-dir: ./
-    #     server-dir: /path/to/your/updates/folder/
-    #     include: |
-    #       version.txt
-    #     state-name: ftp-state-version.json
-    #     log-level: "verbose"
+  # This job runs only if deployment is NOT needed.
+  no_deployment_needed:
+    name: No Deployment Needed
+    runs-on: ubuntu-latest
+    needs: build
+    # It runs if the 'should_deploy' output is 'false'.
+    if: needs.build.outputs.should_deploy == 'false'
+    steps:
+      - name: Notify that deployment is skipped
+        run: |
+          echo "Deployment skipped."
+          echo "Reason: The version in the .csproj file is not newer than the version on the server."
