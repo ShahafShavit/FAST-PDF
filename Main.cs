@@ -636,7 +636,7 @@ public partial class Main : System.Windows.Forms.Form
             Name = "fileNameTextBox",
             Dock = DockStyle.Bottom,
             Tag = "FileName",
-            Text = formObj.FormName + " ",
+            Text = formObj.FormName + " - ",
         };
         fileNameTextBox.ShortcutsEnabled = true;
         fileNameTextBox.KeyDown += (s, e) =>
