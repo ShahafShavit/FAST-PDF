@@ -4441,6 +4441,329 @@
         },
         {
           "Order": 1,
+          "FormName": "העברות בנקאיות",
+          "FileName": "g_THB.pdf",
+          "Path": "g_THB.pdf",
+          "Checksum": null,
+          "Fields": [
+            {
+              "Type": "TextBox",
+              "ActionType": null,
+              "Bank": null,
+              "Name": "g_THB_OrderID",
+              "Label": "מס' הזמנה",
+              "DebugPlaceholder": "1234567",
+              "DefaultText": "",
+              "Description": "",
+              "DataType": 0,
+              "Font": "David",
+              "Size": 12,
+              "ResizeFunctionUse": false,
+              "Locations": [
+                {
+                  "Page": 1,
+                  "X": 315.0,
+                  "Y": 530.0,
+                  "Width": null,
+                  "Height": null,
+                  "Type": null
+                }
+              ],
+              "Items": null,
+              "SubFields": null
+            },
+            {
+              "Type": "TextBox",
+              "ActionType": null,
+              "Bank": null,
+              "Name": "g_THB_TransactionSum",
+              "Label": "סכום העברה",
+              "DebugPlaceholder": "12345678",
+              "DefaultText": "",
+              "Description": "",
+              "DataType": 0,
+              "Font": "David",
+              "Size": 12,
+              "ResizeFunctionUse": false,
+              "Locations": [
+                {
+                  "Page": 1,
+                  "X": 315.0,
+                  "Y": 495.0,
+                  "Width": null,
+                  "Height": null,
+                  "Type": null
+                }
+              ],
+              "Items": null,
+              "SubFields": null
+            },
+            {
+              "Type": "TextBox",
+              "ActionType": null,
+              "Bank": null,
+              "Name": "g_THB_TransactionDate",
+              "Label": "תאריך העברה",
+              "DebugPlaceholder": "13/12/2025",
+              "DefaultText": "",
+              "Description": "",
+              "DataType": 0,
+              "Font": "David",
+              "Size": 12,
+              "ResizeFunctionUse": false,
+              "Locations": [
+                {
+                  "Page": 1,
+                  "X": 315.0,
+                  "Y": 478.0,
+                  "Width": null,
+                  "Height": null,
+                  "Type": null
+                }
+              ],
+              "Items": null,
+              "SubFields": null
+            },
+            {
+              "Type": "ComboBox",
+              "ActionType": "FormFiller",
+              "Bank": "Clients",
+              "Name": "g_THB_BaalHoze",
+              "Label": "שם מזמין",
+              "DebugPlaceholder": "",
+              "DefaultText": "",
+              "Description": "",
+              "DataType": 0,
+              "Font": "David",
+              "Size": 11,
+              "ResizeFunctionUse": false,
+              "Locations": null,
+              "Items": null,
+              "SubFields": [
+                {
+                  "Type": "TextBox",
+                  "ActionType": null,
+                  "Bank": null,
+                  "Name": "g_THB_ShemBaal",
+                  "Label": "שם המזמין",
+                  "DebugPlaceholder": "שם המזמין",
+                  "DefaultText": "",
+                  "Description": "",
+                  "DataType": 0,
+                  "Font": "David",
+                  "Size": 12,
+                  "ResizeFunctionUse": false,
+                  "Locations": [
+                    {
+                      "Page": 1,
+                      "X": 315.0,
+                      "Y": 461.0,
+                      "Width": null,
+                      "Height": null,
+                      "Type": null
+                    }
+                  ],
+                  "Items": null,
+                  "SubFields": null
+                }
+              ]
+            },
+            {
+              "Type": "ComboBox",
+              "ActionType": "FormFiller",
+              "Bank": "Clients",
+              "Name": "g_THB_ShemMazminKabala",
+              "Label": "שם המשלם",
+              "DebugPlaceholder": "",
+              "DefaultText": "",
+              "Description": "",
+              "DataType": 0,
+              "Font": "David",
+              "Size": 11,
+              "ResizeFunctionUse": false,
+              "Locations": null,
+              "Items": null,
+              "SubFields": [
+                {
+                  "Type": "TextBox",
+                  "ActionType": null,
+                  "Bank": null,
+                  "Name": "g_THB_ShemBaal",
+                  "Label": "שם המשלם",
+                  "DebugPlaceholder": "שם שם משלם",
+                  "DefaultText": "",
+                  "Description": "",
+                  "DataType": 0,
+                  "Font": "David",
+                  "Size": 12,
+                  "ResizeFunctionUse": false,
+                  "Locations": [
+                    {
+                      "Page": 1,
+                      "X": 315.0,
+                      "Y": 441.0,
+                      "Width": null,
+                      "Height": null,
+                      "Type": null
+                    }
+                  ],
+                  "Items": null,
+                  "SubFields": null
+                }
+              ]
+            },
+            {
+              "Type": "TextBox",
+              "ActionType": null,
+              "Bank": null,
+              "Name": "g_THB_SomeEmail",
+              "Label": "אימייל",
+              "DebugPlaceholder": "osher@lahat-eng.co.il",
+              "DefaultText": "osher@lahat-eng.co.il",
+              "Description": "",
+              "DataType": 0,
+              "Font": "David",
+              "Size": 12,
+              "ResizeFunctionUse": false,
+              "Locations": [
+                {
+                  "Page": 1,
+                  "X": 315.0,
+                  "Y": 403.0,
+                  "Width": null,
+                  "Height": null,
+                  "Type": null
+                }
+              ],
+              "Items": null,
+              "SubFields": null
+            },
+            {
+              "Type": "TextBox",
+              "ActionType": null,
+              "Bank": null,
+              "Name": "g_THB_BankNum",
+              "Label": "מספר/שם בנק",
+              "DebugPlaceholder": "מספר",
+              "DefaultText": "",
+              "Description": "",
+              "DataType": 0,
+              "Font": "David",
+              "Size": 12,
+              "ResizeFunctionUse": false,
+              "Locations": [
+                {
+                  "Page": 1,
+                  "X": 315.0,
+                  "Y": 370.0,
+                  "Width": null,
+                  "Height": null,
+                  "Type": null
+                }
+              ],
+              "Items": null,
+              "SubFields": null
+            },
+            {
+              "Type": "TextBox",
+              "ActionType": null,
+              "Bank": null,
+              "Name": "g_THB_BankSnifNum",
+              "Label": "סניף",
+              "DebugPlaceholder": "954",
+              "DefaultText": "",
+              "Description": "",
+              "DataType": 0,
+              "Font": "David",
+              "Size": 12,
+              "ResizeFunctionUse": false,
+              "Locations": [
+                {
+                  "Page": 1,
+                  "X": 315.0,
+                  "Y": 350.0,
+                  "Width": null,
+                  "Height": null,
+                  "Type": null
+                }
+              ],
+              "Items": null,
+              "SubFields": null
+            },
+            {
+              "Type": "TextBox",
+              "ActionType": null,
+              "Bank": null,
+              "Name": "g_THB_BankNumber",
+              "Label": "מס חשבון בנק",
+              "DebugPlaceholder": "מס חשבון בנק",
+              "DefaultText": "",
+              "Description": "",
+              "DataType": 0,
+              "Font": "David",
+              "Size": 12,
+              "ResizeFunctionUse": false,
+              "Locations": [
+                {
+                  "Page": 1,
+                  "X": 315.0,
+                  "Y": 333.0,
+                  "Width": null,
+                  "Height": null,
+                  "Type": null
+                }
+              ],
+              "Items": null,
+              "SubFields": null
+            },
+            {
+              "Type": "ComboBox",
+              "ActionType": "FormFiller",
+              "Bank": "Clients",
+              "Name": "g_THB_ShemBaalHeshbon",
+              "Label": "שם בעל החשבון",
+              "DebugPlaceholder": "",
+              "DefaultText": "",
+              "Description": "",
+              "DataType": 0,
+              "Font": "David",
+              "Size": 11,
+              "ResizeFunctionUse": false,
+              "Locations": null,
+              "Items": null,
+              "SubFields": [
+                {
+                  "Type": "TextBox",
+                  "ActionType": null,
+                  "Bank": null,
+                  "Name": "g_THB_ShemBaal",
+                  "Label": "שם בעל החשבון",
+                  "DebugPlaceholder": "שם בעל חשבון",
+                  "DefaultText": "",
+                  "Description": "",
+                  "DataType": 0,
+                  "Font": "David",
+                  "Size": 12,
+                  "ResizeFunctionUse": false,
+                  "Locations": [
+                    {
+                      "Page": 1,
+                      "X": 315.0,
+                      "Y": 316.0,
+                      "Width": null,
+                      "Height": null,
+                      "Type": null
+                    }
+                  ],
+                  "Items": null,
+                  "SubFields": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "Order": 2,
           "FormName": "החלפת שם מזמין",
           "FileName": "g_HSM.pdf",
           "Path": "g_HSM.pdf",
@@ -4448,7 +4771,7 @@
           "Fields": null
         },
         {
-          "Order": 2,
+          "Order": 3,
           "FormName": "פתיחת חוזה חדש",
           "FileName": "g_PHH.pdf",
           "Path": "g_PHH.pdf",
@@ -4456,7 +4779,7 @@
           "Fields": null
         },
         {
-          "Order": 3,
+          "Order": 4,
           "FormName": "בקשה לחיבור במתח גבוה",
           "FileName": "g_PMG.pdf",
           "Path": "g_PMG.pdf",
