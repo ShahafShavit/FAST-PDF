@@ -1,34 +1,19 @@
 # Workflow name
-name: Build, Zip, and Deploy via FTP
+name: Build, Zip, and Deploy to S3
 
-# This action triggers on pushes to the 'publish' branch.
 on:
   push:
     branches: [ "publish" ]
 
-jobs:
-  # New job to test FTP connection before starting the build process.
-  check_ftp:
-    name: FTP- Check FTP Connectivity
-    runs-on: ubuntu-latest
-    steps:
-      - name: FTP- Test FTP Connection
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
-        with:
-          server: ${{ secrets.REMOTE_HOST }}
-          username: ${{ secrets.REMOTE_USER }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          # The dry-run option will attempt to connect and list files without making changes.
-          # If the connection fails, the action will fail, stopping the workflow.
-          dry-run: true
-          # We check the target directory to ensure it exists and we have permissions.
-          server-dir: /updates/
+env:
+  AWS_REGION: eu-central-1
+  AWS_S3_BUCKET: fast.shahafshavit.com
+  AWS_S3_PREFIX: updates
+  CLOUDFRONT_DISTRIBUTION_ID: E3K7TCAYOC78JA
 
-  # The 'build' job now depends on the FTP check and is responsible for checking if a deployment is needed.
+jobs:
   build:
-    needs: check_ftp
     runs-on: windows-latest
-    # This job outputs whether to deploy and the version number from the project file.
     outputs:
       should_deploy: ${{ steps.compare_versions.outputs.SHOULD_DEPLOY }}
       local_version: ${{ steps.get_local_version.outputs.VERSION }}
@@ -50,8 +35,8 @@ jobs:
       run: |
         try {
           $version = Invoke-WebRequest -Uri "https://fast.shahafshavit.com/updates/version.txt" -UseBasicParsing | Select-Object -ExpandProperty Content
+          $version = $version.Trim()
         } catch {
-          # If version.txt doesn't exist (e.g., first deploy), default to 0.0.0.0
           $version = "0.0.0.0"
           Write-Host "Could not retrieve remote version. Defaulting to 0.0.0.0."
         }
@@ -73,20 +58,28 @@ jobs:
           echo "SHOULD_DEPLOY=false" >> $env:GITHUB_OUTPUT
         }
 
-  # The 'deploy' job runs only if the 'build' job determines a new version is available.
   deploy:
     needs: build
     if: needs.build.outputs.should_deploy == 'true'
     runs-on: windows-latest
+    permissions:
+      id-token: write
+      contents: read
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
+
+    - name: Configure AWS credentials (OIDC)
+      uses: aws-actions/configure-aws-credentials@v4
+      with:
+        role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+        aws-region: ${{ env.AWS_REGION }}
 
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: '8.0.x'
-        
+
     - name: dotnet- Publish Portable App with UTF-8 Codepage
       run: dotnet publish --configuration Release --runtime win-x64 --output ./publish -p:PublishSingleFile=true --self-contained true -p:CodePage=65001
 
@@ -102,7 +95,6 @@ jobs:
       shell: pwsh
 
     - name: PS- Create version.txt for deployment
-      # This step now correctly receives the local_version output from the 'build' job.
       run: echo "${{ needs.build.outputs.local_version }}" > version.txt
       shell: pwsh
 
@@ -113,21 +105,24 @@ jobs:
         move FAST-PDF_latest.zip upload\
         move version.txt upload\
 
-    - name: FTP- Deploy Application Files to FTP
-      uses: SamKirkland/FTP-Deploy-Action@v4.3.4
-      with:
-        server: ${{ secrets.REMOTE_HOST }}
-        username: ${{ secrets.REMOTE_USER }}
-        password: ${{ secrets.FTP_PASSWORD }}
-        local-dir: ./upload/
-        server-dir: /public_html/updates/
+    - name: Upload artifacts to S3
+      shell: pwsh
+      run: |
+        aws s3 cp "./upload/FAST-PDF_latest.zip" "s3://${env:AWS_S3_BUCKET}/${env:AWS_S3_PREFIX}/FAST-PDF_latest.zip" --region $env:AWS_REGION
+        aws s3 cp "./upload/version.txt" "s3://${env:AWS_S3_BUCKET}/${env:AWS_S3_PREFIX}/version.txt" --region $env:AWS_REGION
 
-  # This job runs only if deployment is NOT needed.
+    - name: Invalidate CloudFront cache
+      shell: pwsh
+      env:
+        AWS_DEFAULT_REGION: us-east-1
+      run: |
+        $path = "/${env:AWS_S3_PREFIX}/*"
+        aws cloudfront create-invalidation --distribution-id $env:CLOUDFRONT_DISTRIBUTION_ID --paths $path
+
   no_deployment_needed:
     name: No Deployment Needed
     runs-on: ubuntu-latest
     needs: build
-    # It runs if the 'should_deploy' output is 'false'.
     if: needs.build.outputs.should_deploy == 'false'
     steps:
       - name: Notify that deployment is skipped

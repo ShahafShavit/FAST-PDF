@@ -1,35 +1,33 @@
 # Workflow name
-name: Force Deploy to FTP (Manual)
+name: Force Deploy to S3 (Manual)
 
-# This action is triggered manually from the Actions tab in your GitHub repository.
+# Manual deploy: always builds and uploads (ignores version compare). Same OIDC + S3 + CloudFront as deploy.yml.
+# Requires GitHub secret AWS_ROLE_ARN = arn:aws:iam::723528228271:role/GitHubActionsFastPdfDeploy (see deploy.yml for IAM notes).
+
 on:
   workflow_dispatch:
 
-jobs:
-  # Job to test FTP connection before starting the build process.
-  check_ftp:
-    name: FTP- Check FTP Connectivity
-    runs-on: ubuntu-latest
-    steps:
-      - name: FTP- Test FTP Connection
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
-        with:
-          server: ${{ secrets.REMOTE_HOST }}
-          username: ${{ secrets.REMOTE_USER }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          # The dry-run option will attempt to connect and list files without making changes.
-          dry-run: true
-          # We check the target directory to ensure it exists and we have permissions.
-          server-dir: /public_html/updates/
+env:
+  AWS_REGION: eu-central-1
+  AWS_S3_BUCKET: fast.shahafshavit.com
+  AWS_S3_PREFIX: updates
+  CLOUDFRONT_DISTRIBUTION_ID: E3K7TCAYOC78JA
 
-  # The 'deploy' job is responsible for building and deploying the application.
-  # It runs after the FTP check is successful.
+jobs:
   deploy:
-    needs: check_ftp
     runs-on: windows-latest
+    permissions:
+      id-token: write
+      contents: read
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
+
+    - name: Configure AWS credentials (OIDC)
+      uses: aws-actions/configure-aws-credentials@v4
+      with:
+        role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+        aws-region: ${{ env.AWS_REGION }}
 
     - name: Get Local Version from .csproj
       id: get_local_version
@@ -46,8 +44,6 @@ jobs:
         dotnet-version: '8.0.x'
 
     - name: dotnet- Publish Portable App with UTF-8 Codepage
-      # This command uses -p:CodePage=65001 (UTF-8).
-      # This REQUIRES that your source files with Hebrew characters are saved with "UTF-8 with BOM" encoding.
       run: dotnet publish --configuration Release --runtime win-x64 --output ./publish -p:PublishSingleFile=true --self-contained true -p:CodePage=65001
 
     - name: CMD- Remove User-Specific Files
@@ -62,7 +58,6 @@ jobs:
       shell: pwsh
 
     - name: PS- Create version.txt for deployment
-      # This step uses the version extracted from the .csproj file earlier in this job.
       run: echo "${{ steps.get_local_version.outputs.VERSION }}" > version.txt
       shell: pwsh
 
@@ -73,14 +68,16 @@ jobs:
         move FAST-PDF_latest.zip upload\
         move version.txt upload\
 
-    - name: FTP- Deploy Application Files to FTP
-      uses: SamKirkland/FTP-Deploy-Action@v4.3.4
-      with:
-        server: ${{ secrets.REMOTE_HOST }}
-        username: ${{ secrets.REMOTE_USER }}
-        password: ${{ secrets.FTP_PASSWORD }}
-        local-dir: ./upload/
-        server-dir: /public_html/updates/
-        # This will delete all existing files in the server-dir before uploading.
-        # Use with caution.
-        dangerous-clean-folders: true
+    - name: Upload artifacts to S3
+      shell: pwsh
+      run: |
+        aws s3 cp "./upload/FAST-PDF_latest.zip" "s3://${env:AWS_S3_BUCKET}/${env:AWS_S3_PREFIX}/FAST-PDF_latest.zip" --region $env:AWS_REGION
+        aws s3 cp "./upload/version.txt" "s3://${env:AWS_S3_BUCKET}/${env:AWS_S3_PREFIX}/version.txt" --region $env:AWS_REGION
+
+    - name: Invalidate CloudFront cache
+      shell: pwsh
+      env:
+        AWS_DEFAULT_REGION: us-east-1
+      run: |
+        $path = "/${env:AWS_S3_PREFIX}/*"
+        aws cloudfront create-invalidation --distribution-id $env:CLOUDFRONT_DISTRIBUTION_ID --paths $path
