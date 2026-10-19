@@ -757,36 +757,51 @@ public partial class Main : System.Windows.Forms.Form
             DialogResult dr = MessageBox.Show($"קובץ בשם {newFilename} כבר קיים בתיקיית השמירה. האם ברצונך לדרוס קובץ זה?", "אזהרה", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
             if (dr == DialogResult.Cancel) { return; }
         }
-        foreach (CheckBox checkbox in (parentGroupBox.Controls.Find("layoutPanel", false).First()).Controls.OfType<CheckBox>()) // multiple form versions.
+        try
         {
-            if (checkbox.Checked && checkbox.Tag != null)
+            foreach (CheckBox checkbox in (parentGroupBox.Controls.Find("layoutPanel", false).First()).Controls.OfType<CheckBox>()) // multiple form versions.
             {
-                string? actionType = checkbox.Tag?.ToString()?.Split(',')[0];
-                if (actionType == "NewForm" && checkbox.Checked)
+                if (checkbox.Checked && checkbox.Tag != null)
                 {
-                    string inputFormname = checkbox.Tag?.ToString()?.Split(',')[1].Trim(); // Get the input filename
-                    string outputName = newFilename.Replace(".pdf", "") + "_" + checkbox.Text.Replace(" ", "_") + ".pdf";  // Produce output file
-                    standard = false;
+                    string? actionType = checkbox.Tag?.ToString()?.Split(',')[0];
+                    if (actionType == "NewForm" && checkbox.Checked)
+                    {
+                        string inputFormname = checkbox.Tag?.ToString()?.Split(',')[1].Trim(); // Get the input filename
+                        string outputName = newFilename.Replace(".pdf", "") + "_" + checkbox.Text.Replace(" ", "_") + ".pdf";  // Produce output file
+                        standard = false;
 
-                    formObject.FillSpecialForm(outputName, globalSettings.SavePath, inputFormname, globalSettings.InputPath, new DeviceRgb(this.mainColor.R, this.mainColor.G, this.mainColor.B));
-                    Console.WriteLine($"Form has been filled and saved at {Path.Combine(globalSettings.SavePath, outputName)}");
+                        formObject.FillSpecialForm(outputName, globalSettings.SavePath, inputFormname, globalSettings.InputPath, new DeviceRgb(this.mainColor.R, this.mainColor.G, this.mainColor.B));
+                        Console.WriteLine($"Form has been filled and saved at {Path.Combine(globalSettings.SavePath, outputName)}");
+                    }
+                }
+            }
+            if (standard)
+            {
+                formObject.FillForm(newFilename, globalSettings.SavePath, globalSettings.InputPath, new DeviceRgb(this.mainColor.R, this.mainColor.G, this.mainColor.B));
+                Console.WriteLine($"Form has been filled and saved at {Path.Combine(globalSettings.SavePath, newFilename)}");
+                if (globalSettings.LaunchFileAtGeneration)
+                {
+                    Process.Start(new System.Diagnostics.ProcessStartInfo()
+                    {
+                        FileName = Path.Combine(globalSettings.SavePath, newFilename),
+                        UseShellExecute = true,
+                        Verb = "open"
+                    });
                 }
             }
         }
-        if (standard)
+        catch (IOException ex) when (IsFileLocked(ex))
         {
-            formObject.FillForm(newFilename, globalSettings.SavePath, globalSettings.InputPath, new DeviceRgb(this.mainColor.R, this.mainColor.G, this.mainColor.B));
-            Console.WriteLine($"Form has been filled and saved at {Path.Combine(globalSettings.SavePath, newFilename)}");
-            if (globalSettings.LaunchFileAtGeneration)
-            {
-                Process.Start(new System.Diagnostics.ProcessStartInfo()
-                {
-                    FileName = Path.Combine(globalSettings.SavePath, newFilename),
-                    UseShellExecute = true,
-                    Verb = "open"
-                });
-            }
+            Console.WriteLine($"Failed to save the form: {ex.Message}");
+            MessageBox.Show($"הקובץ פתוח בתוכנה אחרת ולא ניתן לשמור אותו. סגור את הקובץ ולחץ שוב על \"הפק טופס\".\n\n{ex.Message}", "הקובץ בשימוש", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.RtlReading);
         }
+    }
+
+    // Win32 ERROR_SHARING_VIOLATION (32) and ERROR_LOCK_VIOLATION (33).
+    private static bool IsFileLocked(IOException ex)
+    {
+        int win32Error = ex.HResult & 0xFFFF;
+        return win32Error == 32 || win32Error == 33;
     }
 
     private MenuStrip GenerateMenuStrip()
